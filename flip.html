@@ -1,0 +1,24 @@
+
+
+<a name='{{name}}'/>
+<h1 class='w3-container w3-teal' ng-click='show=!show; scrollTo()'>&#9205; {{subject}}</h1>
+<hr/>
+<div style='font-size: 20px;' ng-show='show'>
+	<div class="flip" ng-repeat='question in random'> 
+        <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1"> 
+            <div class="face front w3-teal w3-round-large w3-xlarge">
+				<span>Rank: {{question.rank}} </span><br/>
+                Question: {{question.question}}
+            </div> 
+            <div class="face back w3-green w3-round-large w3-xlarge"> 
+                Answer: {{question.answer}} 
+            </div>
+        </div> 
+		Correct: <input class='{{name}}-correct' type='checkbox'/>
+		<button class='w3-btn w3-khaki w3-round w3-small' ng-click='better(question.id);'>Suggest A Better Answer</button>
+		<button class='w3-btn w3-khaki w3-round w3-small' ng-click='rank(question.id);'>Click to Suggest Another Ranking</button>
+    </div> 
+	
+	<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>Score</button>
+	&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>
+</div>
