@@ -44,6 +44,18 @@ technical.controller( 'htmlCtrl', function( $scope, $http, $location, $anchorScr
       $location.hash( $scope.name );
       $anchorScroll();
     }
+	$scope.scored = false;
+	$scope.score_css = "w3-green";
+	$scope.score = function() {
+		if ( ( $scope.scored = !$scope.scored ) ) {
+			Tally( $scope.name );
+			$scope.score_css = "w3-red";
+		}
+		else {
+			UnTally( $scope.name );
+			$scope.score_css = "w3-green";
+		}
+	}
 })
 .directive( "questionsHtml", function() {
 	return {
