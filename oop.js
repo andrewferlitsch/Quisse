@@ -1,4 +1,4 @@
-technical.controller( 'oopCtrl', function( $scope, $http ) {
+technical.controller( 'oopCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "OOP Design";
 	$scope.name   	= "oop";
 	
@@ -40,6 +40,10 @@ technical.controller( 'oopCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsOop", function() {
 	return {

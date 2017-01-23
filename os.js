@@ -1,4 +1,4 @@
-technical.controller( 'osCtrl', function( $scope, $http ) {
+technical.controller( 'osCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "OS";
 	$scope.name   	= "os";
 	
@@ -40,6 +40,10 @@ technical.controller( 'osCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsOs", function() {
 	return {

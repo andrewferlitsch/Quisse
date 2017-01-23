@@ -4,7 +4,7 @@ create table questions
 	id	 		int				not null primary key auto_increment,
 	category 	varchar(16)		not null,
 	question 	varchar(256)	not null,
-	answer   	varchar(256)	not null,
+	answer   	varchar(512)	not null,
 	rank	 	tinyint		    not null default 1,
 	toggle		tinyint			not null default 1,
 

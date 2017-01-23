@@ -1,4 +1,4 @@
-technical.controller( 'dosCtrl', function( $scope, $http ) {
+technical.controller( 'dosCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "DOS";
 	$scope.name     = "dos";
 	
@@ -40,6 +40,10 @@ technical.controller( 'dosCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsDos", function() {
 	return {

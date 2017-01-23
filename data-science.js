@@ -1,4 +1,4 @@
-technical.controller( 'dataScienceCtrl', function( $scope, $http ) {
+technical.controller( 'dataScienceCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "Data Science";
 	$scope.name  	= "datascience";
 	
@@ -40,6 +40,10 @@ technical.controller( 'dataScienceCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsDataScience", function() {
 	return {

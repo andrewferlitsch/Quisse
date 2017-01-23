@@ -1,4 +1,4 @@
-technical.controller( 'html5Ctrl', function( $scope, $http ) {
+technical.controller( 'html5Ctrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "HTML5";
 	$scope.name     = "html5";
 	$scope.questions = [{ question: "placeholder 1",
@@ -39,6 +39,10 @@ technical.controller( 'html5Ctrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsHtml5", function() {
 	return {

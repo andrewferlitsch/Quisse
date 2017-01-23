@@ -1,4 +1,4 @@
-technical.controller( 'javaCtrl', function( $scope, $http ) {
+technical.controller( 'javaCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "Java";
 	$scope.name     = "java";
 	$scope.questions = [{ question: "placeholder 1",
@@ -39,6 +39,10 @@ technical.controller( 'javaCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsJava", function() {
 	return {

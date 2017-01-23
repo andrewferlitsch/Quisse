@@ -1,4 +1,4 @@
-technical.controller( 'windowsCtrl', function( $scope ) {
+technical.controller( 'windowsCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "Windows OS";
 	$scope.name   	= "windows";
 	
@@ -40,6 +40,10 @@ technical.controller( 'windowsCtrl', function( $scope ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsWindows", function() {
 	return {

@@ -1,4 +1,4 @@
-technical.controller( 'cppCtrl', function( $scope, $http ) {
+technical.controller( 'cppCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "C++";
 	$scope.name     = "cpp";
 	$scope.questions = [{ question: "placeholder 1",
@@ -39,6 +39,10 @@ technical.controller( 'cppCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsCpp", function() {
 	return {

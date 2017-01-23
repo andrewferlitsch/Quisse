@@ -1,4 +1,4 @@
-technical.controller( 'securityCtrl', function( $scope, $http ) {
+technical.controller( 'securityCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "Security";
 	$scope.name   	= "security";
 	
@@ -40,6 +40,10 @@ technical.controller( 'securityCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsSecurity", function() {
 	return {

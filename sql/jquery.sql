@@ -44,7 +44,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'JQuery',
-    'What does this select: $("div.cat")',
+    'What does this select: $("div.cat")?',
     'All div elements with class = cat',
     1,
 	1

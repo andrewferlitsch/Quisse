@@ -1,4 +1,4 @@
-technical.controller( 'htmlCtrl', function( $scope, $http ) {
+technical.controller( 'htmlCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "HTML";
 	$scope.name     = "html";
 	
@@ -40,6 +40,10 @@ technical.controller( 'htmlCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsHtml", function() {
 	return {

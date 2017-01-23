@@ -1,4 +1,4 @@
-technical.controller( 'webCtrl', function( $scope, $http ) {
+technical.controller( 'webCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "Web";
 	$scope.name   	= "web";
 	$scope.questions = [{ question: "placeholder 1",
@@ -39,6 +39,10 @@ technical.controller( 'webCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsWeb", function() {
 	return {

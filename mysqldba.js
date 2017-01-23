@@ -1,4 +1,4 @@
-technical.controller( 'mysqlDbaCtrl', function( $scope, $http ) {
+technical.controller( 'mysqlDbaCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "MySQL DBA";
 	$scope.name   	= "mysqldba";
 	
@@ -40,6 +40,10 @@ technical.controller( 'mysqlDbaCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsMysqlDba", function() {
 	return {

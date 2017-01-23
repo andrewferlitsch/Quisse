@@ -1,4 +1,4 @@
-technical.controller( 'csharpCtrl', function( $scope, $http ) {
+technical.controller( 'csharpCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "C#";
 	$scope.name     = "csharp";
 	
@@ -40,6 +40,10 @@ technical.controller( 'csharpCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsCsharp", function() {
 	return {

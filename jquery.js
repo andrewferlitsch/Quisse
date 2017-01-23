@@ -1,4 +1,4 @@
-technical.controller( 'jqueryCtrl', function( $scope, $http ) {
+technical.controller( 'jqueryCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "JQuery";
 	$scope.name   	= "jquery";
 	$scope.questions = [{ question: "placeholder 1",
@@ -39,6 +39,10 @@ technical.controller( 'jqueryCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsJquery", function() {
 	return {

@@ -1,4 +1,4 @@
-technical.controller( 'qaCtrl', function( $scope, $http ) {
+technical.controller( 'qaCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "QA";
 	$scope.name   	= "qa";
 	
@@ -40,6 +40,10 @@ technical.controller( 'qaCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsQa", function() {
 	return {

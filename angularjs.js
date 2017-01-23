@@ -1,4 +1,4 @@
-technical.controller( 'angularCtrl', function( $scope, $http ) {
+technical.controller( 'angularCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "AngularJS";
 	$scope.name     = "angular";
 	$scope.questions = [{ question: "placeholder 1",
@@ -39,12 +39,16 @@ technical.controller( 'angularCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsAngular", function() {
 	return {
 		restrict: 'A',
 		template: "<a name='{{name}}'/>" +
-				  "<h1 class='w3-container w3-teal' ng-click='show=!show' onclick='location.href=\"#angular\"'>&#9205; {{subject}}</h1>" +
+				  "<h1 class='w3-container w3-teal' ng-click='show=!show' ng-click='scrollTo()'>&#9205; {{subject}}</h1>" +
 				  "<hr/>" +
 				  "<div style='font-size: 20px;' ng-show='show'>" +
 				  "<button class='w3-btn w3-teal w3-round w3-tiny' ng-click='answers=!answers'>Show Answers</button>" +

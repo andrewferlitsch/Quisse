@@ -1,4 +1,4 @@
-technical.controller( 'pythonCtrl', function( $scope, $http ) {
+technical.controller( 'pythonCtrl', function( $scope, $http, $location, $anchorScroll ) {
 	$scope.subject 	= "Python";
 	$scope.name   	= "python";
 	
@@ -40,6 +40,10 @@ technical.controller( 'pythonCtrl', function( $scope, $http ) {
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+    }
 })
 .directive( "questionsPython", function() {
 	return {

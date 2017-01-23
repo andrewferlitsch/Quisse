@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS questions
   id        INT          NOT NULL PRIMARY KEY auto_increment,
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
-  answer    VARCHAR(256) NOT NULL,
+  answer    VARCHAR(512) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 0,
 
