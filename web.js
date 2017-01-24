@@ -59,6 +59,6 @@ technical.controller( 'webCtrl', function( $scope, $http, $location, $anchorScro
 .directive( "questionsWeb", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

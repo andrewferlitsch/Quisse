@@ -59,6 +59,6 @@ technical.controller( 'javaCtrl', function( $scope, $http, $location, $anchorScr
 .directive( "questionsJava", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

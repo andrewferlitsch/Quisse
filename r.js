@@ -52,6 +52,6 @@ technical.controller( 'rCtrl', function( $scope, $http, $location, $anchorScroll
 .directive( "questionsR", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

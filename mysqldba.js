@@ -60,6 +60,6 @@ technical.controller( 'mysqlDbaCtrl', function( $scope, $http, $location, $ancho
 .directive( "questionsMysqlDba", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

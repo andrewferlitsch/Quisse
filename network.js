@@ -60,6 +60,6 @@ technical.controller( 'networkCtrl', function( $scope, $http, $location, $anchor
 .directive( "questionsNetwork", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	} 
 });

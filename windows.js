@@ -60,6 +60,6 @@ technical.controller( 'windowsCtrl', function( $scope, $http, $location, $anchor
 .directive( "questionsWindows", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

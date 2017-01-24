@@ -60,6 +60,6 @@ technical.controller( 'oopCtrl', function( $scope, $http, $location, $anchorScro
 .directive( "questionsOop", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

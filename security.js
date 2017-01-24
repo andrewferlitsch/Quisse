@@ -60,6 +60,6 @@ technical.controller( 'securityCtrl', function( $scope, $http, $location, $ancho
 .directive( "questionsSecurity", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

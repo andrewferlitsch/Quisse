@@ -60,6 +60,6 @@ technical.controller( 'pythonCtrl', function( $scope, $http, $location, $anchorS
 .directive( "questionsPython", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });

@@ -59,6 +59,6 @@ technical.controller( 'html5Ctrl', function( $scope, $http, $location, $anchorSc
 .directive( "questionsHtml5", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'qa.html'
+		templateUrl: 'flip.html'
 	}
 });
