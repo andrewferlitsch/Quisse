@@ -49,10 +49,18 @@ technical.controller( 'rCtrl', function( $scope, $http, $location, $anchorScroll
 		showSuggest( $scope.subject );
 	}
 
-	$scope.scrollTo = function() {
-      $location.hash( $scope.name );
-      $anchorScroll();
-    }
+	$scope.scored = false;
+	$scope.score_css = "w3-green";
+	$scope.score = function() {
+		if ( ( $scope.scored = !$scope.scored ) ) {
+			Tally( $scope.name );
+			$scope.score_css = "w3-red";
+		}
+		else {
+			UnTally( $scope.name );
+			$scope.score_css = "w3-green";
+		}
+	}
 })
 .directive( "questionsR", function() {
 	return {

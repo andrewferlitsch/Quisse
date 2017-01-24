@@ -18,18 +18,26 @@ technical.controller( 'securityCtrl', function( $scope, $http, $location, $ancho
 						  id: 3
 						}
 					  ];
-	$scope.random 	= pick3( $scope.questions );
+	$scope.random 	= $scope.questions;
 	$scope.show 	= false;
 	$scope.answers 	= false;
-	$http({
-        method : "GET",
-        url : "load.php",
-		params: { category: $scope.subject }
-    }).then(function mySucces(response) {
-        $scope.questions = response.data;
-		$scope.random 	 = pick3( $scope.questions );
-    }, function myError(response) {
-    });
+
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+	  
+	  if ( $scope.show ) {
+		$http({
+			method : "GET",
+			url : "load.php",
+			params: { category: $scope.subject }
+		}).then(function mySucces(response) {
+			$scope.questions = response.data;
+			$scope.random 	 = pick3( $scope.questions );
+			}, function myError(response) {
+		});
+	  }
+    }
     
 	$scope.better = function( id ) {
 		showBetter(  $scope.subject, id );
@@ -40,10 +48,7 @@ technical.controller( 'securityCtrl', function( $scope, $http, $location, $ancho
 	$scope.suggest = function() {
 		showSuggest( $scope.subject );
 	}
-	$scope.scrollTo = function() {
-      $location.hash( $scope.name );
-      $anchorScroll();
-    }
+
 	$scope.scored = false;
 	$scope.score_css = "w3-green";
 	$scope.score = function() {
