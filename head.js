@@ -12,7 +12,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide' class='w3-btn w3-green w3-round w3-small'>Guide</button> " +
 				  "and our <button id='coding' class='w3-btn w3-green w3-round w3-small'>Coding Examples</button></p>" +
 				  "</div>" +
-				  "<div style='width: 600px; float: left;'>" +
+				  "<div style='width: 45%' class='w3-left'>" +
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +
 				  "<p>Use our question/answer section below to practice a phone screen with another person, or just yourself. " +
 				  "Each category will display three randomly selected questions in increasing difficulty.</p>" +
@@ -28,7 +28,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "	</ol>" +
 				  "</div>" +
 				  "</div>" +
-				  "<div style='float: right; width: 600px; margin-right: 20px;'>" +
+				  "<div style='width: 45%; margin-right: 20px;' class='w3-right'>" +
 				  "<h3>Crowdsourcing the Dataset of Questions</h3>" +
 				  "<p>Help us crowdsource the datasets of questions and answers.</p>" +
 				  "<p style='color: orange; cursor: pointer' ng-click='showright=!showright'>&#9205; Instructions</p>" +
