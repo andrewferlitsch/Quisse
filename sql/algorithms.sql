@@ -83,7 +83,15 @@ INSERT INTO questions (category, question, answer, rank, toggle)
     1,
 	1
   );
-
+  
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'Algorithms',
+    'What data structure typically has a Enqueue() and Dequeue() method?',
+    'A Queue is implemented using these methods (functions).',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
@@ -93,7 +101,6 @@ INSERT INTO questions (category, question, answer, rank, toggle)
     2,
 	1
   );
-
 
 INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
@@ -319,6 +326,42 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Algorithms',
     'What is Binary Search?',
     'A search method that works only on sorted lists or arrays. This search selects the middle which splits the entire list into two parts. The method is repeated on the parts until the item is found.',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'What is time and space complexity for a breadth first (level) search (BFS)?',
+    'The time and space complexity for this search methid is O(b**m).',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'What is time and space complexity for a depth first search (DFS)?',
+    'The time and space complexity for this search methid is O(b**m) and O(bm).',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'What is depth limited search (DLS)?',
+    'A combination of depth and breath first search, where you start with a depth first but when a depth limit is reached, it switches to breadth first.',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'What is uniform cost search (UCS)?',
+    'A modified form of breath first search, where the next node picked is based on a weighted cost of the node.',
     3,
 	1
   );

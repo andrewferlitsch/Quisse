@@ -144,7 +144,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML',
@@ -153,7 +152,51 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     1,
 	1
   );
-
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is <DOCTYPE>?',
+    'A tag that is placed at the beginning of a HTML page that indicates the HTML standard to render the page.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What are the four basic HTML tags that should be used on all web pages?',
+    '<HTML>, <HEAD>, <TITLE> and <BODY>.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is the syntax for a comment?',
+    '<!-- text here -->.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is the syntax for a bullet (unordered) list?',
+    '<ul>...</ul>.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is the syntax for a numbered (ordered) list?',
+    '<ol>...</ol>.',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -191,7 +234,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML',
@@ -200,7 +242,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
-
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -211,6 +252,23 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is semantic HTML?',
+    'Tags that imply a meaning to the text, such as <strong>, <em>, <code>, <header>, <footer>.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is the syntax when using a link to an email address?',
+    'href="mailto:..."',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -228,5 +286,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'An inline element does not cause a line break and a block element does. <span> is an example of an inline element, and <p> is a block element.',
     3,
 	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'Describe three ways to reduce page loading times?',
+    '1) reduce image sizes, 2) place CSS at the top and javascript at the bottom or load externally, 3) reduce redirects, 4) minimize scripts',
+    3,
+	1
   );
 

@@ -1,4 +1,4 @@
-# In Progress
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS questions
   id        INT          NOT NULL PRIMARY KEY auto_increment,
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
-  answer    VARCHAR(512) NOT NULL,
+  answer    VARCHAR(256) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 0,
 
@@ -21,12 +21,13 @@ DELETE FROM questions WHERE category = 'Web';
 # Web
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
-    'What is a CDN?',
-    'A content delivery network (CDN) is a system of distributed servers (network) that deliver webpages and other Web content to a user based on the geographic locations of the user.',
-    1
+    'What is a content delivery network (CDN)?',
+    'Is a system of distributed servers (network) that deliver webpages and other Web content to a user based on the geographic locations of the user.',
+    1,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -58,7 +59,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
@@ -68,13 +68,40 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is a stateless protocol?',
+    'A communications protocol where each request is an independent transaction. The server does not retain any session, identity, or status information spanning multiple requests.',
+    2,
+	1
+  );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is a stateful protocol?',
+    'A communications protocol where the server maintains state information (session data, identity, status, etc.) across multiple requests.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is a Multi-purpose Internet Mail Extensions (MIME) type?',
+    'A standard for classifying file types over the Internet. It consists of a type and subtype separated by a slash, e.g., application/msword.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
     'What is Model View Controller (MVC)?',
-    'Model–view–controller (MVC) is a software design pattern for implementing user interfaces on computers. It divides the application into three interconnected components: 1) Model - represents the data, 2) View - how the data is visualized, and 3) Controller - how the data is manipulated and bound to the UI.',
-    3
+    'Is a software design pattern for implementing user interfaces on computers. It divides the application into three interconnected components: 1) Model - represents the data, 2) View - how the data is visualized, and 3) Controller - how the data is manipulated and bound to the UI.',
+    3,
+	1
   );
 
 
@@ -103,5 +130,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'A suite of independently deployable, small, modular services in which each service runs a unique process and communicates through a well-defined, lightweight mechanism.',
     3,
 	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is Cross Origin Resource Sharing (CORS)?',
+    'A mechanism that allows many resources on a web page to be requested from another domain outside the domain from which the resource originated.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is Long Polling?',
+    'A method for the client to emulate the server pushing data to the client. The client opens a connection. When the server sends data and the connection is closed, the client reopens the connection.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is the maximum number (limit) of concurrent asynchronous requests?',
+    'The MDN for Firefox, specifies the maximum number as 6.',
+    3,
+	0
   );
 

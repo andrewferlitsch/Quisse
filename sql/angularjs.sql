@@ -81,6 +81,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'AngularJS',
+    'Can you use AngualrJS and JQuery together?',
+    'it is considered bad practice, can cause problems, and a sign of a novice.',
+    1,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
     'What is a Service?',
     'A reusable business (program) logic independent of views.',
     2,
@@ -143,12 +152,75 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What does ng-if do?',
+    'This directive conditionally includes code into the DOM.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What services are used to scroll to an anchor (tag with specific ID)?',
+    '$location and $anchorScroll services',
+    2,
+	1
+  );  
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'AngularJS',
-    'What is ngMock?',
-    'A standard (predefined) module used to inject and mock modules, factories, services and providers within your unit tests.',
+    'How do you limited what HTML entities a directive can be applied to.',
+    'The restrict option can be set to ''A'' (Attribute only), ''E'' (Element only) and ''C'' (Class only).',
+    2,
+	1
+  );  
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is the property to include a HTML template into a directive',
+    'The property templateUrl',
+    2,
+	1
+  );  
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'How do you disable a checkbox after it has been checked?',
+    'ng-disabled="checked"',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'How do you share data across controllers?',
+    'Data can be shared across controllers via $rootScope or a service that holds the data and is injected into each controllers.',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is the digest cycle?',
+    'A repeated cycle where AngularJS looks for changes in data and updates the corresponding bindings. It can be explicitly invoked using $apply()',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What does $apply.copy() do?',
+    'It makes a deep copy of a variable. The copy doesn’t point to the same memory reference as that variable',
     3,
 	1
   );

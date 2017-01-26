@@ -39,12 +39,29 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
     'Which HTML element is used to embed Javascript code?',
     '<script></script>',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'When will accessing a variable result in a not defined error?',
+    'This error occurs when a variable is accessed, but is not declared or defined.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is the value of a variable when it has been declared, but not defined?',
+    'This is the value of the variable will be undefined.',
     1,
 	1
   );
@@ -108,6 +125,123 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
+    'Name the basic types in Javascript?',
+    'undefined, null, boolean, number, string, symbol (new in ECMAScript 2015), function, object',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What does typeof do?',
+    'This operator returns the type of an operand as a string without evaluating the operand',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is the exponentiation operator?',
+    'x ** y',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is the bitwise XOR opeator?',
+    'x ^ y',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is loose equality comparison?',
+    '== comparision operator. Both operands are converted to a common type and then compared for the same value',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is strict equality comparison?',
+    '=== comparision operator. The operands must be of the same type and evaluate to the same value.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'How do you defined a function at run-time?',
+    'var name = function() { ... }.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'This operator compares two objects for being the same type of object?',
+    'instanceof',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What are some builtin methods for arrays?',
+    'length(), sort(), push(), slice(), splice()',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What are all the ways an object can be initialized?',
+    'new Object(), Object.create(), or using the literal notation. It  is a comma-deliminted list of zero or more pairs of property names and associated values of an object, enclosed in curly braces {}.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is the unsigned right shift operator?',
+    'x >>> y',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is a destructing assignment?',
+    '[a,b] = [10,20] # where a will be assigned 10 and b will be assigned 20',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is the conditional (ternary) operator?',
+    'x ? y : z',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
     'Give an example of a regular expression pattern in Javascript.',
     'var pat = /hello/i;  // matches all case-insensitive instances of the string hello. str.replace( /hello/i, "goodbye"); replaces hello with goodbye in string str.',
     3,
@@ -122,4 +256,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     3,
 	0
   );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is closure?',
+    'A function inside a parent function that has access to the parent''s scope.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What does delete do?',
+    'This builtin method removes a property from an object.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Javascript',
+    'What is hoisting?',
+    'The Javascript parser takes all the variablen declarations and moves them to the top of the function.',
+    3,
+	1
+  );
+
 

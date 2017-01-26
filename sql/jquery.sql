@@ -80,6 +80,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'How do you get the version of JQuery that is being used?',
+    '$.ui.version',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -90,6 +98,23 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'How do you get and set an attribute for an element?',
+    'selector.attr(name) and selector.attr(name,value)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What are some of the effects methods in JQuery?',
+    'hide(), show(), toggle(), fadeIn(), fadeOut()',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -100,7 +125,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'JQuery',
@@ -110,6 +134,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What does the .each() method do?',
+    'This method iterates through all the elements of an array or properties in an object.',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -120,7 +152,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'JQuery',
@@ -128,5 +159,50 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'remove() and detach()',
     3,
 	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What is the difference between size() and length?',
+    'Both return the same, but size() is a method and length is a property, so length is faster.',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'How to you indicate to not treat the dollar sign as a JQuery alias in subsequent javascript code?',
+    '$.noConflict();',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What are the parameters for a AJAX call?',
+    'The parameters are url (for url), type (for http method) and data (for data to send)',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'How do you assign a key/value pair to an element?',
+    'selector:data("name",value) e.g., div:data("color", "green")',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What is the difference between onload() and document.ready() events?',
+    'document.ready() is tiggered when the DOM is loaded, while onload is trigger when the DOM and web resources are loaded.',
+    3,
+	0
   );
 

@@ -117,7 +117,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML5',
@@ -127,6 +126,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What HTML elements are no longer supported in HTML5?',
+    '<frame>, <frameset>, <noframe>, <applet>, <bigcenter> and <basefront>.',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -140,9 +147,27 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML5',
+    'What are some new APIs in HTML5.',
+    'Media, TextTrack, Application Cache, User Interaction, Data Transfer, Command, Constraint Validation, and History.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
     'How do you specify a number input element to take input in dollar and cents?',
     'Add attribute step=0.01',
     3,
 	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What are Web Workers?',
+    'Are background scripts that do not interfere with the user interface or user interactions on a webpage, allowing HTML to render uninterrupted.',
+    3,
+	1
   );
 
