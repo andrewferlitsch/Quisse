@@ -51,6 +51,7 @@ technical.controller( 'htmlCtrl', function( $scope, $http, $location, $anchorScr
 	
 	$scope.scored = false;
 	$scope.score_css = "w3-green";
+	$scope.score_txt = "score";
 	$scope.score = function() {
 		if ( ( $scope.scored = !$scope.scored ) ) {
 			Tally( $scope.name );
