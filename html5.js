@@ -50,15 +50,17 @@ technical.controller( 'html5Ctrl', function( $scope, $http, $location, $anchorSc
 
 	$scope.scored = false;
 	$scope.score_css = "w3-green";
-	$scope.score_txt = "score";
+	$scope.score_txt = "Score";
 	$scope.score = function() {
 		if ( ( $scope.scored = !$scope.scored ) ) {
 			Tally( $scope.name );
 			$scope.score_css = "w3-red";
+			$scope.score_txt = "Scored";
 		}
 		else {
 			UnTally( $scope.name );
 			$scope.score_css = "w3-green";
+			$scope.score_txt = "Score";
 		}
 	}
 })
