@@ -2,7 +2,7 @@
 .flip {
 	-webkit-perspective: 800;
 	width		: 90%;
-	height		: 30%;
+	height		: 60%;
     position	: relative;
     margin		: 35px auto;
 }

@@ -125,6 +125,19 @@ function pick3( questions )
 }
 
 /*
+ * Randomly pick a question of a specified ranking
+ */
+function pickNext( questions, rank ) {
+	var len = questions.length - 1;
+	while ( true ) {
+		var pick = Math.round( Math.random() * len );
+		if ( questions[ pick ].rank == rank ) {
+			return [ questions[ pick ] ];
+		}
+	}
+}
+
+/*
  * Show the Suggest Better Answer popup dialog
  */
 function showBetter( category, id )

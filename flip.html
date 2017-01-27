@@ -16,9 +16,12 @@
         </div> 
 		<div class='w3-container'>
 			<label style='color: green'>Correct (Self-Check):</label> <input class='{{name}}-correct w3-check' type='checkbox'/>
-			<label style='color: teal'>Suggest Another Ranking:</label> <input type='number' min="1" max="3" ng-change='rank(question.id);' style='width: 70px'/>
+			<label style='color: teal'>Suggest Another Ranking:</label> <input type='number' min="1" max="3" xxng-change='rank(question.id);' style='width: 70px'/>
 		</div>
 	</div> 
-	
+	<div class='w3-right'>
+		<button class='w3-btn w3-green' ng-click='Easier()'>&lt;&lt; Easier</button>
+		<button class='w3-btn w3-green' ng-click='Harder()'>Harder &gt;&gt;</button><br/>
+	</div>
 	<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>
 </div>
