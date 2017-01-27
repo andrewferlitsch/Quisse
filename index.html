@@ -92,8 +92,7 @@
 		<div ng-show='view["Security"]' ng-controller="securityCtrl" questions-security></div>
 			
 		<div ng-controller="finalCtrl" final></div>
-		
-		<div id="popup"></div>
+	
 	</section>
 	
 	<footer style='text-align: center; color: gray'><br/>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
@@ -135,109 +134,6 @@ function pickNext( questions, rank ) {
 			return [ questions[ pick ] ];
 		}
 	}
-}
-
-/*
- * Show the Suggest Better Answer popup dialog
- */
-function showBetter( category, id )
-{
-	var popUp = document.getElementById("popup");
-
-    popUp.style.top    = "200px";
-    popUp.style.left   = "200px";
-    popUp.style.width  = "500px";
-    popUp.style.height = "auto";
-   
-    popUp.innerHTML = "<span class='w3-label'>Suggested Answer:</span> " + 
-		"<textarea class='w3-input' rows='7' cols='48' id='new-answer'></textarea>" +
-        "<button class='w3-btn w3-green' onclick=\"saveBetter('" + category + "', '" + id + "')\">Save<button>" +
-        "<button class='w3-btn' onclick=\"hidePopup()\">Close<button>";
-		  
-    popUp.style.visibility = "visible";
-} 
-   
-/*
- * Show the Suggest New Question popup dialog
- */
-function showSuggest( category )
-{
-	var popUp = document.getElementById("popup");
-
-    popUp.style.top    = "200px";
-    popUp.style.left   = "200px";
-    popUp.style.width  = "500px";
-    popUp.style.height = "auto";
-   
-    popUp.innerHTML = "<span class='w3-label'>Suggested Question:</span>" + 
-		"<input class='w3-input' type='text' size='32' id='new-question'/><br/>" +
-		"<span class='w3-label'>Suggest Answer:</span>" +
-		"<textarea class='w3-input' rows='7' cols='48' id='new-answer'></textarea>" +
-		"<button class='w3-btn w3-green' onclick=\"saveSuggest( '" + category + "' )\">Save</button>" +
-        "<button class='w3-btn' onclick=\"hidePopup()\">Close<button>";
-		  
-    popUp.style.visibility = "visible";
-}
-
-/*
- * Show the Suggest Better Ranking dialog
- */
-function showRank( category, id ) 
-{
-	var popUp = document.getElementById("popup");
-
-    popUp.style.top    = "200px";
-    popUp.style.left   = "200px";
-    popUp.style.width  = "500px";
-    popUp.style.height = "auto"; 
-	
-    popUp.innerHTML = "<span class='w3-label'>Suggested Ranking:</span>" +
-		"<select class='w3-select' id='new-rank'><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option></select><br/>" +
-        "<button class='w3-btn w3-green' onclick=\"saveRank('" + category + "', '" + id + "')\">Save<button>" +
-		"<button class='w3-btn' onclick=\"hidePopup()\">Close<button>";	
-		  
-    popUp.style.visibility = "visible";
-}
-
-/*
- * Hide the popup dialog
- */
-function hidePopup(){
-    var popUp = document.getElementById("popup");
-    popUp.style.visibility = "hidden";
-}
-
-/*
- * Send the Suggest Better Answer to the Server
- */
-function saveBetter( category, id ) {
-	var answer = document.getElementById( "new-answer" ).value;
-	hidePopup();
-	
-	$.ajax({
-		url: "/interview/better.php",
-		type: 'post',
-		data: {'category': category, 'id': id, 'answer': answer },
-		success: function( data, status ) { alert( data ) },
-		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
-	});
-}
-
-/*
- * Suggest New Question to the Server
- */
-function saveSuggest( category ) {
-	var question = document.getElementById( "new-question" ).value;
-	var answer   = document.getElementById( "new-answer" ).value;
-	hidePopup();
-	
-	$.ajax({
-		url: "/interview/suggest.php",
-		type: 'post',
-		data: {'category': category, 'question': question, 'answer': answer },
-		success: function( data, status ) { alert( data ) },
-		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
-	});
 }
 
 /*
