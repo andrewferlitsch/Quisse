@@ -196,6 +196,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'ng-disabled="checked"',
     2,
 	1
+  ); 
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'How do detect and get selected value in a select?',
+    'Use ng-model=''name'' to store the selected value and use ng-change=''myfunc(name)'' to detect a change in the option selected and passing the value.',
+    2,
+	0
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 

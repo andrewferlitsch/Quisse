@@ -21,12 +21,13 @@ DELETE FROM questions WHERE category = 'C#';
 # C#
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'C#',
     'Name two ways the using statement is used.',
     'As a directive, it is used to create an alias for a namespace or to import types defined in other namespaces. As a statement, it defines a scope at the end of which an object will be disposed.',
-    1
+    1,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle) 
@@ -39,12 +40,13 @@ INSERT INTO questions (category, question, answer, rank, toggle)
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C#',
     'What is the program entry point of a C# application?',
     'The class that contains a static Main() definition.',
-    1
+    1,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -66,21 +68,23 @@ INSERT INTO questions (category, question, answer, rank, toggle)
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'C#',
     'How are objects deleted?',
     'There is no explicit delete call in C#. A reference count is instead maintained. Periodically, a garbage collection task happens in the background which releases all memory with zero reference counts (unused).',
-    2
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C#',
     'What is the method to automatically enforce garbage collection?',
     'System.GC.Collect()',
-    3
+    3,
+	1
   );
 
 

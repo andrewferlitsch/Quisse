@@ -1,6 +1,16 @@
 technical.controller( 'interviewCtrl', function( $scope ) {
-	$scope.showleft  = false;
-	$scope.showright = false;
+	$scope.categories = [ "Web", "HTML", "HTML5", "CSS", "Javascript", "JQuery", "AngularJS", "Java", "C#", "C++", "C", "R", "Python",
+						  "Data Science", "Algorithms", "OS", "OOP", "DOS", "MySQL", "MySQL DBA", "QA", "Agile", "Network", "Security" ];
+	$scope.view = [];
+	for ( var cat in $scope.categories ) {
+		$scope.view[ cat ] = false;
+	}
+	$scope.showCategory = function( cat) {
+		if ( $scope.last != "" )
+			$scope.view[ $scope.last ] = false;
+		$scope.view[ cat ] = true;
+		$scope.last = cat;
+	}
 })
 .directive( "interview", function() {
 	return {
@@ -12,34 +22,26 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide' class='w3-btn w3-green w3-round w3-small'>Guide</button> " +
 				  "and our <button id='coding' class='w3-btn w3-green w3-round w3-small'>Coding Examples</button></p>" +
 				  "</div>" +
-				  "<div style='width: 45%' class='w3-left'>" +
+				  "<div style='class='w3-left'>" +
 				  "<h3>Preparing for a Technical Phone Screen</h3>" +
-				  "<p>Use our question/answer section below to practice a phone screen with another person, or just yourself. " +
+				  "<p>Use our 400 question/answer section below to practice a phone screen. " +
 				  "Each category will display three randomly selected questions in increasing difficulty.</p>" +
 				  "<p style='color: orange; cursor: pointer' ng-click='showleft=!showleft'>&#9205; Instructions</p>" +
 				  "<div ng-show='showleft'>" + 
 				  "	<ol>" +
-				  "		<li>The interviewee (you) tells the interviewer (other person) categories to be tested on.</li>" +
-				  "		<li>For each selected category, the interviewer clicks on the category, which will display three random questions, each ranked consecutively harder (easy, moderate, hard).</li>" +
-				  "		<li>The interviewer will select show answers and ask each question.</li>" +
-				  "		<li>If the interviewer feels the answer was sufficient, then the interviewer checks the Correct box.</li>" +
-				  "		<li>When a category is done, the interviewer selects the Score button in the category.</li>" +
-				  " 	<li>When completed, the interviewer selects the Final Score button at the bottom of the page.</li>" +
+				  "		<li>Pick categories to be tested on.</li>" +
+				  "		<li>Click on the category to expand it, which will display three random questions as flash cards, each ranked consecutively harder (easy, moderate, hard).</li>" +
+				  "		<li>Click on the flash card to display the answer.</li>" +
+				  "		<li>You can self-score by checking the Correct box.</li>" +
+				  "		<li>You can accumulate your score by clicking the Score button at the bottom of each category.</li>" +
+				  " 	<li>When completed, select the Final Score button at the bottom of the page.</li>" +
 				  "	</ol>" +
 				  "</div>" +
 				  "</div>" +
-				  "<div style='width: 45%; margin-right: 20px;' class='w3-right'>" +
-				  "<h3>Crowdsourcing the Dataset of Questions</h3>" +
-				  "<p>Help us crowdsource the datasets of questions and answers.</p>" +
-				  "<p style='color: orange; cursor: pointer' ng-click='showright=!showright'>&#9205; Instructions</p>" +
-				  "<div ng-show='showright'>" +
-				  "	<ul>" +
-				  "		<li>Next to each answer, you can suggest a better answer.</li>" +
-				  "		<li>At the bottom of the category, you can suggest new questions/answers.</li>" +
-				  "		<li>Hover over and click on Rank to suggest a better ranking for a question.</li>" +
-				  "	</ul>" +
-				  "</div>" +
-				  "</div>" +
-				  "<div style='clear:both;'/>"
+				  "<div style='clear:both;'/>" +	  
+				  "<label for='category' class='w3-label'>Select Category:</label>" +
+				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)'>" +
+				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
+				  "</select>"
 	}
 });

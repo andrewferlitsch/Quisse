@@ -35,63 +35,61 @@
 
 </script>
 </head>
-<body ng-app="technical" ng-init='test=false' style='margin: 20px;'>
+<body ng-app="technical" ng-init='test=false' style='margin: 20px;' ng-controller="interviewCtrl">
 
 	<section>
-		<div ng-controller="interviewCtrl" interview></div>
-		<div style='text-align: center;'>
-			<button class='w3-btn w3-large w3-round-large w3-jumbo w3-blue' ng-click='test=true' ng-show='!test'>Take the Test</button>
-		</div>
+		<div  interview></div>
 	</section>
 
-	<section ng-show='test'>	
-		<div ng-controller="webCtrl" questions-web></div>
+	<section>	
 		
-		<div ng-controller="htmlCtrl" questions-html></div>
+		<div ng-show='view["Web"]' ng-controller="webCtrl" questions-web></div>
 		
-		<div ng-controller="html5Ctrl" questions-html5></div>
+		<div ng-show='view["HTML"]' ng-controller="htmlCtrl" questions-html></div>
 		
-		<div ng-controller="cssCtrl" questions-css></div>
+		<div ng-show='view["HTML5"]' ng-controller="html5Ctrl" questions-html5></div>
 		
-		<div ng-controller="jsCtrl" questions-js></div>
+		<div ng-show='view["CSS"]' ng-controller="cssCtrl" questions-css></div>
 		
-		<div ng-controller="jqueryCtrl" questions-jquery></div>
+		<div ng-show='view["Javascrpt"]' ng-controller="jsCtrl" questions-js></div>
 		
-		<div ng-controller="angularCtrl" questions-angular></div>
+		<div ng-show='view["JQuery"]' ng-controller="jqueryCtrl" questions-jquery></div>
 		
-		<div ng-controller="javaCtrl" questions-java></div>
+		<div ng-show='view["AngularJS"]' ng-controller="angularCtrl" questions-angular></div>
 		
-		<div ng-controller="csharpCtrl" questions-csharp></div>
+		<div ng-show='view["Java"]' ng-controller="javaCtrl" questions-java></div>
 		
-		<div ng-controller="cppCtrl" questions-cpp></div>
+		<div ng-show='view["C#"]' ng-controller="csharpCtrl" questions-csharp></div>
 		
-		<div ng-controller="cCtrl" questions-c></div>
+		<div ng-show='view["C++"]' ng-controller="cppCtrl" questions-cpp></div>
 		
-		<div ng-controller="rCtrl" questions-r></div>
+		<div ng-show='view["C"]' ng-controller="cCtrl" questions-c></div>
 		
-		<div ng-controller="pythonCtrl" questions-python></div>
+		<div ng-show='view["R"]' ng-controller="rCtrl" questions-r></div>
 		
-		<div ng-controller="dataScienceCtrl" questions-data-science></div>
+		<div ng-show='view["Python"]' ng-controller="pythonCtrl" questions-python></div>
 		
-		<div ng-controller="algorithmsCtrl" questions-algoritms></div>
+		<div ng-show='view["Data Science"]' ng-controller="dataScienceCtrl" questions-data-science></div>
 		
-		<div ng-controller="osCtrl" questions-os></div>
+		<div ng-show='view["Algorithms"]' ng-controller="algorithmsCtrl" questions-algoritms></div>
 		
-		<div ng-controller="oopCtrl" questions-oop></div>
+		<div ng-show='view["OS"]' ng-controller="osCtrl" questions-os></div>
 		
-		<div ng-controller="dosCtrl" questions-dos></div>
+		<div ng-show='view["OOP"]' ng-controller="oopCtrl" questions-oop></div>
 		
-		<div ng-controller="mysqlCtrl" questions-mysql></div>
+		<div ng-show='view["DOS"]' ng-controller="dosCtrl" questions-dos></div>
 		
-		<div ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
+		<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl" questions-mysql></div>
 		
-		<div ng-controller="qaCtrl" questions-qa></div>
+		<div ng-show='view["mySQL DBA"]' ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
 		
-		<div ng-controller="agileCtrl" questions-agile></div>
+		<div ng-show='view["QA"]' ng-controller="qaCtrl" questions-qa></div>
 		
-		<div ng-controller="networkCtrl" questions-network></div>
+		<div ng-show='view["Agile"]' ng-controller="agileCtrl" questions-agile></div>
 		
-		<div ng-controller="securityCtrl" questions-security></div>
+		<div ng-show='view["Network"]' ng-controller="networkCtrl" questions-network></div>
+		
+		<div ng-show='view["Security"]' ng-controller="securityCtrl" questions-security></div>
 			
 		<div ng-controller="finalCtrl" final></div>
 		
