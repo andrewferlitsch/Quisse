@@ -5,7 +5,8 @@ technical.controller( 'finalCtrl', function( $scope ) {
 .directive( "final", function() {
 	return {
 		restrict: 'A',
-		template: "<a name='final'/>" +
+		template: "<hr/>" +
+				  "<a name='final'/>" +
 				  "<br/>" +
 				  "<button id='final' class='w3-btn w3-green' ng-click='show=true'>Final Score</button>" +
 				  "<div ng-show='show'>" +

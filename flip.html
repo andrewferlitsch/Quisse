@@ -15,12 +15,10 @@
             </div>
         </div> 
 		<div class='w3-container'>
-			Correct: <input class='{{name}}-correct w3-check' type='checkbox'/>
-			<button class='w3-btn w3-khaki w3-round w3-small' ng-click='better(question.id);'>Suggest A Better Answer</button>
-			<button class='w3-btn w3-khaki w3-round w3-small' ng-click='rank(question.id);'>Click to Suggest Another Ranking</button>
+			<label style='color: green'>Correct (Self-Check):</label> <input class='{{name}}-correct w3-check' type='checkbox'/>
+			<label style='color: teal'>Suggest Another Ranking:</label> <input type='number' min="1" max="3" ng-change='rank(question.id);' style='width: 70px'/>
 		</div>
 	</div> 
 	
 	<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>
-	&nbsp;<button class='w3-btn w3-khaki w3-round w3-small' ng-click='suggest();'>Suggest a Question</button>
 </div>
