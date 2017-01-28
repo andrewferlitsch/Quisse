@@ -21,78 +21,113 @@ DELETE FROM questions WHERE category = 'C';
 # C
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is a #include?',
     'Includes a header file definitions into the C source file.',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'How do you allocate 10 bytes of memory and then free it?',
     'char *p = malloc(10) and free(p)',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is an unsigned int?',
     'An integer data type of only positive numbers starting at zero.',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is a signed int?',
     'An integer data type of both positive and negative numbers in a range where half in the positive range and half in the negative range.',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is the program entry point into a C application?',
     'The function main()',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'Where can the keyword break be used?',
     'This keyword can only be used in case/default statement within a switch statement or in a looping statement',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'Where can the keyword continue be used?',
+    'This keyword can only be used in a looping statement',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is a null pointer?',
     'A pointer pointing to nothing, e.g., char *p = NULL;',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'How do you conditionally compile code?',
+    '#ifdef .. #endif',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'Explain an example of reading/writing a file.',
     'A file can be opened with a file descriptor (open) or file pointer (fopen), with the latter doing buffered I/O. A file is then read/written using read()/write() for a file descriptor, and fread()/fwrite() for a file pointer.',
-    2
+    2,
+	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What is a logical block of code?',
+    'A block of code enclosed within an opening { and closing }.',
+    2,
+	1
+  );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is a long long integer?',
     'It typically is 128 bit integer, but must be at least 64 bits.',
-    2
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank) 
