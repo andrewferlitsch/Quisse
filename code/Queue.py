@@ -112,7 +112,7 @@ class Queue:
 		# Add the task back to the queue
 		self.Add( task )
 
-print("Process in sequential order tasks: B, C and A" )
+print("Process in sequential order tasks: C, B and A" )
 queue = Queue()
 queue.Add( Task( "A", 1 ) )
 queue.Add( Task( "B", 3 ) )
