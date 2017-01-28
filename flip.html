@@ -4,7 +4,7 @@
 <h1 class='w3-container w3-teal' ng-click='show=!show; scrollTo()'>&#9205; {{subject}}</h1>
 <hr/>
 <div style='font-size: 20px;' ng-show='show'>
-	<div class="flip" ng-repeat='question in random'> 
+	<div class="flip" ng-repeat='question in random' class='w3-container'> 
         <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1"> 
             <div class="face front w3-teal w3-round-large w3-xlarge">
 				<span>Rank: {{question.rank}} </span><br/>
@@ -15,13 +15,17 @@
             </div>
         </div> 
 		<div class='w3-container'>
-			<label style='color: green'>Correct (Self-Check):</label> <input class='{{name}}-correct w3-check' type='checkbox'/>
-			<label style='color: teal'>Suggest Another Ranking:</label> <input type='number' min="1" max="3" xxng-change='Rank(question.id);' style='width: 70px'/>
+			<label style='color: green'>Correct</label> <input class='{{name}}-correct w3-check' type='checkbox'/>
+			<label style='color: teal; font-size: 9pt;'>Suggest Ranking:</label> <input type='number' min="1" max="3" xxng-change='Rank(question.id);' style='width: 40px; height: 25px;'/>
 		</div>
-	</div> 
-	<div class='w3-right'>
-		<button class='w3-btn w3-green' ng-click='Easier()'>&lt;&lt; Easier</button>
-		<button class='w3-btn w3-green' ng-click='Harder()'>Harder &gt;&gt;</button><br/>
 	</div>
-	<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>
+	<br/>
+	<div class='w3-right'>
+		<button class='w3-btn w3-green w3-small' ng-click='Easier()'>&lt;&lt; Easier</button>
+		<button class='w3-btn w3-green w3-small' ng-click='Harder()'>Harder &gt;&gt;</button><br/>
+	</div> 
+	<div class='w3-left'>
+		<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>
+	</div>
+	<div style='clear:both;'>&nbsp;</div>
 </div>
