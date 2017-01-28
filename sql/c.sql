@@ -106,8 +106,89 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
+    'How do you include a header file?',
+    '#include <name> or #include "name"',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What is the null character?',
+    '\\0',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'How do you get the length of a string?',
+    'strlen()',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'How do you indicate the end of a string?',
+    'The null character \\0 indicates the end of a string.',
+    1,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What are the libraries to uppercase and lowercase a string?',
+    'toupper() and tolower()',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What is the syntax for a comment?',
+    '/* .. */',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
     'Explain an example of reading/writing a file.',
     'A file can be opened with a file descriptor (open) or file pointer (fopen), with the latter doing buffered I/O. A file is then read/written using read()/write() for a file descriptor, and fread()/fwrite() for a file pointer.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What is the heap storage?',
+    'A section of memory where dynamic memory is allocated.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'How do you indicate that a function does not return a value?',
+    'void func() { ... }',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What library call is used to generate a random number?',
+    'rand()',
     2,
 	1
   );
@@ -146,35 +227,57 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What does the file open mode w+ do?',
     'Opens a file both for reading and writing. If a file is not existing it creates one, else if the file is existing it will be over written.',
-    2
+    2,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'How do you convert a string representation of a number to a number?',
+    'atof() for float, and atoi() and atol() for integer and long integers, respectively.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What does the keyword volatile mean?',
     'Tells the compiler to disable optimizations for the variable. This is typically used when that the variable could be modified asynchronously, such as by a hardware interface.',
-    3
+    3,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What does a setjmp/longjmp do?',
     'A setjmp() call saves the location of the current stack frame. When a longjmp() is issued, a jump is made to the saved stack frame location and continues processing without unwinding the stack.',
-    3
+    3,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C',
     'What is the bit operator XOR (^) do?',
     'If both the corresponding bits are same it gives 0 else 1.',
-    3
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'C',
+    'What is call by value and call by reference?',
+    'In call by reference, the value of the variable is passed as a parameter to a function. In call by reference, the address of the variable is passed as a parameter to a function.',
+    3,
+	0
   );
 

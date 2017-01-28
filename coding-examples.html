@@ -420,42 +420,48 @@ You maybe asked to implement a dynamic array using a class. You would be expecte
 
 # Definition for an element in the dynamic array
 class Element:
+	next = None	# next element in array
+	
 	# Constructor: set the node data
 	def __init__(self, value):
 		self.value   = value	# node data
 
 # Definition for a Dynamic Array
 class DynamicArray:
+	head = None # head of the array
+	tail = None # tail of the array
+	size = 0    # size of the array
+	
 	# The size (number of elements) of the array
-	def Size():
-		return size;
+	def Size( self ):
+		return self.size;
 
 	# Add an element to the end of the dynamic array
-	def Add( value ):
+	def Add( self, value ):
 		e = Element(value)
 		
 		# Set the next element of the previous tail to the new element
-		if tail != None:
-			tail.next = e
+		if self.tail != None:
+			self.tail.next = e
 
 		# set the current tail to the new element
-		tail = e
+		self.tail = e
 		
 		# If there is no head (first element), set the head to the new element.
-		if head == None:
-			head = e
+		if self.head == None:
+			self.head = e
 		
 		# Increment the size of the array
-		size += 1
+		self.size += 1
 		
 	# Get the value at the corresponding index
-	def Get( index ):
+	def Get( self, index ):
 		# Check for out of bounds condition
-		if index > size - 1 or index < 0:
+		if index > self.size - 1 or index < 0:
 			return None
 			
 		# Step (linear) to the index position
-		curr = head;
+		curr = self.head;
 		for i in range( 0, index ):
 			curr = curr.next
 			
@@ -557,6 +563,67 @@ example, I solve for an insert after. You maybe additionally asked to code an in
 
 <h4>Python</h4>
 <pre>
+
+class DynamicArray:
+	...
+		def Delete( self, index ):
+		# Check for out of bounds condition
+		if index > self.size - 1 or index < 0:
+			return False;
+		
+		# Remove the head of the dynamic array
+		if index == 0:
+			# Set the head to the next head
+			self.head = self.head.next;
+			
+			# If the array is now empty, set the tail to null
+			self.size -= 1
+			if self.size == 0:
+				self.tail = null
+			
+			return True
+		
+		# Find the element at the specified index, and remember the element before it.
+		curr = self.head
+		prev = None
+		for i in range( 0, index ):
+			prev = curr
+			curr = curr.next
+		
+		# Set the next pointer of the previous element to the next pointer of the current element,
+		# thus dropping this element which is between them.
+		prev.next = curr.next
+		
+		# We deleted the tail. Set the current tail to the previous element.
+		self.size -= 1
+		if self.size == index:
+			self.tail = prev
+			
+		return True
+		
+	def Insert( self, index, value ):
+		# Check for out of bounds condition
+		if index > self.size - 1 or index < 0:
+			return False
+			
+		# Adding to the tail
+		if index == self.size-1:
+			Add( value )
+			return True
+		
+		# Find the element at the index
+		curr = self.head
+		for i in range( 0, index ):
+			curr = curr.next
+
+		# Insert (after) between the current element and the next
+		e = Element( value )
+		e.next = curr.next
+		curr.next = e
+		
+		self.size += 1
+		return True
+		
 </pre>
 
 <h4>Java</h4>
@@ -625,29 +692,6 @@ class DynamicArray {
 		size++;
 		return true;
 	}
-		
-	def Insert( index, value ):
-		# Check for out of bounds condition
-		if index > size - 1 or index < 0:
-			return false
-			
-		# Adding to the tail
-		if index == size-1:
-			Add( value )
-			return true
-		
-		# Find the element at the index
-		curr = head
-		for i in range( 0, index ):
-			curr = curr.next
-
-		# Insert (after) between the current element and the next
-		e = Element( value )
-		e.next = curr.next
-		curr.next = e
-		
-		size += 1
-		return true
 	....
 }
 
@@ -865,6 +909,108 @@ You may be asked to improve the coding example by being ask to add a task priori
 
 <h4>Python</h4>
 <pre>
+
+# Definition for a Task element in a Queue
+class Task:
+	task = None   # the task to perform
+	next = None   # the next element in the queue
+	priority = 0  # the task's priority
+	
+	# constructor, task represents the task to be performed
+	def __init__( self, task, priority ):
+		self.task = task
+		self.priority = priority
+	
+	# Get the task's priority
+	def GetPriority( self ):
+		return self.priority
+	
+	# Set the task's priority
+	def Priority( self, priority ):
+		self.priority = priority
+	
+	# Get the next task this element is chained to
+	def GetNext( self ):
+		return self.next
+	
+	# Set the next task this element is chained to
+	def Next( self, task ):
+		self.next = task
+	
+	# Action to take when task is processed
+	def Action( self ):
+		print( self.task )
+		
+# Definition for a Queue
+class Queue:
+	head = None
+	tail = None
+	
+	# Check if Queue is empty
+	def Empty( self ):
+		if self.head == None:
+			return True
+		return False
+
+	# Add a task to the queue
+	def Add( self, task ):
+		# the queue is empty, set head to the task
+		if self.Empty():
+			self.head = task
+		# otherwise, insert the task into the queue according to the task's priority
+		else:
+			self.Insert( task )
+
+	# Insert a task into the queue based on priority
+	def Insert( self, task ):
+		# Start at the head of the chain to search where to insert the task
+		curr = self.head
+		prev = self.head
+		while curr != None:
+			# Find a task whose's priority is less than the new task
+			if task.GetPriority() > curr.GetPriority():
+				# Insert the task in front of the current task.
+				task.Next( curr )
+				
+				# If inserting in front of the head of the queue, 
+				# make the new task the head of the queue
+				if curr == self.head:
+					self.head = task
+				# Otherwise, set the previous element's next to the new task
+				else:
+					prev.Next( task )
+				break
+			
+			prev = curr;
+			curr = curr.GetNext();
+		
+		# Add to the tail (end) of the queue
+		if curr == None:
+			prev.Next( task )
+	
+	# Remove the top of the queue and process the task
+	def Pop( self ):
+		# Queue is empty
+		if self.Empty():
+			return
+			
+		# Process the task here
+		self.head.Action()
+		
+		# Move the head to the next element.
+		self.head = self.head.GetNext()
+		if self.Empty():
+			self.tail = None
+
+print("Process in sequential order tasks: B, C and A" )
+queue = Queue()
+queue.Add( Task( "A", 1 ) )
+queue.Add( Task( "B", 3 ) )
+queue.Add( Task( "C", 2 ) )
+queue.Pop()
+queue.Pop()
+queue.Pop()
+
 </pre>
 
 <h4>Java</h4>
@@ -1002,6 +1148,44 @@ You maybe further asked to make another improvement to dynamically change a prio
 
 <h4>Python</h4>
 <pre>
+
+# Definition for a Queue
+class Queue:
+	...
+	
+	# Update the priority of the task and re-sort the queue
+	def Update( self, task, priority ):
+		# Update the task's priority
+		task.Priority( priority );
+		
+		# If the task is the head of the queue, remove it and update head to the next element
+		if self.head == task:
+			self.head.Next( self.head.GetNext() )
+		# Find the task in the queue
+		else:
+			curr = self.head.GetNext()
+			prev = self.head;
+			while curr != None:
+				# Remove the task from the queue and update previous element's next to this task's next element
+				if task == curr:
+					prev.Next( curr.GetNext() );
+					break;
+		
+		# Add the task back to the queue
+		self.Add( task )
+
+print("Process in sequential order tasks: C, B and A" )
+queue = Queue()
+queue.Add( Task( "A", 1 ) )
+queue.Add( Task( "B", 3 ) )
+task =  Task( "C", 2 );
+queue.Add( task );
+queue.Update( task, 4 );
+queue.Pop()
+queue.Pop()
+queue.Pop()
+	...
+	
 </pre>
 
 <h4>Java</h4>
@@ -1011,7 +1195,7 @@ You maybe further asked to make another improvement to dynamically change a prio
 public class Queue {
 	...
 	
-	// Update the priority of the task and resort the queue
+	// Update the priority of the task and re-sort the queue
 	public void Update( Task task, int priority ) {
 		// Update the task's priority
 		task.Priority( priority );
@@ -1266,6 +1450,10 @@ let the application explicitly invoke performing the task. This will simplify th
 		</ul>
 	</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
 
 <h4>Java</h4>
 <pre>

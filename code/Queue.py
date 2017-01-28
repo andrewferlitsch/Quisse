@@ -1,15 +1,17 @@
 
 # Definition for a Task element in a Queue
 class Task:
-	next = None
+	task = None   # the task to perform
+	next = None   # the next element in the queue
+	priority = 0  # the task's priority
 	
 	# constructor, task represents the task to be performed
 	def __init__( self, task, priority ):
 		self.task = task
-		self.priority = task
+		self.priority = priority
 	
 	# Get the task's priority
-	def GetPriority(self):
+	def GetPriority( self ):
 		return self.priority
 	
 	# Set the task's priority
@@ -17,7 +19,7 @@ class Task:
 		self.priority = priority
 	
 	# Get the next task this element is chained to
-	def GetNext(self):
+	def GetNext( self ):
 		return self.next
 	
 	# Set the next task this element is chained to
@@ -34,20 +36,10 @@ class Queue:
 	tail = None
 	
 	# Check if Queue is empty
-	def Empty(self):
+	def Empty( self ):
 		if self.head == None:
 			return True
 		return False
-	
-	# Add a task to the queue
-	def Add( self, task ):
-		# the queue is empty, set head and tail to the task
-		if self.Empty():
-			self.head = self.tail = task
-		# otherwise, add it as the new tail
-		else:
-			self.tail.Next( task )
-			self.tail = task
 
 	# Add a task to the queue
 	def Add( self, task ):
@@ -72,21 +64,21 @@ class Queue:
 				# If inserting in front of the head of the queue, 
 				# make the new task the head of the queue
 				if curr == self.head:
-					head = task
+					self.head = task
 				# Otherwise, set the previous element's next to the new task
 				else:
 					prev.Next( task )
 				break
 			
 			prev = curr;
-			curr = curr.Next();
+			curr = curr.GetNext();
 		
 		# Add to the tail (end) of the queue
 		if curr == None:
 			prev.Next( task )
 	
 	# Remove the top of the queue and process the task
-	def Pop( self):
+	def Pop( self ):
 		# Queue is empty
 		if self.Empty():
 			return
@@ -97,13 +89,36 @@ class Queue:
 		# Move the head to the next element.
 		self.head = self.head.GetNext()
 		if self.Empty():
-			self.tail = None
+			self.tail = None	
+			
+	# Update the priority of the task and re-sort the queue
+	def Update( self, task, priority ):
+		# Update the task's priority
+		task.Priority( priority );
+		
+		# If the task is the head of the queue, remove it and update head to the next element
+		if self.head == task:
+			self.head.Next( self.head.GetNext() )
+		# Find the task in the queue
+		else:
+			curr = self.head.GetNext()
+			prev = self.head;
+			while curr != None:
+				# Remove the task from the queue and update previous element's next to this task's next element
+				if task == curr:
+					prev.Next( curr.GetNext() );
+					break;
+		
+		# Add the task back to the queue
+		self.Add( task )
 
 print("Process in sequential order tasks: B, C and A" )
 queue = Queue()
 queue.Add( Task( "A", 1 ) )
-queue.Add( Task( "B", 2 ) )
-queue.Add( Task( "C", 3 ) )
+queue.Add( Task( "B", 3 ) )
+task =  Task( "C", 2 );
+queue.Add( task );
+queue.Update( task, 4 );
 queue.Pop()
 queue.Pop()
 queue.Pop()
