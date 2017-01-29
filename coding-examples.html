@@ -3043,10 +3043,26 @@ dates back to 300BC. It is a very efficient algorithm that involves a few small 
 <h4>Python</h4>
 <pre>
 
+# Euclid's algorithm as an iterative solution
+def GCD( x, y ):
+	# continue until the division of of the two numbers does not leave a remainder (evenly divisible)
+	while y > 0:
+		# calculate the remainder of the division by between x and y
+		remainder = ( y % x )
+			
+		# swap the value of x with y
+		x = y
+			
+		# set y to the remainder
+		y = remainder
+		
+	return x
+		
+print( "GCD " + str( GCD( 12, 16 ) ) )
+
 </pre>
 
 <h4>Java</h4>
-
 <pre>
 
 public class GCD {
@@ -3091,6 +3107,16 @@ You may then be asked to code the solution using recursion.
 <h4>Python</h4>
 <pre>
 
+# Euclid's algorithm as a recursive solution
+def GCDR( x, y ):
+	# return the current value of x when y is reduced to zero.
+	if y == 0:
+		return x
+			
+	return GCDR( y, ( y % x ) )
+	
+print( "GCD " + str( GCDR( 12, 16 ) ) )
+
 </pre>
 
 <h4>Java</h4>
@@ -3127,6 +3153,12 @@ product of the two numbers divided by the GCD of the two numbers.
 
 <h4>Python</h4>
 <pre>
+	
+# Calculate the least common multiple
+def LCM( x, y ):
+	return ( x * y ) / GCD( x, y )
+	
+print( "LCM " + str( LCM( 6, 8 ) ) )
 
 </pre>
 
@@ -3165,6 +3197,35 @@ encoding.
 
 <h4>Python</h4>
 <pre>
+
+def Size( encoding ):
+	first = encoding[ 0 ]
+	# checking leading bit
+	if ( first & 0x80 ) == 0:
+		return 1
+	if ( first & 0x40 ) == 0:
+		return 2
+	if ( first & 0x20 ) == 0:
+		return 3
+	if ( first & 0x10 ) == 0:
+		return 4
+	if ( first & 0x08 ) == 0:
+		return 5
+	if ( first & 0x04 ) == 0:
+		return 6
+	if ( first & 0x02 ) == 0:
+		return 7
+	if ( first & 0x01 ) == 0:
+		return 8
+	return 0	# error
+	
+encoding = [ 0 ]
+encoding[ 0 ] = 0x49
+print( "Size(1) = " + str( Size( encoding ) ) )
+encoding[ 0 ] = 0x89
+print( "Size(2) = " + str( Size( encoding ) ) )
+encoding[ 0 ] = 0xCB
+print( "Size(3) = " + str( Size( encoding ) ) )
 
 </pre>
 
@@ -3230,6 +3291,27 @@ a time complexity of O(n*n).
 <h4>Python</h4>
 <pre>
 
+# Definition for a Bubble Sort
+def BubbleSort( data ):
+	swapped = True
+	# continue to repeat until no more adjacent values are swapped
+	while swapped:
+		swapped = False
+		# Make a scan through the list
+		for i in range( 0, len( data ) - 1 ):
+			# Compare adjacent values. If the first value > second value, swap the values.
+			if data[ i ] > data[ i + 1 ]:
+				swap = data[ i ]
+				data[ i ] = data[ i + 1 ]
+				data[ i + 1 ] = swap
+				swapped = True
+	return data
+	
+data = [ 5, 2, 4, 1, 6, 3 ]
+data = BubbleSort( data )
+for i in range( 0, len( data ) ):
+	print( data[ i ] )
+	
 </pre>
 
 <h4>Java</h4>
@@ -3285,6 +3367,26 @@ on small sets, but poor on large sets with a time complexity of O(n*n).
 <h4>Python</h4>
 <pre>
 
+# Definition for an Insertion Sort
+def InsertionSort( data ):
+	# iterate through the list for each element except the first element
+	for i in range( 1, len( data ) ):
+		# starting with the current element, remove/insert proceeding
+		# elements so they are in sorted order
+		for j in range( i, 0, -1):
+			# swap adjacent elements
+			if data[ j ] < data[ j - 1 ]:
+				temp = data[ j ]
+				data[ j ] = data[ j -1 ]
+				data[ j - 1 ] = temp
+
+	return data
+		
+data = [ 5, 2, 4, 1, 6, 3 ]
+data = InsertionSort( data )
+for i in range( 0, len( data ) ):
+	print( data[ i ] )
+	
 </pre>
 
 <h4>Java</h4>
