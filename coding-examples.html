@@ -2062,6 +2062,37 @@ This traversal is referred to as a level order traversal.
 <h4>Python</h4>
 <pre>
 
+# Breadth First Search
+def BFS( root ):
+	# Check if tree is empty
+	if root == None:
+		return
+			
+	# list of nodes to visit in node level order
+	visit = DynamicArray()
+	visit.Add( root );
+		
+	# sequentially visit in node in level order as it is dynamically added to the list
+	i = 0
+	while i < visit.Size():
+		# Perform the node action
+		visit.Get( i ).Action()
+			
+		# Add to the list the child siblings of this node
+		if visit.Get( i ).GetLeft() != None:
+			visit.Add( visit.Get( i ).GetLeft() )
+		if visit.Get( i ).GetRight() != None:
+			visit.Add( visit.Get( i ).GetRight() )
+		i += 1
+		
+tree = BinaryTree( "1" )
+tree.Left ( BinaryTree( "2" ) )
+tree.Right( BinaryTree( "3" ) )
+tree.GetLeft().Left( BinaryTree( "4" ) )
+tree.GetLeft().Right( BinaryTree( "5" ) )
+print( "BFS output 1 2 3 4 5")
+BFS( tree )
+
 </pre>
 
 <h4>Java</h4>
@@ -2122,6 +2153,61 @@ from the root to the leaf node that is the closest the root.
 	<li>When returning from a child back to a parent node, pass back the node depth of the child.</li>
 	<li>Return the maximum or minimum value from the left and right child (or the parent if there are no children).</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+# Derived definition for a Binary Tree
+class BinaryTree(Node):
+	...
+		
+	# Calculate the maximum depth of the binary tree
+	def MaxDepth( self, max ):
+		max += 1   # increment by one level for the node
+		
+		lmax = max
+		rmax = max # maximum depth on left and right nodes.
+		
+		# Calculate the maximum depth along the left binary subtree
+		if self.GetLeft() != None:
+			lmax = self.GetLeft().MaxDepth( max )
+		# Calculate the maximum depth along the right binary subtree
+		if self.GetRight() != None:
+			rmax = self.GetRight().MaxDepth( max )
+		
+		if lmax > rmax:
+			return lmax
+		else:
+			return rmax
+
+	# Calculate the minimum depth of the binary tree
+	def MinDepth( self, min ):
+		min += 1    # increment by one level for the node
+		
+		lmin = min
+		rmin = min  # minimum depth on left and right nodes.
+		
+		# Calculate the maximum depth along the left binary subtree
+		if self.GetLeft() != None:
+			lmin = self.GetLeft().MaxDepth( min )
+		# Calculate the maximum depth along the right binary subtree
+		if self.GetRight() != None:
+			rmin = self.GetRight().MaxDepth( min )
+		
+		if lmin < rmin:
+			return lmin
+		else:
+			return rmin
+
+tree = BinaryTree( "1" )
+tree.Left ( BinaryTree( "2" ) )
+tree.Right( BinaryTree( "3" ) )
+tree.GetLeft().Left( BinaryTree( "4" ) )
+tree.GetLeft().Right( BinaryTree( "5" ) )
+print("Max Depth(3) is  " + str( tree.MaxDepth( 0 ) ) )
+print("Max Depth(2) is  " + str( tree.MinDepth( 0 ) ) )
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2186,6 +2272,50 @@ value is the node with the maximum value of all nodes, while the minimum value i
 	<li>Do a level order (Breadth First) traversal of the tree.</li>
 	<li>Keep a counter of the maximum and minimum value encountered.</li>
 </ul>
+
+<h4>Python</h4>
+<pre>>
+
+# Derived definition for a Binary Tree
+class BinaryTree(Node):
+	...	
+	# Calculate the minimum and maximum value in the binary tree
+	def MinMax( self ):
+		min = 2147483648  # counter for min value (start at maximum signed int)
+		max = -2147483647 # counter for max value (start at minimum signed int)
+			
+		# list of nodes to visit in node level order
+		visit = DynamicArray()	
+		visit.Add( self )
+		
+		# sequentially visit each node in level order as it is dynamically added to the list
+		i = 0
+		while i < visit.Size():
+			# Perform the node action
+			if int( visit.Get( i ).GetKey() ) > int( max ):
+				max = visit.Get( i ).GetKey()
+			if int( visit.Get( i ).GetKey() ) < int( min ):
+				min = visit.Get( i ).GetKey()
+			
+			# Add to the list the child siblings of this node
+			if visit.Get( i ).GetLeft() != None:
+				visit.Add( visit.Get( i ).GetLeft() )
+			if visit.Get( i ).GetRight() != None:
+				visit.Add( visit.Get( i ).GetRight() )
+			i += 1
+		
+		return min, max
+				
+tree = BinaryTree( "1" )
+tree.Left ( BinaryTree( "2" ) )
+tree.Right( BinaryTree( "3" ) )
+tree.GetLeft().Left( BinaryTree( "4" ) )
+tree.GetLeft().Right( BinaryTree( "5" ) )
+min,max = tree.MinMax()
+print("Min Value(1) is  " + str( min ) )
+print("Max Value(5) is  " + str( max ) )
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2261,6 +2391,57 @@ member for children. In the Java coding example, I will use the predefined dynam
 	<li>The base class defines a Add() method for adding a child (branch) to the node.</li>
 	<li>The base class defines a Children() method for accessing all the children (branches) of the node.</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+# Base (Super) class definition for a k-ary tree
+class KNode:
+	key = None # node data
+	k = 0      # max number of children
+	
+	# Dynamic array for children
+	children = DynamicArray()
+	
+	# constructor: set the node data
+	def __init__ ( self, k, key ):
+		self.key = key
+		self.k   = k
+	
+	# Set the node data
+	def Key( self, key ):
+		self.key = key
+	
+	# Get the node data
+	def GetKey( self ):
+		return self.key
+	
+	# Get the number of children
+	def Size( self ):
+		return self.children.Size()
+	
+	# Add another child (branch)
+	def Add( self, key ):
+		# exceeds number of allowed children
+		if Size() == self.k:
+			return None
+		e = Tree( self.k, key )
+		self.children.add( e )
+		return e
+	
+	# Get all the children of this node
+	def Children( self ):
+		return this.children
+
+# Definition for a k-ary tree
+class Tree(KNode):
+	def __init__( self, k, key ):
+		KNode.__init__( k, key )
+	
+	def Action( self ):
+		self # do something
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2362,6 +2543,53 @@ You maybe asked to code the algorithm to insert, find and delete nodes a binary 
 	</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+# Definition for a binary search tree
+class BST:
+	root = None # root of the binary search tree
+	
+	# Insert a node into a binary tree
+	def Insert( self, node ):
+		# Empty Tree, make the node the root
+		if self.root == None:
+			self.root = node
+			return
+		
+		# Follow a path to insert the node
+		curr = self.root
+		while True:
+			# node is a duplicate, do not insert
+			if int( node.GetKey() ) ==  int( curr.GetKey() ):
+				return
+			
+			# The node is less than the current node, traverse left
+			if int( node.GetKey() )  < int( curr.GetKey() ):
+				# If there is no left node, make this node the left node
+				if curr.GetLeft() == None:
+					curr.Left( node )
+					return
+				curr = curr.GetLeft()
+			# The node is greater than to the current node, traverse left
+			else:
+				# If there is no right node, make this node the right node
+				if curr.GetRight() == None:
+					curr.Right( node )
+					return
+				curr = curr.GetRight()
+				
+tree = BST()
+tree.Insert( BinaryTree( 3 ) )
+tree.Insert( BinaryTree( 6 ) )
+tree.Insert( BinaryTree( 2 ) )
+tree.Insert( BinaryTree( 4 ) )
+tree.Insert( BinaryTree( 1 ) )
+print("BST level order: 3 2 6 1 4")
+BFS( tree.root )
+
+</pre>
+
 <h4>Java</h4>
 <pre>
 
@@ -2430,6 +2658,46 @@ class BST {
 	<li>If the value is less than the current node, traverse to the left node.</li>
 	<li>Otherwise (the value is greater than the current node), traverse to the right node.</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for a binary search tree
+class BST:
+	...
+	# Find a node in a binary tree
+	def Find( self, key ):
+			
+		# Follow a path to find the node
+		curr = self.root
+		while True:
+			# current node is null, return null (not found)
+			if curr == None:
+				return None
+				
+			# the value is equal to the current node, return the current node
+			if int( key ) == int( curr.GetKey() ):
+				return curr
+			
+			# The value is less than the current node, traverse left
+			if int( key ) <  int( curr.GetKey() ):
+				curr = curr.GetLeft()
+			# The value is greater than to the current node, traverse left
+			else:
+				curr = curr.GetRight()
+				
+# Driver Method
+tree = BST()
+tree.Insert( BinaryTree( 3 ) )
+tree.Insert( BinaryTree( 6 ) )
+tree.Insert( BinaryTree( 2 ) )
+tree.Insert( BinaryTree( 4 ) )
+tree.Insert( BinaryTree( 1 ) )
+print("BST level order: 3 2 6 1 4")
+BFS( tree.root )
+print( "FIND(4) = " + str( tree.Find( 4 ) ) + " FIND(0) = " + str( tree.Find(0) ) )
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2507,6 +2775,61 @@ class BST {
 		</ul>
 	</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for a binary search tree
+class BST:
+	...
+		
+	# Find a node in a binary tree
+	def Delete( self, key ):
+
+		# Follow a path to find the node
+		curr = self.root
+		prev = None
+		isLeft = False
+		while True:
+			# current node is null, return (not found)
+			if curr == None:
+				return
+				
+			# the value is equal to the current node, delete the node
+			if int( key ) == int( curr.GetKey() ):
+				if isLeft:
+					prev.Left( None )
+				else:
+					prev.Right( None )
+				saveRoot = self.root;
+				self.root = prev;
+				if curr.GetLeft()  != None:
+					self.Insert( curr.GetLeft() )
+				if curr.GetRight() != None:
+					self.Insert( curr.GetRight() )
+				self.root = saveRoot
+				return
+			elif int( key ) < int( curr.GetKey() ):
+				isLeft = True
+				prev = curr
+				curr = curr.GetLeft()
+			else:
+				isLeft = False
+				prev = curr
+				curr = curr.GetRight();
+	
+# Driver method
+tree = BST()
+tree.Insert( BinaryTree( 3 ) )
+tree.Insert( BinaryTree( 6 ) )
+tree.Insert( BinaryTree( 2 ) )
+tree.Insert( BinaryTree( 4 ) )
+tree.Insert( BinaryTree( 1 ) )
+tree.Delete( 6 )
+print("BST level order: 3 2 4 1")
+BFS( tree.root )
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2717,6 +3040,11 @@ dates back to 300BC. It is a very efficient algorithm that involves a few small 
 	<li>Return the value of first number (x) when the 2nd number is zero (y).</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+</pre>
+
 <h4>Java</h4>
 
 <pre>
@@ -2760,6 +3088,11 @@ You may then be asked to code the solution using recursion.
 	<li>Recursively call GCD() with the updated first and second numbers.</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+</pre>
+
 <h4>Java</h4>
 <pre>
 
@@ -2791,6 +3124,11 @@ product of the two numbers divided by the GCD of the two numbers.
 	<li>Multiple the first and second number.</li>
 	<li>Divide the result by the GCD of the two numbers.</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2824,6 +3162,11 @@ encoding.
 	and the remaining less significant bits in the first byte and all the bits in the remaining bytes are the encoding.
 	</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+</pre>
 
 <h4>Java</h4>
 <pre>
@@ -2884,6 +3227,11 @@ a time complexity of O(n*n).
 	<li>If one of more values were swapped, repeat the process of making a pass through the list.</li>
 </ul>
 
+<h4>Python</h4>
+<pre>
+
+</pre>
+
 <h4>Java</h4>
 <pre>
 
@@ -2933,6 +3281,11 @@ on small sets, but poor on large sets with a time complexity of O(n*n).
 		</ul>
 	</li>
 </ul>
+
+<h4>Python</h4>
+<pre>
+
+</pre>
 
 <h4>Java</h4>
 <pre>
