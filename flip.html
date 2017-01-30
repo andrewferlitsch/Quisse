@@ -14,7 +14,7 @@
         </div> 
 		<div class='w3-container'>
 			<label style='color: green'>Correct</label> <input class='{{name}}-correct w3-check' type='checkbox'/>
-			<label style='color: teal; font-size: 9pt;'>Suggest Ranking:</label> <input type='number' min="1" max="3" xxng-change='Rank(question.id);' style='width: 40px; height: 25px;'/>
+			<label style='color: teal; font-size: 9pt;'>Suggest Ranking:</label> <input type='number' min="1" max="3" ng-model='nrank' ng-change='Rank(question.id, nrank);' style='width: 40px; height: 25px;'/>
 		</div>
 	</div>
 	<br/>

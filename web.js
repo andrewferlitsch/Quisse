@@ -55,6 +55,10 @@ technical.controller( 'webCtrl', function( $scope, $http, $location, $anchorScro
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsWeb", function() {
 	return {

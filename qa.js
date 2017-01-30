@@ -56,6 +56,10 @@ technical.controller( 'qaCtrl', function( $scope, $http, $location, $anchorScrol
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsQa", function() {
 	return {

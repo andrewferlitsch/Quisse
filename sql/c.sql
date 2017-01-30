@@ -116,7 +116,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'C',
     'What is the null character?',
-    '\\0',
+    'backslash 0',
     1,
 	1
   );
@@ -134,7 +134,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'C',
     'How do you indicate the end of a string?',
-    'The null character \\0 indicates the end of a string.',
+    'The null character backslash 0 indicates the end of a string.',
     1,
 	0
   );

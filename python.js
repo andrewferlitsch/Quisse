@@ -56,6 +56,10 @@ technical.controller( 'pythonCtrl', function( $scope, $http, $location, $anchorS
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsPython", function() {
 	return {

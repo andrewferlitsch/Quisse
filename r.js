@@ -56,6 +56,10 @@ technical.controller( 'rCtrl', function( $scope, $http, $location, $anchorScroll
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsR", function() {
 	return {

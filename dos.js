@@ -56,6 +56,10 @@ technical.controller( 'dosCtrl', function( $scope, $http, $location, $anchorScro
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsDos", function() {
 	return {

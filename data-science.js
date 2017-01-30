@@ -56,6 +56,10 @@ technical.controller( 'dataScienceCtrl', function( $scope, $http, $location, $an
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsDataScience", function() {
 	return {

@@ -28,13 +28,13 @@ technical.controller( 'jqueryCtrl', function( $scope, $http, $location, $anchorS
 	  }
     }
 	
-	$scope.Harder = function() {
+	$scope.Harder = function( id ) {
 		if ( $scope.rank != 3 )
 			$scope.rank++;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 	}
 	
-	$scope.Easier = function () {
+	$scope.Easier = function ( id ) {
 		if ( $scope.rank != 1 )
 			$scope.rank--;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
@@ -54,6 +54,10 @@ technical.controller( 'jqueryCtrl', function( $scope, $http, $location, $anchorS
 			$scope.score_css = "w3-green";
 			$scope.score_txt = "Score";
 		}
+	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
 	}
 })
 .directive( "questionsJquery", function() {

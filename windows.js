@@ -56,6 +56,10 @@ technical.controller( 'windowsCtrl', function( $scope, $http, $location, $anchor
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsWindows", function() {
 	return {

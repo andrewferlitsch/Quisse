@@ -56,6 +56,10 @@ technical.controller( 'securityCtrl', function( $scope, $http, $location, $ancho
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsSecurity", function() {
 	return {

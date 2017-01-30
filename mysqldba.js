@@ -56,6 +56,10 @@ technical.controller( 'mysqlDbaCtrl', function( $scope, $http, $location, $ancho
 			$scope.score_txt = "Score";
 		}
 	}
+	
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
+	}
 })
 .directive( "questionsMysqlDba", function() {
 	return {
