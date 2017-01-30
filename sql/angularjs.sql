@@ -82,7 +82,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'Can you use AngualrJS and JQuery together?',
-    'it is considered bad practice, can cause problems, and a sign of a novice.',
+    'It is considered bad practice, can cause problems, and a sign of a novice.',
     1,
 	0
   );
@@ -166,7 +166,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'What services are used to scroll to an anchor (tag with specific ID)?',
-    '$location and $anchorScroll services',
+    'The $location and $anchorScroll services.',
     2,
 	1
   );  
@@ -184,7 +184,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'What is the property to include a HTML template into a directive',
-    'The property templateUrl',
+    'The property templateUrl.',
     2,
 	1
   );  
@@ -196,15 +196,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'ng-disabled="checked"',
     2,
 	1
-  ); 
-
-INSERT INTO questions (category, question, answer, rank, toggle ) 
-  VALUES (
-    'AngularJS',
-    'How do detect and get selected value in a select?',
-    'Use ng-model=''name'' to store the selected value and use ng-change=''myfunc(name)'' to detect a change in the option selected and passing the value.',
-    2,
-	0
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -220,7 +211,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'What is the digest cycle?',
-    'A repeated cycle where AngularJS looks for changes in data and updates the corresponding bindings. It can be explicitly invoked using $apply()',
+    'A repeated cycle where AngularJS looks for changes in data and updates the corresponding bindings. It can be explicitly invoked using $apply().',
     3,
 	1
   );
@@ -229,7 +220,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'What does $apply.copy() do?',
-    'It makes a deep copy of a variable. The copy doesn’t point to the same memory reference as that variable',
+    'It makes a deep copy of a variable. The copy doesn''t point to the same memory reference as that variable.',
     3,
 	1
   );

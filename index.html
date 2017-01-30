@@ -13,16 +13,6 @@
 	.answer { color: blue; }
 	.final { display: inline-block; width: 180px; font-weight: bold; }
 	.rank { color: teal; cursor: pointer; }
-	
-	#popup {
-       position: fixed;
-       visibility: hidden;
-       overflow: hidden;
-       border:1px solid #CCC;
-       background-color:#F9F9F9;
-       border:1px solid #333;
-       padding:5px;
-    }
 	</style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -95,6 +85,7 @@
 	
 	</section>
 	
+	<div style='height: 300px'></div>
 	<footer style='text-align: center; color: gray'><br/>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
 <script>
 var technical = angular.module( 'technical', []);
@@ -126,11 +117,12 @@ function pick3( questions )
 /*
  * Randomly pick a question of a specified ranking
  */
-function pickNext( questions, rank ) {
+function pickNext( questions, rank, id ) {
 	var len = questions.length - 1;
 	while ( true ) {
 		var pick = Math.round( Math.random() * len );
-		if ( questions[ pick ].rank == rank ) {
+		if ( questions[ pick ].rank == rank &&
+		     questions[ pick ].id != id ) {
 			return [ questions[ pick ] ];
 		}
 	}

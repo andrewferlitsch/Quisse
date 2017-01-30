@@ -1,5 +1,3 @@
-
-
 <a name='{{name}}'/>
 <h1 class='w3-container w3-teal' ng-click='show=!show; scrollTo()'>&#9205; {{subject}}</h1>
 <hr/>
@@ -21,8 +19,8 @@
 	</div>
 	<br/>
 	<div class='w3-right'>
-		<button class='w3-btn w3-green w3-small' ng-click='Easier()'>&lt;&lt; Easier</button>
-		<button class='w3-btn w3-green w3-small' ng-click='Harder()'>Harder &gt;&gt;</button><br/>
+		<button class='w3-btn w3-green w3-small' ng-click='Easier( random[0].id )'>&lt;&lt; Easier</button>
+		<button class='w3-btn w3-green w3-small' ng-click='Harder( random[0].id )'>Harder &gt;&gt;</button><br/>
 	</div> 
 	<div class='w3-left'>
 		<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>

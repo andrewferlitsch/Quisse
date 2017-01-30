@@ -79,12 +79,47 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Python',
+    'What keyword is used in an assignment to indicate a variable has no value (not pointing to any object)?',
+    'None',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What is the syntax of an IF statement?',
+    'if conditional:',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What is the syntax of an ELSE statement?',
+    'else:',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What is the syntax of an ELSE IF statement?',
+    'elif conditional:',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
     'How do define a class constructor?',
     'def __init__(self,args)',
     2,
 	1
   );
-
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -95,7 +130,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Python',
@@ -105,6 +139,97 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do you create an object instance of a class?',
+    'obj = ClassName(args)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do you increment and decrement a varible?',
+    'x += 1 , x -= 1',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do you return an array of values?',
+    'You return the values as an ordered set with each value separated by a comma.',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do convert a string to an integer?',
+    'int( value )',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do convert an integer into a string?',
+    'str( value )',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do specify a for loop?',
+    'for i in range(start,end):',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What are some tools for checking for syntax and semantic errors?',
+    'PyChecker and PyLint',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How is memory freed?',
+    'Periodically a garbage collector process is automatically run that frees all memory that is no longer being used.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do you make a shallow and a deep copy of an object?',
+    'copy.copy() and copy.deepcopy().',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do you remove a file?',
+    'os.remove() or os.unlink().',
+    2,
+	1
+  );
+
+
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -113,5 +238,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'It is used to create anonymous functions, such as used in functional programming.',
     3,
 	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What is pickling?',
+    'The Pickle module converts a python object into a string representation and writes it to a file.',
+    3,
+	0
   );
 

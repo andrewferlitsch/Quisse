@@ -1,4 +1,4 @@
-
+# Reviewed
 #----------------------------------------------------------------------
 # Initialization
 #----------------------------------------------------------------------
@@ -40,7 +40,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'R',
@@ -50,6 +49,41 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you install a package?',
+    'install.packages( "package-name" )',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What function is used to create a time series?',
+    'The function ts().',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you convert a list to a vector?',
+    'The function unlist().',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you delete an element in a list?',
+    'You can only delete the element at the end of a list.',
+    2,
+	0
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -60,6 +94,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What is a matrix?',
+    'A two-dimensional array consisting of rows and columns.',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -70,7 +112,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'R',
@@ -80,6 +121,41 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you input a CSV file?',
+    'The read.csv function.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you get the current working directory?',
+    'The function getwd().',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you set the current working directory?',
+    'The function setwd().',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do access an element in a matrix?',
+    'To access an elemen, you specify the row and column (e.g, Matrix[row,colum] ).',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -90,12 +166,76 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'R',
-    'Describe Data Shaping',
-    '',
-    3
+    'How do you check if a value is in a vector?',
+    'value %in% vector',
+    2,
+	1
   );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you skip the remainder of a loop iteration?',
+    'The command next.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What object is used to store and process categorical data?',
+    'Factor object',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What function is used to build a logistic regression?',
+    'The function glm()',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What function is used to build a histogram?',
+    'The function hist()',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you remove a vector from the workspace?',
+    'You can remove a vector with rm(v), where v is the vector.',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What is lazy function evaluation?',
+    'If an argument to a function is not used in the body of a function, it is not evaluated (ignored).',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What does the sample function do?',
+    'It chooses a random sample of specified size from a dataset.',
+    3,
+	1
+  );
+
 

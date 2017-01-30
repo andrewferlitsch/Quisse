@@ -61,7 +61,7 @@ class DynamicArray:
 			# If the array is now empty, set the tail to null
 			self.size -= 1
 			if self.size == 0:
-				self.tail = null
+				self.tail = None
 			
 			return True
 		

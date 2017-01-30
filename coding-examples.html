@@ -566,7 +566,7 @@ example, I solve for an insert after. You maybe additionally asked to code an in
 
 class DynamicArray:
 	...
-		def Delete( self, index ):
+	def Delete( self, index ):
 		# Check for out of bounds condition
 		if index > self.size - 1 or index < 0:
 			return False;
@@ -579,7 +579,7 @@ class DynamicArray:
 			# If the array is now empty, set the tail to null
 			self.size -= 1
 			if self.size == 0:
-				self.tail = null
+				self.tail = None
 			
 			return True
 		
@@ -608,7 +608,7 @@ class DynamicArray:
 			
 		# Adding to the tail
 		if index == self.size-1:
-			Add( value )
+			self.Add( value )
 			return True
 		
 		# Find the element at the index
@@ -3420,6 +3420,271 @@ class Sort {
 	}
 }
 	
+</pre>
+
+<p>Another simple sorting algorithm you maybe asked to code is a quick sort. This is a divide and conquer algorithm.
+It works by continuously dividing the list in half. On each iteration, a midpoint in the list is selected. The value at
+the midpoint is referred to as the pivot. Iterations are made to swap values between the partitions where all values less 
+than the pivot are moved to the first (left) partition and all values greater than or equal are on
+the second (right) partition. The process is then applied recursively to each partition. The average time complexity
+is O(n*logn), with a worst case complexity of O(n*n).
+</p>
+
+<h4>Algorithm - Quick Sort</h4>
+<ul>
+	<li>Calculate a midpoint in the list. The value at the midpoint is the pivot value.</li>
+	<li>Move all values in the first partition that are not less than the pivot to the second partition.</li>
+	<li>Move all values in the second partition that are not greater than or equal to the pivot to the first partition.</li>
+	<li>Recursively apply the algorithm to the two partitions.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for an Quick Sort
+def QuickSort( data ):
+	qSort( data, 0, len( data )  - 1 )
+	return data
+	
+def qSort( data, low, high ):
+	i     = low                       # starting lower index
+	j     = high                      # starting higher index
+	mid   = int( low + ( high - low ) / 2 )  # midway index
+	pivot = data[ mid ]               # pivot, value at the midway index
+		
+	# Divide the array into two partitions
+	while i <= j:
+		# keep advancing (ascending) the lower index until we find a value that is not less than the pivot
+		# we will move this value to the right half partition.
+		while data[ i ] < pivot:
+			i += 1
+		# keep advancing (descending) the higher index until we find a value that is not greater than the pivot
+		# we will move this value to the left half partition.
+		while data[ j ] > pivot:
+			j -= 1
+
+		# if the lower index has past the higher index, there is no values to swap
+		# otherwise, swap the values and continue
+		if i <= j:
+			# swap the higher than pivot value on the left side with the lower than pivot value on the right side
+			temp  = data[ i ]
+			data[ i ] = data[ j ]
+			data[ j ] = temp
+
+			# advance the lower and higher indexes accordingly and continue
+			i += 1
+			j -= 1       
+
+	# recursively sort the two partitions if the index has not crossed over the pivot index
+	if low < j:
+		qSort( data, low, j )
+	if i < high:
+		qSort( data, i, high )
+		
+data = [ 5, 2, 4, 1, 6, 3 ]
+data = QuickSort( data )
+for i in range( 0, len( data ) ):
+	print( data[ i ] )
+	
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+class Sort {
+	// Definition for an Quick Sort
+	public static int[] QuickSort( int[] data ) {
+		qSort( data, 0, data.length - 1 );
+		return data;
+	} 
+	
+	private static void qSort( int[] data, int low, int high ) {
+		int i     = low;						// starting lower index
+		int j     = high;						// starting higher index
+		int mid   = low + ( high - low ) / 2;	// midway index
+		int pivot = data[ mid ];				// pivot, value at the midway index
+		
+		// Divide the array into two partitions
+		while ( i <= j ) {
+			// keep advancing (ascending) the lower index until we find a value that is not less than the pivot
+			// we will move this value to the right half partition.
+			while ( data[ i ] < pivot ) {
+                i++;
+            }
+			// keep advancing (descending) the higher index until we find a value that is not greater than the pivot
+			// we will move this value to the left half partition.
+			while ( data[ j ] > pivot ) {
+                j--;
+            }
+			// if the lower index has past the higher index, there is no values to swap
+			// otherwise, swap the values and continue
+			if ( i <= j ) {
+				// swap the higher than pivot value on the left side with the lower than pivot value on the right side
+				int temp  = data[ i ];
+				data[ i ] = data[ j ];
+				data[ j ] = temp;
+
+                // advance the lower and higher indexes accordingly and continue
+                i++;
+                j--;
+            }
+		}        
+		
+		// recursively sort the two partitions if the index has not crossed over the pivot index
+        if ( low < j )
+            qSort( data, low, j );
+        if ( i < high )
+            qSort( data, i, high );
+	}
+	
+	public static void main( String[] args ) {
+		int[] data = new int[ 6 ];
+		data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+		data = QuickSort( data );
+		for ( int i = 0; i < data.length; i++ )
+			System.out.println( data[ i ] );
+	}
+}
+</pre>
+
+<p>Another common divide and conquer sorting algorithm you maybe asked to code is a merge sort.
+This algorithm divides a list into partitions of single elements, and then progressively merges the
+partitions together and sorts them. This algorithm can be implemented either top-down (recursive) or bottom up (iterative).
+The average and worst time complexity is O(n*logn).
+</p>
+
+<h4>Algorithm - Merge Sort (top-down)</h4>
+<ul>
+	<li>Allocate space for a temporary copy of the array.</li>
+	<li>Recursively split the data into two partitions (halves), until each partition is a single element.</li>
+	<li>Merge and sort each pair of partitions.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for an Quick Sort
+def MergeSort( data ):
+	# allocate space for a temporary copy of the data
+	tdata = [ 0 ] * len( data );
+
+	# sort the data (pass in the temporary copy so routine is thread safe)
+	mSort( data, 0, len( data ) - 1, tdata )
+	return data
+	
+def mSort( data, low, high, tdata ):
+	# if the partition has more than one element, then recursively divide the partition and merge the parts back in
+	if low < high:
+		mid = int( low + ( high - low ) / 2 )	# midway index
+			 
+		# sort the lower (first) half partition
+		mSort( data, low, mid, tdata )
+		# sort the upper (second) half partition
+		mSort( data, mid + 1, high, tdata )
+			
+		# merge the partitions together
+		merge( data, low, mid, high, tdata )
+	
+def merge( data, low, mid, high, tdata ):
+	# make a temporary copy of the two separately sorted partitions
+	for i in range( low, high + 1 ):
+           tdata[ i ] = data[ i ]    
+		
+	# starting from the beginning of the first partition, iteratively search for the next lowest
+	# number from the lower (first) and higher (second) and move into current position in the 
+	# lower (first) partition
+	i = low
+	k = low
+	j = mid + 1
+	while i <= mid and j <= high:        
+		if tdata[ i ] <= tdata[ j ]:
+			data[ k ] = tdata[ i ]
+			i += 1
+		else:
+			data[ k ] = tdata[ j ]
+			j += 1
+		k += 1
+		
+	# Copy any remaining elements back into the first partition
+	while i <= mid:
+		data[ k ] = tdata[ i ]
+		k += 1
+		i += 1
+
+data = [ 5, 2, 4, 1, 6, 3 ]
+data = MergeSort( data )
+for i in range( 0, len( data ) ):
+	print( data[ i ] )
+	
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+class Sort {	
+	// Definition for an Quick Sort
+	public static int[] MergeSort( int[] data ) {
+		// allocate space for a temporary copy of the data
+		int[] tdata = new int[ data.length ];
+
+		// sort the data (pass in the temporary copy so routine is thread safe)
+		mSort( data, 0, data.length - 1, tdata );
+		return data;
+	} 
+	
+	private static void mSort( int[] data, int low, int high, int[] tdata ) {
+		// if the partition has more than one element, then recursively divide the partition and merge the parts back in
+		if ( low < high ) {
+			int mid   = low + ( high - low ) / 2;	// midway index
+			
+			// sort the lower (first) half partition
+			mSort( data, low, mid, tdata );
+			// sort the upper (second) half partition
+			mSort( data, mid + 1, high, tdata );
+			
+			// merge the partitions together
+			merge( data, low, mid, high, tdata );
+		}
+	}
+	
+	private static void merge( int[] data, int low, int mid, int high, int[] tdata ) {
+		// make a temporary copy of the two separately sorted partitions
+		for ( int i = low; i <= high; i++ )
+            tdata[ i ] = data[ i ];	        
+		
+		// starting from the beginning of the first partition, iteratively search for the next lowest
+		// number from the lower (first) and higher (second) and move into current position in the 
+		// lower (first) partition
+		int i = low, k = low;
+        int j = mid + 1;
+		while ( i <= mid && j <= high ) {            
+			if ( tdata[ i ] <= tdata[ j ] ) {
+                data[ k ] = tdata[ i ];
+                i++;
+            } else {
+                data[ k ] = tdata[ j ];
+                j++;
+            }
+            k++;
+		}
+		
+		// Copy any remaining elements back into the first partition
+		while ( i <= mid ) {
+            data[ k ] = tdata[ i ];
+            k++;
+            i++;
+        }
+	}
+	
+	public static void main( String[] args ) {
+		int[] data = new int[ 6 ];
+		data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+		data = MergeSort( data );
+		for ( int i = 0; i < data.length; i++ )
+			System.out.println( data[ i ] );
+	}
+}
+
 </pre>
 
 <footer>
