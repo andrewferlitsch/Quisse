@@ -23,22 +23,22 @@ technical.controller( 'pythonCtrl', function( $scope, $http, $location, $anchorS
 			params: { category: $scope.subject }
 		}).then(function mySucces(response) {
 			$scope.questions = response.data;
-			$scope.random 	 = pickNext( $scope.questions, 1 );
+			$scope.random 	 = pickNext( $scope.questions, 1, -1 );
 			}, function myError(response) {
 		});
 	  }
     }
 	
-	$scope.Harder = function() {
+	$scope.Harder = function( id ) {
 		if ( $scope.rank != 3 )
 			$scope.rank++;
-		$scope.random = pickNext( $scope.questions, $scope.rank );
+		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 	}
 	
-	$scope.Easier = function () {
+	$scope.Easier = function ( id ) {
 		if ( $scope.rank != 1 )
 			$scope.rank--;
-		$scope.random = pickNext( $scope.questions, $scope.rank );
+		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 	}
 
 	$scope.scored = false;

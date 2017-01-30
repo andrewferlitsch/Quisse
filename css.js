@@ -23,7 +23,7 @@ technical.controller( 'cssCtrl', function( $scope, $http, $location, $anchorScro
 			params: { category: $scope.subject }
 		}).then(function mySucces(response) {
 			$scope.questions = response.data;
-			$scope.random 	 = pickNext( $scope.questions, 1 );
+			$scope.random 	 = pickNext( $scope.questions, 1, -1 );
 			}, function myError(response) {
 		});
 	  }
@@ -32,13 +32,13 @@ technical.controller( 'cssCtrl', function( $scope, $http, $location, $anchorScro
 	$scope.Harder = function() {
 		if ( $scope.rank != 3 )
 			$scope.rank++;
-		$scope.random = pickNext( $scope.questions, $scope.rank );
+		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 	}
 	
 	$scope.Easier = function () {
 		if ( $scope.rank != 1 )
 			$scope.rank--;
-		$scope.random = pickNext( $scope.questions, $scope.rank );
+		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 	}
 
 	$scope.scored = false;
