@@ -49,7 +49,6 @@ technical.controller( 'agileCtrl', function( $scope, $http, $location, $anchorSc
 	$scope.score_txt = "Score";
 	$scope.score = function() {
 		if ( ( $scope.scored = !$scope.scored ) ) {
-			alert( $scope.correct );
 			Tally( $scope.name, $scope.n, $scope.nquestions, $scope.correct );
 			$scope.score_css = "w3-red";
 			$scope.score_txt = "Scored";
@@ -61,12 +60,15 @@ technical.controller( 'agileCtrl', function( $scope, $http, $location, $anchorSc
 		}
 	}
 	
-	$scope.Rank = function( id, rank ) {
-		SaveRank( $scope.subject, id, rank );
+	$scope.Correct = function( checked ) {
+		if ( checked )
+			$scope.correct++;
+		else
+			$scope.correct--;
 	}
 	
-	$scope.Correct = function() {
-		$scope.correct++;
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
 	}
 })
 .directive( "questionsAgile", function() {
