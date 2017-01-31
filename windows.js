@@ -64,6 +64,10 @@ technical.controller( 'windowsCtrl', function( $scope, $http, $location, $anchor
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsWindows", function() {
 	return {

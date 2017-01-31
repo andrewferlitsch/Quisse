@@ -64,6 +64,10 @@ technical.controller( 'qaCtrl', function( $scope, $http, $location, $anchorScrol
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsQa", function() {
 	return {

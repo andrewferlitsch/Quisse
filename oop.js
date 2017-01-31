@@ -64,6 +64,10 @@ technical.controller( 'oopCtrl', function( $scope, $http, $location, $anchorScro
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsOop", function() {
 	return {

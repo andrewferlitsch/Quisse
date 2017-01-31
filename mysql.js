@@ -64,6 +64,10 @@ technical.controller( 'mysqlCtrl', function( $scope, $http, $location, $anchorSc
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsMysql", function() {
 	return {

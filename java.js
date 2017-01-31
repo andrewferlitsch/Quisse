@@ -63,6 +63,10 @@ technical.controller( 'javaCtrl', function( $scope, $http, $location, $anchorScr
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsJava", function() {
 	return {

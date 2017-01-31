@@ -63,6 +63,10 @@ technical.controller( 'nameCtrl', function( $scope, $http, $location, $anchorScr
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsName", function() {
 	return {

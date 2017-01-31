@@ -64,6 +64,10 @@ technical.controller( 'securityCtrl', function( $scope, $http, $location, $ancho
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsSecurity", function() {
 	return {

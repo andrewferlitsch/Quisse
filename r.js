@@ -64,6 +64,10 @@ technical.controller( 'rCtrl', function( $scope, $http, $location, $anchorScroll
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsR", function() {
 	return {
