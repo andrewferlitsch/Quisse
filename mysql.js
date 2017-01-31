@@ -33,12 +33,14 @@ technical.controller( 'mysqlCtrl', function( $scope, $http, $location, $anchorSc
 		if ( $scope.rank != 3 )
 			$scope.rank++;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
+		$scope.nquestions++;
 	}
 	
 	$scope.Easier = function ( id ) {
 		if ( $scope.rank != 1 )
 			$scope.rank--;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
+		$scope.nquestions++;
 	}
 
 	$scope.scored = false;
