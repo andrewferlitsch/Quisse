@@ -64,6 +64,10 @@ technical.controller( 'dataScienceCtrl', function( $scope, $http, $location, $an
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsDataScience", function() {
 	return {

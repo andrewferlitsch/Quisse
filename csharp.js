@@ -64,6 +64,10 @@ technical.controller( 'csharpCtrl', function( $scope, $http, $location, $anchorS
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsCsharp", function() {
 	return {

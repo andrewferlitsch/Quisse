@@ -64,6 +64,10 @@ technical.controller( 'agileCtrl', function( $scope, $http, $location, $anchorSc
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsAgile", function() {
 	return {

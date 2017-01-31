@@ -64,6 +64,10 @@ technical.controller( 'algorithmsCtrl', function( $scope, $http, $location, $anc
 	$scope.Rank = function( id, rank ) {
 		SaveRank( $scope.subject, id, rank );
 	}
+	
+	$scope.Correct = function() {
+		$scope.correct++;
+	}
 })
 .directive( "questionsAlgoritms", function() {
 	return {
