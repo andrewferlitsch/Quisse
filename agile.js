@@ -32,25 +32,30 @@ technical.controller( 'agileCtrl', function( $scope, $http, $location, $anchorSc
 		if ( $scope.rank != 3 )
 			$scope.rank++;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
+		$scope.nquestions++;
 	}
 	
 	$scope.Easier = function ( id ) {
 		if ( $scope.rank != 1 )
 			$scope.rank--;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
+		$scope.nquestions++;
 	}
 
 	$scope.scored = false;
+	$scope.nquestions = 1;
+	$scope.correct   = 0;
 	$scope.score_css = "w3-green";
 	$scope.score_txt = "Score";
 	$scope.score = function() {
 		if ( ( $scope.scored = !$scope.scored ) ) {
-			Tally( $scope.name );
+			alert( $scope.correct );
+			Tally( $scope.name, $scope.n, $scope.nquestions, $scope.correct );
 			$scope.score_css = "w3-red";
 			$scope.score_txt = "Scored";
 		}
 		else {
-			UnTally( $scope.name );
+			UnTally( $scope.name, $scope.nquestions, $scope.correct );
 			$scope.score_css = "w3-green";
 			$scope.score_txt = "Score";
 		}
