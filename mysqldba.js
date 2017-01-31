@@ -42,6 +42,8 @@ technical.controller( 'mysqlDbaCtrl', function( $scope, $http, $location, $ancho
 	}
 
 	$scope.scored = false;
+	$scope.nquestions = 1;
+	$scope.correct   = 0;
 	$scope.score_css = "w3-green";
 	$scope.score_txt = "Score";
 	$scope.score = function() {
