@@ -61,12 +61,15 @@ technical.controller( 'htmlCtrl', function( $scope, $http, $location, $anchorScr
 		}
 	}
 	
-	$scope.Rank = function( id, rank ) {
-		SaveRank( $scope.subject, id, rank );
+	$scope.Correct = function( checked ) {
+		if ( checked )
+			$scope.correct++;
+		else
+			$scope.correct--;
 	}
 	
-	$scope.Correct = function() {
-		$scope.correct++;
+	$scope.Rank = function( id, rank ) {
+		SaveRank( $scope.subject, id, rank );
 	}
 })
 .directive( "questionsHtml", function() {
