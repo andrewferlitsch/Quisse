@@ -1,14 +1,19 @@
-technical.controller( 'finalCtrl', function( $scope ) {
+technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) {
 	$scope.title 	= "Final Score";
-	$scope.show 	= false;
+	$scope.show 	= false;	
+	
+	$scope.scrollTo = function() {
+      $location.hash( "final" );
+      $anchorScroll();
+	}
 })
 .directive( "final", function() {
 	return {
 		restrict: 'A',
 		template: "<hr/>" +
-				  "<a name='final'/>" +
+				  "<a id='final'/>" +
 				  "<br/>" +
-				  "<button id='final' class='w3-btn w3-green' ng-click='show=true'>Final Score</button>" +
+				  "<button id='final' class='w3-btn w3-green' ng-click='show=true; scrollTo()'>Final Score</button>" +
 				  "<div ng-show='show'>" +
 				  "	<p><span class='final'>Number of Questions</span>: <span id='totalQuestions' class='w3-badge'></span></p>" +
 				  "	<p><span class='final'>Total Correct</span>: <span id='totalCorrect' class='w3-badge'></span></p>" +

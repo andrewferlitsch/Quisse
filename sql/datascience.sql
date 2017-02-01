@@ -65,13 +65,66 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
     'What is extrapolation?',
     'Estimating a value based on extending a known sequence of values or facts beyond the area that is certainly known.',
     1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is the mean value?',
+    'The average of a set of numbers.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is the median value?',
+    'The middle value in a list of values if there are an odd number of values, or the average of the two central numbers if there are an even number of values.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is standard deviation?',
+    'A measure that is used to quantify the amount of variation or dispersion of a set of data values.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is correlation?',
+    'A mutual relationship between two or more things (parameters).',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is a categorical variable?',
+    'A variable that can take on one of a limited, and usually fixed, number of possible values.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is random sampling?',
+    'Selecting a smaller sampling group from a larger group based on chance.',
+    1,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle) 
@@ -83,7 +136,6 @@ INSERT INTO questions (category, question, answer, rank, toggle)
 	0
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Data Science',
@@ -92,6 +144,23 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is True Positive Rate (Recall)?',
+    'The proportion of positives that are correctly identified as such. e.g., the percentage of respondents that correctly identify their condition.',
+	2,
+    1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is multicollinearity?',
+    'When  two or more predictor variables in a multiple regression model are highly correlated, meaning that one can be linearly predicted from the others with a substantial degree of accuracy.',
+	2,
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -126,6 +195,51 @@ INSERT INTO questions (category, question, answer, rank)
     'What is the formula for R-square?',
     '1 - (Residual Sum of Squares / Total Sum of Squares)',
     2
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is the correlation cofficient?',
+    'A value between -1 and +1 calculated so as to represent the linear dependence of two variables or sets of data.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is covariance?',
+    'The mean value of the product of the deviations of two variates from their respective means.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is Type I or False Positive error?',
+    'This error occurs when the null hypothesis is true and we reject it.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is Type II or False Negative error?',
+    'This error occurs when null hypothesis is false and we accept it.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is euclidean distance?',
+    'The distance as a straight line between two points on a 2D cartesian space.',
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle) 
@@ -167,5 +281,41 @@ INSERT INTO questions (category, question, answer, rank)
     'What is Systematic Sampling?',
     'A statistical sampling technique where elements are selected from an ordered sampling frame. ',
     3
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is kmeans algorithm?',
+    'An unsupervised clustering algorithm.',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is kNN algorithm?',
+    'A supervised classification (or regression) algorithm.',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is lasso regression (least absolute shrinkage and selection operator)?',
+    'A regression analysis method that performs both variable selection and regularization in order to enhance the prediction accuracy and interpretability of the statistical model it produces.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Data Science',
+    'What is the F statistic in ANOVA regression?',
+    'An F statistic is a value you get when you run an ANOVA test or a regression analysis to find out if the means between two populations are significantly different.',
+    3,
+	1
   );
 

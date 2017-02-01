@@ -265,7 +265,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'HTML',
     'What is the syntax when using a link to an email address?',
-    'href="mailto:..."',
+    'href=''mailto:...''',
     2,
 	1
   );
