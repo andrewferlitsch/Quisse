@@ -18,10 +18,11 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		template: "<div style='text-align: center'>" +
 				  "<h1>The Technical Interview</h1>" +
 				  "</div>" +
-				  "<div style='font-size: 16pt;' class='w3-container'>" +
-				  "<p>For those wanting to prepare for an in-person technical interview, see our <button id='guide' class='w3-btn w3-green w3-round w3-small'>Guide</button> " +
-				  "and our <button id='coding' class='w3-btn w3-green w3-round w3-small'>Coding Examples</button></p>" +
-				  "</div>" +  
+				  "<ul class='w3-navbar w3-green'>" +
+				  "	<li><a href='preparing-for-technical-interview.html'>Interview Guide</a></li>" +
+				  "	<li><a href='coding-examples.html'>Coding Examples</a></li>" +
+				  "</ul>" +
+				  "<br/>" +
 				  "<label for='category' class='w3-label'>Select Category:</label>" +
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)'>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
