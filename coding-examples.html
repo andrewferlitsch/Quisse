@@ -4031,6 +4031,222 @@ in the object instance and return a 32 bit value. In Python, the equivalent is t
 	
 </pre>
 
+<p>Another variation you maybe asked to make is to create a hash table without linked lists and instead handle collisions
+with linear probing. In this case, we assume that the size of the table will be greater than or equal to the number of keys.
+When we have a collision, we simply place the entry at the next empty index after the collision. When searching, we go to
+the calculated index, and if the keys do not match, we probe downward in a linear fashion until we find the matching key or
+an empty entry (key is not in the hash table).
+</p>
+
+<h4>Algorithm: Hash Table with Linear Probing</h4>
+<ul>
+	<li>Map each value into a fixed size integer range using a hash function.</li>
+	<li>If there is no entry at the index, add the key/value to the index.</li>
+	<li>If there is an entry and the key matches the entry (duplicate), then update the value.</li>
+	<li>If there is an entry and the key does not match the entry, then probe downward in a linear fashion.
+		<ul>
+			<li>If the entry is empty, add the key/value pair to the entry.</li>
+			<li>If a key matches (duplicate), then update the entry.</li>
+			<li>If the key does not match, continue to the next entry.</li>
+		</ul>
+	</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Definition for an Entry in the Hash Table (Dictionary)
+class Entry:
+	key = 0      # the key value
+	value = None # the value for this key
+	
+	# Constructor
+	def __init__( self, key,value ):
+		self.key   = key
+		self.value = value
+	 
+	# Get the key
+	def GetKey( self ):
+		return self.key
+	
+	# Accessors for setting and getting the value of the entry
+	def GetValue( self ):
+		return self.value
+	
+	def Value( self, value ):
+		self.value = value
+
+	# Comparator for checking if key matches this entry.
+	def Compare( self, key ):
+		return ( self.key == key )
+
+# Definition for a Linear Probe Hashing Algorithm
+class HashLP:
+	RANGE = 0    # the range of the index.
+	index = []   # the index
+	
+	# constructor
+	def __init__( self, range ):
+		# set the index range and allocate the index
+		self.RANGE = range
+		self.index = [None] * self.RANGE
+	 
+	# Map the key into an index within the set range
+	def Index( self, key ):
+		return key % self.RANGE
+	
+	# Add a key/value entry to the index
+	def Add( self, key, value ):
+		# Linear probe the entries for an empty or matching slot.
+		for ix in range( self.Index( key ), self.RANGE ):
+			# there is no entry at this index, add the key/value
+			if self.index[ ix ] == None:
+				self.index[ ix ] = Entry( key, value )
+				break
+				
+			# Entry found, update the value
+			if self.index[ ix ].Compare( key ):
+				self.index[ ix ].Value( value )
+				break;
+	
+	# Get the value for the key
+	def Get( self, key ):
+		ix = self.Index( key )
+		
+		# Linear probe the entries for an empty or matching slot.
+		for ix in range( self.Index( key ), self.RANGE ):
+			# there is no entry at this index, return not found
+			if self.index[ ix ] == None:
+				return None
+				
+			# Entry found
+			if self.index[ ix ].Compare( key ):
+				return self.index[ ix ].GetValue();
+	
+		# not found
+		return None
+
+index = HashLP( 100 )
+index.Add( 17,   100 )
+index.Add( 117,  600 ) # this will cause a collision
+index.Add( 228,  300 )
+index.Add( 675,  400 )
+index.Add( 2298, 500 )
+index.Add( 117,  200 ) # this will cause an update
+print( index.Get( 17 ) )
+print( index.Get( 117 ) )
+print( index.Get( 228 ) )
+print( index.Get( 675 ) )
+print( index.Get( 2298 ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for an Entry in the Hash Table (Dictionary)
+class Entry {
+	private int    key;		     // the key value
+	private Object value = null; // the value for this key
+	
+	// Constructor
+	public Entry( int key, Object value ) {
+		this.key   = key;
+		this.value = value;
+	}
+	 
+	// Get the key
+	public int Key() {
+		return key;
+	}
+	
+	// Accessors for setting and getting the value of the entry
+	public Object Value() {
+		return value;
+	}
+	
+	public void Value( Object value ) {
+		this.value = value;
+	}
+	
+	// Comparator for checking if key matches this entry.
+	public boolean Compare( int key ) {
+		return ( this.key == key );
+	}
+}
+
+// Definition for a Linear Probe based Hashing Algorithm
+public class HashLP {
+	private final int RANGE;       // the range of the index.
+	private Entry[] index = null;  // the index
+	
+	// constructor
+	public HashLP( int range ) {
+		// set the index range and allocate the index
+		RANGE = range;
+		index = new Entry[ RANGE ];
+	}
+	 
+	// Map the key into an index within the set range
+	public int Index( int key ) {
+		return key % RANGE;
+	}
+	
+	// Add a key/value entry to the index
+	public void Add( int key, Object value ) {
+		int ix = Index( key );
+		
+		// Linear probe the entries for an empty or matching slot.
+		for ( /**/; ix < RANGE; ix++ ) {
+			// there is no entry at this index, add the key/value
+			if ( index[ ix ] == null ) {
+				index[ ix ] = new Entry( key, value );
+				break;
+			}
+				
+			// Entry found, update the value
+			if ( index[ ix ].Compare( key ) ) {
+				index[ ix ].Value( value );
+				break;
+			}
+		}
+	}
+	
+	// Get the value for the key
+	public Object Get( int key ) {
+		int ix = Index( key );
+		
+		// Linear probe the entries for an empty or matching slot.
+		for ( /**/; ix < RANGE; ix++ ) {
+			// there is no entry at this index, return not found
+			if ( index[ ix ] == null )
+				return null;
+				
+			// Entry found
+			if ( index[ ix ].Compare( key ) )
+				return index[ ix ].Value();
+		}
+		
+		// not found
+		return null;
+	}
+	
+	public static void main( String[] args ) {
+		HashLP index = new HashLP( 100 );
+		index.Add( 17,   100 );
+		index.Add( 117,  600 ); // this will cause a collision
+		index.Add( 228,  300 );
+		index.Add( 675,  400 );
+		index.Add( 2298, 500 );
+		index.Add( 117,  200 ); // this will cause an update
+		System.out.println( index.Get( 17 ) );
+		System.out.println( index.Get( 117 ) );
+		System.out.println( index.Get( 228 ) );
+		System.out.println( index.Get( 675 ) );
+		System.out.println( index.Get( 2298 ) );
+	}
+}
+</pre>
 
 <h3>14. String Manipulation</h3>
 <p>

@@ -79,6 +79,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
+    'What is the kernel?',
+    'The core of the operating system that provides services between software and hardware and communication.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is time sharing?',
+    'A multi-process system where execution time is shared between the processes in time slices.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
     'What is UTF-8 encoding?',
     'A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI). If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading one bits it is four bytes long.',
     2,
@@ -106,6 +124,51 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
+    'What is demand paging?',
+    'When not all pages of a process are in memory (RAM). When an access occurs on a missing page, the OS will map the page from disk into memory.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is virtual memory?',
+    'This is when all the processes pages cannot be in memory at once. Pages are swapped in and out from disk to memory on an as-needed basis.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is round robin scheduling?',
+    'A time sharing concept where processors are in a circular queue, and time is allocated by sequentially moving through the queue.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is paging?',
+    'A memory management process that maps non-contiguous physical addresses to contiguous logical addresses.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is a socket?',
+    'A connection between two applications.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
     'What does the MMU do when a page fault occurs in a virtual address space?',
     'When this fault occurs, the memory management unit (MMU) will map the physical memory page into the virtual address space.',
     3,
@@ -121,7 +184,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
@@ -130,4 +192,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     3,
 	1
   );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is Symmetric MultiProcessing (SMP)?',
+    'In a multi-processor system, each processor runs an identical copy of the operating system.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is Asymmetric clustering?',
+    'When one server is kept in a hot standby mode monitoring the active server. If the active server fails, it takes its place.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is the root partition?',
+    'The partition where the OS''s kernal resides.',
+    3,
+	1
+  );
+
 
