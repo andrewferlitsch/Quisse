@@ -26,8 +26,21 @@ public class Calc
 		return result;
 	}
 	
+	// Exponent with half the multiplications
+	public static int Exp2( int x, int e ) {
+		if ( e == 0 )
+			return 1;
+		// even
+		if ( ( e % 2 ) == 0 )
+			return Exp( x * x, ( e / 2 ) );
+		// odd
+		else
+			return x * Exp( x * x, ( ( e - 1 ) / 2  ) );
+	}
+	
 	public static void main(String[] args) {
 		System.out.println( "5 * 6 = " + Mul( 5, 6 ) );
 		System.out.println( "3 exp 4 = " + Exp( 3, 4 ) );
+		System.out.println( "3 exp 4 = " + Exp2( 3, 4 ) );
 	}
 }

@@ -79,7 +79,7 @@
 		
 		<div ng-show='view["Security"]' ng-controller="securityCtrl" questions-security></div>
 			
-		<div ng-controller="finalCtrl" final></div>
+		<div ng-controller="finalCtrl" final id='final'></div>
 	
 	</section>
 	
@@ -145,9 +145,11 @@ var totalCorrect   = 0;
 /*
  * Tally (Score) results for a category
  */
+var final_in_view = false;
 function Tally( category, nquestions, correct ) {
 	totalQuestions += nquestions;
-	totalCorrect += correct;
+	totalCorrect   += correct;
+	UpdateScore();
 }
 
 /*
@@ -156,18 +158,27 @@ function Tally( category, nquestions, correct ) {
 function UnTally( category, nquestions, correct ) {
 	totalQuestions -= nquestions
 	totalCorrect -= correct;
+	UpdateScore();
+}
+
+/* Update the Final Score
+*/
+function UpdateScore() {
+	setTimeout(function () { 
+		var scope = angular.element($("#final")).scope();
+		scope.$apply(function(){
+			scope.totalQuestions = totalQuestions;
+			scope.totalCorrect   = totalCorrect;var percentCorrect = 0;
+			if ( scope.totalQuestions > 0 )
+				scope.percentCorrect = ( ( scope.totalCorrect * 100 ) / scope.totalQuestions ).toFixed(2) + "%";
+			else
+				scope.percentCorrect = "";
+		});
+	}, 200);
 }
 
 $(function() {
 	$("button#final").click(function() {
-		
-		var percentCorrect = 0;
-		if ( totalQuestions > 0 )
-			percentCorrect = ( totalCorrect * 100 ) / totalQuestions;
-		
-		$("#totalQuestions").html( totalQuestions );
-		$("#totalCorrect").html( totalCorrect );
-		$("#percentCorrect").html( percentCorrect.toFixed(2) + "%" );
 	})
 })
 </script>

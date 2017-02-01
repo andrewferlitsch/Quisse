@@ -1,6 +1,9 @@
 technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) {
 	$scope.title 	= "Final Score";
-	$scope.show 	= false;	
+	$scope.show 	= false;
+	$scope.totalQuestions = 0;
+	$scope.totalCorrect   = 0;
+	$scope.percentCorrect = "";
 	
 	$scope.scrollTo = function() {
       $location.hash( "final" );
@@ -15,9 +18,9 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  "<br/>" +
 				  "<button id='final' class='w3-btn w3-green' ng-click='show=true; scrollTo()'>Final Score</button>" +
 				  "<div ng-show='show'>" +
-				  "	<p><span class='final'>Number of Questions</span>: <span id='totalQuestions' class='w3-badge'></span></p>" +
-				  "	<p><span class='final'>Total Correct</span>: <span id='totalCorrect' class='w3-badge'></span></p>" +
-				  " <p><span class='final'>Percent Correct</span>: <span id='percentCorrect' class='w3-badge'></span></p>" +
+				  "	<p><span class='final'>Number of Questions</span>: <span id='totalQuestions' class='w3-badge'>{{totalQuestions}}</span></p>" +
+				  "	<p><span class='final'>Total Correct</span>: <span id='totalCorrect' class='w3-badge w3-green'>{{totalCorrect}}</span></p>" +
+				  " <p><span class='final'>Percent Correct</span>: <span id='percentCorrect' class='w3-badge w3-green'>{{percentCorrect}}</span></p>" +
 				  "</div>" +
 				  "<div class='w3-container'>" +
 				  "	<h3>Preparing for a Technical Phone Screen</h3>" +

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS questions
   id        INT          NOT NULL PRIMARY KEY auto_increment,
   category  VARCHAR(16)  NOT NULL,
   question  VARCHAR(256) NOT NULL,
-  answer    VARCHAR(256) NOT NULL,
+  answer    VARCHAR(512) NOT NULL,
   rank      TINYINT		 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 1,
 
@@ -193,7 +193,16 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'How do you disable a checkbox after it has been checked?',
-    'ng-disabled="checked"',
+    'ng-disabled=''checked''',
+    2,
+	1
+  ); 
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is two-way data binding?',
+    'When you change a value in the view, it is automatically updated in the model. Likewise, if the value in the model is changed, it is automatically updated in the view.',
     2,
 	1
   );
@@ -223,5 +232,23 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'It makes a deep copy of a variable. The copy doesn''t point to the same memory reference as that variable.',
     3,
 	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'How do you update data in a controller outside of an Angular context?',
+    'You need to issue an $apply() to manually fire the watchers to update the data in the model',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What are some examples of directives that explicitly trigger a digest cycle?',
+    'ng-click, ng-change, ng-model, timeout.',
+    3,
+	0
   );
 

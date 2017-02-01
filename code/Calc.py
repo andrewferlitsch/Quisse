@@ -29,5 +29,16 @@ def Exp( x, e ):
 		result = Mul( x, result );
 
 	return result
+	
+# Exponent with half the multiplications
+def Exp2( x, e ):
+	if e == 0:
+		return 1
+	# even
+	if ( e % 2 ) == 0:
+		return Exp( x * x, ( e / 2 ) )
+	# odd
+	else:
+		return x * Exp( x * x, ( ( e - 1 ) / 2  ) )
 
-print( Exp( 3, 4 ) )
+print( Exp2( 3, 4 ) )

@@ -92,6 +92,15 @@ INSERT INTO questions (category, question, answer, rank, toggle)
     1,
 	1
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'Algorithms',
+    'What is a divide and conquer algorithm?',
+    'An algorithm that progressively divides a problem into smaller parts, solving the smaller parts, and merging the solutions together back into larger parts.',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
@@ -238,6 +247,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'How do you find the middle of a linked list in a single pass?',
+    'Use a second pointer that you advance by one link every two times the first pointer is advanced; thus moving at half the rate.',
+    2,
+	1
+  );
   
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -364,4 +382,22 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'A modified form of breath first search, where the next node picked is based on a weighted cost of the node.',
     3,
 	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'How do you factor an exponent equation to reduce the number of multiplications in half?',
+    'For even exponents, x**e = (x**2)**(e/2) and odd exponents, x**e = x * ( (x**2)**( (e-1)/2 ).',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Algorithms',
+    'How can you find if a linked list has a loop?',
+    'Use two pointers. Advance the first pointer one link at a time, and advance the second pointer every second time the first pointer is advanced. If there is a loop, eventually both pointers will point to the same node.',
+    3,
+	0
   );

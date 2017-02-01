@@ -3027,6 +3027,68 @@ public class Calc
 
 </pre>
 
+<p>You maybe asked to further optimize the exponent algorithm by reducing the number of multiplications in half. This
+can be done by factoring the equation into fewer steps multiplication. There are two factors we can use that reduced
+the exponent in half, resulting in half the multiplications, one for even exponents and one for odd exponents.
+</p>
+
+<h4>Algorithm</h4>
+<ul>
+	<li>Use the following factoring rules:
+		<ol>
+			<li>x**e = ( x**a)*b, if a*b = e</li>
+			<li>x**e = x**a * x**b, if a+b = e</li>
+		</ol>
+	</li>
+	<li>For even exponents, choose a = 2 and b = e/2, where x**e = (x**2)**(e/2)</li>
+	<li>For odd exponents, choose a = 1 and b = e - 1 to make the exponent even and then apply the even method, where
+		x**e = x * ( (x**2)**( (e-1)/2 )
+	</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+	
+# Exponent with half the multiplications
+def Exp2( x, e ):
+	if e == 0:
+		return 1
+	# even
+	if ( e % 2 ) == 0:
+		return Exp( x * x, ( e / 2 ) )
+	# odd
+	else:
+		return x * Exp( x * x, ( ( e - 1 ) / 2  ) )
+
+print( Exp2( 3, 4 ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+public class Calc
+{
+	...
+	// Exponent with half the multiplications
+	public static int Exp2( int x, int e ) {
+		if ( e == 0 )
+			return 1;
+		// even
+		if ( ( e % 2 ) == 0 )
+			return Exp( x * x, ( e / 2 ) );
+		// odd
+		else
+			return x * Exp( x * x, ( ( e - 1 ) / 2  ) );
+	}
+	
+	public static void main(String[] args) {
+		System.out.println( "3 exp 4 = " + Exp2( 3, 4 ) );
+	}
+}
+</pre>
+
+
 <p>Another algorithm you may be asked to code is Euclid's algorithm for find the great common denominator between two numbers. The algorithm
 dates back to 300BC. It is a very efficient algorithm that involves a few small steps. It can be coded as iteratively or recursively.
 </p>
