@@ -20,8 +20,9 @@
 	</div>
 	<br/>
 	<div class='w3-right'>
-		<button class='w3-btn w3-green w3-small' ng-click='Easier( random[0].id )'>&lt;&lt; Easier</button>
-		<button class='w3-btn w3-green w3-small' ng-click='Harder( random[0].id )'>Harder &gt;&gt;</button><br/>
+		<button class='w3-btn w3-green w3-small' ng-click='Easier( random[0].id )'>&lt;&lt;</button>
+		<button class='w3-btn w3-green w3-small' ng-click='Same( random[0].id )'>Next &gt;</button>
+		<button class='w3-btn w3-green w3-small' ng-click='Harder( random[0].id )'>&gt;&gt;</button><br/>
 	</div> 
 	<div class='w3-left'>
 		<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>

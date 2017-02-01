@@ -42,6 +42,11 @@ technical.controller( 'dataScienceCtrl', function( $scope, $http, $location, $an
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 		$scope.nquestions++;
 	}
+	
+	$scope.Same = function ( id ) {
+		$scope.random = pickNext( $scope.questions, $scope.rank, id );
+		$scope.nquestions++;
+	}
 
 	$scope.scored = false;
 	$scope.nquestions = 1;
