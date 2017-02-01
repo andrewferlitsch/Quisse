@@ -52,7 +52,7 @@ technical.controller( 'csharpCtrl', function( $scope, $http, $location, $anchorS
 		if ( ( $scope.scored = !$scope.scored ) ) {
 			Tally( $scope.name, $scope.nquestions, $scope.correct );
 			$scope.score_css = "w3-red";
-			$scope.score_txt = "Scored";
+			$scope.score_txt = "Unscore";
 		}
 		else {
 			UnTally( $scope.name, $scope.nquestions, $scope.correct );
