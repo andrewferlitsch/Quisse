@@ -145,27 +145,17 @@ var totalCorrect   = 0;
 /*
  * Tally (Score) results for a category
  */
-function Tally( category ) {
-	var cls = category + "-correct";
-	var checkboxes = document.getElementsByClassName( cls );
-	
-	totalQuestions += checkboxes.length;
-	for ( var i = 0; i < checkboxes.length; i++ )
-		if ( checkboxes[ i ].checked )
-			totalCorrect++;
+function Tally( category, nquestions, correct ) {
+	totalQuestions += nquestions;
+	totalCorrect += correct;
 }
 
 /*
  * Undo the Tally (Score) for a category
  */
-function UnTally( category ) {
-	var cls = category + "-correct";
-	var checkboxes = document.getElementsByClassName( cls );
-	
-	totalQuestions -= checkboxes.length;
-	for ( var i = 0; i < checkboxes.length; i++ )
-		if ( checkboxes[ i ].checked )
-			totalCorrect--;
+function UnTally( category, nquestions, correct ) {
+	totalQuestions -= nquestions
+	totalCorrect -= correct;
 }
 
 $(function() {

@@ -49,12 +49,12 @@ technical.controller( 'jqueryCtrl', function( $scope, $http, $location, $anchorS
 	$scope.score_txt = "Score";
 	$scope.score = function() {
 		if ( ( $scope.scored = !$scope.scored ) ) {
-			Tally( $scope.name );
+			Tally( $scope.name, $scope.nquestions, $scope.correct );
 			$scope.score_css = "w3-red";
 			$scope.score_txt = "Scored";
 		}
 		else {
-			UnTally( $scope.name );
+			UnTally( $scope.name, $scope.nquestions, $scope.correct );
 			$scope.score_css = "w3-green";
 			$scope.score_txt = "Score";
 		}

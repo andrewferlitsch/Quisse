@@ -3687,6 +3687,195 @@ class Sort {
 
 </pre>
 
+<h3>13. Hashing</h3>
+<p>
+Hashing is another common area to be asked questions about. Hashing is used to solve indexing lookups without the overhead
+of sequential scanning and name comparisons. The most basic use of hashing is insertion and lookup in a key-value(s) dictionary. Please
+note that sometimes people mistake checksum methods as part of hashing, they are not.
+</p>
+<p>
+In hashing, we create an index where the entries point to the location of the corresponding values. The index is constructed so we do not
+have to do a sequential scan to find the entry. The most basic index is an integer indexed array. The keys are mapped (hashed) to an integer
+value which is in the range of the indexed array. A direct array access is then done to retrieve the entry. All hash algorithms have common
+issues to resolve:
+<ul>
+	<li>Handling of collisions when two keys mapped to the same index.</li>
+	<li>Efficiency of the hashing algorithm.</li>
+	<li>The frequency of collisions.</li>
+	<li>The sparseness of the memory allocated for the index.</li>
+</ul>
+</p>
+
+<p>The basic algorithm you maybe asked to code is to create an index for large integers that maps into a much smaller
+range, consuming less memory, handle collisions (two integers map to the same index), and updates. Typically one would use the
+module operator (integer remainder) to divide the number by the range size and use the remainder as the index.
+</p>
+
+<h4>Algorithm</h4>
+<ul>
+	<li>Map each integer value into a smaller fixed size integer range using the modulo operator.</li>
+	<li>If there is no entry at the index, add the key/value to the index as the first entry in the chain.</li>
+	<li>If there are entries there, and the key is the same as one of the entries (duplicate), update the value.</li>
+	<li>If there are entries there, and the key is not the same (collision) as any entry, add the key to the chain of entries.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for an Entry in the Hash Table (Dictionary)
+class Entry {
+	private int    key;		     // the key value
+	private Object value = null; // the value for this key
+	private Entry  next  = null; // the next entry at this range
+	
+	// Constructor
+	public Entry( int key, Object value ) {
+		this.key   = key;
+		this.value = value;
+	}
+	 
+	// Get the key
+	public int Key() {
+		return key;
+	}
+	
+	// Accessors for setting and getting the value of the entry
+	public Object Value() {
+		return value;
+	}
+	
+	public void Value( Object value ) {
+		this.value = value;
+	}
+
+	// Accessors for setting and getting the next entry on the chain
+	public void Next( Entry next ) {
+		this.next = next;
+	}
+	
+	public Entry Next() {
+		return next;
+	}
+	
+	// Comparator for checking if key matches this entry.
+	public boolean Compare( int key ) {
+		return ( this.key == key );
+	}
+}
+
+// Definition for a Modulo based Hashing Algorithm
+public class Hash {
+	private final int RANGE;       // the range of the index.
+	private Entry[] index = null;  // the index
+	
+	// constructor
+	public Hash( int range ) {
+		// set the index range and allocate the index
+		RANGE = range;
+		index = new Entry[ RANGE ];
+	}
+	 
+	// Map the key into an index within the set range
+	public int Index( int key ) {
+		return key % RANGE;
+	}
+	
+	// Add a key/value entry to the index
+	public void Add( int key, Object value ) {
+		int ix = Index( key );
+		
+		// there is no entry at this index, add the key/value
+		if ( index[ ix ] == null ) {
+			index[ ix ] = new Entry( key, value );
+		}
+		else {
+			// See if the key already exists in the chain
+			Entry next = index[ ix ];
+			for ( /**/; next != null; next = next.Next() ) {
+				// Entry found, update the value
+				if ( next.Compare( key ) ) {
+					next.Value( value );
+					break;
+				}
+			}
+			
+			// no entry found, add one
+			if ( next == null ) {
+				// Add the entry to the front of the chain
+				Entry add = new Entry( key, value );
+				add.Next( index[ ix ] );
+				index[ ix ] = add;
+			}
+		}
+	}
+	
+	// Get the value for the key
+	public Object Get( int key ) {
+		int ix = Index( key );
+		
+		// See if the key exists in the chain at this entry in the index
+		Entry next = index[ ix ];
+		for ( /**/; next != null; next = next.Next() ) {
+			// Entry found, update the value
+			if ( next.Compare( key ) )
+				return next.Value();
+		}
+		
+		// not found
+		return null;
+	}
+	
+	public static void main( String[] args ) {
+		Hash index = new Hash( 100 );
+		index.Add( 17,   100 );
+		index.Add( 117,  600 ); // this will cause a collision
+		index.Add( 228,  300 );
+		index.Add( 675,  400 );
+		index.Add( 2298, 500 );
+		index.Add( 117,  200 ); // this will cause an update
+		System.out.println( index.Get( 17 ) );
+		System.out.println( index.Get( 117 ) );
+		System.out.println( index.Get( 228 ) );
+		System.out.println( index.Get( 675 ) );
+		System.out.println( index.Get( 2298 ) );
+	}
+}
+</pre>
+
+<p>
+You maybe then asked to modify the algorithm where the key can be any object type (not just an integer). This means that you will
+need another function to convert the key to an integer value, which then can be divided by the range to get the remainder (modulo).
+There is a builtin method for all objects in Java for this called hashCode(). This builtin method will digest the data
+in the object instance and return a 32 bit value. In Python, the equivalent is the builtin function hash().
+</p>
+
+<h4>Python</h4>
+<pre>
+
+	ix = hash( key ) % RANGE
+	
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+	int ix = hashCode( key ) % RANGE;
+	
+</pre>
+
+
+<h3>14. String Manipulation</h3>
+<p>
+</p>
+
+<h3>15. Graphs</h3>
+<p>
+</p>
+
 <footer>
 <br/>
 Best Regards,<br/>
