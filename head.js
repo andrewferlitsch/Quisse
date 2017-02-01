@@ -10,6 +10,9 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 			$scope.view[ $scope.last ] = false;
 		$scope.view[ cat ] = true;
 		$scope.last = cat;
+		
+		var el = document.getElementById( cat );
+		setTimeout(function () { el.click(); }, 200);
 	}
 })
 .directive( "interview", function() {
