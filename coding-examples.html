@@ -3607,6 +3607,7 @@ class Sort {
 			System.out.println( data[ i ] );
 	}
 }
+
 </pre>
 
 <p>Another common divide and conquer sorting algorithm you maybe asked to code is a merge sort.
@@ -3625,7 +3626,7 @@ The average and worst time complexity is O(n*logn).
 <h4>Python</h4>
 <pre>
 
-# Definition for an Quick Sort
+# Definition for a Merge Sort
 def MergeSort( data ):
 	# allocate space for a temporary copy of the data
 	tdata = [ 0 ] * len( data );
@@ -3684,7 +3685,7 @@ for i in range( 0, len( data ) ):
 <pre>
 
 class Sort {	
-	// Definition for an Quick Sort
+	// Definition for a Merge Sort
 	public static int[] MergeSort( int[] data ) {
 		// allocate space for a temporary copy of the data
 		int[] tdata = new int[ data.length ];
@@ -4008,6 +4009,7 @@ public class Hash {
 		System.out.println( index.Get( 2298 ) );
 	}
 }
+
 </pre>
 
 <p>
@@ -4254,7 +4256,7 @@ public class HashLP {
 a builtin library). You maybe asked to do both an iterative and a recursive solution.
 </p>
 
-<h4>Algorithm - Iterative</h4>
+<h4>Algorithm - Reverse String (Iterative)</h4>
 <ul>
 	<li>Create a StringBuffer (or character array) to hold the reversed string.</li>
 	<li>Starting at the end of the string and moving backwards, append each character to the reversed string.</li>
@@ -4306,9 +4308,11 @@ public class Strings {
 
 </pre>
 
-<h4>Algorithm - Recursive</h4>
+<h4>Algorithm - Revere String (Recursive)</h4>
 <ul>
-	<li>TODO</li>
+	<li>If the original string is one character, if so then return the string.</li>
+	<li>Otherwise, break the string into two parts: the first character and the remainder of the string.</li>
+	<li>Make a recursive call with the remaining string and append the first character to the return from the call.</li>
 </ul>
 
 <h4>Python</h4>
@@ -4345,16 +4349,507 @@ public class Strings {
 
 </pre>
 
-<p>
-Anagram<br/>
-String Comprehension<br/>
-Highest Occurring Character<br/>
-Duplicate Chars<br/>
+<p>Another algorithm you maybe asked that is similar to reversing a string is to determine if a string is an palindrome. 
+A palindrome is the same word/phrase spelled forward or backwards, such as: madam, civic, racecar, ... A simple solution would
+be to reverse the string and compare the reversed string to the original. But, you are likely to be asked to solve the
+algorithm without making a copy of the string, for single word palindrome.
 </p>
+
+<h4>Algorithm - Palindrome</h4>
+<ul>
+	<li>Iterate through the first half of the string. When the string is an odd number of characters, skip the middle character.</li>
+	<li>On each iteration, compare the current character at the front of the string to the same position but from the rear of the string.</li>
+	<li>If they do not much, it is not a palindrome.
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Determine if a string is a Palindrome
+def Palindrome( s ):
+	length = len( s )
+	for i in range( 0, int( length / 2 ) ):
+		if s[ i ] != s[ length - i - 1 ]:
+			return False
+	return True
+
+print( Palindrome( "noon" ) )
+print( Palindrome( "rotator" ) )
+print( Palindrome( "notone" ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for String Manipulation Routines
+public class Strings {
+	...
+	// Determine if a string is a Palindrome
+	public static boolean Palindrome( String s ) {
+		int length = s.length();
+		for ( int i = 0; i < length / 2; i++ ) {
+			if ( s.charAt( i ) != s.charAt( length - i - 1 ) )
+				return false;
+		}
+		return true;
+	}
+	
+	public static void main( String[] args ) {
+		System.out.println( Palindrome( "noon" ) );
+		System.out.println( Palindrome( "rotator" ) );
+		System.out.println( Palindrome( "notone" ) );
+		
+	}
+}
+
+</pre>
+
+<p>Once you've solved the algorithm for single word palindromes, you maybe asked to now solve the same for phrases,
+regardless of the positioning of spaces, punctuation and capitalizing, such as: My gym. Note, you cannot solve
+by making a first pass thru the string to remove spaces, punctuation and lowercase, since strings are immutable; hence,
+if you modify the original string, you end up making a copy.
+</p>
+
+<h4>Algorithm - Palindrome (Phrases)</h4>
+<ul>
+	<li>Iterate simultaneously from the front (forward) and back (backward) of the string, until the two iterators meet.</li>
+	<li>If current character of either iterator is a punctuation or space character, then advance the corresponding iterator.</li>
+	<li>Otherwise, if the lowercase value of the current character from both iterators do not equal, then it is not a palendine.</li>
+	<li>Advance both iterators and repeat.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Determine if a string is a Palindrome for Phrases
+def PalindromeP( s ):
+	length = len( s )
+	i = 0
+	j = length - 1
+	while i < j:
+		if isPunctOrSpace( s[ i ] ):
+			i += 1
+			continue
+
+		if isPunctOrSpace( s[ j ] ):
+			j -= 1
+			continue
+
+		if s[ i ].lower() != s[ j ].lower():
+			return False
+		i += 1 
+		if j != i:
+			j -= 1
+
+	return True
+	
+def isPunctOrSpace(c):
+	val = ord(c)
+	return  ( val >= 32 and val <= 47 ) or ( val >= 58 and val <= 64 ) or ( val >= 91 and val <= 96 ) or ( val >= 123 and val <= 126 )
+	
+print( PalindromeP( "my gym" ) )
+print( PalindromeP( "Red rum, sir, is murder" ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for String Manipulation Routines
+public class Strings {
+	...
+	// Determine if a string is a Palindrome for Phrases
+	public static boolean PalindromeP( String s ) {
+		int length = s.length();
+		for ( int i = 0, j = length - 1; i < j; /**/ ) {
+			if ( isPunctOrSpace( s.charAt( i ) ) )  {
+				i++;
+				continue;
+			}
+			if ( isPunctOrSpace( s.charAt( j ) ) ) {
+				j--;
+				continue;
+			}
+
+			if ( Character.toLowerCase( s.charAt( i ) ) != Character.toLowerCase( s.charAt( j ) ) )
+				return false;
+			i++; 
+			if ( j != i ) j--;
+		}
+		return true;
+	}
+	
+	public static boolean isPunctOrSpace(final char c) {
+		final int val = (int)c;
+		return  ( val >= 32 && val <= 47 ) ||
+				( val >= 58 && val <= 64 ) ||
+				( val >= 91 && val <= 96 ) ||
+				( val >= 123 && val <= 126 );
+	}
+	
+	public static void main( String[] args ) {
+		System.out.println( PalindromeP( "my gym" ) );
+		System.out.println( PalindromeP( "Red rum, sir, is murder" ) );
+		
+	}
+}
+
+</pre>
+
+<p>A simple algorithm you maybe ask is to count all occurrences of every character in a string.
+</p>
+
+<h4>Algorithm - Character Count</h4>
+<ul>
+	<li>Create a counter for the 96 ASCII printable characters.</li>
+	<li>Iterate through the string, incrementing the character specific index in the counter for each character.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Count the number of occurrences of a character in a string
+def CharOccur( s ):
+	counter = [0] * 96	# codes 32 .. 127 are printable (so skip first 32)
+	length = len(s)
+	# use counter as an accumulator while we count each character in string
+	for i in range( 0, length):
+		counter[ ord( s[ i ] ) - 32 ] += 1	# offset ascii code by 32
+	return counter
+
+res = CharOccur( "jack and jill jumped over the hill to fetch a pale of water")
+for i in range(32, 128):
+	if res[ i - 32 ] > 0:
+		print( chr( i ) + ": " + str( res[ i - 32 ] ) )
+		
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for String Manipulation Routines
+public class Strings {
+	...
+	// Count the number of occurrences of a character in a string
+	public static short[] CharOccur( String s ) {
+		short[] counter = new short[96];	// codes 32 .. 127 are printable (so skip first 32)
+		int length = s.length();
+		// use counter as an accumulator while we count each character in string
+		for ( int i = 0; i < length; i++ )
+			counter[ (int) s.charAt( i ) - 32 ]++;	// offset ascii code by 32
+		return counter;
+	}
+	
+	public static void main( String[] args ) {
+		short[] res = CharOccur( "jack and jill jumped over the hill to fetch a pale of water");
+		for ( int i = 32; i < 128; i++ )
+			if ( res[ i - 32 ] > 0 ) System.out.println( (char) i + ": " + res[ i - 32 ] );
+	}
+}
+
+</pre>
+
+<p>You may be asked to make a variation of this by counting only duplicated characters (i.e., at least two occurrences).
+</p>
+
+<h4>Algorithm - Duplicate Chars</h4>
+<ul>
+	<li>TODO</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Count all duplicated characters
+def DupChar( s ):
+	# Get the character occurrences
+	dup = CharOccur( s )
+	# Mask out all single count occurrences
+	length = len( dup )
+	for i in range( 0, length):
+		dup[ i ] &= ~0x001;
+	return dup
+	
+res = DupChar( "jack and jill jumped over the hill to fetch a pale of water")
+for i in range(32, 128):
+	if res[ i - 32 ] > 0:
+		print( chr( i ) + ": " + str( res[ i - 32 ] ) )
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for String Manipulation Routines
+public class Strings {
+	...
+	// Count all duplicated characters
+	public static short[] DupChar( String s ) {
+		// Get the character occurrences
+		short[] dup = CharOccur( s );
+		// Mask out all single count occurrences
+		for ( int i = 0; i < dup.length; i++ )
+			dup[ i ] &= ~0x001;
+		return dup;
+	}
+	
+	public static void main( String[] args ) {
+		short[] res = DupChar( "jack and jill jumped over the hill to fetch a pale of water");
+		for ( int i = 32; i < 128; i++ )
+			if ( res[ i - 32 ] > 0 ) System.out.println( (char) i + ": " + res[ i - 32 ] );
+	}
+}
+
+</pre>
 
 <h3>15. Graphs</h3>
 <p>
+You maybe asked to implement algorithms related to traversing graphs. The basic algorithms are those for traversing
+(visiting) all nodes in an undirected graph, where in an undirected graph an edge between nodes can be traversed in
+either direction.
 </p>
+<p>
+Traversing an undirected tree can be done with either bread-first search (BFS) and depth-first search (DFS) methods.
+Generally, the algorithm will implement a tricolor node marking to indicate:
+<ul>
+	<li>White : node has never been visited</li>
+	<li>Gray : node is waiting to be visited (known as the frontier)</li>
+	<li>Black: node has been visited</li>
+</ul>
+</p>
+<p>Below are examples for a breadth first search, followed by a iterative and recursive solutions for depth first search.
+</p>
+
+<h4>Algorithm - BFS Graph Traversal</h4>
+<ul>
+	<li>Create a queue for the frontier list (waiting to be visited) and add the root (starting) node to the queue.</li>
+	<li>While there are nodes on the frontier waiting to be visited, pop the next node from the queue, and marked it as visited.</li>
+	<li>For each of the node's neighbors that are unvisited (not marked as unvisited or on frontier), add the node to the frontier and mark as Frontier.</li>
+	<li>Note that since the frontier is a queue (FIFO), the nodes will be popped in a breadth first manner.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+import java.util.LinkedList;
+
+// Definition for a node in a graph
+class Node {
+	private Object key;                       // node data
+	// list of neighboring nodes (vertices)
+	private LinkedList<Node> neighbors = new LinkedList<Node>();  
+	private Visit visited = Visit.UNVISITED;  // node has been visited
+	
+	// Visit State
+	public enum Visit {
+		UNVISITED,	// not visited or on frontier (while)
+		FRONTIER,	// on frontier, waiting to be visited (gray)
+		VISITED		// visited (black)
+	}
+	
+	// constructor
+	public Node( Object key ) {
+		this.key = key;
+	}
+	
+	// Get the Key
+	public Object Key() {
+		return this.key;
+	}
+	
+	// Add a neighbor to this node
+	public void Neighbor( Node neighbor ) {
+		// list the node as a neighbor of this node
+		neighbors.add( neighbor );
+		
+		// list this node as a neighbor of the node
+		neighbor.neighbors.add( this );
+	}
+	
+	// Get the nodes neighbors
+	public LinkedList<Node> Neighbors() {
+		return neighbors;
+	}
+	
+	// Set the node visit 
+	public void Visited( Visit visited ) {
+		this.visited = visited;
+	}
+	
+	// Get whether the node has been visited
+	public Visit Visited() {
+		return visited;
+	}
+}
+
+// Definition for a Graph
+public class Graph {
+	// Breadth first search of a graph
+	public static void BFS( Node root ) {
+		// Create a queue for frontier nodes (nodes to be visited next)
+		LinkedList<Node> frontier = new LinkedList<Node>();
+		
+		// Add the root node to the frontier
+		frontier.add( root );
+		root.Visited( Node.Visit.FRONTIER );
+		
+		// Traverse each node in the frontier list
+		while ( frontier.size() != 0 ) {
+			// visit the next node
+			Node visit = frontier.remove();
+			visit.Visited( Node.Visit.VISITED );
+			System.out.println( visit.Key() );
+			
+			// Add the node's neighbors (if not visited and not on frontier list) 
+			// to the frontier list
+			for ( Node node : visit.Neighbors() ) {
+				if ( node.Visited() == Node.Visit.UNVISITED ) {
+					frontier.add( node );
+					node.Visited( Node.Visit.FRONTIER );
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args ) {
+		Node nodes[] = new Node[ 6 ];
+		for ( int i = 0; i < 6; i++ )
+			nodes[ i ] = new Node( i );
+		nodes[ 0 ].Neighbor( nodes[ 1 ] );
+		nodes[ 0 ].Neighbor( nodes[ 2 ] );
+		nodes[ 0 ].Neighbor( nodes[ 3 ] );
+		nodes[ 1 ].Neighbor( nodes[ 2 ] );
+		nodes[ 1 ].Neighbor( nodes[ 3 ] );
+		nodes[ 3 ].Neighbor( nodes[ 4 ] );
+		nodes[ 3 ].Neighbor( nodes[ 5 ] );
+		nodes[ 4 ].Neighbor( nodes[ 5 ] );
+		BFS( nodes[ 0 ] );
+	}
+}
+
+</pre>
+
+<h4>Algorithm - DFS Graph Traversal (Iterative)</h4>
+<ul>
+	<li>Create a stack for the frontier list (waiting to be visited) and add the root (starting) node to the stack.</li>
+	<li>While there are nodes on the frontier waiting to be visited, pop the next node from the stack, and marked it as visited.</li>
+	<li>For each of the node's neighbors that are unvisited (not marked as unvisited or on frontier), add the node to the frontier and mark as Frontier.</li>
+	<li>Note that since the frontier is a stack (LIFO), the nodes will be popped in a depth first manner.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+import java.util.Stack;
+
+// Definition for a Graph
+public class Graph {
+	...
+	// Depth first search of a graph
+	public static void DFS( Node root ) {
+		// Create a stack for frontier nodes (nodes to be visited next)
+		Stack frontier = new Stack();
+		
+		// Add the root node to the frontier
+		frontier.push( root );
+		root.Visited( Node.Visit.FRONTIER );
+		
+		// Traverse each node in the frontier list
+		while ( !frontier.empty() ) {
+			// visit the next node
+			Node visit = (Node) frontier.pop();
+			visit.Visited( Node.Visit.VISITED );
+			System.out.println( visit.Key() );
+			
+			// Add the node's neighbors (if not visited and not on frontier list) 
+			// to the frontier list
+			for ( Node node : visit.Neighbors() ) {
+				if ( node.Visited() == Node.Visit.UNVISITED ) {
+					frontier.push( node );
+					node.Visited( Node.Visit.FRONTIER );
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args ) {
+		Node nodes[] = new Node[ 6 ];
+		for ( int i = 0; i < 6; i++ )
+			nodes[ i ] = new Node( i );
+		nodes[ 0 ].Neighbor( nodes[ 1 ] );
+		nodes[ 0 ].Neighbor( nodes[ 2 ] );
+		nodes[ 0 ].Neighbor( nodes[ 3 ] );
+		nodes[ 1 ].Neighbor( nodes[ 2 ] );
+		nodes[ 1 ].Neighbor( nodes[ 3 ] );
+		nodes[ 3 ].Neighbor( nodes[ 4 ] );
+		nodes[ 3 ].Neighbor( nodes[ 5 ] );
+		nodes[ 4 ].Neighbor( nodes[ 5 ] );
+		DFS( nodes[ 0 ] );
+	}
+}
+</pre>
+
+<h4>Algorithm - DFS Graph Traversal (Recursive)</h4>
+<ul>
+	<li>If the node is null, then stop</li>
+	<li>Visit the node.</li>
+	<li>For each of the node's neighbors that are unvisited (not marked as unvisited or on frontier), recursively call the method.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+import java.util.Stack;
+
+// Definition for a Graph
+public class Graph {
+	...
+	// Depth first search of a graph (Recursive)
+	public static void DFSR( Node root ) {
+		if ( root == null )
+			return;
+		
+		// mark the node as visited
+		root.Visited( Node.Visit.VISITED );
+		System.out.println( root.Key() );
+		
+		// Recursively visit each unvisited neighbor
+		for ( Node node : root.Neighbors() ) {
+			if ( node.Visited() == Node.Visit.UNVISITED ) {
+				DFSR( node );
+			}
+		}
+	}
+	
+	public static void main(String[] args ) {
+		Node nodes[] = new Node[ 6 ];
+		for ( int i = 0; i < 6; i++ )
+			nodes[ i ] = new Node( i );
+		nodes[ 0 ].Neighbor( nodes[ 1 ] );
+		nodes[ 0 ].Neighbor( nodes[ 2 ] );
+		nodes[ 0 ].Neighbor( nodes[ 3 ] );
+		nodes[ 1 ].Neighbor( nodes[ 2 ] );
+		nodes[ 1 ].Neighbor( nodes[ 3 ] );
+		nodes[ 3 ].Neighbor( nodes[ 4 ] );
+		nodes[ 3 ].Neighbor( nodes[ 5 ] );
+		nodes[ 4 ].Neighbor( nodes[ 5 ] );
+		DFSR( nodes[ 0 ] );
+	}
+}
+
+</pre>
 
 <footer>
 <br/>
