@@ -4246,10 +4246,110 @@ public class HashLP {
 		System.out.println( index.Get( 2298 ) );
 	}
 }
+
 </pre>
 
 <h3>14. String Manipulation</h3>
+<p>The most common string manipulation question that you maybe asked is to reverse the order of a string (without using
+a builtin library). You maybe asked to do both an iterative and a recursive solution.
+</p>
+
+<h4>Algorithm - Iterative</h4>
+<ul>
+	<li>Create a StringBuffer (or character array) to hold the reversed string.</li>
+	<li>Starting at the end of the string and moving backwards, append each character to the reversed string.</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Reverse the order of a string using Iterative Solution
+def Reverse( original ):
+	# Create a second string to hold/return the reversed string
+	length = len( original )
+	reversed = ""
+		
+	# copy over the string in reverse order
+	for i in range( length-1, -1, -1 ):
+		reversed += original[ i ]
+		
+	return reversed
+	
+print( Reverse( "abcdefg" ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for String Manipulation Routines
+public class Strings {
+	// Reverse the order of a string using Iterative Solution
+	public static String Reverse( String original ) {
+		// Create a second string to hold/return the reversed string
+		int length = original.length();
+		StringBuffer reversed = new StringBuffer( length );
+		
+		// copy over the string in reverse order
+		for ( int i = length-1; i >= 0; i-- ) {
+			reversed.append( original.charAt( i ) );
+		}
+		
+		return reversed.toString();
+	}
+	
+	public static void main( String[] args ) {
+		System.out.println( Reverse( "abcdefg" ) );
+		
+	}
+}
+
+</pre>
+
+<h4>Algorithm - Recursive</h4>
+<ul>
+	<li>TODO</li>
+</ul>
+
+<h4>Python</h4>
+<pre>
+
+# Reverse the order of a string (Recursion)
+def ReverseR( original ):
+	if len( original ) > 1:
+		return ReverseR( original[1:] ) + original[ 0 ]
+	return original
+	
+print( ReverseR( "abcdefg" ) )
+
+</pre>
+
+<h4>Java</h4>
+<pre>
+
+// Definition for String Manipulation Routines
+public class Strings {
+	...
+	// Reverse the order of a string using Recursion
+	public static String ReverseR( String original ) {
+		if ( original.length() > 1 )
+			return ReverseR( original.substring( 1 ) ) + original.charAt( 0 );
+		return original;
+	}
+	
+	public static void main( String[] args ) {
+		System.out.println( ReverseR( "abcdefg" ) );
+		
+	}
+}
+
+</pre>
+
 <p>
+Anagram<br/>
+String Comprehension<br/>
+Highest Occurring Character<br/>
+Duplicate Chars<br/>
 </p>
 
 <h3>15. Graphs</h3>
