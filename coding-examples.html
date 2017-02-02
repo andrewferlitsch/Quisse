@@ -15,6 +15,11 @@ footer { color: gray; }
 h3 { color: teal;}
 h4 { color: steelblue;}
 pre { background-color: #DDDDDD; margin: 5px}
+
+a:link, a:visited {
+	text-decoration: none;
+	color		   : steelblue;
+}
 </style>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -41,6 +46,25 @@ of algorithms. Typically, after asking you to code the basic algorithms, you wil
 unable to pass this part of the coding portion, you will probably not continue to the next round of interview.
 </p>
 
+<ol>
+	<li><a href='#prime'>Prime Numbers</a></li>
+	<li><a href='#fibonacci'>Fibonacci Sequence</a></li>
+	<li><a href='#dynamic'>Dynamic Arrays</a></li>
+	<li><a href='#queue'>Linked Lists - Queue</a></li>
+	<li><a href='#stack'>Linked Lists - Stack</a></li>
+	<li><a href='#btree'>Binary Trees</a></li>
+	<li><a href='#bts'>Binary Tree Traversals</a></li>
+	<li><a href='#kary'>K-ary Trees</a></li>
+	<li><a href='#bst'>Binary Search Trees</a></li>
+	<li><a href='#arith'>Arithmetic Operations</a></li>
+	<li><a href='#encoding'>Variable Length Byte Encoding</a></li>
+	<li><a href='#sort'>Sorting</a></li>
+	<li><a href='#hash'>Hashing</a></li>
+	<li><a href='#string'>String Manipulations</a></li>
+	<li><a href='#graph'>Graphs</a></li>
+</ol>
+
+<a name="prime"/>
 <h3>1. Prime Numbers</h3>
 <p>
 The most basic coding example you might get asked is to write an algorithm to output a series of prime numbers.
@@ -237,6 +261,7 @@ public class prime {
 
 </pre>
 
+<a name="fibonacci"/>
 <h3>2. Fibonacci Sequence</h3>
 <p>
 One of the most common and basic coding examples is to code a solution for the Fibonacci sequence. A Fibonacci sequence is a function where F(N) equals
@@ -373,6 +398,7 @@ public class fibonacci {
 
 </pre>
 
+<a name="dynamic"/>
 <h3>3. Dynamic Arrays</h3>
 <p>
 A dynamic array is an array that can be resized, can be randomly accessed via an cardinal ordering, where there is a one-to-one relationship
@@ -697,6 +723,7 @@ class DynamicArray {
 
 </pre>
 
+<a name="queue"/>
 <h3>4. Linked Lists - Queue</h3>
 <p>
 A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
@@ -1237,6 +1264,7 @@ public class Queue {
 
 </pre>
 
+<a name="stack"/>
 <h3>5. Linked Lists - Stacks</h3>
 <p>
 A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
@@ -1679,6 +1707,7 @@ public class StackChain {
 
 </pre>
 
+<a name="btree"/>
 <h3>6. Binary Tree</h3>
 
 <p>
@@ -1928,6 +1957,7 @@ class BinaryTree extends Node {
 
 </pre>
 
+<a name="bts"/>
 <h3>7. Binary Tree Traversals</h3>
 
 <p>
@@ -2370,6 +2400,7 @@ class BinaryTree extends Node {
 }
 </pre>
 
+<a name="kary"/>
 <h3>8. k-ary Trees</h3>
 <p>
 As a follow up to coding examples related to a binary tree, you maybe asked to generalize a solution for a k-ary tree. A k-ary tree is a tree
@@ -2510,6 +2541,7 @@ class Tree extends KNode {
 }
 </pre>
 
+<a name="bst"/>
 <h3>9. Binary Search Tree</h3>
 <p>
 A binary search tree (BST) is a sorted tree where at each node, the data value of the left branch (child) is less than the data value of the node, and the right
@@ -2892,6 +2924,7 @@ class BST {
 	
 </pre>
 
+<a name="arith"/>
 <h3>10. Arithmetic Operations</h3>
 <p>
 A very basic arithmetic problem you maybe asked is to implement a multiply operation where you can only use the addition and equality operator.
@@ -3242,6 +3275,7 @@ public class GCD {
 
 </pre>
 
+<a name="encoding"/>
 <h3>11. Variable Length Byte Encoding</h3>
 You maybe asked to code a variable length byte encoding, using the least amount of bits for the encoding across all sequences. For example, some
 encodings will be one byte, some two bytes, etc. In an encoding with between 1 and 8 bytes, if we restrict the first byte to must contain a zero
@@ -3330,6 +3364,7 @@ public class Encoding {
 
 </pre>
 
+<a name="sort"/>
 <h3>12. Sorting</h3>
 <p>
 There are numerous basic algorithms for sorting. You may get asked to start with a simple sort algorithm and progressively code more complex
@@ -3750,6 +3785,7 @@ class Sort {
 
 </pre>
 
+<a name="hash"/>
 <h3>13. Hashing</h3>
 <p>
 Hashing is another common area to be asked questions about. Hashing is used to solve indexing lookups without the overhead
@@ -4251,6 +4287,7 @@ public class HashLP {
 
 </pre>
 
+<a name="string"/>
 <h3>14. String Manipulation</h3>
 <p>The most common string manipulation question that you maybe asked is to reverse the order of a string (without using
 a builtin library). You maybe asked to do both an iterative and a recursive solution.
@@ -4604,6 +4641,7 @@ public class Strings {
 
 </pre>
 
+<a name="graph"/>
 <h3>15. Graphs</h3>
 <p>
 You maybe asked to implement algorithms related to traversing graphs. The basic algorithms are those for traversing
