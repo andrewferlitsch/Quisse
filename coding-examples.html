@@ -576,7 +576,7 @@ class DynamicArray:
 			# Set the head to the next head
 			self.head = self.head.next;
 			
-			# If the array is now empty, set the tail to null
+			# If the array is now empty, set the tail to none
 			self.size -= 1
 			if self.size == 0:
 				self.tail = None
@@ -4630,6 +4630,85 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 
 <h4>Python</h4>
 <pre>
+
+# Definition for a node in a graph
+class Node:
+	# Visit State
+	UNVISITED = 0  # not visited or on frontier (while)
+	FRONTIER  = 1  # on frontier, waiting to be visited (gray)
+	VISITED   = 2  # visited (black)
+	
+	key = None                  # node data
+	neighbors = DynamicArray()	# list of neighboring nodes (vertices)
+	visited = UNVISITED         # node has been visited
+	
+	# constructor
+	def __init__( self, key ):
+		self.key = key
+	
+	# Get the Key
+	def GetKey( self ):
+		return self.key
+	
+	# Add a neighbor to this node
+	def Neighbor( self, neighbor ):
+		# list the node as a neighbor of this node
+		self.neighbors.Add( neighbor )
+		
+		# ist this node as a neighbor of the node
+		neighbor.neighbors.Add( self )
+	
+	# Get the nodes neighbors
+	def GetNeighbors( self ):
+		return self.neighbors
+	
+	# Set the node visit 
+	def Visited( self, visited ):
+		self.visited = visited
+	
+	# Get whether the node has been visited
+	def GetVisited( self ):
+		return self.visited
+				
+# Breadth first search of a graph
+def BFS( root ):
+	# Create a queue for frontier nodes (nodes to be visited next)
+	frontier = DynamicArray()
+		
+	# Add the root node to the frontier
+	frontier.Add( root )
+	root.Visited( root.FRONTIER )
+		
+	# Traverse each node in the frontier list
+	while frontier.Size() != 0:
+		# visit the next node
+		visit = frontier.Get( 0 )
+		frontier.Delete( 0 )
+		visit.Visited( visit.VISITED )
+		print( visit.GetKey() )
+			
+		# Add the node's neighbors (if not visited and not on frontier list) 
+		# to the frontier list
+		nodes = visit.GetNeighbors()
+		for i in range( 0, nodes.Size() ):
+			node = nodes.Get( i )
+			if node.GetVisited() == node.UNVISITED:
+				frontier.Add( node )
+				node.Visited( node.FRONTIER )
+
+nodes = [None] * 6;
+for i in range( 0, 6 ):
+	nodes[ i ] = Node( i )
+nodes[ 0 ].Neighbor( nodes[ 1 ] )
+nodes[ 0 ].Neighbor( nodes[ 2 ] )
+nodes[ 0 ].Neighbor( nodes[ 3 ] )
+nodes[ 1 ].Neighbor( nodes[ 2 ] )
+nodes[ 1 ].Neighbor( nodes[ 3 ] )
+nodes[ 3 ].Neighbor( nodes[ 4 ] )
+nodes[ 3 ].Neighbor( nodes[ 5 ] )
+nodes[ 4 ].Neighbor( nodes[ 5 ] )
+BFS( nodes[ 0 ] )
+
 </pre>
 
 <h4>Java</h4>
@@ -4743,6 +4822,45 @@ public class Graph {
 
 <h4>Python</h4>
 <pre>
+
+# Depth first search of a graph (Iterative)
+def DFS( root ):
+	# Create a stack for frontier nodes (nodes to be visited next)
+	frontier = Stack();
+		
+	# Add the root node to the frontier
+	frontier.Push( root )
+	root.Visited( root.FRONTIER )
+		
+	# Traverse each node in the frontier list
+	while frontier.Empty() == False:
+		# visit the next node
+		visit = frontier.Pop()
+		visit.Visited( visit.VISITED );
+		print( visit.GetKey() )
+			
+		# Add the node's neighbors (if not visited and not on frontier list) 
+		# to the frontier list
+		nodes = visit.GetNeighbors()
+		for i in range( 0, nodes.Size() ):
+			node = nodes.Get( i )
+			if node.GetVisited() == node.UNVISITED:
+				frontier.Push( node )
+				node.Visited( node.FRONTIER )
+	
+nodes = [None] * 6;
+for i in range( 0, 6 ):
+	nodes[ i ] = Node( i )
+nodes[ 0 ].Neighbor( nodes[ 1 ] )
+nodes[ 0 ].Neighbor( nodes[ 2 ] )
+nodes[ 0 ].Neighbor( nodes[ 3 ] )
+nodes[ 1 ].Neighbor( nodes[ 2 ] )
+nodes[ 1 ].Neighbor( nodes[ 3 ] )
+nodes[ 3 ].Neighbor( nodes[ 4 ] )
+nodes[ 3 ].Neighbor( nodes[ 5 ] )
+nodes[ 4 ].Neighbor( nodes[ 5 ] )
+DFS( nodes[ 0 ] )
+
 </pre>
 
 <h4>Java</h4>
@@ -4806,6 +4924,36 @@ public class Graph {
 
 <h4>Python</h4>
 <pre>
+
+# Depth first search of a graph (Recursive)
+def DFSR( root ):
+	if root == None:
+		return
+		
+	# mark the node as visited
+	root.Visited( root.VISITED )
+	print( root.GetKey() )
+		
+	# Recursively visit each unvisited neighbor
+	nodes = root.GetNeighbors()
+	for i in range( 0, nodes.Size() ):
+		node = nodes.Get( i )
+		if node.GetVisited() == node.UNVISITED:
+			DFSR( node )
+			
+nodes = [None] * 6;
+for i in range( 0, 6 ):
+	nodes[ i ] = Node( i )
+nodes[ 0 ].Neighbor( nodes[ 1 ] )
+nodes[ 0 ].Neighbor( nodes[ 2 ] )
+nodes[ 0 ].Neighbor( nodes[ 3 ] )
+nodes[ 1 ].Neighbor( nodes[ 2 ] )
+nodes[ 1 ].Neighbor( nodes[ 3 ] )
+nodes[ 3 ].Neighbor( nodes[ 4 ] )
+nodes[ 3 ].Neighbor( nodes[ 5 ] )
+nodes[ 4 ].Neighbor( nodes[ 5 ] )
+DFSR( nodes[ 0 ] )
+
 </pre>
 
 <h4>Java</h4>

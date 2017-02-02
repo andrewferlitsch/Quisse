@@ -57,10 +57,10 @@ class DynamicArray:
 			# Set the head to the next head
 			self.head = self.head.next;
 			
-			# If the array is now empty, set the tail to null
+			# If the array is now empty, set the tail to none
 			self.size -= 1
 			if self.size == 0:
-				self.tail = null
+				self.tail = None
 			
 			return True
 		

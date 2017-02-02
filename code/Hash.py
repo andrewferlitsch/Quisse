@@ -5,7 +5,7 @@ class Entry:
 	next  = None # the next entry at this range
 	
 	# Constructor
-	def __init__( self, key,value ):
+	def __init__( self, key, value ):
 		self.key   = key
 		self.value = value
 	 
