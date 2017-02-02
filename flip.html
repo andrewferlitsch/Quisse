@@ -15,17 +15,19 @@
             </div>
         </div> 
 		<div class='w3-container'>Got It!</label> <input class='w3-check' type='checkbox' ng-model='checked' ng-change='Correct( checked )'/>
+			<!--
 			<label style='color: teal; font-size: 9pt;'>Suggest Ranking:</label> <input type='number' min="1" max="3" ng-model='nrank' ng-change='Rank(question.id, nrank);' style='width: 40px; height: 25px;'/>
+			-->
 		</div>
 	</div>
 	<br/>
 	<div class='w3-right'>
-		<button class='w3-btn w3-green w3-small' ng-click='Easier( random[0].id )'>&lt;&lt; Easier</button>
-		<button class='w3-btn w3-green w3-small' ng-click='Same( random[0].id )'>Next &gt;</button>
-		<button class='w3-btn w3-green w3-small' ng-click='Harder( random[0].id )'>Harder &gt;&gt;</button><br/>
+		<button class='w3-btn w3-teal w3-small' ng-click='Easier( random[0].id )'>-</button>
+		<button class='w3-btn w3-teal w3-small' ng-click='Same( random[0].id )'>Next</button>
+		<button class='w3-btn w3-teal w3-small' ng-click='Harder( random[0].id )'>+</button><br/>
 	</div> 
 	<div class='w3-left'>
-		<button class='w3-btn w3-green' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>
+		<button class='w3-btn w3-green w3-small' ng-class='score_css' ng-click='score()'>{{score_txt}}</button>
 	</div>
 	<div style='clear:both;'>&nbsp;</div>
 </div>

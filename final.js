@@ -38,7 +38,7 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  "		</ol>" +
 				  "	</div>" +
 				  "</div>" +
-				  "<div class='w3-container'>" +
+				  "<div class='w3-container' ng-show='false'>" +
 				  "	<h3>Crowdsourcing the Dataset of Questions</h3>" +
 				  "	<p>Help us crowdsource the datasets of questions and answers.</p>" +
 				  "	<p style='color: orange; cursor: pointer' ng-click='showright=!showright'>&#9205; Instructions</p>" +
