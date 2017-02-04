@@ -1,4 +1,4 @@
-# TakeATest 
+# Quisse 
 
 ## Mini Launch - Feb. 6, 2017
 
@@ -17,6 +17,7 @@ is found at the web address http://www.quisse.com .
 * Full AngularJS application using MVC design pattern.
 * W3.CSS for Web Responsiveness on PC, Tablet and Phone.
 * Developed using Agile/Extreme Programming Methodology.
+* Deployed on AWS EC2 instance as a Virtual Web Server
 
 ## 3/6/9 Week Development Lifecycle
 
