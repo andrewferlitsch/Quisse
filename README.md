@@ -36,4 +36,13 @@ and Technologist at Sharp Labs of America (North American research subsidiary of
 
 ### 6 Weeks
 
+* Narrow Target Market
+* Define Initial Market Requirements
+* Select Technologies and Secure Resources
+* Plan Sprints using Extreme Programming
+* Iteratively Produce Prototypes
+* Continuous Communication with Stakeholders
+* Demonstrate Technology to Stakeholders
+* Product Owner narrows first Flagship Features
+
 ### 9 Weeks
