@@ -46,3 +46,13 @@ and Technologist at Sharp Labs of America (North American research subsidiary of
 * Product Owner narrows first Flagship Features
 
 ### 9 Weeks
+
+* Switch from Iterative to Incremental Development
+* Harden Code and shift focus towards Usability
+* Perform Ad-hoc Testing daily
+* Usability Testing by Customer Actors
+* Continuous Update Stakeholders on Progress
+* Final Exploratory Test by QA
+* Finalize/Seal Code Base and Deploy
+* Product Owner develops mockups for Branding
+* Launch/Demonstrate Technology to Stakeholders for Buy-In
