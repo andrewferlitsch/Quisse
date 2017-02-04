@@ -33,6 +33,7 @@ technical.controller( 'cCtrl', function( $scope, $http, $location, $anchorScroll
 			$scope.rank++;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 		$scope.nquestions++;
+		if ( $scope.scored ) Tally( $scope.name, 1, 0 );
 	}
 	
 	$scope.Easier = function ( id ) {
@@ -40,11 +41,13 @@ technical.controller( 'cCtrl', function( $scope, $http, $location, $anchorScroll
 			$scope.rank--;
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 		$scope.nquestions++;
+		if ( $scope.scored ) Tally( $scope.name, 1, 0 );
 	}
 	
 	$scope.Same = function ( id ) {
 		$scope.random = pickNext( $scope.questions, $scope.rank, id );
 		$scope.nquestions++;
+		if ( $scope.scored ) Tally( $scope.name, 1, 0 );
 	}
 
 	$scope.scored = false;
