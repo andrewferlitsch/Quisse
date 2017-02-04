@@ -39,7 +39,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     1,
 	0
   );
-
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a Local Area Network (LAN)?',
+    'A set of connected computers located in the same physical space.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a communication link?',
+    'A connection between two devices.',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -60,7 +77,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Network',
@@ -77,6 +93,51 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'It means that the protocol does not guarantee delivery nor offer an error when a delivery fails; this logic, if needed, must be added to an application-layer protocol.',
     2,
 	0
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a node?',
+    'A point (e.g. device, computer) where a connection takes occurs.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a Virtual Private Network (VPN)?',
+    'A secured tunnel through one network (e.g., Internet) into another (e.g., LAN).',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a Wide Area Network (WAN)?',
+    'An interconnection of networks, computers and devices over a geographically dispersed area.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a router?',
+    'A device that connects two or more network segments together. It uses routing tables to transfer data from one network segment to another.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a Network Interface Card (NIC)?',
+    'Either a physical or logical component in a computer/device that connects the computer/device to the network via a MAC address, which is unique to the NIC.',
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -120,6 +181,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Network',
     'Explain the FTP protocol.',
     'The File Transfer Protocol (FTP) is used to transfer files between a client and server (or peers) over TCP/IP. The client opens a connection to send commands. The server (or client) opens a second data connection to transfer files.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What are the 7 network OSI layers.',
+    'Physical, Data Link, Network, Transport, Session, Presentation, and Application layer.',
+    3,
+	1
+  );
+
+  INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a Network Address Translation (NAT)?',
+    'A protocol that allows multiple computers on a LAN to share the same connection to the Internet.',
+    3,
+	1
+  );
+
+  INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a Routing Information Protocol (RIP)?',
+    'A protocol used by routers to aid in routing data, where routing tables are broadcasted to other routers in the network, and network distances are calculating in hops.',
     3,
 	1
   );

@@ -48,7 +48,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'Security',
@@ -57,6 +56,13 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'Security',
+    'What is encryption?',
+    'A method to transform the content so that it cannot be read by anyone that does not have the key to decrypt the encrypted content back into its original format.',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -83,6 +89,15 @@ INSERT INTO questions (category, question, answer, rank)
     'What is two factor authentication?',
     'An additional authentication device that produces an access token which has a short life (e.g., 60 seconds), which must be used in conjunction with a password.',
     2
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Security',
+    'What is one-way hashing?',
+    'A method of encryption where the encrypted content cannot be decrypted, but the method will always produce the same encrypted result for the same string. It is commonly used for storing passwords.',
+    1,
+	1
   );
 
 
@@ -111,4 +126,14 @@ INSERT INTO questions (category, question, answer, rank)
     'XSS attacks occur when malicious code is injected into a website, generally through an input control.',
     3
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Security',
+    'What is Symetric Encryption?',
+    'A encryption method where the same key is used to encrypt and decrypt the content.',
+    3,
+	1
+  );
+
 
