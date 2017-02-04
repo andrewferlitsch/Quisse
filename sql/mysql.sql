@@ -80,7 +80,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL',
@@ -90,6 +89,23 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What is the not equal operator?',
+    'The operator <>',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What are the logical operators?',
+    'The operators are AND, OR, XOR',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -134,6 +150,69 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'MySQL',
     'How do you execute a MySQL script file?',
     'source filename;',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What are the string data types for a column?',
+    'char, varchar, text, blob, enum and set',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What is a primary key?',
+    'Each table has one primary key. The primary key provides a unique identifier for each row in the table.',
+    2,
+	0
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What is the difference between char and varchar?',
+    'char is a fixed length character field, while varchar is a variable length character field.',
+    2,
+	0
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'How do you select rows where the column field matches a substring starting with abc?',
+    'SELECT * FROM table WHERE field LIKE ''abc%''',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'What are the four text types?',
+    'TINYTEXT, TEXT, MEDIUMTEXT, and LONGTEXT',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'How do you display only the top 10 rows?',
+    'SELECT * FROM table LIMIT 10',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'How do you select rows where the column field contains the pattern abc anywhere in the column value?',
+    'SELECT * WHERE field LIKE ''%abc%''',
     2,
 	1
   );

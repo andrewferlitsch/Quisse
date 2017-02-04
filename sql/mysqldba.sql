@@ -29,13 +29,30 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     1,
 	1
   );
-
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL DBA',
+    'How do you start mysql?',
+    'sudo service mysql start',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL DBA',
     'How do tell what version of mysql is running?',
     '1. mysql>\s , or 2. mysql>status , or 3. mysql --version, or 4. mysqladmin --version',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL DBA',
+    'How do you get the status of the server?',
+    'sudo service mysql status',
     1,
 	1
   );
@@ -141,12 +158,30 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL DBA',
+    'What does ACID stand for?',
+    'atomicity, consistency, isolation, durability',
+    2,
+	1
+  );
   
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL DBA',
     'What command will show you the current binary log position on a master server?',
     'SHOW MASTER STATUS',
+    2,
+	0
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL DBA',
+    'What is the trade off for adding more indexes?',
+    'The more indexes, the faster lookups are likely to be, but it will increase the amount of disk and memory space used.',
     2,
 	0
   );
@@ -161,7 +196,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL DBA',
@@ -171,7 +205,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'MySQL DBA',
@@ -179,5 +212,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'REPEATABLE-READ',
     3,
 	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL DBA',
+    'How do you take over a MySQL server when you don''t have the credentials?',
+    '1. stop the service, 2. restart with skip grand, 3. connect as root, and 4. set a new password',
+    3,
+	1
   );
 

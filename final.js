@@ -24,7 +24,7 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  "</div>" +
 				  "<div class='w3-container'>" +
 				  "	<h3>Preparing for a Technical Phone Screen</h3>" +
-				  "	<p>Use our 500 question/answer section below to practice a phone screen. " +
+				  "	<p>Use our 550 question/answer section below to practice a phone screen. " +
 				  "	Each category will display three randomly selected questions in increasing difficulty.</p>" +
 				  "	<p style='color: orange; cursor: pointer' ng-click='showleft=!showleft'>&#9205; Instructions</p>" +
 				  "	<div ng-show='showleft'>" + 

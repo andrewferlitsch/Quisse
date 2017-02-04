@@ -30,7 +30,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OOP Design',
@@ -39,7 +38,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     1,
 	0
   );
-
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a base (super) class?.',
+    'A class that does not inherit other classes.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a derived (sub) class?.',
+    'A class that inherits another class. It may add additional methods, implement non-implemented methods or override methods in the other class.',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -79,6 +95,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is the difference between an array and collection?',
+    'An array is fixed size. A collection can dynamically change its size.',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a Singleton design pattern?',
+    'This design pattern handles the creation of a single only instance of a class. It prevents a program from directly instantiating instances of the class.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What are the three types of design patterns defined by the Gang of Four (GOF)?',
+    'Creational, Structural and Behavioral.',
+    3,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -89,12 +131,47 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OOP Design',
     'What is an Iterator design pattern?',
     'Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a prototype design pattern?',
+    'This performance minded pattern creates duplicates (clone) of an object, instead of instantiating an object from scratch.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a decorator design pattern?',
+    'This design pattern adds functionality to a class without altering its structure.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a null object design pattern?',
+    'This design pattern returns a null object instance in place of a null value.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a model view controller design pattern?',
+    'This design pattern separates the data, user interface and program logic.',
     3,
 	1
   );

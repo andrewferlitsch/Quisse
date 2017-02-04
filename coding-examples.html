@@ -14,7 +14,7 @@ footer { color: gray; }
 }
 h3 { color: teal;}
 h4 { color: steelblue;}
-pre { background-color: #DDDDDD; margin: 5px}
+pre { background-color: #DDDDDD; margin: 5px; padding-left: 10px; padding-right: 10px; font-family: "Courier New", Courier, monospace }
 
 a:link, a:visited {
 	text-decoration: none;
@@ -36,14 +36,14 @@ a:link, a:visited {
 <header>
 	<div style='font-size: 24pt; font-weight: bold;'>The Technical Interview</div>
 	</div>
-	<h2 style='color: steelblue'>Coding Examples</h2>
-	<h4 style='color: darkgray'>All the examples are hand coded and tested by me. They are not copied from other sources.</h4>
+	<h2 style='color: steelblue'>Coding Challenges</h2>
+	<h4 style='color: darkgray'>All the coding challenges are hand coded and tested by me. They are not copied from other sources.</h4>
 </header>
 
 <p>
-The coding examples in this section are basic algorithms. A coding portion of a technical interview will likely start with one of these types
-of algorithms. Typically, after asking you to code the basic algorithms, you will be ask to make improvements or other variations. If you are 
-unable to pass this part of the coding portion, you will probably not continue to the next round of interview.
+The coding challenges in this section are basic algorithms. A coding portion of a technical interview will likely start with one of these types
+of algorithms. Typically, after asking you to code the basic algorithm, you will be ask to make improvements or other variations. If you are 
+unable to pass this part of the coding portion, you will probably not continue to the next round of an interview.
 </p>
 
 <ol>
@@ -4614,6 +4614,7 @@ res = DupChar( "jack and jill jumped over the hill to fetch a pale of water")
 for i in range(32, 128):
 	if res[ i - 32 ] > 0:
 		print( chr( i ) + ": " + str( res[ i - 32 ] ) )
+		
 </pre>
 
 <h4>Java</h4>

@@ -63,20 +63,31 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is Scrum?',
     'A lightweight version of the Agile methodology using Sprints.',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is a User Story?',
     'A short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system.',
-    2
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is re-factoring?',
+    'Rewriting code without changing its functionality to improve a performance metric, such as memory size, speed, responsiveness, code size, maintainability, etc.',
+    2,
+	1
   );
   
 INSERT INTO questions (category, question, answer, rank) 
@@ -104,36 +115,101 @@ INSERT INTO questions (category, question, answer, rank)
     2
   );
 
-
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is a standup scrum meeting?',
     'To give a quick round of status and expected tasks for the day by each member. It is called a standup to emphasize keeping the sprint as short as possible.',
-    2
+    2,
+	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is a burn-up chart?',
+    'A time-based graph that shows over successive periods of time (e.g., sprints) that amount of work completed, such as in story points.',
+    2,
+	1
+  );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is a burn-down chart?',
+    'A time-based graph that shows over successive periods of time (e.g., sprints) the amount of remaining work to complete, such as in story points, ir time estimates.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is a zero sprint?',
+    'A preparatory sprint that proceeds sprints for the development of the product.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'Describe Kanban board?',
     'A Kanban board is a workflow process where tasks are reviewed and moved from various progressive states of completion. These typically include: unassigned, assigned, in progress, in test, in review, accepted (or completed).',
-    3
+    3,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is Extreme Programming?',
     'A development process consisting of frequent releases in short development cycles. Other elements include: programming in pairs or doing extensive code review, unit testing of all code, avoiding programming of features until they are actually needed.',
-    3
+    3,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is Test Driven Development?',
     'A software development process that relies on the repetition of a very short development cycle: requirements are turned into very specific test cases, then the software is improved to pass the new tests, only',
-    3
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is velocity?',
+    'A predictive measurement of the rate that the remaining work will be completed, based on the rate of completion of work (e.g., user stories) in the last sprint. It is used for scheduling purposes.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is Pair Programming?',
+    'A two person development team. One person has the role of coder, and the other as reviewer, unit testing and acceptance for checkin. The users typically alternate roles on a periodic schedule.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is Iterative Development?',
+    'Software is developed in cycles, where new or modified requirements can be injected between cycles.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is Incremental Development?',
+    'Software is developed in cycles, where new or modified requirements cannot be injected between cycles.',
+    3,
+	1
   );

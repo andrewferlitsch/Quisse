@@ -57,20 +57,98 @@ INSERT INTO questions (category, question, answer, rank)
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'DOS',
-    'How do you test in an IF statement if the last command exited with a non-zero exit code?',
-    'IF %ERRORLEVEL% NEQ 1',
-    2
+    'How do you list all files ending in a specific file suffix?',
+    'dir *.suf',
+    1
   );
-
+  
+INSERT INTO questions (category, question, answer, rank) 
+  VALUES (
+    'DOS',
+    'How do you create a directory?',
+    'md or mkdir',
+    1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
     'DOS',
-    'What is the syntax for a goto and the target?',
-    'goto label  and  :label',
+    'How do you test in an IF statement if the last command exited with a non-zero exit code?',
+    'IF %ERRORLEVEL% NEQ 1',
     2
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'How do you change the current working directory up one level?',
+    'cd ..',
+    2,
+	1
+  );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What is the syntax for a goto and the target?',
+    'goto label  and  :label',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'How do you clear the screen?',
+    'cls',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command is used to recover a deleted file immediately after it has been deleted?',
+    'undelete',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command lists all deleted files that can be recovered?',
+    'undelete /list',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What function key will recall the previous command?',
+    'F3',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command displays the contents of a file',
+    'The type command.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command displays all the files in a directory',
+    'dir /s',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -79,4 +157,57 @@ INSERT INTO questions (category, question, answer, rank)
     'find "hello" file /c , where the pattern to search for must be in double quotes.',
     3
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What does CHKDSK do?',
+    'This command checks the hardrive for errors, does diagnostics on the errors and reports status on files and directories.',
+    3,
+	1
+  );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What batch file is executed when booting?',
+    'autoexec.bat',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command is used to copy hidden DOS system files?',
+    'sys',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'FAT stands for?',
+    'File Allocation Table',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command displays the label of the volume?',
+    'vol',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'Which file contains all the internal DOS commands?',
+    'command.com',
+    3,
+	1
+  );
