@@ -69,10 +69,14 @@ technical.controller( 'cCtrl', function( $scope, $http, $location, $anchorScroll
 	}
 	
 	$scope.Correct = function( checked ) {
-		if ( checked )
+		if ( checked ) {
 			$scope.correct++;
-		else
+			if ( $scope.scored ) Tally( $scope.name, 0, 1 );
+		}
+		else {
 			$scope.correct--;
+			if ( $scope.scored ) Tally( $scope.name, 0, -1 );
+		}
 	}
 	
 	$scope.Rank = function( id, rank ) {
