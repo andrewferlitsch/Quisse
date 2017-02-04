@@ -27,6 +27,13 @@ and Technologist at Sharp Labs of America (North American research subsidiary of
 
 ### 3 Weeks
 
+* Research Trends in Target Industry
+* Identify Stakeholders
+* Onboard Product Owner from Planning/Marketing
+* Develop Domain Expertise
+* Plan and Develop Mockups with Product Owner
+* Demonstrate Mockups to Stakeholders
+
 ### 6 Weeks
 
 ### 9 Weeks
