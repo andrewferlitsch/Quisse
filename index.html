@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="flip.css">
 	<style>
 	hr { color: steelblue;} h1 { cursor: pointer; text-align: center; }
@@ -177,9 +178,13 @@ function UpdateScore() {
 	}, 200);
 }
 
+/* Capture timestamps when user proceeds to next question or marks correct
+ */
+function Timestamp( ms, name, id, type ) {
+	console.log( name + ":" + type + ":" + id + ":" + ms );
+}
+
 $(function() {
-	$("button#final").click(function() {
-	})
 })
 </script>
 <script src="head.js"></script>
