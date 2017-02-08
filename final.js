@@ -11,7 +11,7 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 		template: "<hr/>" +
 				  "<a id='final'/>" +
 				  "<br/>" +
-				  "<div class='w3-container w3-green w3-large'><p>Final Score</p></div>" +
+				  "<div class='w3-container w3-green'><p>Final Score</p></div>" +
 				  "<div ng-show='show'>" +
 				  "	<p><span class='final'>Number of Questions</span>: <span id='totalQuestions' class='w3-badge'>{{totalQuestions}}</span></p>" +
 				  "	<p><span class='final'>Total Correct</span>: <span id='totalCorrect' class='w3-badge w3-green'>{{totalCorrect}}</span></p>" +
