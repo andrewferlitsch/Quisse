@@ -1,9 +1,9 @@
 <a name='{{name}}'/>
-<h1 class='w3-container w3-teal' ng-click='show=!show; scrollTo()' id='{{subject}}'>&#9205; {{subject}}</h1>
+<h1 class='w3-container w3-teal' ng-click='show=!show; scrollTo()' id='{{subject}}'><span class='fa fa-caret-right'></span> {{subject}}</h1>
 <hr/>
 <div style='font-size: 20px;' ng-show='show'>
 	<div class="flip" ng-repeat='question in random' class='w3-container'> 
-        <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1"> 
+        <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1; Flip(question.id)"> 
             <div class="face front w3-teal w3-round-large w3-xlarge">
 				<span style='font-size: 14pt; color: gold;'>Rank: {{question.rank}} </span><br/>
                 Question: {{question.question}}
@@ -14,7 +14,7 @@
 				<p style='font-size: 11pt; color: gold;'>Click to Flip</p>
             </div>
         </div> 
-		<div class='w3-container'>Got It!</label> <input class='w3-check' type='checkbox' ng-model='checked' ng-change='Correct( checked )'/>
+		<div class='w3-container'>Got It!</label> <input class='w3-check' type='checkbox' ng-model='checked' ng-change='Correct( checked, question.id )'/>
 			<!--
 			<label style='color: teal; font-size: 9pt;'>Suggest Ranking:</label> <input type='number' min="1" max="3" ng-model='nrank' ng-change='Rank(question.id, nrank);' style='width: 40px; height: 25px;'/>
 			-->

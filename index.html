@@ -180,8 +180,27 @@ function UpdateScore() {
 
 /* Capture timestamps when user proceeds to next question or marks correct
  */
-function Timestamp( ms, name, id, type ) {
-	console.log( name + ":" + type + ":" + id + ":" + ms );
+var timing = [];
+var send = false;
+var session;
+function Timestamp( name, id, type ) {
+	// on first call, setup timer and variables for sending timing metrics to server
+	if ( send == false ) {
+		send = true;
+		session = Math.round( Math.random() * 10000 );
+		setTimeout( function() { SendServer(); }, 10000 );
+	}
+	
+	// store timing metrics until periodic upload to server
+	timing.push( { session: session, name: name, type: type, id: id, time: Date.now() } );
+}
+
+/*
+ * Send Timing Metrics to the Server
+ */
+function SendServer() {
+	console.log( timing ); timing = [];
+	setTimeout( function() { SendServer(); }, 10000 );
 }
 
 $(function() {
