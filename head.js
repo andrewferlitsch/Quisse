@@ -20,7 +20,6 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		restrict: 'A',
 		template: "<div style='text-align: center'>" +
 				  "<h1>The Technical Interview</h1>" +
-				  
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='preparing-for-technical-interview.html'>Interview Guide</a></li>" +
@@ -28,7 +27,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 				  "<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>604</span></span>" +
 				  "</ul>" +
 				  "<br/>" +
-				  "<label for='category' class='w3-label'>Select Category:</label>" +
+				  "<label for='category' class='w3-label'>Select Skill Category:</label>" +
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)'>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
 				  "</select>"
