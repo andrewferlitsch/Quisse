@@ -183,7 +183,7 @@ function UpdateScore() {
 var timing = [];
 var send = false;
 var session;
-function Timestamp( name, id, type ) {
+function Timestamp( category, id, type ) {
 	// on first call, setup timer and variables for sending timing metrics to server
 	if ( send == false ) {
 		send = true;
@@ -192,13 +192,20 @@ function Timestamp( name, id, type ) {
 	}
 	
 	// store timing metrics until periodic upload to server
-	timing.push( { session: session, name: name, type: type, id: id, time: Date.now() } );
+	timing.push( { session: session, category: category, id: id, type: type, time: Date.now() - 1480000000000 } );
 }
 
 /*
  * Send Timing Metrics to the Server
  */
 function SendServer() {
+	$.ajax({
+		url: "/timing.php",
+		type: 'post',
+		data: { timing },
+		success: function( data, status ) { },
+		error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
+	});
 	console.log( timing ); timing = [];
 	setTimeout( function() { SendServer(); }, 10000 );
 }

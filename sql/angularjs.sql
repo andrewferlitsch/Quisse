@@ -73,7 +73,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'AngularJS',
     'What does a ng-if directive do?',
-    'This conditional conditional includes an HTML element depending of the evaluation of the condition angular expression being true.',
+    'This conditional conditional includes an HTML element depending of the evaluation of the conditional angular expression being true.',
     1,
 	1
   );

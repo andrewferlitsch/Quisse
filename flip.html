@@ -3,7 +3,7 @@
 <hr/>
 <div style='font-size: 20px;' ng-show='show'>
 	<div class="flip" ng-repeat='question in random' class='w3-container'> 
-        <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1; Flip(question.id)"> 
+        <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1; Flip(question.id, isFlipped1 )"> 
             <div class="face front w3-teal w3-round-large w3-xlarge">
 				<span style='font-size: 14pt; color: gold;'>Rank: {{question.rank}} </span><br/>
                 Question: {{question.question}}
