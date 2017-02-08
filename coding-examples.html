@@ -10,7 +10,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <style>
-header { text-align: center; }
 footer { color: gray; }
 .item {
 	display: inline-block;
@@ -37,19 +36,10 @@ a.index:link, a.index:visited {
 </script>
 </head>
 
-<body style='margin: 20px;'>
-	<header>
-		<h1>The Technical Interview</h1>
+<body ng-app="technical" style='margin: 20px;'>
+	<header ng-controller="navCtrl">
+		<div nav></div>
 	</header>
-	
-	<section>
-		<ul class='w3-navbar w3-green'>
-			<li><a href='/'>Flashcards</a></li>
-			<li><a href='preparing-for-technical-interview.html'>Interview Guide</a></li>
-			<li><a href='coding-examples.html'>Coding Examples</a></li>
-			<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>604</span></span>
-		</ul>
-	</section>
 	
 	<section style='text-align: center'>
 		<h2 style='color: steelblue'>Coding Challenges</h2>
@@ -5060,5 +5050,9 @@ Best Regards,<br/>
 Andrew Ferlitsch<br/>
 Portland Data Science Group, Co-Organizer
 </footer>
+<script>
+var technical = angular.module( 'technical', []);
+</script>
+<script src="nav.js"></script>
 </body>
 </html>
