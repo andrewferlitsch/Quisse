@@ -65,7 +65,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'JQuery',
     'How do you get the inner HTML code for an element?',
-    '$("div").html()',
+    '$(''div'').html()',
     1,
 	1
   );
@@ -93,7 +93,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'JQuery',
     'What syntax is used to change the style of div element?',
-    '$("div").css(property,value)',
+    '$(''div'').css(property,value)',
     2,
 	1
   );

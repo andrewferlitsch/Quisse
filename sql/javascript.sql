@@ -152,7 +152,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Javascript',
-    'What is the bitwise XOR opeator?',
+    'What is the bitwise XOR operator?',
     'x ^ y',
     2,
 	1
