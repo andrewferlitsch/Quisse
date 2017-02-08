@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<title>Preparing for a Technical Interview</title>
+	<title>Coding Challenges in a Technical Interview</title>
 	<meta charset="utf-8">
+	<meta charset="utf-8">
+	<meta name='keywords' content='test, quiz, interview, interview questions, technical interview, technical questions'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <style>
 header { text-align: center; }
 footer { color: gray; }
@@ -16,7 +21,7 @@ h3 { color: teal;}
 h4 { color: steelblue;}
 pre { background-color: #DDDDDD; margin: 5px; padding-left: 10px; padding-right: 10px; font-family: "Courier New", Courier, monospace }
 
-a:link, a:visited {
+a.index:link, a.index:visited {
 	text-decoration: none;
 	color		   : steelblue;
 }
@@ -32,13 +37,24 @@ a:link, a:visited {
 </script>
 </head>
 
-<body style='width: 900px; margin: 20px; margin: 0 auto'>
-<header>
-	<div style='font-size: 24pt; font-weight: bold;'>The Technical Interview</div>
-	</div>
-	<h2 style='color: steelblue'>Coding Challenges</h2>
-	<h4 style='color: darkgray'>All the coding challenges are hand coded and tested by me. They are not copied from other sources.</h4>
-</header>
+<body style='margin: 20px;'>
+	<header>
+		<h1>The Technical Interview</h1>
+	</header>
+	
+	<section>
+		<ul class='w3-navbar w3-green'>
+			<li><a href='/'>Flashcards</a></li>
+			<li><a href='preparing-for-technical-interview.html'>Interview Guide</a></li>
+			<li><a href='coding-examples.html'>Coding Examples</a></li>
+			<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>604</span></span>
+		</ul>
+	</section>
+	
+	<section style='text-align: center'>
+		<h2 style='color: steelblue'>Coding Challenges</h2>
+		<h4 style='color: darkgray'>All the coding challenges are hand coded and tested by me. They are not copied from other sources.</h4>
+	</section>
 
 <p>
 The coding challenges in this section are basic algorithms. A coding portion of a technical interview will likely start with one of these types
@@ -46,22 +62,22 @@ of algorithms. Typically, after asking you to code the basic algorithm, you will
 unable to pass this part of the coding portion, you will probably not continue to the next round of an interview.
 </p>
 
-<ol>
-	<li><a href='#prime'>Prime Numbers</a></li>
-	<li><a href='#fibonacci'>Fibonacci Sequence</a></li>
-	<li><a href='#dynamic'>Dynamic Arrays</a></li>
-	<li><a href='#queue'>Linked Lists - Queue</a></li>
-	<li><a href='#stack'>Linked Lists - Stack</a></li>
-	<li><a href='#btree'>Binary Trees</a></li>
-	<li><a href='#bts'>Binary Tree Traversals</a></li>
-	<li><a href='#kary'>K-ary Trees</a></li>
-	<li><a href='#bst'>Binary Search Trees</a></li>
-	<li><a href='#arith'>Arithmetic Operations</a></li>
-	<li><a href='#encoding'>Variable Length Byte Encoding</a></li>
-	<li><a href='#sort'>Sorting</a></li>
-	<li><a href='#hash'>Hashing</a></li>
-	<li><a href='#string'>String Manipulations</a></li>
-	<li><a href='#graph'>Graphs</a></li>
+<ol class='w3-ul'>
+	<li><a class='index' href='#prime'>Prime Numbers</a></li>
+	<li><a class='index' href='#fibonacci'>Fibonacci Sequence</a></li>
+	<li><a class='index' href='#dynamic'>Dynamic Arrays</a></li>
+	<li><a class='index' href='#queue'>Linked Lists - Queue</a></li>
+	<li><a class='index' href='#stack'>Linked Lists - Stack</a></li>
+	<li><a class='index' href='#btree'>Binary Trees</a></li>
+	<li><a class='index' href='#bts'>Binary Tree Traversals</a></li>
+	<li><a class='index' href='#kary'>K-ary Trees</a></li>
+	<li><a class='index' href='#bst'>Binary Search Trees</a></li>
+	<li><a class='index' href='#arith'>Arithmetic Operations</a></li>
+	<li><a class='index' href='#encoding'>Variable Length Byte Encoding</a></li>
+	<li><a class='index' href='#sort'>Sorting</a></li>
+	<li><a class='index' href='#hash'>Hashing</a></li>
+	<li><a class='index' href='#string'>String Manipulations</a></li>
+	<li><a class='index' href='#graph'>Graphs</a></li>
 </ol>
 
 <a name="prime"/>
