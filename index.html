@@ -26,7 +26,10 @@
 </script>
 </head>
 <body ng-app="technical" ng-init='test=false' style='margin: 20px;' ng-controller="interviewCtrl">
-
+	<header ng-controller="navCtrl">
+		<div nav></div>
+	</header>
+	
 	<section>
 		<div  interview></div>
 	</section>
@@ -214,6 +217,7 @@ function SendServer() {
 $(function() {
 })
 </script>
+<script src="nav.js"></script>
 <script src="head.js"></script>
 <script src="web.php"></script>
 <script src="html.php"></script>

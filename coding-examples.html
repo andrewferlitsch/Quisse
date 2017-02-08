@@ -158,7 +158,7 @@ we can skip dividing by even numbers and only divide by odd numbers.
 
 <h4>Algorithm - Skip even numbers</h4>
 <ol>
-	<li>For each odd number, we attempt to divide it by every odd number less than it, except for one and two.</li>
+	<li>For each odd number, we attempt to divide it by every odd number less than it, except for one.</li>
 	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
 	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
 	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
@@ -289,7 +289,7 @@ solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very shor
 <ul>
 	<li>If n = 0, then return 0.</li>
 	<li>If n = 1, then return 1.</li>
-	<li>If n > 1, return the sum of F(n-1) + F(n-2)</li>
+	<li>If n > 1, return the sum of F(n-1) + F(n-2).</li>
 </ul>
 
 <h4>Python</h4>
@@ -418,19 +418,19 @@ public class fibonacci {
 <h3>3. Dynamic Arrays</h3>
 <p>
 A dynamic array is an array that can be resized, can be randomly accessed via an cardinal ordering, where there is a one-to-one relationship
-between an integer index and a value. For example, if a dynamic array cans the ordered elements A, B and D, they would be accessed (one-to-one relationship)
+between an integer index and a value. For example, if a dynamic array has the ordered elements A, B and D, they would be accessed (one-to-one relationship)
 by indices 0=>A, 1=>B and 2=>D. If we insert a C between B and D, the ordering would be rearranged but there still would be a one-to-one relationship, accessed
 as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and index 3 to D.
 </p>
 
 <p>
-You maybe asked to implement a dynamic array using a class. You would be expected to implement at least and Add() and Get() methods.
+You maybe asked to implement a dynamic array using a class. You would be expected to implement at least an Add() and Get() methods.
 
 <h4>Algorithm</h4>
 <ul>
 	<li>Define a class for an element.
 		<ul>
-			<li>Has a member to hold the value</li>
+			<li>Has a member to hold the value.</li>
 			<li>Has a next pointer for the next element in the array.</li>
 		</ul>
 	</li>
@@ -438,7 +438,7 @@ You maybe asked to implement a dynamic array using a class. You would be expecte
 		<ul>
 			<li>Has a member to hold the head and a member to hold the tail of the array.</li>
 			<li>A member to hold the size of the array.</li>
-			<li>Define a Add method.
+			<li>Define an Add method.
 				<ul>
 					<li>Instantiate a new element.</li>
 					<li>Add the element to the end of tail (the tail's next pointer) and update the tail to the new element.</li>
@@ -449,7 +449,7 @@ You maybe asked to implement a dynamic array using a class. You would be expecte
 			<li>Define a Get method.</li>
 				<ul>
 					<li>Check for array out of bounds condition.</li>
-					<li>Starting with the head, advance consecutively index' number of times following the next pointer.</li>
+					<li>Starting with the head, advance consecutively index number of times following the next pointer.</li>
 					<li>Return the value of the current element.</li>
 				</ul>
 			</li>
@@ -572,7 +572,7 @@ class DynamicArray {
 
 </pre>
 
-<p>Once you've solved the Add() and Get() methods, you will likely be asked to code the methods for Delete() and Insert(). In the below coding
+<p>Once you've solved the Add() and Get() methods, you maybe asked to code the methods for Delete() and Insert(). In the below coding
 example, I solve for an insert after. You maybe additionally asked to code an insert before, or both.
 </p>
 
@@ -581,8 +581,8 @@ example, I solve for an insert after. You maybe additionally asked to code an in
 	<li>Define a Delete() method.
 		<ul>
 			<li>Check for array out of bounds condition.</li>
-			<li>If deleting the head (index = 0), the set the new head to what the head currently points to.</li>
-			<li>Starting with the head, advance consecutively index' number of times following the next pointer,
+			<li>If deleting the head (index = 0), then set the new head to what the head currently points to.</li>
+			<li>Starting with the head, advance consecutively index number of times following the next pointer,
 			and remember the element before it.</li>
 			<li>Set the next pointer of the element before this element to this element's next pointer 
 			(thus dropping this element which is in between).</li>
@@ -590,7 +590,7 @@ example, I solve for an insert after. You maybe additionally asked to code an in
 			<li>If the element deleted was the tail (index equals the new array size), set the tail to the previous element.</li>
 		</ul>
 	</li>
-	<li>Define a Insert() after method.
+	<li>Define an Insert() after method.
 		<ul>
 			<li>Check for array out of bounds condition.</li>
 			<li>If inserting after the tail (index == size-1), then insert the element using the Add() method.</li>
@@ -754,7 +754,7 @@ an element, one removes the head (current element to process) of the queue and s
 
 <h4>Algorithm - Queue</h4>
 <ul>
-	<li>Define a Task object
+	<li>Define a Task object.
 		<ul>
 			<li>Define members for task to perform and next pointer for next element in the forward chain.</li>
 			<li>Define a constructor to instantiate a Task.</li>
@@ -762,7 +762,7 @@ an element, one removes the head (current element to process) of the queue and s
 			<li>Define an Action() method to process the element's task.</li>
 		</ul>
 	</li>
-	<li>Define a Queue object
+	<li>Define a Queue object.
 		<ul>
 			<li>Define members for the head and tail of the queue.</li>
 			<li>Define an Empty() method to test if the queue is empty.</li>
@@ -925,12 +925,12 @@ public class Queue {
 </pre>
 
 <p>
-You may be asked to improve the coding example by being ask to add a task priority and sort the queue according to the task's priority.
+You maybe asked to improve the coding example by being ask to add a task priority and sort the queue according to the task's priority.
 </p>
 
 <h4>Algorithm - Queue with Task Priority</h4>
 <ul>
-	<li>Define a Task object
+	<li>Define a Task object.
 		<ul>
 			<li>Define members for task to perform, the task's priority and next pointer for next element in the forward chain.</li>
 			<li>Define a constructor to instantiate a Task.</li>
@@ -939,9 +939,9 @@ You may be asked to improve the coding example by being ask to add a task priori
 			<li>Define an Action() method to process the element's task.</li>
 		</ul>
 	</li>
-	<li>Define a Queue object
+	<li>Define a Queue object.
 		<ul>
-			<li>Define members for the head of the queue (a tail is not needed anymore).</li>
+			<li>Define members for the head of the queue (a tail is not needed anymore!).</li>
 			<li>Define an Empty() method to test if the queue is empty.</li>
 			<li>Define an Add() method to add a task to the tail of the queue.</li>
 			<li>Define an Insert() method to add a task into the queue based on the task's priority.</li>
@@ -1179,14 +1179,14 @@ public class Queue {
 </pre>
 
 <p>
-You maybe further asked to make another improvement to dynamically change a priority of task and resort the queue accordingly.
+You maybe further asked to make another improvement to dynamically change a priority of a task and resort the queue accordingly.
 </p>
 
 <h4>Algorithm - Queue with Dynamic Priority Update</h4>
 <ul>
 	<li>Update the priority of the task.</li>
 	<li>Locate task in the queue and remove the task.</li>
-	<li>Add the task back in.</li>
+	<li>Add the task back in based on its updated priority.</li>
 </ul>
 
 <h4>Python</h4>
@@ -1285,18 +1285,17 @@ public class Queue {
 <p>
 A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
 Depending on the type of chaining, one can use link lists to code queues and stacks. A stack is also known as a LIFO (last-in-first-out) structure.
-while a stack is also known as a LIFO (last-in-last-out) structure.
 </p>
 <p>
 A stack consists of a top, which points to the top of the stack. Each new element
 is added to the top of the stack, becoming the new top. Throughout the chain, each element is linked to the next element starting from the top and
 proceeding to the bottom (forward chaining). A stack is typically used to process elements in the reverse sequential order they were added (LIFO). To process
-an element, one removes the top(current element to process) of the queue and sets the new top to the next element following the previous top.
+an element, one removes the top (current element to process) of the stack and sets the new top to the next element following the previous top.
 <p>
 
 <h4>Algorithm - Stack</h4>
 <ul>
-	<li>Define a Task object
+	<li>Define a Task object.
 		<ul>
 			<li>Define members for task to perform, and next pointer for next element in the forward chain.</li>
 			<li>Define a constructor to instantiate a Task.</li>
@@ -1304,7 +1303,7 @@ an element, one removes the top(current element to process) of the queue and set
 			<li>Define an Action() method to process the element's task.</li>
 		</ul>
 	</li>
-	<li>Define a Stack object
+	<li>Define a Stack object.
 		<ul>
 			<li>Define member for the top of the stack.</li>
 			<li>Define an Empty() method to test if the stack is empty.</li>
@@ -1455,7 +1454,7 @@ public class Stack {
 
 <p>
 A common variation you maybe asked is to redesign your stack into a chain of stacks of fixed size. When an element is pushed to a stack
-that has reached it's maximum (fixed) size, the bottom if the stack is removed and pushed to the top of the next stack on the chain
+that has reached its maximum (fixed) size, the bottom of the stack is removed and pushed to the top of the next stack on the chain
 and so forth. Likewise, when an element is popped from the stack, the top of the next stack that is chained to it is popped and added
 to the bottom of the stack, and so forth.
 </p>
@@ -1466,7 +1465,7 @@ let the application explicitly invoke performing the task. This will simplify th
 
 <h4>Algorithm - Chain of Stacks</h4>
 <ul>
-	<li>Define a Task object
+	<li>Define a Task object.
 		<ul>
 			<li>Define members for task to perform, and next and previous pointer for next and previous element in the forward and backward chain.</li>
 			<li>Define a constructor to instantiate a Task.</li>
@@ -1474,9 +1473,9 @@ let the application explicitly invoke performing the task. This will simplify th
 			<li>Define an Action() method to process the element's task.</li>
 		</ul>
 	</li>
-	<li>Define a Stack Chain object
+	<li>Define a Stack Chain object.
 		<ul>
-			<li>Define members for the top, bottom , maximum size and current size of the stack.</li>
+			<li>Define members for the top, bottom, maximum size and current size of the stack.</li>
 			<li>Define a member for the next stack in the chain.</li>
 			<li>Define an Empty() method to test if the stack is empty.</li>
 			<li>Define a Push() method to add a task to the top of the stack.
@@ -1488,7 +1487,7 @@ let the application explicitly invoke performing the task. This will simplify th
 			<li>Define a Pop() method to return the top of the stack and then set the top of the stack to the next element.
 				<ul>
 					<li>If the next stack in the chain is non-empty, then pop the top of the next stack in the chain.</li>
-					<li>Push the task removed from the top of the next stack in the chain onto this stack.</li>
+					<li>Push the task removed from the top of the next stack in the chain onto the bottom of this stack.</li>
 				</ul>
 			</li>
 		</ul>
@@ -1742,7 +1741,7 @@ Some other terminology that is useful to know:
 	<li>The topmost node is the root.</li>
 	<li>Nodes at the same level are siblings.</li>
 	<li>Nodes with no branches are leaf nodes (or leaves).</li>
-	<li>Every node with branches is a parent. The nodes are the branches are children.<li>
+	<li>Every node with branches is a parent. The nodes of the parent are children.<li>
 	<li>A branch is a directed edge.</li>
 	<li>A node depth is the number of edges between the root and the node.</li>
 	<li>A node height is the number of edges between the node and the deepest leaf node.</li>
@@ -1750,7 +1749,7 @@ Some other terminology that is useful to know:
 </p>
 
 <p>
-You may be asked to code a class definition for a binary tree node. The binary tree node will have the following members/methods:
+You maybe asked to code a class definition for a binary tree node. The binary tree node will have the following members/methods:
 <ul>
 	<li>Constructor for instantiating the node and initializing the node data. In my examples, I use the data type 'Object' (Java) to indicate that
 	the node is not limited to the type of data it can hold, which is determined at run-time.</li>
@@ -1995,9 +1994,9 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 
 <h4>Algorithm - Inorder</h4>
 <ul>
-	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
+	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
 	<li>Traverse back to the root node.</li>
-	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
+	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
 </ul>
 
 <h4>Python</h4>
@@ -2028,8 +2027,8 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 <h4>Algorithm - Preorder</h4>
 <ul>
 	<li>Traverse to the root node.</li>
-	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
-	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
+	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
+	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
 </ul>
 
 <h4>Python</h4>
@@ -2059,8 +2058,8 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 
 <h4>Algorithm - Postorder</h4>
 <ul>
-	<li>From the current node (root), traverse to left node. Recursively apply algorithm to the left node.</li>
-	<li>From the current node (root), traverse to right node. Recursively apply algorithm to the right node.</li>
+	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
+	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
 	<li>Traverse back to the root node.</li>
 </ul>
 
@@ -2099,7 +2098,7 @@ This traversal is referred to as a level order traversal.
 	<li>If the root node is non-null, add the root to the nodes to visit in sequential order.</li>
 	<li>While there are nodes to visit, do:
 		<ul>
-			<li>Visit the next node</li>
+			<li>Visit the next node.</li>
 			<li>Add the left node and right node of the visited node, if they exist to the nodes to visit.</li>
 		</ul>
 	</li>
@@ -2182,7 +2181,7 @@ public class BFS {
 </pre>
 
 <p>
-If you are asked to count the size (number of nodes) of a binary tree, using any of the traversal methods, and simply replace my call to
+If you are asked to count the size (number of nodes) of a binary tree, using any of the traversal methods, then replace the call to
 the method Action() with a counter that is increment each time a node is visited.
 </p>
 
@@ -2420,7 +2419,7 @@ class BinaryTree extends Node {
 <h3>8. k-ary Trees</h3>
 <p>
 As a follow up to coding examples related to a binary tree, you maybe asked to generalize a solution for a k-ary tree. A k-ary tree is a tree
-that may at most k children. You may be challenged, by being asked to create a base (super) class from which any k-ary tree can derived (extended)\
+that may at most k children. You may be challenged, by being asked to create a base (super) class from which any k-ary tree can derived (extended)
 from, with the condition that the children (branch) members must be defined in the base (super) class.
 </p>
 <p>
@@ -2435,7 +2434,7 @@ member for children. In the Java coding example, I will use the predefined dynam
 	<li>The base class is made abstract, so that one has to derive (extend) a class to use it.</li>
 	<li>An abstract method (must be defined in derived class) is added to defining an action to perform on each node in the tree that is
 			specific to a derived class.</li>
-	<li>The base class defines a Add() method for adding a child (branch) to the node.</li>
+	<li>The base class defines an Add() method for adding a child (branch) to the node.</li>
 	<li>The base class defines a Children() method for accessing all the children (branches) of the node.</li>
 </ul>
 
@@ -2566,22 +2565,22 @@ would be inserted on the left branch, while a node of 7 would be inserted on the
 </p>
 
 <p>
-You maybe asked to code the algorithm to insert, find and delete nodes a binary search tree.
+You maybe asked to code the algorithm to insert, find and delete nodes in a binary search tree.
 </p>
 
 <h4>Algorithm - Insert</h4>
 <ul>
-	<li>If the root node is null, make the root the node</li>
+	<li>If the root node is null, make the root the node.</li>
 	<li>Otherwise, starting at the root, traverse the tree:
 		<ul>
-			<li>If the node is equal to the current node, then return (duplicate)</li>
-			<li>If the node is less than the current node.
+			<li>If the node is equal to the current node, then return (duplicate).</li>
+			<li>If the node is less than the current node:
 				<ul>
 					<li>If the left node is null, then make the node the left node.</li>
 					<li>Otherwise, traverse to the left node.</li>
 				</ul>
 			</li>
-			<li>If the node is greater than the current node.
+			<li>If the node is greater than the current node:
 				<ul>
 					<li>If the right node is null, then make the node the right node.</li>
 					<li>Otherwise, traverse to the right node.</li>
@@ -2799,7 +2798,7 @@ class BST {
 <ul>
 	<li>Traverse the tree, starting with the root and remember the previous node visited.</li>
 	<li>If the current node is null, return (not found).</li>
-	<li>If the value is equal to the current node.
+	<li>If the value is equal to the current node:
 		<ul>
 			<li>If the node is the left node of the previous node, set the previous node's left node to null.</li>
 			<li>Otherwise (is the right node of the previous node), set the previous node's right node to null.</li>
@@ -2808,16 +2807,16 @@ class BST {
 			<li>If the right node of the current (deleted) node is non-null, then Insert() the current node's right node back into the tree.</li>
 		</ul>
 	</li>
-	<li>If the value is less than the current node.
+	<li>If the value is less than the current node:
 		<ul>
-			<li>Set flag that the current node is the left node of the current node.</li>
+			<li>Set a flag that the current node is the left node of the current node.</li>
 			<li>Set the previous node to the current node.</li>
 			<li>Set the current node to the left node of the previous node.</li>
 		</ul>
 	</li>
-	<li>Otherwise (value is greater than the current node).
+	<li>Otherwise (value is greater than the current node):
 		<ul>
-			<li>Set flag that the current node is the right node of the current node.</li>
+			<li>Set a flag that the current node is the right node of the current node.</li>
 			<li>Set the previous node to the current node.</li>
 			<li>Set the current node to the right node of the previous node.</li>
 		</ul>
@@ -3077,7 +3076,7 @@ public class Calc
 </pre>
 
 <p>You maybe asked to further optimize the exponent algorithm by reducing the number of multiplications in half. This
-can be done by factoring the equation into fewer steps multiplication. There are two factors we can use that reduced
+can be done by factoring the equation into fewer multiplication steps. There are two factors we can use that reduced
 the exponent in half, resulting in half the multiplications, one for even exponents and one for odd exponents.
 </p>
 
@@ -3089,9 +3088,9 @@ the exponent in half, resulting in half the multiplications, one for even expone
 			<li>x**e = x**a * x**b, if a+b = e</li>
 		</ol>
 	</li>
-	<li>For even exponents, choose a = 2 and b = e/2, where x**e = (x**2)**(e/2)</li>
+	<li>For even exponents, choose a = 2 and b = e/2, where x**e = (x**2)**(e/2).</li>
 	<li>For odd exponents, choose a = 1 and b = e - 1 to make the exponent even and then apply the even method, where
-		x**e = x * ( (x**2)**( (e-1)/2 )
+		x**e = x * ( (x**2)**( (e-1)/2 ).
 	</li>
 </ul>
 
@@ -3137,14 +3136,13 @@ public class Calc
 }
 </pre>
 
-
 <p>Another algorithm you may be asked to code is Euclid's algorithm for find the great common denominator between two numbers. The algorithm
 dates back to 300BC. It is a very efficient algorithm that involves a few small steps. It can be coded as iteratively or recursively.
 </p>
 
 <h4>Algorithm - GCD Iterative Solution</h4>
 <ul>
-	<li>Calculate the remainder of dividing the 2nd number by the first number (y % x)</li>
+	<li>Calculate the remainder of dividing the 2nd number by the first number (y % x).</li>
 	<li>Swap the value of the first number (x) with the second number (y).</li>
 	<li>Set the second number (y) to the remainder.</li>
 	<li>Iteratively repeat the process until the 2nd number (y) is zero.</li>
@@ -3204,12 +3202,12 @@ public class GCD {
 </pre>
 
 <p>
-You may then be asked to code the solution using recursion.
+You maybe then be asked to code the solution using recursion.
 </p>
 
 <h4>Algorithm - GCD Recursive Solution</h4>
 <ul>
-	<li>When the 2nd number (y) is reduced to zero, return the current value of the first number (x)</li>
+	<li>When the 2nd number (y) is reduced to zero, return the current value of the first number (x).</li>
 	<li>Otherwise, swap the first number (x) with the second number (y) and set the 2nd number (y) to the remainder
 	of the division of the 2nd number by the first number (x % y).</li>
 	<li>Recursively call GCD() with the updated first and second numbers.</li>
@@ -3252,8 +3250,8 @@ public class GCD {
 </pre>
 
 <p>
-Finally, you may also be asked to extend your solution to additionally find the least common multiple (denominator). The least common multiple (LCM) is the
-product of the two numbers divided by the GCD of the two numbers.
+Finally, you maybe asked to extend your solution to additionally find the least common multiple (denominator). 
+The least common multiple (LCM) is the product of the two numbers divided by the GCD of the two numbers.
 </p>
 
 <h4>Algorithm - LCM</h4>
@@ -4405,7 +4403,7 @@ public class Strings {
 <p>Another algorithm you maybe asked that is similar to reversing a string is to determine if a string is an palindrome. 
 A palindrome is the same word/phrase spelled forward or backwards, such as: madam, civic, racecar, ... A simple solution would
 be to reverse the string and compare the reversed string to the original. But, you are likely to be asked to solve the
-algorithm without making a copy of the string, for single word palindrome.
+algorithm without making a copy of the string, for single word palindromes.
 </p>
 
 <h4>Algorithm - Palindrome</h4>
@@ -4468,7 +4466,7 @@ if you modify the original string, you end up making a copy.
 <ul>
 	<li>Iterate simultaneously from the front (forward) and back (backward) of the string, until the two iterators meet.</li>
 	<li>If current character of either iterator is a punctuation or space character, then advance the corresponding iterator.</li>
-	<li>Otherwise, if the lowercase value of the current character from both iterators do not equal, then it is not a palendine.</li>
+	<li>Otherwise, if the lowercase value of the current character from both iterators do not equal, then it is not a palindrome.</li>
 	<li>Advance both iterators and repeat.</li>
 </ul>
 
@@ -4603,7 +4601,7 @@ public class Strings {
 
 </pre>
 
-<p>You may be asked to make a variation of this by counting only duplicated characters (i.e., at least two occurrences).
+<p>You maybe asked to make a variation of this by counting only duplicated characters (i.e., at least two occurrences).
 </p>
 
 <h4>Algorithm - Duplicate Chars</h4>
@@ -4666,12 +4664,12 @@ You maybe asked to implement algorithms related to traversing graphs. The basic 
 either direction.
 </p>
 <p>
-Traversing an undirected tree can be done with either bread-first search (BFS) and depth-first search (DFS) methods.
+Traversing an undirected tree can be done with either bread-first search (BFS) or depth-first search (DFS) methods.
 Generally, the algorithm will implement a tricolor node marking to indicate:
 <ul>
-	<li>White : node has never been visited</li>
-	<li>Gray : node is waiting to be visited (known as the frontier)</li>
-	<li>Black: node has been visited</li>
+	<li>White : node has never been visited.</li>
+	<li>Gray : node is waiting to be visited (known as the frontier).</li>
+	<li>Black: node has been visited.</li>
 </ul>
 </p>
 <p>Below are examples for a breadth first search, followed by a iterative and recursive solutions for depth first search.
@@ -4681,7 +4679,7 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 <ul>
 	<li>Create a queue for the frontier list (waiting to be visited) and add the root (starting) node to the queue.</li>
 	<li>While there are nodes on the frontier waiting to be visited, pop the next node from the queue, and marked it as visited.</li>
-	<li>For each of the node's neighbors that are unvisited (not marked as unvisited or on frontier), add the node to the frontier and mark as Frontier.</li>
+	<li>For each of the node's neighbors that are unvisited (not marked as visited or on frontier), add the node to the frontier and mark as frontier.</li>
 	<li>Note that since the frontier is a queue (FIFO), the nodes will be popped in a breadth first manner.</li>
 </ul>
 
@@ -4873,7 +4871,7 @@ public class Graph {
 <ul>
 	<li>Create a stack for the frontier list (waiting to be visited) and add the root (starting) node to the stack.</li>
 	<li>While there are nodes on the frontier waiting to be visited, pop the next node from the stack, and marked it as visited.</li>
-	<li>For each of the node's neighbors that are unvisited (not marked as unvisited or on frontier), add the node to the frontier and mark as Frontier.</li>
+	<li>For each of the node's neighbors that are unvisited (not marked as visited or on frontier), add the node to the frontier and mark as frontier.</li>
 	<li>Note that since the frontier is a stack (LIFO), the nodes will be popped in a depth first manner.</li>
 </ul>
 
@@ -4974,9 +4972,9 @@ public class Graph {
 
 <h4>Algorithm - DFS Graph Traversal (Recursive)</h4>
 <ul>
-	<li>If the node is null, then stop</li>
+	<li>If the node is null, then stop.</li>
 	<li>Visit the node.</li>
-	<li>For each of the node's neighbors that are unvisited (not marked as unvisited or on frontier), recursively call the method.</li>
+	<li>For each of the node's neighbors that are unvisited (not marked as visited or on frontier), recursively call the method.</li>
 </ul>
 
 <h4>Python</h4>
