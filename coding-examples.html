@@ -33,10 +33,43 @@ a.index:link, a.index:visited {
 
   ga('create', 'UA-3662373-7', 'auto');
   ga('send', 'pageview');
+  
+var timing = [];
+var send = false;
+var session;
+function Timestamp( category, id, type ) {
+	// on first call, setup timer and variables for sending timing metrics to server
+	if ( send == false ) {
+		send = true;
+		session = Math.round( Math.random() * 10000 );
+		setTimeout( function() { SendServer(); }, 10000 );
+	}
+	
+	// store timing metrics until periodic upload to server
+	timing.push( { session: session, category: category, id: id, type: type, time: Date.now() - 1480000000000 } );
+}
+Timestamp( "coding", "", "" );
+
+/*
+ * Send Timing Metrics to the Server
+ */
+function SendServer() {
+	if ( timing.length > 0 ) {
+		$.ajax({
+			url: "/timing.php",
+			type: 'post',
+			data: { timing },
+			success: function( data, status ) { },
+			error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
+		});
+		timing = [];
+	}
+	setTimeout( function() { SendServer(); }, 10000 );
+}
 </script>
 </head>
 
-<body ng-app="technical" style='margin: 20px;'>
+<body ng-app="technical" style='margin: 20px;' ng-controller='tabCtrl'>
 	<header ng-controller="navCtrl">
 		<div nav></div>
 	</header>
@@ -79,9 +112,9 @@ Prime numbers are numbers that are only divisible by one and itself. The algorit
 straight forward iterative algorithm.
 </p>
 <ul class="w3-navbar w3-light-grey" ng-init="pri1[0] = true; pri1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="pri1=[true,false,false]; pri1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='pri1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri1=[false,true,false]; pri1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='pri1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri1=[false,false,true]; pri1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='pri1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[true,false,false]; pri1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('pri1')" ng-class='pri1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,true,false]; pri1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('pri1')" ng-class='pri1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,false,true]; pri1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('pri1')" ng-class='pri1cls[2]'>Java</a></li>
 </ul>
 
 <div  ng-show='pri1[0]'>
@@ -144,9 +177,9 @@ public class prime {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="pri2[0] = true; pri2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="pri2=[true,false,false]; pri2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='pri2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri2=[false,true,false]; pri2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='pri2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri2=[false,false,true]; pri2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='pri2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[true,false,false]; pri2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('pri2')" ng-class='pri2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,true,false]; pri2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('pri2')" ng-class='pri2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,false,true]; pri2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('pri2')" ng-class='pri2cls[2]'>Java</a></li>
 </ul>
 
 <div  ng-show='pri2[0]'>
@@ -210,9 +243,9 @@ public class prime {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="pri3[0] = true; pri3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="pri3=[true,false,false]; pri3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='pri3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri3=[false,true,false]; pri3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='pri3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri3=[false,false,true]; pri3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='pri3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[true,false,false]; pri3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('pri3')" ng-class='pri3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,true,false]; pri3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('pri3')" ng-class='pri3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,false,true]; pri3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('pri3')" ng-class='pri3cls[2]'>Java</a></li>
 </ul>
 
 <div  ng-show='pri3[0]'>
@@ -281,10 +314,10 @@ F(n-1) + F(n-2); that is the summation of the previous two values in the sequenc
 solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very short recursive algorithm.
 </p>
 
-<ul class="w3-navbar w3-light-grey" ng-init="fib1[0] = true; fib1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="fib1=[true,false,false]; fib1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='fib1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib1=[false,true,false]; fib1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='fib1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib1=[false,false,true]; fib1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='fib1cls[2]'>Java</a></li>
+<ul class="w3-navbar w3-light-grey" ng-init="fib1[0] -`= true; fib1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="fib1=[true,false,false]; fib1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('fib1')" ng-class='fib1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,true,false]; fib1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('fib1')" ng-class='fib1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,false,true]; fib1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('fib1')" ng-class='fib1cls[2]'>Java</a></li>
 </ul>
 
 <div  ng-show='fib1[0]'>
@@ -340,9 +373,9 @@ public class fibonacci {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="fib2[0] = true; fib2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="fib2=[true,false,false]; fib2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='fib2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib2=[false,true,false]; fib2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='fib2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib2=[false,false,true]; fib2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='fib2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[true,false,false]; fib2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('fib2')" ng-class='fib2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,true,false]; fib2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('fib2')" ng-class='fib2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,false,true]; fib2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('fib2')" ng-class='fib2cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='fib2[0]'>
@@ -423,9 +456,9 @@ as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and inde
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="dyn1[0] = true; dyn1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="dyn1=[true,false,false]; dyn1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='dyn1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,true,false]; dyn1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='dyn1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,false,true]; dyn1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='dyn1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[true,false,false]; dyn1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('dyn1')" ng-class='dyn1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,true,false]; dyn1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('dyn1')" ng-class='dyn1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,false,true]; dyn1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('dyn1')" ng-class='dyn1cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='dyn1[0]'>
@@ -575,9 +608,9 @@ class DynamicArray {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="dyn2[0] = true; dyn2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="dyn2=[true,false,false]; dyn2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='dyn2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,true,false]; dyn2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='dyn2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,false,true]; dyn2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='dyn2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[true,false,false]; dyn2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('dyn2')" ng-class='dyn2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,true,false]; dyn2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('dyn2')" ng-class='dyn2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,false,true]; dyn2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('dyn2')" ng-class='dyn2cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='dyn2[0]'>
@@ -751,9 +784,9 @@ Depending on the type of chaining, one can use link lists to code queues and sta
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="que1[0] = true; que1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="que1=[true,false,false]; que1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='que1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que1=[false,true,false]; que1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='que1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que1=[false,false,true]; que1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='que1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[true,false,false]; que1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('que1')" ng-class='que1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,true,false]; que1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('que1')" ng-class='que1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,false,true]; que1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('que1')" ng-class='que1cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='que1[0]'>
@@ -932,9 +965,9 @@ public class Queue {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="que2[0] = true; que2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="que2=[true,false,false]; que2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='que2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que2=[false,true,false]; que2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='que2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que2=[false,false,true]; que2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='que2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[true,false,false]; que2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('que2')" ng-class='que2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,true,false]; que2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('que2')" ng-class='que2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,false,true]; que2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('que2')" ng-class='que2cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='que2[0]'>
@@ -1188,9 +1221,9 @@ public class Queue {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="que3[0] = true; que3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="que3=[true,false,false]; que3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='que3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que3=[false,true,false]; que3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='que3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que3=[false,false,true]; que3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='que3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[true,false,false]; que3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('que3')" ng-class='que3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,true,false]; que3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('que3')" ng-class='que3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,false,true]; que3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('que3')" ng-class='que3cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='que3[0]'>
@@ -1299,9 +1332,9 @@ Depending on the type of chaining, one can use link lists to code queues and sta
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="stk1[0] = true; stk1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="stk1=[true,false,false]; stk1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='stk1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk1=[false,true,false]; stk1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='stk1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk1=[false,false,true]; stk1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='stk1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[true,false,false]; stk1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('stk1')" ng-class='stk1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,true,false]; stk1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('stk1')" ng-class='stk1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,false,true]; stk1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('stk1')" ng-class='stk1cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='stk1[0]'>
@@ -1467,9 +1500,9 @@ public class Stack {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="stk2[0] = true; stk2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="stk2=[true,false,false]; stk2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='stk2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk2=[false,true,false]; stk2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='stk2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk2=[false,false,true]; stk2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='stk2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[true,false,false]; stk2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('stk2')" ng-class='stk2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,true,false]; stk2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('stk2')" ng-class='stk2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,false,true]; stk2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('stk2')" ng-class='stk2cls[2]'>Java</a></li>
 </ul>
 
 <div ng-show='stk2[0]'>
@@ -5158,7 +5191,16 @@ Portland Data Science Group, Co-Organizer
 </footer>
 <script>
 var technical = angular.module( 'technical', []);
-technical.controller( 'tab1Ctrl', function( $scope ) {
+technical.controller( 'tabCtrl', function( $scope ) {
+	$scope.Algo = function( name ) {
+		Timestamp( 'coding', name, 'algo' );
+	}
+	$scope.Python = function( name ) {
+		Timestamp( 'coding', name, 'python' );
+	}
+	$scope.Java = function( name ) {
+		Timestamp( 'coding', name, 'java' );
+	}
 })
 </script>
 <script src="nav.js"></script>
