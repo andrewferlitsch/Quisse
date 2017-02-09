@@ -4437,15 +4437,22 @@ public class Strings {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="str2[0] = true; str2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="str2=[true,false,false]; str2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str2=[false,true,false]; str2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str2=[false,false,true]; str2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='str2[0]'>
 <h4>Algorithm - Revere String (Recursive)</h4>
 <ol class='w3-ul'>
 	<li>If the original string is one character, if so then return the string.</li>
 	<li>Otherwise, break the string into two parts: the first character and the remainder of the string.</li>
 	<li>Make a recursive call with the remaining string and append the first character to the return from the call.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str2[1]'>
 # Reverse the order of a string (Recursion)
 def ReverseR( original ):
 	if len( original ) > 1:
@@ -4455,8 +4462,7 @@ def ReverseR( original ):
 print( ReverseR( "abcdefg" ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str2[2]'>
 // Definition for String Manipulation Routines
 public class Strings {
 	...
@@ -4474,6 +4480,13 @@ public class Strings {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="str3[0] = true; str3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="str3=[true,false,false]; str3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str3=[false,true,false]; str3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str3=[false,false,true]; str3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='str3[0]'>
 <p>Another algorithm you maybe asked that is similar to reversing a string is to determine if a string is an palindrome. 
 A palindrome is the same word/phrase spelled forward or backwards, such as: madam, civic, racecar, ... A simple solution would
 be to reverse the string and compare the reversed string to the original. But, you are likely to be asked to solve the
@@ -4486,9 +4499,9 @@ algorithm without making a copy of the string, for single word palindromes.
 	<li>On each iteration, compare the current character at the front of the string to the same position but from the rear of the string.</li>
 	<li>If they do not much, it is not a palindrome.
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str3[1]'>
 # Determine if a string is a Palindrome
 def Palindrome( s ):
 	length = len( s )
@@ -4502,8 +4515,7 @@ print( Palindrome( "rotator" ) )
 print( Palindrome( "notone" ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str3[2]'>
 // Definition for String Manipulation Routines
 public class Strings {
 	...
@@ -4526,6 +4538,13 @@ public class Strings {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="str4[0] = true; str4cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="str4=[true,false,false]; str4cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str4=[false,true,false]; str4cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str4=[false,false,true]; str4cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str4cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='str4[0]'>
 <p>Once you've solved the algorithm for single word palindromes, you maybe asked to now solve the same for phrases,
 regardless of the positioning of spaces, punctuation and capitalizing, such as: My gym. Note, you cannot solve
 by making a first pass thru the string to remove spaces, punctuation and lowercase, since strings are immutable; hence,
@@ -4539,9 +4558,9 @@ if you modify the original string, you end up making a copy.
 	<li>Otherwise, if the lowercase value of the current character from both iterators do not equal, then it is not a palindrome.</li>
 	<li>Advance both iterators and repeat.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str4[1]'>
 # Determine if a string is a Palindrome for Phrases
 def PalindromeP( s ):
 	length = len( s )
@@ -4572,8 +4591,7 @@ print( PalindromeP( "my gym" ) )
 print( PalindromeP( "Red rum, sir, is murder" ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str4[2]'>
 // Definition for String Manipulation Routines
 public class Strings {
 	...
@@ -4614,6 +4632,13 @@ public class Strings {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="str5[0] = true; str5cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="str5=[true,false,false]; str5cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str5cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str5=[false,true,false]; str5cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str5cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str5=[false,false,true]; str5cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str5cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='str5[0]'>
 <p>A simple algorithm you maybe ask is to count all occurrences of every character in a string.
 </p>
 
@@ -4622,9 +4647,9 @@ public class Strings {
 	<li>Create a counter for the 96 ASCII printable characters.</li>
 	<li>Iterate through the string, incrementing the character specific index in the counter for each character.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str5[1]'>
 # Count the number of occurrences of a character in a string
 def CharOccur( s ):
 	counter = [0] * 96	# codes 32 .. 127 are printable (so skip first 32)
@@ -4640,8 +4665,7 @@ for i in range(32, 128):
 		print( chr( i ) + ": " + str( res[ i - 32 ] ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str5[2]'>
 // Definition for String Manipulation Routines
 public class Strings {
 	...
@@ -4663,6 +4687,13 @@ public class Strings {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="str6[0] = true; str6cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="str6=[true,false,false]; str6cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str6cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str6=[false,true,false]; str6cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str6cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str6=[false,false,true]; str6cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str6cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='str6[0]'>
 <p>You maybe asked to make a variation of this by counting only duplicated characters (i.e., at least two occurrences).
 </p>
 
@@ -4672,9 +4703,9 @@ public class Strings {
 	<li>Make a pass over the character count index using a bitwise mask to mask out single character occurrences 
 	(leaving only duplicates with non-zero values).</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str6[1]'>
 # Count all duplicated characters
 def DupChar( s ):
 	# Get the character occurrences
@@ -4691,8 +4722,7 @@ for i in range(32, 128):
 		print( chr( i ) + ": " + str( res[ i - 32 ] ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str6[2]'>
 // Definition for String Manipulation Routines
 public class Strings {
 	...
@@ -4714,7 +4744,7 @@ public class Strings {
 }
 </pre>
 
-<a name="graph"/>
+<a name="graph"></a>
 <h3>15. Graphs</h3>
 <p>
 You maybe asked to implement algorithms related to traversing graphs. The basic algorithms are those for traversing
@@ -4729,10 +4759,18 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 	<li>Gray : node is waiting to be visited (known as the frontier).</li>
 	<li>Black: node has been visited.</li>
 </ul>
+
 </p>
 <p>Below are examples for a breadth first search, followed by a iterative and recursive solutions for depth first search.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="gra1[0] = true; gra1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="gra1=[true,false,false]; gra1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='gra1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra1=[false,true,false]; gra1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='gra1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra1=[false,false,true]; gra1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='gra1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='gra1[0]'>
 <h4>Algorithm - BFS Graph Traversal</h4>
 <ol class='w3-ul'>
 	<li>Create a queue for the frontier list (waiting to be visited) and add the root (starting) node to the queue.</li>
@@ -4740,9 +4778,9 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 	<li>For each of the node's neighbors that are unvisited (not marked as visited or on frontier), add the node to the frontier and mark as frontier.</li>
 	<li>Note that since the frontier is a queue (FIFO), the nodes will be popped in a breadth first manner.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='gra1[1]'>
 # Definition for a node in a graph
 class Node:
 	# Visit State
@@ -4822,8 +4860,7 @@ nodes[ 4 ].Neighbor( nodes[ 5 ] )
 BFS( nodes[ 0 ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='gra1[2]'>
 import java.util.LinkedList;
 
 // Definition for a node in a graph
@@ -4921,6 +4958,13 @@ public class Graph {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="gra2[0] = true; gra2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="gra2=[true,false,false]; gra2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='gra2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra2=[false,true,false]; gra2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='gra2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra2=[false,false,true]; gra2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='gra2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='gra2[0]'>
 <h4>Algorithm - DFS Graph Traversal (Iterative)</h4>
 <ol class='w3-ul'>
 	<li>Create a stack for the frontier list (waiting to be visited) and add the root (starting) node to the stack.</li>
@@ -4928,9 +4972,9 @@ public class Graph {
 	<li>For each of the node's neighbors that are unvisited (not marked as visited or on frontier), add the node to the frontier and mark as frontier.</li>
 	<li>Note that since the frontier is a stack (LIFO), the nodes will be popped in a depth first manner.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='gra2[1]'>
 # Depth first search of a graph (Iterative)
 def DFS( root ):
 	# Create a stack for frontier nodes (nodes to be visited next)
@@ -4970,8 +5014,7 @@ nodes[ 4 ].Neighbor( nodes[ 5 ] )
 DFS( nodes[ 0 ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='gra2[2]'>
 import java.util.Stack;
 
 // Definition for a Graph
@@ -5021,15 +5064,22 @@ public class Graph {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="gra3[0] = true; gra3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="gra3=[true,false,false]; gra3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='gra3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra3=[false,true,false]; gra3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='gra3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra3=[false,false,true]; gra3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='gra3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='gra3[0]'>
 <h4>Algorithm - DFS Graph Traversal (Recursive)</h4>
 <ol class='w3-ul'>
 	<li>If the node is null, then stop.</li>
 	<li>Visit the node.</li>
 	<li>For each of the node's neighbors that are unvisited (not marked as visited or on frontier), recursively call the method.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='gra3[1]'>
 # Depth first search of a graph (Recursive)
 def DFSR( root ):
 	if root == None:
@@ -5060,8 +5110,7 @@ nodes[ 4 ].Neighbor( nodes[ 5 ] )
 DFSR( nodes[ 0 ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='gra3[2]'>
 import java.util.Stack;
 
 // Definition for a Graph
