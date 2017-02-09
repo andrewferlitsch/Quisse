@@ -3308,6 +3308,13 @@ public class GCD {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="art6[0] = true; art6cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="art6=[true,false,false]; art6cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='art6cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art6=[false,true,false]; art6cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='art6cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art6=[false,false,true]; art6cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='art6cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='art6[0]'>
 <p>
 Finally, you maybe asked to extend your solution to additionally find the least common multiple (denominator). 
 The least common multiple (LCM) is the product of the two numbers divided by the GCD of the two numbers.
@@ -3318,9 +3325,9 @@ The least common multiple (LCM) is the product of the two numbers divided by the
 	<li>Multiple the first and second number.</li>
 	<li>Divide the result by the GCD of the two numbers.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art6[1]'>
 # Calculate the least common multiple
 def LCM( x, y ):
 	return ( x * y ) / GCD( x, y )
@@ -3328,8 +3335,7 @@ def LCM( x, y ):
 print( "LCM " + str( LCM( 6, 8 ) ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art6[2]'>
 public class GCD {
 	...
 	// Calculate the least common mulitple
@@ -3344,7 +3350,7 @@ public class GCD {
 }
 </pre>
 
-<a name="encoding"/>
+<a name="encoding"></a>
 <h3>11. Variable Length Byte Encoding</h3>
 You maybe asked to code a variable length byte encoding, using the least amount of bits for the encoding across all sequences. For example, some
 encodings will be one byte, some two bytes, etc. In an encoding with between 1 and 8 bytes, if we restrict the first byte to must contain a zero
@@ -3352,6 +3358,13 @@ bit, then we can use the position of the zero bit to determine the byte length, 
 encoding.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="enc1[0] = true; enc1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="enc1=[true,false,false]; enc1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='enc1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="enc1=[false,true,false]; enc1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='enc1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="enc1=[false,false,true]; enc1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='enc1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='enc1[0]'>
 <h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>If the most significant bit is zero, then the encoding is one byte long and the remaining bits are the encoding.</li>
@@ -3359,9 +3372,9 @@ encoding.
 	and the remaining less significant bits in the first byte and all the bits in the remaining bytes are the encoding.
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='enc1[1]'>
 def Size( encoding ):
 	first = encoding[ 0 ]
 	# checking leading bit
@@ -3392,8 +3405,7 @@ encoding[ 0 ] = 0xCB
 print( "Size(3) = " + str( Size( encoding ) ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='enc1[2]'>
 public class Encoding {
 	public static int Size( byte[] encoding ) {
 		byte first = encoding[ 0 ];
@@ -3429,7 +3441,7 @@ public class Encoding {
 }
 </pre>
 
-<a name="sort"/>
+<a name="sort"></a>
 <h3>12. Sorting</h3>
 <p>
 There are numerous basic algorithms for sorting. You may get asked to start with a simple sort algorithm and progressively code more complex
@@ -3439,6 +3451,13 @@ swapped. The term bubble sort comes from the concept that the smaller (or larger
 a time complexity of O(n*n).
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="srt1[0] = true; srt1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="srt1=[true,false,false]; srt1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='srt1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt1=[false,true,false]; srt1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='srt1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt1=[false,false,true]; srt1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='srt1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='srt1[0]'>
 <h4>Algorithm - Bubble Sort</h4>
 <ol class='w3-ul'>
 	<li>Make a pass through the list of values.
@@ -3449,9 +3468,9 @@ a time complexity of O(n*n).
 	</li>
 	<li>If one of more values were swapped, repeat the process of making a pass through the list.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt1[1]'>
 # Definition for a Bubble Sort
 def BubbleSort( data ):
 	swapped = True
@@ -3474,8 +3493,7 @@ for i in range( 0, len( data ) ):
 	print( data[ i ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt1[2]'>
 class Sort {
 	// Definition for a Bubble Sort
 	public static int[] BubbleSort( int[] data ) {
@@ -3507,6 +3525,13 @@ class Sort {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="srt2[0] = true; srt2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="srt2=[true,false,false]; srt2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='srt2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt2=[false,true,false]; srt2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='srt2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt2=[false,false,true]; srt2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='srt2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='srt2[0]'>
 <p>Another simple sorting algorithm you maybe asked to code is an insertion sort. It makes N iterations on the list of elements. 
 On each iteration it advances to the next element and inserts the element into the correct position in the list. It's performance is good
 on small sets, but poor on large sets with a time complexity of O(n*n).
@@ -3521,9 +3546,9 @@ on small sets, but poor on large sets with a time complexity of O(n*n).
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt2[1]'>
 # Definition for an Insertion Sort
 def InsertionSort( data ):
 	# iterate through the list for each element except the first element
@@ -3545,8 +3570,7 @@ for i in range( 0, len( data ) ):
 	print( data[ i ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt2[2]'>
 class Sort {
 	// Definition for an Insertion Sort
 	public static int[] InsertionSort( int[] data ) {
@@ -3576,6 +3600,13 @@ class Sort {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="srt3[0] = true; srt3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="srt3=[true,false,false]; srt3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='srt3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt3=[false,true,false]; srt3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='srt3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt3=[false,false,true]; srt3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='srt3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='srt3[0]'>
 <p>Another simple sorting algorithm you maybe asked to code is a quick sort. This is a divide and conquer algorithm.
 It works by continuously dividing the list in half. On each iteration, a midpoint in the list is selected. The value at
 the midpoint is referred to as the pivot. Iterations are made to swap values between the partitions where all values less 
@@ -3591,9 +3622,9 @@ is O(n*logn), with a worst case complexity of O(n*n).
 	<li>Move all values in the second partition that are not greater than or equal to the pivot to the first partition.</li>
 	<li>Recursively apply the algorithm to the two partitions.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt3[1]'>
 # Definition for an Quick Sort
 def QuickSort( data ):
 	qSort( data, 0, len( data )  - 1 )
@@ -3640,8 +3671,7 @@ for i in range( 0, len( data ) ):
 	print( data[ i ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt3[2]'>
 class Sort {
 	// Definition for an Quick Sort
 	public static int[] QuickSort( int[] data ) {
@@ -3698,6 +3728,13 @@ class Sort {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="srt4[0] = true; srt4cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="srt4=[true,false,false]; srt4cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='srt4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt4=[false,true,false]; srt4cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='srt4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt4=[false,false,true]; srt4cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='srt4cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='srt4[0]'>
 <p>Another common divide and conquer sorting algorithm you maybe asked to code is a merge sort.
 This algorithm divides a list into partitions of single elements, and then progressively merges the
 partitions together and sorts them. This algorithm can be implemented either top-down (recursive) or bottom up (iterative).
@@ -3710,9 +3747,9 @@ The average and worst time complexity is O(n*logn).
 	<li>Recursively split the data into two partitions (halves), until each partition is a single element.</li>
 	<li>Merge and sort each pair of partitions.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt4[1]'>
 # Definition for a Merge Sort
 def MergeSort( data ):
 	# allocate space for a temporary copy of the data
@@ -3767,8 +3804,7 @@ for i in range( 0, len( data ) ):
 	print( data[ i ] )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='srt4[2]'>
 class Sort {	
 	// Definition for a Merge Sort
 	public static int[] MergeSort( int[] data ) {
@@ -3834,7 +3870,7 @@ class Sort {
 }
 </pre>
 
-<a name="hash"/>
+<a name="hash"></a>
 <h3>13. Hashing</h3>
 <p>
 Hashing is another common area to be asked questions about. Hashing is used to solve indexing lookups without the overhead
@@ -3854,6 +3890,13 @@ issues to resolve:
 </ol>
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="has1[0] = true; has1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="has1=[true,false,false]; has1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='has1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has1=[false,true,false]; has1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='has1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has1=[false,false,true]; has1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='has1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='has1[0]'>
 <p>The basic algorithm you maybe asked to code is to create an index for large integers that maps into a much smaller
 range, consuming less memory, handle collisions (two integers map to the same index), and updates. Typically one would use the
 module operator (integer remainder) to divide the number by the range size and use the remainder as the index.
@@ -3866,9 +3909,9 @@ module operator (integer remainder) to divide the number by the range size and u
 	<li>If there are entries there, and the key is the same as one of the entries (duplicate), update the value.</li>
 	<li>If there are entries there, and the key is not the same (collision) as any entry, add the key to the chain of entries.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='has1[1]'>
 # Definition for an Entry in the Hash Table (Dictionary)
 class Entry:
 	key = 0      # the key value
@@ -3970,8 +4013,7 @@ print( index.Get( 675 ) )
 print( index.Get( 2298 ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='has1[2]'>
 // Definition for an Entry in the Hash Table (Dictionary)
 class Entry {
 	private int    key;		     // the key value
@@ -4092,23 +4134,36 @@ public class Hash {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="has2[0] = true; has2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="has2=[true,false,false]; has2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='has2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has2=[false,true,false]; has2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='has2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has2=[false,false,true]; has2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='has2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='has2[0]'>
 <p>
 You maybe then asked to modify the algorithm where the key can be any object type (not just an integer). This means that you will
 need another function to convert the key to an integer value, which then can be divided by the range to get the remainder (modulo).
 There is a builtin method for all objects in Java for this called hashCode(). This builtin method will digest the data
 in the object instance and return a 32 bit value. In Python, the equivalent is the builtin function hash().
 </p>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='has2[1]'>
 	ix = hash( key ) % RANGE
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='has2[2]'>
 	int ix = hashCode( key ) % RANGE;
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="has3[0] = true; has3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="has3=[true,false,false]; has3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='has3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has3=[false,true,false]; has3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='has3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has3=[false,false,true]; has3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='has3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='has3[0]'>
 <p>Another variation you maybe asked to make is to create a hash table without linked lists and instead handle collisions
 with linear probing. In this case, we assume that the size of the table will be greater than or equal to the number of keys.
 When we have a collision, we simply place the entry at the next empty index after the collision. When searching, we go to
@@ -4129,9 +4184,9 @@ an empty entry (key is not in the hash table).
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='has3[1]'>
 # Definition for an Entry in the Hash Table (Dictionary)
 class Entry:
 	key = 0      # the key value
@@ -4217,8 +4272,7 @@ print( index.Get( 675 ) )
 print( index.Get( 2298 ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='has3[2]'>
 // Definition for an Entry in the Hash Table (Dictionary)
 class Entry {
 	private int    key;		     // the key value
@@ -4323,20 +4377,27 @@ public class HashLP {
 }
 </pre>
 
-<a name="string"/>
+<a name="string"></a>
 <h3>14. String Manipulation</h3>
 <p>The most common string manipulation question that you maybe asked is to reverse the order of a string (without using
 a builtin library). You maybe asked to do both an iterative and a recursive solution.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="str1[0] = true; str1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="str1=[true,false,false]; str1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str1=[false,true,false]; str1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str1=[false,false,true]; str1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='str1[0]'>
 <h4>Algorithm - Reverse String (Iterative)</h4>
 <ol class='w3-ul'>
 	<li>Create a StringBuffer (or character array) to hold the reversed string.</li>
 	<li>Starting at the end of the string and moving backwards, append each character to the reversed string.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str1[1]'>
 # Reverse the order of a string using Iterative Solution
 def Reverse( original ):
 	# Create a second string to hold/return the reversed string
@@ -4352,8 +4413,7 @@ def Reverse( original ):
 print( Reverse( "abcdefg" ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='str1[2]'>
 // Definition for String Manipulation Routines
 public class Strings {
 	// Reverse the order of a string using Iterative Solution
