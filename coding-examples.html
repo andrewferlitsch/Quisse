@@ -2598,7 +2598,7 @@ class Tree extends KNode {
 }
 </pre>
 
-<a name="bst"/>
+<a name="bst"></a>
 <h3>9. Binary Search Tree</h3>
 <p>
 A binary search tree (BST) is a sorted tree where at each node, the data value of the left branch (child) is less than the data value of the node, and the right
@@ -2606,6 +2606,13 @@ node is greater than, and where there are no duplicate values. For example, if t
 would be inserted on the left branch, while a node of 7 would be inserted on the right branch.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bst1[0] = true; bst1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bst1=[true,false,false]; bst1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bst1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst1=[false,true,false]; bst1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bst1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst1=[false,false,true]; bst1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bst1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bst1[0]'>
 <p>
 You maybe asked to code the algorithm to insert, find and delete nodes in a binary search tree.
 </p>
@@ -2631,9 +2638,9 @@ You maybe asked to code the algorithm to insert, find and delete nodes in a bina
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bst1[1]'>
 # Definition for a binary search tree
 class BST:
 	root = None # root of the binary search tree
@@ -2677,8 +2684,7 @@ print("BST level order: 3 2 6 1 4")
 BFS( tree.root )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bst1[2]'>
 // Definition for a binary search tree
 class BST {
 	public BinaryTree root = null;	// root of the binary search tree
@@ -2735,6 +2741,14 @@ class BST {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bst2[0] = true; bst2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bst2=[true,false,false]; bst2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bst2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst2=[false,true,false]; bst2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bst2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst2=[false,false,true]; bst2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bst2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bst2[0]'>
+
 <h4>Algorithm - Find</h4>
 <ol class='w3-ul'>
 	<li>Starting at the root, traverse a path in the tree.</li>
@@ -2743,9 +2757,9 @@ class BST {
 	<li>If the value is less than the current node, traverse to the left node.</li>
 	<li>Otherwise (the value is greater than the current node), traverse to the right node.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bst2[1]'>
 # Definition for a binary search tree
 class BST:
 	...
@@ -2782,8 +2796,7 @@ BFS( tree.root )
 print( "FIND(4) = " + str( tree.Find( 4 ) ) + " FIND(0) = " + str( tree.Find(0) ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bst2[2]'>
 // Definition for a binary search tree
 class BST {
 	...
@@ -2828,6 +2841,13 @@ class BST {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bst3[0] = true; bst3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bst3=[true,false,false]; bst3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bst3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst3=[false,true,false]; bst3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bst3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst3=[false,false,true]; bst3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bst3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bst3[0]'>
 <h4>Algorithm - Delete</h4>
 <ol class='w3-ul'>
 	<li>Traverse the tree, starting with the root and remember the previous node visited.</li>
@@ -2856,9 +2876,9 @@ class BST {
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bst3[1]'>
 # Definition for a binary search tree
 class BST:
 	...
@@ -2910,8 +2930,7 @@ print("BST level order: 3 2 4 1")
 BFS( tree.root )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bst3[2]'>
 // Definition for a binary search tree
 class BST {
 	...
@@ -2969,12 +2988,19 @@ class BST {
 }
 </pre>
 
-<a name="arith"/>
+<a name="arith"></a>
 <h3>10. Arithmetic Operations</h3>
 <p>
 A very basic arithmetic problem you maybe asked is to implement a multiply operation where you can only use the addition and equality operator.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="art1[0] = true; art1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="art1=[true,false,false]; art1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='art1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art1=[false,true,false]; art1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='art1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art1=[false,false,true]; art1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='art1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='art1[0]'>
 <h4>Algorithm - Multiply</h4>
 <ol class='w3-ul'>
 	<li>Initialize accumulators for result and repeat to 0.</li>
@@ -2985,9 +3011,9 @@ A very basic arithmetic problem you maybe asked is to implement a multiply opera
 		<li>Add x to the result accumulator.</li>
 	</ul>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art1[1]'>
 # Multiple using only + and = operator
 def Mul( x, y ):
 	result = 0  # accumlator for the result
@@ -3006,8 +3032,7 @@ def Mul( x, y ):
 print( Mul( 5, 6 ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art1[2]'>
 public class Calc
 {
 	// Multiple using only + and = operator
@@ -3031,6 +3056,13 @@ public class Calc
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="art2[0] = true; art2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="art2=[true,false,false]; art2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='art2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art2=[false,true,false]; art2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='art2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art2=[false,false,true]; art2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='art2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='art2[0]'>
 <p>
 You would then be likely asked to extend the solution to include an exponent operation where you can only use the addition and equality operator.
 </p>
@@ -3046,9 +3078,9 @@ You would then be likely asked to extend the solution to include an exponent ope
 		<li>Update the result accumulator to Mul(x, result).</li>
 	</ul>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art2[1]'>
 ...
 # Exponent using only + and = operator
 def Exp( x, e ):
@@ -3069,8 +3101,7 @@ def Exp( x, e ):
 print( Exp( 3, 4 ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art2[2]'>
 public class Calc
 {
 	...
@@ -3096,6 +3127,13 @@ public class Calc
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="art3[0] = true; art3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="art3=[true,false,false]; art3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='art3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art3=[false,true,false]; art3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='art3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art3=[false,false,true]; art3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='art3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='art3[0]'>
 <p>You maybe asked to further optimize the exponent algorithm by reducing the number of multiplications in half. This
 can be done by factoring the equation into fewer multiplication steps. There are two factors we can use that reduced
 the exponent in half, resulting in half the multiplications, one for even exponents and one for odd exponents.
@@ -3114,9 +3152,9 @@ the exponent in half, resulting in half the multiplications, one for even expone
 		x**e = x * ( (x**2)**( (e-1)/2 ).
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art3[1]'>
 # Exponent with half the multiplications
 def Exp2( x, e ):
 	if e == 0:
@@ -3131,8 +3169,7 @@ def Exp2( x, e ):
 print( Exp2( 3, 4 ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art3[2]'>
 public class Calc
 {
 	...
@@ -3154,6 +3191,13 @@ public class Calc
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="art4[0] = true; art4cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="art4=[true,false,false]; art4cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='art4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art4=[false,true,false]; art4cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='art4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art4=[false,false,true]; art4cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='art4cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='art4[0]'>
 <p>Another algorithm you may be asked to code is Euclid's algorithm for find the great common denominator between two numbers. The algorithm
 dates back to 300BC. It is a very efficient algorithm that involves a few small steps. It can be coded as iteratively or recursively.
 </p>
@@ -3166,9 +3210,9 @@ dates back to 300BC. It is a very efficient algorithm that involves a few small 
 	<li>Iteratively repeat the process until the 2nd number (y) is zero.</li>
 	<li>Return the value of first number (x) when the 2nd number is zero (y).</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art4[1]'>
 # Euclid's algorithm as an iterative solution
 def GCD( x, y ):
 	# continue until the division of of the two numbers does not leave a remainder (evenly divisible)
@@ -3187,8 +3231,7 @@ def GCD( x, y ):
 print( "GCD " + str( GCD( 12, 16 ) ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art4[2]'>
 public class GCD {
 	// Euclid's algorithm as an iterative solution
 	private static int GCD( int x, int y )
@@ -3215,6 +3258,13 @@ public class GCD {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="art5[0] = true; art5cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="art5=[true,false,false]; art5cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='art5cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art5=[false,true,false]; art5cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='art5cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art5=[false,false,true]; art5cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='art5cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='art5[0]'>
 <p>
 You maybe then be asked to code the solution using recursion.
 </p>
@@ -3226,9 +3276,9 @@ You maybe then be asked to code the solution using recursion.
 	of the division of the 2nd number by the first number (x % y).</li>
 	<li>Recursively call GCD() with the updated first and second numbers.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art5[1]'>
 # Euclid's algorithm as a recursive solution
 def GCDR( x, y ):
 	# return the current value of x when y is reduced to zero.
@@ -3240,8 +3290,7 @@ def GCDR( x, y ):
 print( "GCD " + str( GCDR( 12, 16 ) ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='art5[2]'>
 public class GCD {
 	// Euclid's algorithm as a recursive solution
 	private static int GCD( int x, int y )
