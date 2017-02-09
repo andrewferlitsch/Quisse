@@ -44,6 +44,7 @@ a.index:link, a.index:visited {
 	<section style='text-align: center'>
 		<h2 style='color: steelblue'>Coding Challenges</h2>
 		<h4 style='color: darkgray'>All the coding challenges are hand coded and tested by me. They are not copied from other sources.</h4>
+		<h5><a href="technical-interview-coding-challenges.pdf">Download as PDF</a></h5>
 	</section>
 
 <p>
@@ -70,13 +71,20 @@ unable to pass this part of the coding portion, you will probably not continue t
 	<li><a class='index' href='#graph'>Graphs</a></li>
 </ol>
 
-<a name="prime"/>
+<a name="prime"></a>
 <h3>1. Prime Numbers</h3>
 <p>
 The most basic coding example you might get asked is to write an algorithm to output a series of prime numbers.
 Prime numbers are numbers that are only divisible by one and itself. The algorithm is a 
 straight forward iterative algorithm.
 </p>
+<ul class="w3-navbar w3-light-grey" ng-init="pri1[0] = true; pri1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="pri1=[true,false,false]; pri1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='pri1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,true,false]; pri1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='pri1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,false,true]; pri1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='pri1cls[2]'>Java</a></li>
+</ul>
+
+<div  ng-show='pri1[0]'>
 <p>
 The number one is a prime number, since it can only be divisible by itself. The
 number two is also a prime number, since there are no numbers between one and two
@@ -90,9 +98,9 @@ you may choose to start it at two.
 	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
 	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='pri1[1]'>
 print( "Prime Numbers between 1 and 100")
 
 # Prime Numbers are numbers only divisible by 1 and itself.
@@ -110,8 +118,7 @@ for number in range( 3, 101 ):
 		print(number)	
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='pri1[2]'>
 public class prime {
 	public static void main( String args[] ) {
 		System.out.println( "Prime Numbers between 1 and 100");
@@ -136,12 +143,18 @@ public class prime {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="pri2[0] = true; pri2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="pri2=[true,false,false]; pri2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='pri2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,true,false]; pri2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='pri2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,false,true]; pri2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='pri2cls[2]'>Java</a></li>
+</ul>
+
+<div  ng-show='pri2[0]'>
 <p>
 Can we make an improvement? Yes. Since we know all even numbers are divisible by two, we
 can skip checking even numbers and only check odd numbers. Likewise, since we know odd numbers are not divisible by even numbers,
 we can skip dividing by even numbers and only divide by odd numbers.
 </p>
-
 <h4>Algorithm - Skip Even Numbers</h4>
 <ol class='w3-ul'>
 	<li>For each odd number, we attempt to divide it by every odd number less than it, except for one.</li>
@@ -149,9 +162,9 @@ we can skip dividing by even numbers and only divide by odd numbers.
 	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
 	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='pri2[1]'>
 print( "Prime Numbers between 1 and 100")
 
 # Prime Numbers are numbers only divisible by 1 and itself.
@@ -170,8 +183,7 @@ for number in range( 5, 101, 2 ):
 		print(number)	
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='pri2[2]'>
 public class prime {
 	public static void main( String args[] ) {
 		System.out.println( "Prime Numbers between 1 and 100");
@@ -197,6 +209,13 @@ public class prime {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="pri3[0] = true; pri3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="pri3=[true,false,false]; pri3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='pri3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,true,false]; pri3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='pri3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,false,true]; pri3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='pri3cls[2]'>Java</a></li>
+</ul>
+
+<div  ng-show='pri3[0]'>
 <p>
 Can we make another improvement? Yes. Since we are skipping even numbers, we know that each number to be prime must be divisible by at least the number three.
 Therefore, any divisible number must be one-third or less the value of the number. We can cut down on the number of iterations by only dividing
@@ -210,9 +229,9 @@ the first 1/3 of values less than the number.
 	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>
 	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='pri3[1]'>
 print( "1" )	
 print( "2" )	
 print( "3" )
@@ -227,8 +246,7 @@ for number in range( 5, 101, 2 ):
 		print(number)
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='pri3[2]'>
 public class prime {
 	public static void main( String args[] ) {
 		System.out.println( "Prime Numbers between 1 and 100");
@@ -255,7 +273,7 @@ public class prime {
 }
 </pre>
 
-<a name="fibonacci"/>
+<a name="fibonacci"></a>
 <h3>2. Fibonacci Sequence</h3>
 <p>
 One of the most common and basic coding examples is to code a solution for the Fibonacci sequence. A Fibonacci sequence is a function where F(N) equals
@@ -263,16 +281,22 @@ F(n-1) + F(n-2); that is the summation of the previous two values in the sequenc
 solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very short recursive algorithm.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="fib1[0] = true; fib1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="fib1=[true,false,false]; fib1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='fib1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,true,false]; fib1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='fib1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,false,true]; fib1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='fib1cls[2]'>Java</a></li>
+</ul>
+
+<div  ng-show='fib1[0]'>
 <h4>Algorithm - Recursive</h4>
 <ol class='w3-ul'>
 	<li>If n = 0, then return 0.</li>
 	<li>If n = 1, then return 1.</li>
 	<li>If n > 1, return the sum of F(n-1) + F(n-2).</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='fib1[1]'>
 # Fibonacci Sequence
 # Is a sum (addition) of the previous two numbers in the sequence, as
 #	F(n) = F(n-1) + F(n-2)
@@ -296,8 +320,7 @@ for number in range( 0, 10 ):
 	print( Fibonacci(number) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='fib1[2]'>
 public class fibonacci {
 	public static void main( String args[] ) {
 		System.out.println( "Fibonacci Sequence to F(10)");
@@ -316,6 +339,13 @@ public class fibonacci {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="fib2[0] = true; fib2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="fib2=[true,false,false]; fib2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='fib2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,true,false]; fib2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='fib2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,false,true]; fib2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='fib2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='fib2[0]'>
 <p>
 It is common to be asked if you can write the algorithm for an iterative solution (looping - no recursion).
 </p>
@@ -333,9 +363,9 @@ It is common to be asked if you can write the algorithm for an iterative solutio
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='fib2[1]'>
 def FibonacciIterative(n):
 	# F(0) and F(1) case
 	if n==0:
@@ -356,8 +386,7 @@ for number in range( 0, 10 ):
 	print( FibonacciIterative(number) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='fib2[2]'>
 public class fibonacci {
 	public static void main( String args[] ) {
 		System.out.println( "Fibonacci Sequence to F(10)");
@@ -384,7 +413,7 @@ public class fibonacci {
 }
 </pre>
 
-<a name="dynamic"/>
+<a name="dynamic"></a>
 <h3>3. Dynamic Arrays</h3>
 <p>
 A dynamic array is an array that can be resized, can be randomly accessed via an cardinal ordering, where there is a one-to-one relationship
@@ -393,8 +422,16 @@ by indices 0=>A, 1=>B and 2=>D. If we insert a C between B and D, the ordering w
 as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and index 3 to D.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="dyn1[0] = true; dyn1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[true,false,false]; dyn1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='dyn1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,true,false]; dyn1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='dyn1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,false,true]; dyn1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='dyn1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='dyn1[0]'>
 <p>
 You maybe asked to implement a dynamic array using a class. You would be expected to implement at least an Add() and Get() methods.
+</p>
 
 <h4>Algorithm</h4>
 <ol class='w3-ul'>
@@ -426,9 +463,9 @@ You maybe asked to implement a dynamic array using a class. You would be expecte
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='dyn1[1]'>
 # Definition for an element in the dynamic array
 class Element:
 	next = None	# next element in array
@@ -479,8 +516,7 @@ class DynamicArray:
 		return curr.value
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='dyn1[2]'>
 // Definition for an element in the dynamic array
 class Element {
 	Object  value = null;	// Element value
@@ -538,6 +574,13 @@ class DynamicArray {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="dyn2[0] = true; dyn2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[true,false,false]; dyn2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='dyn2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,true,false]; dyn2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='dyn2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,false,true]; dyn2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='dyn2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='dyn2[0]'>
 <p>Once you've solved the Add() and Get() methods, you maybe asked to code the methods for Delete() and Insert(). In the below coding
 example, I solve for an insert after. You maybe additionally asked to code an insert before, or both.
 </p>
@@ -568,9 +611,9 @@ example, I solve for an insert after. You maybe additionally asked to code an in
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='dyn2[1]'>
 class DynamicArray:
 	...
 	def Delete( self, index ):
@@ -632,8 +675,7 @@ class DynamicArray:
 		return True
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='dyn2[2]'>
 // Definition for a Dynamic Array
 class DynamicArray {
 	...
@@ -701,12 +743,20 @@ class DynamicArray {
 }
 </pre>
 
-<a name="queue"/>
+<a name="queue"></a>
 <h3>4. Linked Lists - Queue</h3>
 <p>
 A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
 Depending on the type of chaining, one can use link lists to code queues and stacks. A queue is also known as a FIFO (first-in-first-out) structure.
 </p>
+
+<ul class="w3-navbar w3-light-grey" ng-init="que1[0] = true; que1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="que1=[true,false,false]; que1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='que1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,true,false]; que1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='que1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,false,true]; que1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='que1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='que1[0]'>
 <p>
 A queue consists of a head and a tail, where the head points to the first element in the queue, and the tail points to the end of the queue. Each new element
 is added to the end of the tail, becoming the new tail. Throughout the chain, each element is linked to the next element starting from the head and
@@ -733,9 +783,9 @@ an element, one removes the head (current element to process) of the queue and s
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='que1[1]'>
 # Definition for a Task element in a Queue
 class Task:
 	next = None
@@ -801,8 +851,7 @@ queue.Pop()
 queue.Pop()
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='que1[2]'>
 // Definition for a Task element in a Queue
 class Task {
 	private Object task;        // the task to perform
@@ -882,6 +931,13 @@ public class Queue {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="que2[0] = true; que2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="que2=[true,false,false]; que2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='que2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,true,false]; que2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='que2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,false,true]; que2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='que2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='que2[0]'>
 <p>
 You maybe asked to improve the coding example by being ask to add a task priority and sort the queue according to the task's priority.
 </p>
@@ -907,9 +963,9 @@ You maybe asked to improve the coding example by being ask to add a task priorit
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='que2[1]'>
 # Definition for a Task element in a Queue
 class Task:
 	task = None   # the task to perform
@@ -1012,8 +1068,7 @@ queue.Pop()
 queue.Pop()
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='que2[2]'>
 // Definition for a Task element in a Queue
 class Task {
 	private Object task;        // the task to perform
@@ -1132,6 +1187,13 @@ public class Queue {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="que3[0] = true; que3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="que3=[true,false,false]; que3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='que3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,true,false]; que3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='que3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,false,true]; que3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='que3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='que3[0]'>
 <p>
 You maybe further asked to make another improvement to dynamically change a priority of a task and resort the queue accordingly.
 </p>
@@ -1142,9 +1204,9 @@ You maybe further asked to make another improvement to dynamically change a prio
 	<li>Locate task in the queue and remove the task.</li>
 	<li>Add the task back in based on its updated priority.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='que3[1]'>
 # Definition for a Queue
 class Queue:
 	...
@@ -1183,8 +1245,7 @@ queue.Pop()
 	...
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='que3[2]'>
 // Definition for a Queue
 public class Queue {
 	...
@@ -1230,12 +1291,20 @@ public class Queue {
 }
 </pre>
 
-<a name="stack"/>
+<a name="stack"></a>
 <h3>5. Linked Lists - Stacks</h3>
 <p>
 A linked list is a data structure where each element is linked to another element forming a chain, such as A links to B which links to C, and so forth.
 Depending on the type of chaining, one can use link lists to code queues and stacks. A stack is also known as a LIFO (last-in-first-out) structure.
 </p>
+
+<ul class="w3-navbar w3-light-grey" ng-init="stk1[0] = true; stk1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="stk1=[true,false,false]; stk1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='stk1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,true,false]; stk1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='stk1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,false,true]; stk1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='stk1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='stk1[0]'>
 <p>
 A stack consists of a top, which points to the top of the stack. Each new element
 is added to the top of the stack, becoming the new top. Throughout the chain, each element is linked to the next element starting from the top and
@@ -1262,9 +1331,9 @@ an element, one removes the top (current element to process) of the stack and se
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='stk1[1]'>
 # Definition for a Task element in a Stack
 class Task:
 	task = None  # the task to perform
@@ -1325,8 +1394,7 @@ stack.Pop()
 stack.Pop()
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='stk1[2]'>
 // Definition for a Task element in a Stack
 class Task {
 	private Object task;        // the task to perform
@@ -1398,6 +1466,13 @@ public class Stack {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="stk2[0] = true; stk2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="stk2=[true,false,false]; stk2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='stk2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,true,false]; stk2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='stk2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,false,true]; stk2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='stk2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='stk2[0]'>
 <p>
 A common variation you maybe asked is to redesign your stack into a chain of stacks of fixed size. When an element is pushed to a stack
 that has reached its maximum (fixed) size, the bottom of the stack is removed and pushed to the top of the next stack on the chain
@@ -1439,9 +1514,9 @@ let the application explicitly invoke performing the task. This will simplify th
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='stk2[1]'>
 # Definition for a Task element in a Stack
 class Task:
 	...
@@ -1546,8 +1621,7 @@ for i in range( 0, 7 ):
 	stack.Pop().Action()
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='stk2[2]'>
 // Definition for a Task element in a Stack
 class Task {
 	...
@@ -1664,7 +1738,7 @@ public class StackChain {
 }
 </pre>
 
-<a name="btree"/>
+<a name="btree"></a>
 <h3>6. Binary Tree</h3>
 
 <p>
@@ -1683,13 +1757,20 @@ Some other terminology that is useful to know:
 	<li>The topmost node is the root.</li>
 	<li>Nodes at the same level are siblings.</li>
 	<li>Nodes with no branches are leaf nodes (or leaves).</li>
-	<li>Every node with branches is a parent. The nodes of the parent are children.<li>
+	<li>Every node with branches is a parent. The nodes of the parent are children.</li>
 	<li>A branch is a directed edge.</li>
 	<li>A node depth is the number of edges between the root and the node.</li>
 	<li>A node height is the number of edges between the node and the deepest leaf node.</li>
 </ul>
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="btr1[0] = true; btr1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="btr1=[true,false,false]; btr1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='btr1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr1=[false,true,false]; btr1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='btr1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr1=[false,false,true]; btr1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='btr1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='btr1[0]'>
 <h4>Algorithm</h4>
 <p>
 You maybe asked to code a class definition for a binary tree node. The binary tree node will have the following members/methods:
@@ -1700,9 +1781,9 @@ You maybe asked to code a class definition for a binary tree node. The binary tr
 	<li>Public Set and Get accessors for the data value, left and right subtrees, which can be used by a program accessing the class object.</li>
 </ol> 
 </p>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='btr1[1]'>
 class BinaryTree:
 	# Constructor: set the node data and left/right subtrees to null
 	def __init__(self, key):
@@ -1735,8 +1816,7 @@ class BinaryTree:
 		return __key
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='btr1[2]'>
 // Binary Tree Class
 class BinaryTree {
     private Object key;         // node data
@@ -1782,6 +1862,13 @@ class BinaryTree {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="btr2[0] = true; btr2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="btr2=[true,false,false]; btr2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='btr2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr2=[false,true,false]; btr2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='btr2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr2=[false,false,true]; btr2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='btr2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='btr2[0]'>
 <p>You maybe asked for a more generalized representation, such as defining a hierarchical class structure where a binary tree is a class type
 of a k-ary tree. For this, we would define a base (super) class with methods common to k-ary trees, and then derive (extend) a binary tree 
 class from the base (super) class with methods specific to a binary tree.
@@ -1794,9 +1881,9 @@ class from the base (super) class with methods specific to a binary tree.
 	<li>An abstract method (must be defined in derived class) is added to defining an action to perform on each node in the tree that is
 	specific to a derived class.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='btr2[1]'>
 # Base (Super) class definition for a k-ary tree
 class Node:
 	# Constructor: set the node data
@@ -1844,8 +1931,7 @@ class BinaryTree(Node):
 		print( node.key)	
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='btr2[2]'>
 // Base (Super) class definition for a k-ary tree
 abstract class Node {
 	// node data
@@ -1909,7 +1995,7 @@ class BinaryTree extends Node {
 }
 </pre>
 
-<a name="bts"/>
+<a name="bts"></a>
 <h3>7. Binary Tree Traversals</h3>
 
 <p>
@@ -1929,15 +2015,22 @@ For depth first traversal or search (DFS), a tree can be traversed either inorde
 If you are ask questions about a binary search tree (BST), most likely the algorithm will use a postorder traversal.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bts1[0] = true; bts1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bts1=[true,false,false]; bts1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bts1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts1=[false,true,false]; bts1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bts1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts1=[false,false,true]; bts1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bts1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bts1[0]'>
 <h4>Algorithm - Inorder</h4>
 <ol class='w3-ul'>
 	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
 	<li>Traverse back to the root node.</li>
 	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts1[1]'>
 	#InOrder Traversal
 	def InOrder(root):
 		if root == None:
@@ -1947,8 +2040,7 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 		InOrder( root.right )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts1[2]'>
 	// InOrder Traversal
 	public void InOrder() {
 		if ( Left() != null ) Left().InOrder();
@@ -1957,15 +2049,22 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bts2[0] = true; bts2cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bts2=[true,false,false]; bts2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bts2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts2=[false,true,false]; bts2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bts2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts2=[false,false,true]; bts2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bts2cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bts2[0]'>
 <h4>Algorithm - Preorder</h4>
 <ol class='w3-ul'>
 	<li>Traverse to the root node.</li>
 	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
 	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts2[1]'>
 	# PreOrder Traversal
 	def PreOrder(root):
 		if root == None:
@@ -1975,8 +2074,7 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 		PreOrder( root.right )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts2[2]'>
 	// PreOrder Traversal
 	public void PreOrder() {
 		Action();
@@ -1985,15 +2083,22 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bts3[0] = true; bts3cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bts3=[true,false,false]; bts3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bts3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts3=[false,true,false]; bts3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bts3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts3=[false,false,true]; bts3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bts3cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bts3[0]'>
 <h4>Algorithm - Postorder</h4>
 <ol class='w3-ul'>
 	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
 	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
 	<li>Traverse back to the root node.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts3[1]'>
 	# PostOrder Traversal
 	def PostOrder(root):
 		if root == None:
@@ -2003,8 +2108,7 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 		Action( root )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts3[2]'>
 	// PostOrder Traversal
 	public void PostOrder() {
 		if ( Left() != null ) Left().PostOrder();
@@ -2013,6 +2117,13 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bts4[0] = true; bts4cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bts4=[true,false,false]; bts4cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bts4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts4=[false,true,false]; bts4cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bts4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts4=[false,false,true]; bts4cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bts4cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bts4[0]'>
 <p>
 A breadth first traversal or search (BFS) traverses a tree one node level at a time, visiting each node at that level, generally from left to right.
 This traversal is referred to as a level order traversal.
@@ -2028,9 +2139,9 @@ This traversal is referred to as a level order traversal.
 		</ul>
 	</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts4[1]'>
 # Breadth First Search
 def BFS( root ):
 	# Check if tree is empty
@@ -2063,8 +2174,7 @@ print( "BFS output 1 2 3 4 5")
 BFS( tree )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts4[2]'>
 public class BFS {
 	public static void BFS( BinaryTree root ) {
 		
@@ -2106,6 +2216,14 @@ If you are asked to count the size (number of nodes) of a binary tree, using any
 the method Action() with a counter that is increment each time a node is visited.
 </p>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bts5[0] = true; bts5cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bts5=[true,false,false]; bts5cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bts5cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts5=[false,true,false]; bts5cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bts5cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts5=[false,false,true]; bts5cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bts5cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bts5[0]'>
+
 <p>You maybe asked to add to your solution a method to calculate the maximum and minimum depth of the tree. The maximum depth is the number of nodes
 from the root to the leaf node that is the furthest from the root, while the minimum depth is the number of nodes
 from the root to the leaf node that is the closest the root.
@@ -2119,9 +2237,9 @@ from the root to the leaf node that is the closest the root.
 	<li>When returning from a child back to a parent node, pass back the node depth of the child.</li>
 	<li>Return the maximum or minimum value from the left and right child (or the parent if there are no children).</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts5[1]'>
 # Derived definition for a Binary Tree
 class BinaryTree(Node):
 	...
@@ -2173,8 +2291,7 @@ print("Max Depth(3) is  " + str( tree.MaxDepth( 0 ) ) )
 print("Max Depth(2) is  " + str( tree.MinDepth( 0 ) ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts5[2]'>
 // Derived definition for a Binary Tree
 class BinaryTree extends Node {
 	...
@@ -2226,6 +2343,13 @@ class BinaryTree extends Node {
 }
 </pre>
 
+<ul class="w3-navbar w3-light-grey" ng-init="bts6[0] = true; bts6cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="bts6=[true,false,false]; bts6cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='bts6cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts6=[false,true,false]; bts6cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='bts6cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts6=[false,false,true]; bts6cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='bts6cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='bts6[0]'>
 <p>Another addition you maybe asked is to add to your solution a method to calculate the maximum and minimum value of the tree. The maximum
 value is the node with the maximum value of all nodes, while the minimum value is the node with the minimum value of all nodes.
 </p>
@@ -2235,9 +2359,9 @@ value is the node with the maximum value of all nodes, while the minimum value i
 	<li>Do a level order (Breadth First) traversal of the tree.</li>
 	<li>Keep a counter of the maximum and minimum value encountered.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts6[1]'>
 # Derived definition for a Binary Tree
 class BinaryTree(Node):
 	...	
@@ -2278,8 +2402,7 @@ print("Min Value(1) is  " + str( min ) )
 print("Max Value(5) is  " + str( max ) )
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='bts6[2]'>
 // Derived definition for a Binary Tree
 class BinaryTree extends Node {
 	...
@@ -2330,13 +2453,21 @@ class BinaryTree extends Node {
 }
 </pre>
 
-<a name="kary"/>
+<a name="kary"></a>
 <h3>8. k-ary Trees</h3>
 <p>
 As a follow up to coding examples related to a binary tree, you maybe asked to generalize a solution for a k-ary tree. A k-ary tree is a tree
 that may at most k children. You may be challenged, by being asked to create a base (super) class from which any k-ary tree can derived (extended)
 from, with the condition that the children (branch) members must be defined in the base (super) class.
 </p>
+
+<ul class="w3-navbar w3-light-grey" ng-init="kry1[0] = true; kry1cls[0] = 'w3-black'">
+	 <li><a href="javascript:void(0)" ng-click="kry1=[true,false,false]; kry1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='kry1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="kry1=[false,true,false]; kry1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='kry1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="kry1=[false,false,true]; kry1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='kry1cls[2]'>Java</a></li>
+</ul>
+
+<div ng-show='kry1[0]'>
 <p>
 Since we do not know in the base (super) class how many children (branches) each node will have, we will use a dynamic array to represent the
 member for children. In the Java coding example, I will use the predefined dynamic array type ArrayList.
@@ -2352,9 +2483,9 @@ member for children. In the Java coding example, I will use the predefined dynam
 	<li>The base class defines an Add() method for adding a child (branch) to the node.</li>
 	<li>The base class defines a Children() method for accessing all the children (branches) of the node.</li>
 </ol>
+</div>
 
-<h4>Python</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='kry1[1]'>
 # Base (Super) class definition for a k-ary tree
 class KNode:
 	key = None # node data
@@ -2402,8 +2533,7 @@ class Tree(KNode):
 		self # do something
 </pre>
 
-<h4>Java</h4>
-<pre class='w3-container'>
+<pre class='w3-container' ng-show='kry1[2]'>
 import java.util.ArrayList;
 
 // Base (Super) class definition for a k-ary tree
@@ -4870,6 +5000,8 @@ Portland Data Science Group, Co-Organizer
 </footer>
 <script>
 var technical = angular.module( 'technical', []);
+technical.controller( 'tab1Ctrl', function( $scope ) {
+})
 </script>
 <script src="nav.js"></script>
 </body>
