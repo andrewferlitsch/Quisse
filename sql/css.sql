@@ -97,6 +97,132 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'CSS',
+    'How do you specify a comment?',
+    '/* ... */',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do separate multiple declarations in a selector?',
+    'With a semi-colon.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do specify a declaration in a selector?',
+    'property:value',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do specify an inline style?',
+    'style=''property:value;property:value''',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do set a border style?',
+    'border-style: value',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do set a border style of type dotted?',
+    'border-style: dotted',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do you specify different margins for top, bottom, left and right?',
+    'margin-top, margin-bottom, margin-left, margin-right',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What does the margin property do?',
+    'It sets the spacing outside the border of the element.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What does the padding property do?',
+    'It sets the spacing inside the border of the element.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do you specify different paddings for top, bottom, left and right?',
+    'padding-top, padding-bottom, padding-left, padding-right',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What are the values for the border-style property?',
+    'solid, dotted, dashed, double, groove, ridge, inset, outset, none, hidden',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What is the syntax for the border shorthand?',
+    'border: width style color',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How can you make rounded edges on a border?',
+    'border-radius: pixel-value',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What are the four types of values for a margin property?',
+    'length, percent, auto, inherit',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
     'How do you specify that hyperlinks are displayed without an underline?',
     'a { text-decoration: none; }',
     2,
@@ -107,9 +233,45 @@ INSERT INTO questions (category, question, answer, rank, toggle)
   VALUES (
     'CSS',
     'Can you use negative values for margin? Can you use negative values for padding?',
-    'yes for margins, no for padding',
+    'Yes for margins, no for padding.',
     2,
 	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'CSS',
+    'Does a margin or padding for top and bottom affect an inline element?',
+    'No.',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'CSS',
+    'What are the three ways to specify a color in CSS?',
+    'by name (red), by hex value (#ff0000), and by rgb (rgb(255,0,0))',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'CSS',
+    'When specifying a color range by numerical value, what is the range?',
+    '0 .. 255 or 00 .. FF in hex.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'CSS',
+    'What does RGB stand for?',
+    'Red, Green and Blue.',
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -196,9 +358,63 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'CSS',
+    'If a background image is smaller than the area to fill, how do you get it to repeat to fill the area?',
+    'background-repeat: repeat-x to repeat horizontally and background-repeat: repeat-y to repeat vertically.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do you specify a background image?',
+    'background-image: url(value)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What is the difference between px and pt?',
+    'px is a fixed size unit for width and height spacing and is equal to one dot on a screen. pt is a unit for text and is equal to 1/72 inch.',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
     'What are three things (property values) you can do with the text-transform property?',
     'uppercase words, lowercase words, capitalize words',
     3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What are the different types of values for a width or height property?',
+    'length, auto or %',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'For width and height, what does the value specified as a percent do?',
+    'It specifies the percent of the area for the element of the containing block.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do you set the maximum width of an image when it is resized?',
+    'max-width: value',
+    2,
 	1
   );
 
@@ -238,3 +454,31 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'What is em unit?',
+    'It is a scalable unit for fonts, where 1em equals the current font size.',
+    3,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do you specify that an element should have the same margin as the parent?',
+    'margin: inherit',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'CSS',
+    'How do you specify an image for a list item marker?',
+    'list-style-image: url(value)',
+    3,
+	1
+  );
+
+ SELECT COUNT(*) FROM questions WHERE category = 'CSS'

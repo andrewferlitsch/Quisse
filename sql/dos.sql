@@ -211,3 +211,5 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     3,
 	1
   );
+
+ SELECT COUNT(*) FROM questions WHERE category = 'DOS'

@@ -206,3 +206,4 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
+ SELECT COUNT(*) FROM questions WHERE category = 'JQuery'

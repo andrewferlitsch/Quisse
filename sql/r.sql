@@ -592,5 +592,5 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   );
 
 
- SELECT COUNT (*) FROM questions where category = 'R';
+ SELECT COUNT(*) FROM questions where category = 'R';
 

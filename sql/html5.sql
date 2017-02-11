@@ -101,6 +101,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML5',
+    'What method is used to get the current position in the geolocation API?',
+    'navigator.geolocation.getCurrentPosition(success, error, options);',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What does the watchPosition() method do in the geolocation API?',
+    'If watches for changes in the device''s geolocation and fires an event when the location changes.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
     'What are the new structural elements added?',
     '<header>, <footer>, <section>, <article>, <nav>, <aside>, <main>, <summary>, <mark> and <time>',
     2,
@@ -131,6 +149,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'HTML5',
     'What HTML elements are no longer supported in HTML5?',
     '<frame>, <frameset>, <noframe>, <applet>, <bigcenter> and <basefront>.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What does the <datalist> element do?',
+    'It is used to create a predefined list for an input element and provides autocomplete.',
     2,
 	1
   );
@@ -171,3 +198,40 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What is the difference between local and session storage?',
+    'Local storage stores data without an expiration date, while session storage only stores the data for the length of the browser session.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What is a websocket?',
+    'A bi-directional communication protocol, where data can be sent in Javascript using send() and response received with a onmessage() event handler.',
+    3, 
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'How do you setup a websocket?',
+    'var socket = WebSocket( url, [protocol]).',
+    3, 
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What is the <canvas> element used for?',
+    'It is used to draw 2D graphics in an area using Javascript.',
+    3, 
+	1
+  );
+
+SELECT COUNT(*) FROM questions WHERE category = 'HTML5';

@@ -192,3 +192,5 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+
+ SELECT COUNT(*) FROM questions WHERE category = 'QA'

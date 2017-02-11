@@ -39,7 +39,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Web',
@@ -49,6 +48,14 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is an URL?',
+    'It is the universal address of a web page.',
+    1,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -91,6 +98,69 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Web',
     'What is a Multi-purpose Internet Mail Extensions (MIME) type?',
     'A standard for classifying file types over the Internet. It consists of a type and subtype separated by a slash, e.g., application/msword.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is a Uniform Resource Identifier (URI)?',
+    'A string of characters used to identify a resource over a network.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is the World Wide Web Consortium (W3C)?',
+    'An international standards body that governs must Web related standards.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is the difference between Web 1.0 and Web 2.0?',
+    'Web 1.0 is when content on web pages were static. In Web 2.0, web pages are interactive and dynamic; whereby users add content.',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What Rich Site Summary, or Really Simple Syndiction (RSS)?',
+    'A set of web feed standards to publish frequently updated informations, such as blog entries and news headlines.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is Open Source?',
+    'Software that is freely available to use and modify; and generally constructed and updated by a community of developers volunteering their time.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is Dynamic HTML?',
+    'When content on a web page can dynamically change, such as from data that comes from a database or response to user interaction.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is the Javascript Object Notation (JSON)?',
+    'It is a lightweight text-based interchange format for describing data objects in a language and platform independent way.',
     2,
 	1
   );
@@ -159,3 +229,22 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is the Semantic Web?',
+    'A W3C standard for common data formats and exchange protocols, which can be read by computers; in particular the RDF standard. The meaning of the data can be determined through namespaces and data ontologies.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Web',
+    'What is JSON with Padding (JSONP)?',
+    'A method of exchanging JSON data across domains to avoid cross domain policies. It uses the <script> tag to receive the data. The data is wrapped in a function, in which the user implements the function to obtain the data.',
+    3,
+	1
+  );
+
+  SELECT COUNT(*) FROM questions WHERE category='Web';

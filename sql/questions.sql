@@ -42,8 +42,6 @@ source java.sql;
 source javascript.sql;
 \! echo "JQuery Loading...";
 source jquery.sql;
-\! echo "AngularJS Loading...";
-source angularjs.sql;
 \! echo "MySQL Loading...";
 source mysql.sql;
 \! echo "MySQL DBA Loading...";

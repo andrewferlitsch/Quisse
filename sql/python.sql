@@ -229,8 +229,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Python',
@@ -249,3 +247,4 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	0
   );
 
+ SELECT COUNT(*) FROM questions WHERE category = 'Python'

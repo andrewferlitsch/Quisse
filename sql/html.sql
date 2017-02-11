@@ -128,7 +128,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML',
-    'In a hyperlink, how do you specify opening a web page in another browser?',
+    'In a hyperlink, how do you specify opening a web page in another web browser tab?',
     'target=''_blank''',
     1,
 	1
@@ -140,6 +140,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'HTML',
     'What attribute/value setting do you use to define a checkbox?',
     'type=''checkbox''',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What attribute/value setting do you use to define a radio selection input?',
+    'type=''radio''',
     1,
 	1
   );
@@ -194,6 +203,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'HTML',
     'What is the syntax for a numbered (ordered) list?',
     '<ol>...</ol>.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What element is used to add a title to a page?',
+    '<title>...</title>',
     1,
 	1
   );
@@ -273,6 +291,78 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML',
+    'What are the elements for subscripting and superscripting text?',
+    '<sub> and <sup>',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'How do you specify the heading names in a table?',
+    'Use <th>...</th> elements for each heading in the first <tr>...</tr> row.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'How do you make a heading in a table span multiple columns?',
+    '<th colspan=''2''> will cause the heading to span 2 columns.',
+    2,
+	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'How do you add a caption to a table?',
+    'Use <caption>...</caption> before the first row definition.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'How are the elements to make a drop down selection box?',
+    '<select><option value=''...''>...</option>...</select>.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'How do you specify alternate text for an image?',
+    'The attribute alt=''text here''.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is the HTML entity for a copyright symbol?',
+    '&copy; or &#169;',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'How do you make an image the background of a web page?',
+    '<body background=''image.jpg''',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
     'What event is used to detect a hover over an element?',
     'attribute: onmouseover='''', where JS code is placed within the single quotes.',
     3,
@@ -292,8 +382,27 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'HTML',
     'Describe three ways to reduce page loading times?',
-    '1) reduce image sizes, 2) place CSS at the top and javascript at the bottom or load externally, 3) reduce redirects, 4) minimize scripts',
+    '1) reduce image sizes, 2) place CSS at the top and javascript at the bottom or load externally, 3) reduce redirects, 4) minimize scripts.',
     3,
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What is an image map?',
+    'A method of dividing (mapping) different parts of an image to link to different web addresses.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML',
+    'What are applets?',
+    'Small programs that can be embedded into a web page to perform some functionality, that are written in Java.',
+    3,
+	1
+  );
+
+SELECT COUNT(*) FROM questions WHERE category = 'HTML';
