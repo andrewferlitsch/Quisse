@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle    TINYINT 	 NOT NULL DEFAULT 1,
+  timing	INT			 NULL,
 
   INDEX(category),
   INDEX(rank)
@@ -47,6 +48,141 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'These are tabular data objects. Unlike a matrix, each column can contain different modes of data. The first column can be numeric while the second column can be character and third column can be logical. It is a list of vectors of equal length.',
     1,
 	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you print to the output console?',
+    'print(''hello world'')',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you print multiple arguments of different types to the output console?',
+    'cat(''hello '', ''world'')',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What terminates a statement?',
+    'EOL',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What is the syntax for a line comment?',
+    '# comment',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you execute an R script from the command line?',
+    'Rscript program.r',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What are the valid characters for a variable name?',
+    'The characters: letters, digits, underscore and dot.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What are the valid character for the first character of a variable name?',
+    'A letter or a dot that is not followed by a digit.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you get a list of all variables in a workspace?',
+    'The function ls().',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What are the arithmetic operators?',
+    '+ (add), - (substract), * (multiply), / (division), %% (integer remainder), %/% (integer division), ^ (pow).',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What are the relational operators?',
+    '== (eq), != (neq), < (lt), > (gt), <= (le), >= (ge).',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What are the conditional statements?',
+    'if, if ... else, switch',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What are the looping statements?',
+    'for, while, repeat',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What is the syntax for a for statement?',
+    'for (i in 1:n)',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you construct a string?',
+    'Either with double or single quotes are the beginning and end.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What is meant by R is a dynamically typed language?',
+    'The data type of a variable is not declared. The type is dynamically assigned according to the type of R object assigned to it.',
+    2,
+	0
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -97,12 +233,85 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'R',
+    'What are the variable scope levels?',
+    'global, function and block',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you specify a default value for a function argument?',
+    'fname <- function( arg = value)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do your create a list?',
+    'list(item1,item2,item3)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
     'What is a matrix?',
     'A two-dimensional array consisting of rows and columns.',
     2,
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you create a matrix?',
+    'matrix( vector, nrow = val, ncol = val, byrow = TRUE|FALSE)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do access an element in a matrix?',
+    'matrix[row,col]',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do access a row in a matrix?',
+    'matrix[row,]',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do access a column in a matrix?',
+    'matrix[,col]',
+    2,
+	1
+  );
+
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you create a multi-dimenstional array?',
+    'array( vector1, dim = vector2)',
+    2,
+	1
+  );
+  
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'R',
@@ -125,7 +334,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'R',
     'How do you input a CSV file?',
-    'The read.csv function.',
+    'The read.csv() function.',
     2,
 	1
   );
@@ -151,8 +360,44 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'R',
-    'How do access an element in a matrix?',
-    'To access an elemen, you specify the row and column (e.g, Matrix[row,colum] ).',
+    'How do you concatenate strings?',
+    'The function paste().',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do get the length of a string?',
+    'The function nchar().',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do get the length of a string?',
+    'The function nchar().',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do uppercase or lowercase a string?',
+    'toupper() and tolower().',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do get a substring?',
+    'substring( string, firstchar, lastchar)',
     2,
 	1
   );
@@ -180,6 +425,78 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'R',
     'How do you skip the remainder of a loop iteration?',
     'The command next.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do combine elements into a vector?',
+    'c(element1,element2,element3)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you create a factor?',
+    'factor( vector)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you get the number of levels of a factor?',
+    'The function nlevels(factor)',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you define a function?',
+    'fname <- function(args) { ... }',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you sort elements in a vector?',
+    'The function sort().',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you remove an element value from a list?',
+    'list[index] <- NULL',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What does the byrow parameter mean when creating a matrix?',
+    'When TRUE, it means to arrange the input elements by row; otherwise by column.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What does the dimname parameter mean when creating a matrix?',
+    'It is the names assigned to rows and columns in the matrix.',
     2,
 	1
   );
@@ -238,4 +555,42 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What is the operator for multiplying a matrix with its transpose?',
+    '%*%.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'What does recycling elements mean in an arithmetic operation?',
+    'When an arithmetic operation is performed on vectors of unequal size, the elements in the shorter vector are duplicate (recyled) to make it the same length.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you name elements in a list?',
+    'names(list) <- c(''name1'',''name2'',''name3''))',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'R',
+    'How do you access an element in a named list using the element name?',
+    'list$name',
+    3,
+	1
+  );
+
+
+ SELECT COUNT (*) FROM questions where category = 'R';
 

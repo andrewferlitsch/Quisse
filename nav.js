@@ -10,7 +10,7 @@ technical.controller( 'navCtrl', function( $scope ) {
 				  "	<li><a href='/'>Flashcards</a></li>" +
 				  "	<li><a href='preparing-for-technical-interview.html'>Interview Guide</a></li>" +
 				  "	<li><a href='coding-examples.html'>Coding Examples</a></li>" +
-				  "<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>604</span></span>" +
+				  "<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>633</span></span>" +
 				  "</ul>" +
 				  "<br/>"
 	}

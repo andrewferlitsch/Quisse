@@ -45,8 +45,9 @@ function Timestamp( category, id, type ) {
 		setTimeout( function() { SendServer(); }, 10000 );
 	}
 	
-	// store timing metrics until periodic upload to server
-	timing.push( { session: session, category: category, id: id, type: type, time: Date.now() - 1480000000000 } );
+	// store timing metrics until periodic upload to 
+	var time = Math.floor( Date.now() / 1000 );
+	timing.push( { session: session, category: category, id: id, type: type, time: time } );
 }
 Timestamp( "coding", "", "" );
 
