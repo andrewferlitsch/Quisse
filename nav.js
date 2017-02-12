@@ -1,4 +1,5 @@
-technical.controller( 'navCtrl', function( $scope ) {
+technical.controller( 'navCtrl', function( $scope, $rootScope ) {
+	$rootScope.advice = false;
 })
 .directive( "nav", function() {
 	return {
@@ -9,7 +10,7 @@ technical.controller( 'navCtrl', function( $scope ) {
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/'>Flashcard</a></li>" +
 				  "	<li><a href='coding-examples.html'>Coding</a></li>" +
-				  "	<li><a href='preparing-for-technical-interview.html'>Advice</a></li>" +
+				  "	<li><a href='preparing-for-technical-interview.html' ng-click=''>Advice</a></li>" +
 				  "<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>700</span></span>" +
 				  "</ul>" +
 				  "<br/>"
