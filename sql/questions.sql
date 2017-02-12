@@ -7,6 +7,7 @@ create table questions
 	answer   	varchar(512)	not null,
 	rank	 	tinyint		    not null default 1,
 	toggle		tinyint			not null default 1,
+	timing		int				not null default 0,
 
 	index	(category),
 	index	(rank)

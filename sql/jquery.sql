@@ -44,7 +44,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'JQuery',
-    'What does this select: $("div.cat")?',
+    'What does this select: $(''div.cat'')?',
     'All div elements with class = cat',
     1,
 	1
@@ -128,7 +128,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'JQuery',
-    'What does $("div p") select?',
+    'What does $(''div p'') select?',
     'It selects all p elements (paragraph) inside all div elements.',
     2,
 	1
@@ -192,7 +192,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'JQuery',
     'How do you assign a key/value pair to an element?',
-    'selector:data("name",value) e.g., div:data("color", "green")',
+    'selector:data(''name'',value) e.g., div:data(''color'', ''green'')',
     3,
 	1
   );
