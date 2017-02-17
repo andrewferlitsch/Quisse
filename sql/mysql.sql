@@ -114,6 +114,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'SELECT COUNT(*) FROM mytable WHERE year=2015;',
     2,
 	1
+  ););
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'MySQL',
+    'How do you get the distinct (unique) values in a column?',
+    'SELECT DISTINCT column-name FROM mytable;',
+    2,
+	1
   );
 
 

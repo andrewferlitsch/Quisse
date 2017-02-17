@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 0,
+  timing	INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -78,6 +79,16 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'QA',
+    'What is a sanity test?',
+    'A test process that may occur after a smoke test to check the major functionalities of the application.',
+    1,
+	1
+  );
+
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
     'What is positive testing?',
     'A set of tests that test for non-failing behavior.',
     2,
@@ -98,6 +109,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'QA',
     'What is code coverage?',
     'A metric where how much of the code was exercised by testing.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is regression testing?',
+    'A set of tests to verify that defect fixes did not break other parts of the software that could be impacted by the changes.',
     2,
 	1
   );
@@ -146,6 +166,52 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is testware?',
+    'The software used to aid in the testing of software.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is a test drivier?',
+    'A module that calls a component to be tested, passing in inputs, receiving output/response, and verifying the response.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'Name the basic states in a defect lifecycle?',
+    'Open, fixed, verified, closed',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is acceptance testing?',
+    'A testing process to determine if the product meets business/product compliance and is acceptable for delivery.',
+    2,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What are use cases?',
+    'A way of describing the functionality as a set of user actions for a specific goal and system response.',
+    2,
+	1
+  );
+
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -191,6 +257,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     3,
 	1
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is backend testing?',
+    'Verifying the data displayed in a GUI matches the data from an orginating data source, such as a database.',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is end-to-end (e2e) testing?',
+    'Testing a following integrated application under real world conditions.',
+    3,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'QA',
+    'What is the difference between priority and severity?',
+    'Priority is a measurement of how important the defect fix is for business purposes. The severity is a measurement on the degree of impact on the application.',
+    3,
+	0
+  );
 
 
- SELECT COUNT(*) FROM questions WHERE category = 'QA'
+SELECT COUNT(*) FROM questions WHERE category = 'QA'

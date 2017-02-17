@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT      NOT NULL DEFAULT 1,
   toggle    TINYINT      NOT NULL DEFAULT 1,
+  timing    INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -97,6 +98,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
+    'What is a device driver?',
+    'A program that controls a particular type of device that is attached to a computer.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
     'What is UTF-8 encoding?',
     'A encoding consisting of one to four bytes. If the first byte has a leading zero bit, it is one byte long (ANSI). If it has two leading one bits, it is two bytes long, three leading one bits it is three bytes long, and four leading one bits it is four bytes long.',
     2,
@@ -169,6 +179,51 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OS',
+    'What is a thread?',
+    'A basic unit to which the operating system allocates processor time. A thread can execute any part of the process code.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is a deadlock?',
+    'When two or more processes are waiting on each other to finish, but neither will finish.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is dynamic loading?',
+    'When a routine is not loaded until it is ready to be used (invoked).',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'Give examples of process states.',
+    'New, Running, Waiting, Ready, Terminated',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What is thrashing?',
+    'A degradation in system performance when more time is spent processing paging faults instead of executing transactions.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
     'What does the MMU do when a page fault occurs in a virtual address space?',
     'When this fault occurs, the memory management unit (MMU) will map the physical memory page into the virtual address space.',
     3,
@@ -216,6 +271,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'OS',
     'What is the root partition?',
     'The partition where the OS''s kernal resides.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What are the conditions that cause deadlock?',
+    'Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What are the seven RAID levels?',
+    '0) - Non-redundant striping, 1) - Mirrored Disks, 2) -Memory-style error-correcting codes, 3) - Bit-interleaved Parity, 4) - Block-interleaved Parity, 5) - Block-interleaved distributed Parity, 6) - P+Q Redundancy',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OS',
+    'What are the types of registers in a computer system?',
+    'Accumulator (AC), Data Register (DR), Address Register (AR), Program Counter (PC), Memory Data Register (MDR), Index Register (IR), Memory Buffer Register (MBR).',
     3,
 	1
   );

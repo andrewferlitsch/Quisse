@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 1,
+  timing    INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -21,46 +22,51 @@ DELETE FROM questions WHERE category = 'Agile';
 # Agile
 #----------------------------------------------------------------------
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is Agile Product Management?',
     'An iterative, incremental method of managing the design and build activities of engineering, information technology and other business areas that aim to provide new product or service development in a highly flexible and interactive manner',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is the product owner''s role?',
     'This person is the product stakeholder. Responsibilities typically include decides which stories from the product backlog go into a sprint.',
-    1
+    1,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What are story points?',
     'For each task in a sprint, it is the estimate of the amount of time to complete the task. Typically 1 story point is 1/2 day, 2 story points is 1 day, 3 story points is 2 days, 5 story points is a 5 days.',
-    1
+    1,
+	1
   );
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What does a scrum master do?',
     'This person manages the sprint process, which includes sprint planning, scrums, and sprint reviews.',
-    1
+    1,
+	1
   );
   
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is a Product Backlog?',
     'A prioritized features list, containing short descriptions of all functionality desired in the product.',
-    1
+    1,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -68,6 +74,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Agile',
     'What is Scrum?',
     'A lightweight version of the Agile methodology using Sprints.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is a task?',
+    'A single item to be completed in a sprint.',
     1,
 	1
   );
@@ -90,29 +105,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
   
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is an Epic?',
     'A large user story that can be broken into smaller stories and typically spans several sprints.',
-    2
+    2,
+	1
   );
   
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What is the technical debt?',
     'Any task, or portion of it, not completed in a sprint, or code that will need to be refactored or redesigned, or not fully tested.',
-    2
+    2,
+	1
   );
 
 
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Agile',
     'What does a sprint consist of?',
     'A repeating process consisting of a sprint planning session, execution of tasks, followed by a sprint review and sometimes a sprint retrospective.',
-    2
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -147,6 +165,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Agile',
     'What is a zero sprint?',
     'A preparatory sprint that proceeds sprints for the development of the product.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What are the common testing methodologies during a sprint?',
+    'Automated Unit Testing and Exploratory Testing.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is timeboxing?',
+    'An agreed upon time that a team stays focused working on a goal.',
     2,
 	1
   );
@@ -210,6 +246,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Agile',
     'What is Incremental Development?',
     'Software is developed in cycles, where new or modified requirements cannot be injected between cycles.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is a Spike?',
+    'A user story for research,investigation and/or prototyping to obtain a better insight to improve a requirement, more accurate estimate on story points, or reduce/mitigate technical risks.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Agile',
+    'What is a Product Roadmap?',
+    'A plan  that matches short-term and long-term business goals with specific technology solutions to help meet those goals.',
     3,
 	1
   );

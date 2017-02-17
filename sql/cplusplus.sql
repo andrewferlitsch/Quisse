@@ -50,7 +50,7 @@ INSERT INTO questions (category, question, answer, rank, toggle)
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
-    'C++#',
+    'C++',
     'What is the scope of a public member?',
     'This member can be accessed by instances of the class, derived instances of the class, and by objects that reference the class.',
     1,

@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT		 NOT NULL DEFAULT 1,
   toggle    TINYINT		 NOT NULL DEFAULT 1,
+  timing	INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -43,8 +44,8 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Python',
-    'What are the five standard data types?',
-    'Numbers, String, List, Tuple, Dictionary',
+    'What are the six standard data types?',
+    'Numbers, String, List, Tuple, Dictionary, Set',
     1,
 	1
   );
@@ -133,6 +134,16 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Python',
+    'What is a tuple?',
+    'A pair of items.',
+    2,
+	1
+  );
+
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
     'What is a dictionary?',
     'A dictionary is an associative array (or hash). The key can be any data type. Dictionaries are enclosed in {} braces and values are accessed thru square [] brackets.',
     2,
@@ -171,6 +182,24 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Python',
     'How do convert a string to an integer?',
     'int( value )',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do convert a string to a hex integer?',
+    'hex( value )',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do convert a string to an octal integer?',
+    'oct( value )',
     2,
 	1
   );
@@ -225,6 +254,42 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'Python',
     'How do you remove a file?',
     'os.remove() or os.unlink().',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What is slicing?',
+    'Select a range (subset) of items from a list, tuple, string, etc.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What is a docstring?',
+    'A string literal that occurs as the first line in a function, method or class that documents that acts as documentation.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'How do you generate a random number?',
+    'random.random() returns a floating point number between 0 and 1.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Python',
+    'What does the function split() do?',
+    'This function splits a string into an array of strings, where the parameter is the separator sequence for splitting the string.',
     2,
 	1
   );

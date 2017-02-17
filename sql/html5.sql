@@ -59,7 +59,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'HTML5',
@@ -69,6 +68,50 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What is the element <track> used for?',
+    'This element specifies the text for audio or video element.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What is the element <aside> used for?',
+    'This element specifies content other than the page content.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'How do you specify the height and width of an <input> element?',
+    'With the attributes height and width.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'How do you specify the maximum and minimum values of a numeric <input> element?',
+    'With the attributes min and max.',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What element is used to define text direction from right-to-left (vs. left-to-right)?',
+    'The element <bdi>.',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -78,7 +121,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
-
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -148,7 +190,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'HTML5',
     'What HTML elements are no longer supported in HTML5?',
-    '<frame>, <frameset>, <noframe>, <applet>, <bigcenter> and <basefront>.',
+    '<acronym>, <frame>, <frameset>, <noframe>, <applet>, <bigcenter>, <basefront>, <big>, <center>, <dir>, <font>, <strike> and <tt>.',
     2,
 	1
   );
@@ -158,6 +200,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'HTML5',
     'What does the <datalist> element do?',
     'It is used to create a predefined list for an input element and provides autocomplete.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What do you make an image draggable?',
+    'Add the attribute draggable=''true'' to the <img> element.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What does the attribute autofocus do on an <input> element?',
+    'When this attribute is set to true, the corresponding <input> element has focus on page load.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What are the new attributes for the <form> element?',
+    'The boolean attribute autocomplete, which tells the browser to suggest inputs which where previously entered, and the boolean attribute novalidate, which indicates not to validate the submitted input.',
     2,
 	1
   );
@@ -230,6 +299,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'HTML5',
     'What is the <canvas> element used for?',
     'It is used to draw 2D graphics in an area using Javascript.',
+    3, 
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What methods are used to draw a straight line on a canvas?',
+    'The method moveTo() to define the starting coordinate, lineTo() to define the ending coordinate and stroke() to draw the line.',
+    3, 
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'How do you draw an image on a canvas?',
+    'The method drawImage(image,x,y)',
+    3, 
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'HTML5',
+    'What is a manifest file?',
+    'A plain text file that tells the browser what to cache and what not to cache.',
     3, 
 	1
   );

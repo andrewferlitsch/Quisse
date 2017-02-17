@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 1,
+  timing    INT			 NOT NULL DEFAULT 1,
 
   INDEX(category),
   INDEX(rank)
@@ -46,13 +47,49 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'A class that does not inherit other classes.',
     1,
 	1
+  ); 
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is an object?',
+    'An instance of a class.',
+    1,
+	1
   );
   
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OOP Design',
-    'What is a derived (sub) class?.',
+    'What is a constructor?',
+    'A method that initializes an instance of a class.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is inheritance?',
+    'Where a class shares (inherits) the structure and behavior of another class.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a derived (sub) class?',
     'A class that inherits another class. It may add additional methods, implement non-implemented methods or override methods in the other class.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a ''this'' or ''self'' pointer?',
+    'A pointer that refers to the current object instance.',
     1,
 	1
   );
@@ -66,12 +103,20 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is multiple inheritance? Give an example.',
+    'When a derived (sub) class inherits two or more base (super) classes. For example, an OOP design for a vehicle might have a base class for wheels, and a base class for engine. The wheels base class may have derived classes for truck-wheels and passenger-wheels, and the engine base class may have derived classes for gas and diesel engine. A truck object might inherit the diesel engine and truck wheels derived classes, while a passenger vehicle might inherit the gas engine and passenger wheel derived classes.',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OOP Design',
-    'What is polymorphism? Give an example.',
-    'Multiple inheritance of classes. For example, an OOP design for a vehicle might have a base class for wheels, and a base class for engine. The wheels base class may have derived classes for truck-wheels and passenger-wheels, and the engine base class may have derived classes for gas and diesel engine. A truck object might inherit the diesel engine and truck wheels derived classes, while a passenger vehicle might inherit the gas engine and passenger wheel derived classes.',
+    'What is polymorphism?',
+    'The ability to process objects differently depending on their data types or number of arguments, such as in function overloading and operator overloading.',
     2,
 	1
   );
@@ -107,6 +152,42 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'OOP Design',
+    'What is a virtual function?',
+    'A method in a base (super) class that can be overridden in a derived (sub) class.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a pure virtual function?',
+    'A method in a base (super) class that must be implemented in a derived (sub) class.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is operator overloading?',
+    'A concept where operators are treated as polymorphic functions and as such have different behaviors depending on the types of its arguments.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is function overloading?',
+    'A method (same name) that has multiple implementations which are differentiated by the number of arguments or input types.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
     'What is a Singleton design pattern?',
     'This design pattern handles the creation of a single only instance of a class. It prevents a program from directly instantiating instances of the class.',
     2,
@@ -118,6 +199,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'OOP Design',
     'What are the three types of design patterns defined by the Gang of Four (GOF)?',
     'Creational, Structural and Behavioral.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'OOP Design',
+    'What is a copy constructor?',
+    'A constructor that creates a deep copy of an existing instance of a class.',
     3,
 	1
   );
@@ -176,4 +266,4 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
- SELECT COUNT(*) FROM questions WHERE category = 'OOP'
+ SELECT COUNT(*) FROM questions WHERE category = 'OOP Design'

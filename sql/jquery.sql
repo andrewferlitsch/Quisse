@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT		 NOT NULL DEFAULT 1,
   toggle 	TINYINT		 NOT NULL DEFAULT 1,
+  timing    INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -70,12 +71,29 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
-
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'JQuery',
     'What method is used to hide an element?',
     'hide()',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What method is used to show an element?',
+    'show()',
+    1,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What method is used to toggle between showing and hiding an element?',
+    'toggle()',
     1,
 	1
   );
@@ -138,7 +156,34 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'JQuery',
     'What does the .each() method do?',
+    'A shorthand where several methods for an object can be chained together and executed as a single statement. e.g., $(''button'').on(...).css(...).show()',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What is method chaining?',
     'This method iterates through all the elements of an array or properties in an object.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What are the effects methods?',
+    'show(), hide(), toggle(), fadeIn(), fadeOut().',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What does the find() method do?',
+    'Finds all matching elements that are a descendant of the selector.',
     2,
 	1
   );
@@ -204,6 +249,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'document.ready() is tiggered when the DOM is loaded, while onload is trigger when the DOM and web resources are loaded.',
     3,
 	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What shorthand method is used to make an AJAX GET call?',
+    '$.get( url, function() {...} )',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What shorthand method is used to make an AJAX POST call?',
+    '$.post( url, function() {...} )',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'JQuery',
+    'What does the clone() method do?',
+    'It makes a deep copy of the matching elements.',
+    3,
+	1
   );
 
  SELECT COUNT(*) FROM questions WHERE category = 'JQuery'

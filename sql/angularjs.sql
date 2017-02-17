@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(512) NOT NULL,
   rank      TINYINT		 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 1,
+  timing    INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -30,7 +31,6 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     1,
 	1
   );
-
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -58,7 +58,43 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'It is the data shown to the user in the view and with which the user interacts.',
     1,
 	1
-  ); 
+  );  
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is ng-app?',
+    'This directive defines the starting point of an Angular application to the Angular compiler ($compile). It is the equivalent of a Main() entry point. e.g., ng-app=''myApp''',
+    1,
+	1
+  );  
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is ng-init?',
+    'This directive initializes Angular application data. e.g., ng-init=''var=val''',
+    1,
+	1
+  );  
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is ng-model?',
+    'This directive binds the value of an input element to an Angular variable. e.g., <input ng-model=''myname''>',
+    1,
+	1
+  );  
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What is ng-bind?',
+    'This directive replaces the text portion of an element with the result of the Angular expression. e.g., <p ng-bind=''description''>',
+    1,
+	1
+  );
   
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -85,6 +121,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'It is considered bad practice, can cause problems, and a sign of a novice.',
     1,
 	0
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'How do you inline an Angular expression in HTML code?',
+    'Place the expression between {{ ... }} in the text area of an HTML element.',
+    1,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank, toggle ) 
@@ -203,6 +248,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'AngularJS',
     'What is two-way data binding?',
     'When you change a value in the view, it is automatically updated in the model. Likewise, if the value in the model is changed, it is automatically updated in the view.',
+    2,
+	1
+  ); 
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'AngularJS',
+    'What does the currency filter do?',
+    'This filter reformats a value into a currency format (e.g., 20.1 becomes $20.10)',
     2,
 	1
   );

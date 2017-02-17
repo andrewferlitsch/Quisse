@@ -62,12 +62,85 @@ INSERT INTO questions (category, question, answer, rank)
     1
   );
   
-INSERT INTO questions (category, question, answer, rank) 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'DOS',
     'How do you create a directory?',
     'md or mkdir',
-    1
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What is a batch file?',
+    'A script that consists of a series of commands to be executed by the command-line interpreter, stored in a plain text file. The filename extension .bat .',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'DOS',
+    'What is sleep mode?',
+    'This is a power saving mode that puts your work and settings in memory and draws a small amount of power, and can resume quickly.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'Where can you restore a file that has been recently deleted?',
+    'Recycle Bin',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'How do you exit the DOS command prompt?',
+    'exit',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'In a file matching string, what does * match.',
+    'It matches any length of characters.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What command displays the system date.',
+    'The command date.',
+    1,
+	1
+  );
+  
+INSERT INTO questions (category, question, answer, rank, toggle) 
+  VALUES (
+    'DOS',
+    'What is hibernation mode?',
+    'This is a power saving mode that puts your open documents and programs on your hard disk and then turns off your computer. This mode uses the least amount of power.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'How do you get to the command-line interpreter from Start->Run menu selection?',
+    'Enter cmd.',
+    2,
+	1
   );
 
 INSERT INTO questions (category, question, answer, rank) 
@@ -149,6 +222,15 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
+  
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'In a file matching string, what does ? match.',
+    'It matches any single character.',
+    2,
+	1
+  );
 
 INSERT INTO questions (category, question, answer, rank) 
   VALUES (
@@ -208,6 +290,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     'DOS',
     'Which file contains all the internal DOS commands?',
     'command.com',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'Name some valid filesystems.',
+    'FAT16, FAT32, NTFS',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What are the essential files of DOS to run the DOS interpreter.',
+    'command.cmd, io.sys, msdos.sys',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'DOS',
+    'What is the maximum command line length when running Windows XP or later',
+    '8191 characters',
     3,
 	1
   );

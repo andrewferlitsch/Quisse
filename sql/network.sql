@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS questions
   answer    VARCHAR(256) NOT NULL,
   rank      TINYINT      NOT NULL DEFAULT 1,
   toggle    TINYINT      NOT NULL DEFAULT 1,
+  timing	INT			 NOT NULL DEFAULT 0,
 
   INDEX(category),
   INDEX(rank)
@@ -130,6 +131,60 @@ INSERT INTO questions (category, question, answer, rank, toggle )
     2,
 	1
   );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a point to point link?',
+    'A direct physical connection (link) between two devices (nodes).',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is bandwidth?',
+    'The throughput through the network, usually measured as the number of bits per second.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is latency?',
+    'A time measurement of how long it takes a message to travel across a network.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is round trip time (RTT)?',
+    'The time it takes for a message to go from one end of the network to the other and then back.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a single bit error?',
+    'When one bit in transmitted data has changed.',
+    2,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a encoder and decoder?',
+    'An encoder transforms data for efficient and reliably transmission (e.g., compression) and a decoder transforms the data back at the receiving end into its original format.',
+    2,
+	1
+  );
   
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
@@ -194,6 +249,33 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What are the OSI network support layers.',
+    'Physical, Data Link, and Network layer.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What are the OSI user layers.',
+    'Session, Presentation, and Application layer.',
+    3,
+	1
+  );
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What OSI layer links the network layers to the user layers.',
+    'Tansport layer.',
+    3,
+	1
+  );
+
   INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Network',
@@ -212,5 +294,32 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 	1
   );
 
+  INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'Name two factors that effect the reliabilty of a network?',
+    'Rate of Failure, and Recovery Time from Failure.',
+    3,
+	1
+  );
+
+  INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is multiplexing?',
+    'Sending simultaneous messages across a network on a single data link.',
+    3,
+	1
+  );
+
+
+INSERT INTO questions (category, question, answer, rank, toggle ) 
+  VALUES (
+    'Network',
+    'What is a burst error?',
+    'When two or more bits in transmitted data has changed.',
+    3,
+	1
+  );
 
  SELECT COUNT(*) FROM questions WHERE category = 'Network'
