@@ -11,7 +11,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 				  "	<li><a href='/'>Flashcard</a></li>" +
 				  "	<li><a href='coding-examples.html'>Coding</a></li>" +
 				  "	<li><a href='preparing-for-technical-interview.html' ng-click=''>Advice</a></li>" +
-				  "<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>700</span></span>" +
+				  "<span style='font-size: 9pt' class='w3-right'>Questions: <span class='w3-badge w3-tiny w3-teal'>814</span></span>" +
 				  "</ul>" +
 				  "<br/>"
 	}

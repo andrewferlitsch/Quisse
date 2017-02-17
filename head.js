@@ -18,7 +18,8 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 .directive( "interview", function() {
 	return {
 		restrict: 'A',
-		template: "<label for='category' class='w3-label'>Select Skill Category:</label>" +
+		template: "<p>Use our 800 question/answer dataset to practice a technical phone screen.</p>" +
+				  "<label for='category' class='w3-label'>Select Skill Category:</label>" +
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)'>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
 				  "</select>"
