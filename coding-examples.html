@@ -1109,9 +1109,7 @@ $(function() {
 	function println( text ) {
 		output.html( output.html() + "&lt;br/>" + text );
 	}
-	
 	...
-
 	// Definition for a Dynamic Array
 	class DynamicArray {
 		...
@@ -1158,7 +1156,7 @@ $(function() {
 			
 			// Adding to the tail
 			if ( index == this.size-1 ) {
-				Add( value );
+				this.Add( value );
 				return true;
 			}
 		
@@ -1196,7 +1194,6 @@ $(function() {
 	println("Expect 1,2,3,4,5,6");
 	for ( var i = 0; i < d.Size(); i++ )
 		println( d.Get(i) );
-	
 });
 &lt;/script>
 &lt;body>
@@ -1212,9 +1209,10 @@ Depending on the type of chaining, one can use link lists to code queues and sta
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="que1[0] = true; que1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="que1=[true,false,false]; que1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('que1')" ng-class='que1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que1=[false,true,false]; que1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('que1')" ng-class='que1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que1=[false,false,true]; que1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('que1')" ng-class='que1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[true,false,false,false]; que1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('que1')" ng-class='que1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,true,false,false]; que1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('que1')" ng-class='que1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,false,true,false]; que1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('que1')" ng-class='que1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que1=[false,false,false,true]; que1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('que1')" ng-class='que1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='que1[0]'>
@@ -1292,7 +1290,7 @@ class Queue:
 	def Pop( self):
 		# Queue is empty
 		if self.Empty():
-			return
+			return False
 			
 		# Process the task here
 		self.head.Action()
@@ -1301,15 +1299,16 @@ class Queue:
 		self.head = self.head.GetNext()
 		if self.Empty():
 			self.tail = None
+		return True
 
+# Test Driver
 print("Process in sequential order tasks: A, B and C" )
 queue = Queue()
 queue.Add( Task( "A" ) )
 queue.Add( Task( "B" ) )
 queue.Add( Task( "C" ) )
-queue.Pop()
-queue.Pop()
-queue.Pop()
+while queue.Pop():
+	pass
 </pre>
 
 <pre class='w3-container' ng-show='que1[2]'>
@@ -1368,7 +1367,7 @@ public class Queue {
 	public void Pop() {
 		// Queue is empty
 		if ( Empty() )
-			return;
+			return false;
 			
 		// Process the task here
 		head.Action();
@@ -1377,25 +1376,118 @@ public class Queue {
 		head = head.Next();
 		if ( Empty() )
 			tail = null;
+		return true;
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
-		System.out.println("Process in sequential order tasks: A, B and C" );
+		System.out.println( "Process in sequential order tasks: A, B and C" );
 		Queue queue = new Queue();
 		queue.Add( new Task( "A" ) );
 		queue.Add( new Task( "B" ) );
 		queue.Add( new Task( "C" ) );
-		queue.Pop();
-		queue.Pop();
-		queue.Pop();
+		while ( queue.Pop() );
 	}
 }
 </pre>
 
+<pre class='w3-container' ng-show='que1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+		
+	// Definition for a Task element in a Queue
+	class Task {
+		// constructor, task represents the task to be performed
+		constructor( task ) {
+			this.task = task;	// the task to perform       
+			this.next = null; 	// the next task in the queue
+		}
+		
+		// Get the next task this element is chained to
+		GetNext() {
+			return this.next;
+		}
+		
+		// Set the next task this element is chained to
+		Next( task ) {
+			this.next = task;
+		}
+		
+		// Action to take when task is processed
+		Action() {
+			println( this.task );
+		}
+	}
+
+	// Definition for a Queue
+	class Queue {
+		// constructor
+		constructor() {
+			this.head = null;	// the head of the queue
+			this.tail = null;	// the tail of the queue
+		}
+		
+		// Check if Queue is empty
+		Empty() {
+			if ( this.head == null )
+				return true;
+			return false;
+		}
+		
+		// Add a task to the queue
+		Add( task ) {
+			// the queue is empty, set head and tail to the task
+			if ( this.Empty() ) {
+				this.head = this.tail = task;
+			}
+			// otherwise, add it as the new tail
+			else {
+				this.tail.Next( task );
+				this.tail = task;
+			}
+		}
+		
+		// Remove the top of the queue and process the task
+		Pop() {
+			// Queue is empty
+			if ( this.Empty() )
+				return false;
+				
+			// Process the task here
+			this.head.Action();
+			
+			// Move the head to the next element.
+			this.head = this.head.GetNext();
+			if ( this.Empty() )
+				this.tail = null;
+			return true;
+		}
+	}
+
+	// Test Driver
+	println("Process in sequential order tasks: A, B and C" );
+	var queue = new Queue();
+	queue.Add( new Task( "A" ) );
+	queue.Add( new Task( "B" ) );
+	queue.Add( new Task( "C" ) );
+	while ( queue.Pop() );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="que2[0] = true; que2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="que2=[true,false,false]; que2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('que2')" ng-class='que2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que2=[false,true,false]; que2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('que2')" ng-class='que2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que2=[false,false,true]; que2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('que2')" ng-class='que2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[true,false,false,false]; que2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('que2')" ng-class='que2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,true,false,false]; que2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('que2')" ng-class='que2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,false,true,false]; que2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('que2')" ng-class='que2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que2=[false,false,false,true]; que2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('que2')" ng-class='que2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='que2[0]'>
@@ -1484,7 +1576,7 @@ class Queue:
 		curr = self.head
 		prev = self.head
 		while curr != None:
-			# Find a task whose's priority is less than the new task
+			# Find a task who's priority is less than the new task
 			if task.GetPriority() > curr.GetPriority():
 				# Insert the task in front of the current task.
 				task.Next( curr )
@@ -1509,7 +1601,7 @@ class Queue:
 	def Pop( self ):
 		# Queue is empty
 		if self.Empty():
-			return
+			return False
 			
 		# Process the task here
 		self.head.Action()
@@ -1518,15 +1610,15 @@ class Queue:
 		self.head = self.head.GetNext()
 		if self.Empty():
 			self.tail = None
+		return True
 
 print("Process in sequential order tasks: B, C and A" )
 queue = Queue()
 queue.Add( Task( "A", 1 ) )
 queue.Add( Task( "B", 3 ) )
 queue.Add( Task( "C", 2 ) )
-queue.Pop()
-queue.Pop()
-queue.Pop()
+while queue.Pop():
+	pass
 </pre>
 
 <pre class='w3-container' ng-show='que2[2]'>
@@ -1596,7 +1688,7 @@ public class Queue {
 		// Start at the head of the chain to search where to insert the task
 		Task curr = head, prev = head;
 		while ( curr != null ) {
-			// Find a task whose's priority is less than the new task
+			// Find a task who's priority is less than the new task
 			if ( task.Priority() > curr.Priority() ) {
 				// Insert the task in front of the current task.
 				task.Next( curr );
@@ -1626,13 +1718,14 @@ public class Queue {
 	public void Pop() {
 		// Queue is empty
 		if ( Empty() )
-			return;
+			return false;
 			
 		// Proces the task here
 		head.Action();
 		
 		// Move the head to the next element.
 		head = head.Next();
+		return true;
 	}
 	
 	public static void main(String[] args) {
@@ -1641,11 +1734,142 @@ public class Queue {
 		queue.Add( new Task( "A", 1 ) );
 		queue.Add( new Task( "B", 3 ) );
 		queue.Add( new Task( "C", 2 ) );
-		queue.Pop();
-		queue.Pop();
-		queue.Pop();
+		while ( queue.Pop() );
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='que2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+		
+	// Definition for a Task element in a Queue
+	class Task {
+		// constructor, task represents the task to be performed
+		constructor( task, priority ) {
+			this.task = task;			// the task to perform  
+			this.priority = priority;	// the task's priority			
+			this.next = null; 			// the next task in the queue
+		}
+	
+		// Get the task's priority
+		GetPriority() {
+			return this.priority;
+		}
+	
+		// Set the task's priority
+		Priority( priority ) {
+			this.priority = priority;
+		}
+		
+		// Get the next task this element is chained to
+		GetNext() {
+			return this.next;
+		}
+		
+		// Set the next task this element is chained to
+		Next( task ) {
+			this.next = task;
+		}
+		
+		// Action to take when task is processed
+		Action() {
+			println( this.task );
+		}
+	}
+
+	// Definition for a Queue
+	class Queue {
+		// constructor
+		constructor() {
+			this.head = null;	// the head of the queue
+		}
+		
+		// Check if Queue is empty
+		Empty() {
+			if ( this.head == null )
+				return true;
+			return false;
+		}
+		
+		// Add a task to the queue
+		Add( task ) {
+			// the queue is empty, set head to the task
+			if ( this.Empty() ) {
+				this.head = task;
+			}
+			// otherwise, insert the task into the queue according to the task's priority
+			else {
+				this.Insert( task );
+			}
+		}
+		
+		// Insert a task into the queue based on priority
+		Insert( task ) {
+			// Start at the head of the chain to search where to insert the task
+			var curr = this.head;
+			var prev = this.head;
+			while ( curr != null ) {
+				// Find a task who's priority is less than the new task
+				if ( task.GetPriority() > curr.GetPriority() ) {
+					// Insert the task in front of the current task.
+					task.Next( curr );
+					
+					// If inserting in front of the head of the queue, 
+					// make the new task the head of the queue
+					if ( curr == this.head )
+						this.head = task;
+					// Otherwise, set the previous element's next to the new task
+					else {
+						prev.Next( task );
+					}
+					break;
+				}
+				
+				prev = curr;
+				curr = curr.GetNext();
+			}
+			
+			// Add to the tail (end) of the queue
+			if ( curr == null ) {
+				prev.Next( task );
+			}
+		}
+		
+		// Remove the top of the queue and process the task
+		Pop() {
+			// Queue is empty
+			if ( this.Empty() )
+				return false;
+				
+			// Process the task here
+			this.head.Action();
+			
+			// Move the head to the next element.
+			this.head = this.head.GetNext();
+			if ( this.Empty() )
+				this.tail = null;
+			return true;
+		}
+	}
+
+	// Test Driver
+	println("Process in sequential order tasks: B, C and A" );
+	var queue = new Queue();
+	queue.Add( new Task( "A", 1 ) );
+	queue.Add( new Task( "B", 3 ) );
+	queue.Add( new Task( "C", 2 ) );
+	while ( queue.Pop() );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="que3[0] = true; que3cls[0] = 'w3-black'">
@@ -1693,6 +1917,7 @@ class Queue:
 		# Add the task back to the queue
 		self.Add( task )
 
+# Test Driver
 print("Process in sequential order tasks: C, B and A" )
 queue = Queue()
 queue.Add( Task( "A", 1 ) )
@@ -1700,10 +1925,8 @@ queue.Add( Task( "B", 3 ) )
 task =  Task( "C", 2 );
 queue.Add( task );
 queue.Update( task, 4 );
-queue.Pop()
-queue.Pop()
-queue.Pop()
-	...
+while queue.Pop():
+	pass
 </pre>
 
 <pre class='w3-container' ng-show='que3[2]'>
@@ -1736,6 +1959,7 @@ public class Queue {
 		Add( task );
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
 		System.out.println("Process in priority order tasks: C, B and A" );
 		Queue queue = new Queue();
@@ -1744,11 +1968,8 @@ public class Queue {
 		Task task =  new Task( "C", 2 );
 		queue.Add( task );
 		queue.Update( task, 4 );
-		queue.Pop();
-		queue.Pop();
-		queue.Pop();
+		while ( queue.Pop() );
 	}
-	...
 }
 </pre>
 

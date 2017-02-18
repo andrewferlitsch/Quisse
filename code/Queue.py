@@ -56,7 +56,7 @@ class Queue:
 		curr = self.head
 		prev = self.head
 		while curr != None:
-			# Find a task whose's priority is less than the new task
+			# Find a task who's priority is less than the new task
 			if task.GetPriority() > curr.GetPriority():
 				# Insert the task in front of the current task.
 				task.Next( curr )
@@ -81,7 +81,7 @@ class Queue:
 	def Pop( self ):
 		# Queue is empty
 		if self.Empty():
-			return
+			return False
 			
 		# Process the task here
 		self.head.Action()
@@ -89,7 +89,8 @@ class Queue:
 		# Move the head to the next element.
 		self.head = self.head.GetNext()
 		if self.Empty():
-			self.tail = None	
+			self.tail = None
+		return True
 			
 	# Update the priority of the task and re-sort the queue
 	def Update( self, task, priority ):
@@ -112,6 +113,7 @@ class Queue:
 		# Add the task back to the queue
 		self.Add( task )
 
+# Test Driver
 print("Process in sequential order tasks: C, B and A" )
 queue = Queue()
 queue.Add( Task( "A", 1 ) )
@@ -119,7 +121,6 @@ queue.Add( Task( "B", 3 ) )
 task =  Task( "C", 2 );
 queue.Add( task );
 queue.Update( task, 4 );
-queue.Pop()
-queue.Pop()
-queue.Pop()
+while queue.Pop():
+	pass
 

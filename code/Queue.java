@@ -1,8 +1,8 @@
 // Definition for a Task element in a Queue
 class Task {
-	private Object task;
-	private Task   next = null;
-	private int    priority;
+	private Object task;		// the task to perform
+	private Task   next = null;	// the next task in the queue
+	private int    priority;	// the task's priority
 	
 	// constructor, task represents the task to be performed
 	public Task( Object task, int priority ) {
@@ -64,7 +64,7 @@ public class Queue {
 		// Start at the head of the chain to search where to insert the task
 		Task curr = head, prev = head;
 		while ( curr != null ) {
-			// Find a task whose's priority is less than the new task
+			// Find a task who's priority is less than the new task
 			if ( task.Priority() > curr.Priority() ) {
 				// Insert the task in front of the current task.
 				task.Next( curr );
@@ -131,6 +131,7 @@ public class Queue {
 		Add( task );
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
 		Queue queue = new Queue();
 		queue.Add( new Task( "A", 1 ) );
