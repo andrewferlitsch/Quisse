@@ -104,16 +104,27 @@ class DynamicArray:
 		
 		self.size += 1
 		return True
-		
+
+# Test Driver			
 array = DynamicArray()
-array.Add(1)
-array.Add(3)
-array.Add(4)
-array.Insert(0,2)
+for i in range( 0, 7 ):
+	array.Add(i)
+
+print("Expect 0,1,2,3,4,5,6")
 for i in range( 0, array.Size() ):
-	item = array.Get(i)
-	print( item )
-array.Delete(3)
+	print( array.Get(i) )
+
+array.Delete( 4 )
+print("Expect 0,1,2,3,5,6")
 for i in range( 0, array.Size() ):
-	item = array.Get(i)
-	print( item )
+	print( array.Get(i) )
+	
+array.Insert( 3, 4 )
+print("Expect 0,1,2,3,4,5,6")
+for i in range( 0, array.Size() ):
+	print( array.Get(i) )
+
+array.Delete( 0 )
+print("Expect 1,2,3,4,5,6")
+for i in range( 0, array.Size() ):
+	print( array.Get(i) )

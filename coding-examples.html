@@ -465,19 +465,20 @@ for number in range( 0, 10 ):
 
 <pre class='w3-container' ng-show='fib1[2]'>
 public class fibonacci {
+	// Recursive Solution
+	public static int Fibonacci( int n) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
+	}
+	
+	// Test Driver
 	public static void main( String args[] ) {
 		System.out.println( "Fibonacci Sequence to F(10)");
 
 		for ( int number = 0; number < 10; number++ )
 			System.out.println( Fibonacci( number ) );
 
-	}
-	
-	// Recursive Solution
-	public static int Fibonacci( int n) {
-		if ( n == 0 ) return 0;
-		if ( n == 1 ) return 1;
-		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
 	}
 }
 </pre>
@@ -498,6 +499,7 @@ $(function() {
 		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
 	}
 	
+	// Test Driver
 	println( "Fibonacci Sequence to F(10)");
 	for ( var number = 0; number < 10; number++ )
 		println( Fibonacci( number ) );
@@ -558,13 +560,6 @@ for number in range( 0, 10 ):
 
 <pre class='w3-container' ng-show='fib2[2]'>
 public class fibonacci {
-	public static void main( String args[] ) {
-		System.out.println( "Fibonacci Sequence to F(10)");
-
-		for ( int number = 0; number < 10; number++ )
-			System.out.println( Fibonacci( number ) );
-	}
-	
 	// Iterative Solution	
 	public static int Fibonacci( int n ) {
 		if ( n == 0 ) return 0;
@@ -579,6 +574,14 @@ public class fibonacci {
 			f_minus_1 = fn;                     // next F(n-1)
 		}
 		return fn;
+	}
+	
+	// Test Driver
+	public static void main( String args[] ) {
+		System.out.println( "Fibonacci Sequence to F(10)");
+
+		for ( int number = 0; number < 10; number++ )
+			System.out.println( Fibonacci( number ) );
 	}
 }
 </pre>
@@ -608,6 +611,7 @@ $(function() {
 		return fn;
 	}
 	
+	// Test Driver
 	println( "Fibonacci Sequence to F(10)");
 	for ( var number = 0; number < 10; number++ )
 		println( FibonacciIterative( number ) );
@@ -628,9 +632,10 @@ as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and inde
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="dyn1[0] = true; dyn1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="dyn1=[true,false,false]; dyn1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('dyn1')" ng-class='dyn1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,true,false]; dyn1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('dyn1')" ng-class='dyn1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,false,true]; dyn1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('dyn1')" ng-class='dyn1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[true,false,false,false]; dyn1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('dyn1')" ng-class='dyn1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,true,false,false]; dyn1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('dyn1')" ng-class='dyn1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,false,true,false]; dyn1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('dyn1')" ng-class='dyn1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,false,false,true]; dyn1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('dyn1')" ng-class='dyn1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='dyn1[0]'>
@@ -719,6 +724,15 @@ class DynamicArray:
 			curr = curr.next
 			
 		return curr.value
+
+# Test Driver
+array = DynamicArray()
+for i in range( 0, 7 ):
+	array.Add(i)
+
+print("Expect 0,1,2,3,4,5,6")
+for i in range( 0, array.Size() ):
+	print( array.Get(i) )
 </pre>
 
 <pre class='w3-container' ng-show='dyn1[2]'>
@@ -737,7 +751,7 @@ class Element {
 class DynamicArray {
 	private Element head = null;	// Head of the Array
 	private Element tail = null;	// Tail of the Array
-	private int     size = 0;
+	private int     size = 0;		// Number of elements in the Array
 	
 	// The size (number of elements) of the array
 	public int Size() {
@@ -777,12 +791,106 @@ class DynamicArray {
 		return curr.value;
 	}
 }
+
+// Test Driver
+public class dynamic {
+	public static void main(String[] args) {
+		DynamicArray d = new DynamicArray();
+		for ( int i = 0; i < 7; i++ )
+			d.Add(i);
+		
+		System.out.println("Expect 0,1,2,3,4,5,6");
+		for ( int i = 0; i < d.Size(); i++ )
+			System.out.println( (int) d.Get(i) );
+}
+</pre>
+
+<pre class='w3-container' ng-show='dyn1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+		
+	// Definition for an element in the dynamic array
+	class Element {
+		// Constructor
+		constructor( value ) {
+			this.value = value;	// Element value
+			this.next  = null;	// Next element in the array
+		}
+	}
+
+	// Definition for a Dynamic Array
+	class DynamicArray {
+		// constructor
+		constructor() {
+			this.head = null;	// Head of the Array
+			this.tail = null;	// Tail of the Array
+			this.size = 0;		// Number of elements in the array
+		}
+	
+		// The size (number of elements) of the array
+		Size() {
+			return this.size;
+		}
+	
+		// Add an element to the end of the dynamic array
+		Add( value ) {
+			var e = new Element( value );
+			
+			// Set the next element of the previous tail to the new element
+			if ( this.tail != null ) 
+				this.tail.next = e;
+				
+			// set the current tail to the new element
+			this.tail = e;
+			
+			// If there is no head (first element), set the head to the new element.
+			if ( this.head == null )
+				this.head = e;
+				
+			// Increment the size of the array
+			this.size++;
+		}
+
+		// Get the value at the corresponding index
+		Get( index ) {
+			// Check for out of bounds condition
+			if ( index > this.size - 1 || index < 0 )
+				return null;
+				
+			// Step (linear) to the index position
+			var curr = this.head;
+			for ( var i = 0; i < index; i++ )
+				curr = curr.next;
+				
+			return curr.value;
+		}
+	}
+
+	// Test Driver
+	var d = new DynamicArray();
+	for ( var i = 0; i < 7; i++ )
+		d.Add(i);
+
+	println("Expect 0,1,2,3,4,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="dyn2[0] = true; dyn2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="dyn2=[true,false,false]; dyn2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('dyn2')" ng-class='dyn2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,true,false]; dyn2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('dyn2')" ng-class='dyn2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,false,true]; dyn2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('dyn2')" ng-class='dyn2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[true,false,false,false]; dyn2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('dyn2')" ng-class='dyn2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,true,false,false]; dyn2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('dyn2')" ng-class='dyn2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,false,true,false]; dyn2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('dyn2')" ng-class='dyn2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,false,false,true]; dyn2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('dyn2')" ng-class='dyn2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='dyn2[0]'>
@@ -878,6 +986,26 @@ class DynamicArray:
 		
 		self.size += 1
 		return True
+
+# Test Driver		
+array = DynamicArray()
+for i in range( 0, 7 ):
+	array.Add(i)
+
+array.Delete( 4 )
+print("Expect 0,1,2,3,5,6")
+for i in range( 0, array.Size() ):
+	print( array.Get(i) )
+	
+array.Insert( 3, 4 )
+print("Expect 0,1,2,3,4,5,6")
+for i in range( 0, array.Size() ):
+	print( array.Get(i) )
+
+array.Delete( 0 )
+print("Expect 1,2,3,4,5,6")
+for i in range( 0, array.Size() ):
+	print( array.Get(i) )
 </pre>
 
 <pre class='w3-container' ng-show='dyn2[2]'>
@@ -944,8 +1072,136 @@ class DynamicArray {
 		size++;
 		return true;
 	}
-	....
 }
+
+// Test Driver
+public class dynamic {
+	public static void main(String[] args) {
+		DynamicArray d = new DynamicArray();
+		for ( int i = 0; i < 7; i++ )
+			d.Add(i);
+		
+		System.out.println("Expect 0,1,2,3,4,5,6");
+		for ( int i = 0; i < d.Size(); i++ )
+			System.out.println( (int) d.Get(i) );
+		
+		d.Delete( 4 );	
+		System.out.println("Expect 0,1,2,3,5,6");
+		for ( int i = 0; i < d.Size(); i++ )
+			System.out.println( (int) d.Get(i) );
+		
+		d.Insert( 2, 4 );
+		for ( int i = 0; i < d.Size(); i++ )
+			System.out.println( (int) d.Get(i) );
+		
+		d.Delete( 0 );	
+		for ( int i = 0; i < d.Size(); i++ )
+			System.out.println( (int) d.Get(i) );
+	}
+}
+</pre>
+
+<pre class='w3-container' ng-show='dyn2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	...
+
+	// Definition for a Dynamic Array
+	class DynamicArray {
+		...
+		Delete( index ) {
+			// Check for out of bounds condition
+			if ( index > this.size - 1 || index < 0 )
+				return false;
+		
+			// Remove the head of the dynamic array
+			if ( index == 0 ) {
+				// Set the head to the next head
+				this.head = this.head.next;
+			
+				// If the array is now empty, set the tail to null
+				if ( --this.size == 0 )
+					this.tail = null;
+			
+				return true;
+			}
+		
+			// Find the element at the specified index, and remember the element before it.
+			var curr = this.head;
+			var prev = null;
+			for ( var i = 0; i < index; i++ ) {
+				prev = curr;
+				curr = curr.next;
+			}
+		
+			// Set the next pointer of the previous element to the next pointer of the current element,
+			// thus dropping this element which is between them.
+			prev.next = curr.next;
+		
+			// We deleted the tail. Set the current tail to the previous element.
+			if ( --this.size == index )
+				this.tail = prev;
+			
+			return true;
+		}
+
+		Insert( index, value ) {
+			// Check for out of bounds condition
+			if ( index > this.size - 1 || index < 0 )
+				return false;
+			
+			// Adding to the tail
+			if ( index == this.size-1 ) {
+				Add( value );
+				return true;
+			}
+		
+			// Find the element at the index
+			var curr = this.head;
+			for ( var i = 0; i < index; i++ ) 
+				curr = curr.next;
+
+			// Insert (after) between the current element and the next
+			var e = new Element( value );
+			e.next = curr.next;
+			curr.next = e;
+		
+			this.size++;
+			return true;
+		}
+	}
+
+	// Test Driver
+	var d = new DynamicArray();
+	for ( var i = 0; i < 7; i++ )
+		d.Add(i);
+		
+	d.Delete( 4 );	
+	println("Expect 0,1,2,3,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+		
+	d.Insert( 3, 4 );
+	println("Expect 0,1,2,3,4,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+		
+	d.Delete( 0 );	
+	println("Expect 1,2,3,4,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+	
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="queue"></a>

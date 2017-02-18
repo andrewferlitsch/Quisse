@@ -117,33 +117,23 @@ class DynamicArray {
 public class dynamic {
 	public static void main(String[] args) {
 		DynamicArray d = new DynamicArray();
-		d.Add(1);
-		d.Add(2);
-		d.Add(3);
-		d.Add(5);
-		d.Add(6);
-		d.Add(7);
+		for ( int i = 0; i < 7; i++ )
+			d.Add(i);
 		
+		System.out.println("Expect 0,1,2,3,4,5,6");
 		for ( int i = 0; i < d.Size(); i++ )
 			System.out.println( (int) d.Get(i) );
 		
 		d.Delete( 4 );	
-		
-		for ( int i = 0; i < d.Size(); i++ )
-			System.out.println( (int) d.Get(i) );
-		
-		d.Delete( 4 );	
-		
+		System.out.println("Expect 0,1,2,3,5,6");
 		for ( int i = 0; i < d.Size(); i++ )
 			System.out.println( (int) d.Get(i) );
 		
 		d.Insert( 2, 4 );
-		
 		for ( int i = 0; i < d.Size(); i++ )
 			System.out.println( (int) d.Get(i) );
 		
 		d.Delete( 0 );	
-		
 		for ( int i = 0; i < d.Size(); i++ )
 			System.out.println( (int) d.Get(i) );
 	}

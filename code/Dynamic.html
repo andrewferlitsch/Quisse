@@ -1,0 +1,153 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Definition for an element in the dynamic array
+	class Element {
+		// Constructor
+		constructor( value ) {
+			this.value = value;	// Element value
+			this.next  = null;	// Next element in the array
+		}
+	}
+
+	// Definition for a Dynamic Array
+	class DynamicArray {
+		// constructor
+		constructor() {
+			this.head = null;	// Head of the Array
+			this.tail = null;	// Tail of the Array
+			this.size = 0;		// Number of elements in the array
+		}
+	
+		// The size (number of elements) of the array
+		Size() {
+			return this.size;
+		}
+	
+		// Add an element to the end of the dynamic array
+		Add( value ) {
+			var e = new Element( value );
+			
+			// Set the next element of the previous tail to the new element
+			if ( this.tail != null ) 
+				this.tail.next = e;
+				
+			// set the current tail to the new element
+			this.tail = e;
+			
+			// If there is no head (first element), set the head to the new element.
+			if ( this.head == null )
+				this.head = e;
+				
+			// Increment the size of the array
+			this.size++;
+		}
+
+		// Get the value at the corresponding index
+		Get( index ) {
+			// Check for out of bounds condition
+			if ( index > this.size - 1 || index < 0 )
+				return null;
+				
+			// Step (linear) to the index position
+			var curr = this.head;
+			for ( var i = 0; i < index; i++ )
+				curr = curr.next;
+				
+			return curr.value;
+		}
+		
+		Delete( index ) {
+			// Check for out of bounds condition
+			if ( index > this.size - 1 || index < 0 )
+				return false;
+		
+			// Remove the head of the dynamic array
+			if ( index == 0 ) {
+				// Set the head to the next head
+				this.head = this.head.next;
+			
+				// If the array is now empty, set the tail to null
+				if ( --this.size == 0 )
+					this.tail = null;
+			
+				return true;
+			}
+		
+			// Find the element at the specified index, and remember the element before it.
+			var curr = this.head;
+			var prev = null;
+			for ( var i = 0; i < index; i++ ) {
+				prev = curr;
+				curr = curr.next;
+			}
+		
+			// Set the next pointer of the previous element to the next pointer of the current element,
+			// thus dropping this element which is between them.
+			prev.next = curr.next;
+		
+			// We deleted the tail. Set the current tail to the previous element.
+			if ( --this.size == index )
+				this.tail = prev;
+			
+			return true;
+		}
+
+		Insert( index, value ) {
+			// Check for out of bounds condition
+			if ( index > this.size - 1 || index < 0 )
+				return false;
+			
+			// Adding to the tail
+			if ( index == this.size-1 ) {
+				Add( value );
+				return true;
+			}
+		
+			// Find the element at the index
+			var curr = this.head;
+			for ( var i = 0; i < index; i++ ) 
+				curr = curr.next;
+
+			// Insert (after) between the current element and the next
+			var e = new Element( value );
+			e.next = curr.next;
+			curr.next = e;
+		
+			this.size++;
+			return true;
+		}
+	}
+
+	var d = new DynamicArray();
+	for ( var i = 0; i < 7; i++ )
+		d.Add(i);
+		
+	println("Expect 0,1,2,3,4,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+		
+	d.Delete( 4 );	
+	println("Expect 0,1,2,3,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+		
+	d.Insert( 3, 4 );
+	println("Expect 0,1,2,3,4,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+		
+	d.Delete( 0 );	
+	println("Expect 1,2,3,4,5,6");
+	for ( var i = 0; i < d.Size(); i++ )
+		println( d.Get(i) );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
