@@ -113,9 +113,10 @@ Prime numbers are numbers that are only divisible by one and itself. The algorit
 straight forward iterative algorithm.
 </p>
 <ul class="w3-navbar w3-light-grey" ng-init="pri1[0] = true; pri1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="pri1=[true,false,false]; pri1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('pri1')" ng-class='pri1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri1=[false,true,false]; pri1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('pri1')" ng-class='pri1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri1=[false,false,true]; pri1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('pri1')" ng-class='pri1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[true,false,false,false]; pri1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('pri1')" ng-class='pri1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,true,false,false]; pri1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('pri1')" ng-class='pri1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,false,true,false]; pri1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('pri1')" ng-class='pri1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri1=[false,false,false,true]; pri1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('pri1')" ng-class='pri1cls[3]'>Javascript</a></li>
 </ul>
 
 <div  ng-show='pri1[0]'>
@@ -177,10 +178,45 @@ public class prime {
 }
 </pre>
 
+<pre class='w3-container' ng-show='pri1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	println( "Prime Numbers between 1 and 100" );
+
+	// Prime Numbers are numbers only divisible by 1 and itself.
+	println( "1" );
+	println( "2" );
+		
+	// Primes for numbers above 2
+	for ( var number = 3; number <=100; number++ ) {
+		// Attempt to divide this number by every number between 2 and one less than itself
+		var div = 2;
+		for ( /**/; div < number; div++ ) {
+			// use the mod function to see if their is a remainder in the division
+			if ( ( number % div ) == 0 )
+				break;
+		}
+		if ( div == number )
+			println(number);
+	}
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="pri2[0] = true; pri2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="pri2=[true,false,false]; pri2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('pri2')" ng-class='pri2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri2=[false,true,false]; pri2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('pri2')" ng-class='pri2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri2=[false,false,true]; pri2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('pri2')" ng-class='pri2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[true,false,false,false]; pri2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('pri2')" ng-class='pri2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,true,false,false]; pri2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('pri2')" ng-class='pri2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,false,true,false]; pri2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('pri2')" ng-class='pri2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri2=[false,false,false,true]; pri2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('pri2')" ng-class='pri2cls[3]'>Javascript</a></li>
 </ul>
 
 <div  ng-show='pri2[0]'>
@@ -243,10 +279,46 @@ public class prime {
 }
 </pre>
 
+<pre class='w3-container' ng-show='pri2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	println( "Prime Numbers between 1 and 100" );
+
+	// Prime Numbers are numbers only divisible by 1 and itself.
+	println( "1" );
+	println( "2" );
+	println( "3" );
+
+	// Primes for numbers above 5
+	for ( var number = 5; number <=100; number += 2 ) {
+		var div = 3;
+		// Attempt to divide this number by every odd number between 3 and one less than itself
+		for ( /**/; div < number; div += 2 ) {
+			// use the mod function to see if their is a remainder in the division
+			if ( ( number % div ) == 0 )
+				break;
+		}
+		if ( div == number )
+			println(number);
+	}
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="pri3[0] = true; pri3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="pri3=[true,false,false]; pri3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('pri3')" ng-class='pri3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri3=[false,true,false]; pri3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('pri3')" ng-class='pri3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="pri3=[false,false,true]; pri3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('pri3')" ng-class='pri3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[true,false,false,false]; pri3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('pri3')" ng-class='pri3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,true,false,false]; pri3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('pri3')" ng-class='pri3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,false,true,false]; pri3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('pri3')" ng-class='pri3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="pri3=[false,false,false,true]; pri3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Java('pri3')" ng-class='pri3cls[3]'>Javascript</a></li>
 </ul>
 
 <div  ng-show='pri3[0]'>
@@ -307,6 +379,42 @@ public class prime {
 }
 </pre>
 
+<pre class='w3-container' ng-show='pri3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	println( "Prime Numbers between 1 and 100" );
+
+	// Prime Numbers are numbers only divisible by 1 and itself.
+	println( "1" );
+	println( "2" );
+	println( "3" );
+
+	// Primes for numbers above 5
+	for ( var number = 5; number <=100; number += 2 ) {
+		var div = 3;
+		var third = ( number / 3 );	// calculate one-third of the number
+		// Attempt to divide this number by every number between 3 and one third of the number
+		for ( /**/; div <= third; div += 2) {
+			// use the mod function to see if their is a remainder in the division
+			if ( ( number % div ) == 0 )
+				break;
+		}
+		if ( div >= third )
+			println(number);
+	}
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <a name="fibonacci"></a>
 <h3>2. Fibonacci Sequence</h3>
 <p>
@@ -316,9 +424,10 @@ solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very shor
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="fib1[0] = true; fib1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="fib1=[true,false,false]; fib1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('fib1')" ng-class='fib1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib1=[false,true,false]; fib1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('fib1')" ng-class='fib1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib1=[false,false,true]; fib1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('fib1')" ng-class='fib1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[true,false,false,false]; fib1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('fib1')" ng-class='fib1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,true,false,false]; fib1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('fib1')" ng-class='fib1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,false,true,false]; fib1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('fib1')" ng-class='fib1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib1=[false,false,false,true]; fib1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('fib1')" ng-class='fib1cls[3]'>Javascript</a></li>
 </ul>
 
 <div  ng-show='fib1[0]'>
@@ -373,10 +482,37 @@ public class fibonacci {
 }
 </pre>
 
+<pre class='w3-container' ng-show='fib1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+
+	// Recursive Solution
+	function Fibonacci( n ) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
+	}
+	
+	println( "Fibonacci Sequence to F(10)");
+	for ( var number = 0; number < 10; number++ )
+		println( Fibonacci( number ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="fib2[0] = true; fib2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="fib2=[true,false,false]; fib2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('fib2')" ng-class='fib2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib2=[false,true,false]; fib2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('fib2')" ng-class='fib2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="fib2=[false,false,true]; fib2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('fib2')" ng-class='fib2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[true,false,false,false]; fib2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('fib2')" ng-class='fib2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,true,false,false]; fib2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('fib2')" ng-class='fib2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,false,true,false]; fib2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('fib2')" ng-class='fib2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="fib2=[false,false,false,true]; fib2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('fib2')" ng-class='fib2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='fib2[0]'>
@@ -445,6 +581,41 @@ public class fibonacci {
 		return fn;
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='fib2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	// Iterative Solution	
+	function FibonacciIterative( n ) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+
+		var fn	      = 0;	// current value for F(n)		
+		var f_minus_2 = 0;	// current value of F(n-2)
+		var f_minus_1 = 1;	// current value of F(n-1)
+		for ( var i = 2; i <= n; i++ ) {
+			fn        = f_minus_1 + f_minus_2;  // F(n) = F(n-1) + F(n-2)
+			f_minus_2 = f_minus_1;              // next F(n-2)
+			f_minus_1 = fn;                     // next F(n-1)
+		}
+		return fn;
+	}
+	
+	println( "Fibonacci Sequence to F(10)");
+	for ( var number = 0; number < 10; number++ )
+		println( FibonacciIterative( number ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="dynamic"></a>
@@ -5201,6 +5372,9 @@ technical.controller( 'tabCtrl', function( $scope ) {
 	}
 	$scope.Java = function( name ) {
 		Timestamp( 'coding', name, 'java' );
+	}
+	$scope.Javascript = function( name ) {
+		Timestamp( 'coding', name, 'js' );
 	}
 })
 </script>

@@ -1,0 +1,43 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Recursive Solution
+	function Fibonacci( n ) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+		return Fibonacci( n - 1 ) + Fibonacci( n - 2 );
+	}
+	
+	println( "Fibonacci Sequence to F(10)");
+	for ( var number = 0; number < 10; number++ )
+		println( Fibonacci( number ) );
+	
+	// Iterative Solution	
+	function FibonacciIterative( n ) {
+		if ( n == 0 ) return 0;
+		if ( n == 1 ) return 1;
+
+		var fn	      = 0;	// current value for F(n)		
+		var f_minus_2 = 0;	// current value of F(n-2)
+		var f_minus_1 = 1;	// current value of F(n-1)
+		for ( var i = 2; i <= n; i++ ) {
+			fn        = f_minus_1 + f_minus_2;  // F(n) = F(n-1) + F(n-2)
+			f_minus_2 = f_minus_1;              // next F(n-2)
+			f_minus_1 = fn;                     // next F(n-1)
+		}
+		return fn;
+	}
+	
+	println( "Fibonacci Sequence to F(10)");
+	for ( var number = 0; number < 10; number++ )
+		println( FibonacciIterative( number ) );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

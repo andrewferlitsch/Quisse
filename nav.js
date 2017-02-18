@@ -6,6 +6,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 		restrict: 'A',
 		template: "<div style='text-align: center'>" +
 				  "<h1>The Technical Interview</h1>" +
+				  "<img src='quisse.png'/>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/'>Flashcard</a></li>" +

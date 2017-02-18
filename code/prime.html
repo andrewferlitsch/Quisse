@@ -1,0 +1,72 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+	
+	println( "Prime Numbers between 1 and 100" );
+
+	// Prime Numbers are numbers only divisible by 1 and itself.
+	println( "1" );
+	println( "2" );
+		
+	// Primes for numbers above 2
+	for ( var number = 3; number <=100; number++ ) {
+		// Attempt to divide this number by every number between 2 and one less than itself
+		var div = 2;
+		for ( /**/; div < number; div++ ) {
+			// use the mod function to see if their is a remainder in the division
+			if ( ( number % div ) == 0 )
+				break;
+		}
+		if ( div == number )
+			println(number);
+	}
+	
+	println( "Prime Numbers between 1 and 100" );
+
+	// Prime Numbers are numbers only divisible by 1 and itself.
+	println( "1" );
+	println( "2" );
+	println( "3" );
+
+	// Primes for numbers above 5
+	for ( var number = 5; number <=100; number += 2 ) {
+		var div = 3;
+		// Attempt to divide this number by every odd number between 3 and one less than itself
+		for ( /**/; div < number; div += 2 ) {
+			// use the mod function to see if their is a remainder in the division
+			if ( ( number % div ) == 0 )
+				break;
+		}
+		if ( div == number )
+			println(number);
+	}
+	
+	println( "Prime Numbers between 1 and 100");
+
+	// Prime Numbers are numbers only divisible by 1 and itself.
+	println( "1" );
+	println( "2" );
+	println( "3" );
+
+	// Primes for numbers above 5
+	for ( var number = 5; number <=100; number += 2 ) {
+		var div = 3;
+		var third = ( number / 3 );	// calculate one-third of the number
+		// Attempt to divide this number by every number between 3 and one third of the number
+		for ( /**/; div <= third; div += 2) {
+			// use the mod function to see if their is a remainder in the division
+			if ( ( number % div ) == 0 )
+				break;
+		}
+		if ( div >= third )
+			println(number);
+	}
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
