@@ -2126,6 +2126,7 @@ class Stack:
 		self.top = self.top.GetNext()
 		return True
 
+# Test Driver
 print("Process tasks in order: A, B and C" )
 stack = Stack()
 stack.Push( Task( "C" ) )
@@ -2195,6 +2196,7 @@ public class Stack {
 		return true;
 	}
 
+	// Test Driver
 	public static void main(String[] args) {
 		System.out.println("Process tasks in order: A, B and C" );
 		Stack stack = new Stack();
@@ -2276,6 +2278,7 @@ $(function() {
 		}
 	}
 
+	// Test Driver
 	println("Process tasks in order: A, B and C" );
 	var stack = new Stack();
 	stack.Push( new Task( "C" ) );
@@ -2290,9 +2293,10 @@ $(function() {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="stk2[0] = true; stk2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="stk2=[true,false,false]; stk2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('stk2')" ng-class='stk2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk2=[false,true,false]; stk2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('stk2')" ng-class='stk2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk2=[false,false,true]; stk2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('stk2')" ng-class='stk2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[true,false,false,false]; stk2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('stk2')" ng-class='stk2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,true,false,false]; stk2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('stk2')" ng-class='stk2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,false,true,false]; stk2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('stk2')" ng-class='stk2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk2=[false,false,false,true]; stk2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('stk2')" ng-class='stk2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='stk2[0]'>
@@ -2436,6 +2440,7 @@ class StackChain:
 		# return the task that was popped
 		return task
 
+# Test Driver
 print("Process tasks in order: 6, 5, 4, 3, 2, 1, 0" )
 stack = StackChain( 3 );
 for i in range( 0, 7 ):
@@ -2467,7 +2472,7 @@ public class StackChain {
 	private Task top    = null;      // top of the stack
 	private Task bottom = null;      // bottom of the stack
 	private final int max;           // maximum size of the stack
-	private int size;                // current size of the stack
+	private int size = 0;            // current size of the stack
 	private StackChain chain = null; // next stack in the chain
 	
 	// Constructor: instantiate a stack in a chain, specifying the maximum size of the stack.
@@ -2550,6 +2555,7 @@ public class StackChain {
 		return task;
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
 		System.out.println("Process tasks in order: 6, 5, 4, 3, 2, 1, 0" );
 		StackChain stack = new StackChain( 3 );
@@ -2559,6 +2565,137 @@ public class StackChain {
 			stack.Pop().Action();
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='stk2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	// Definition for a Task element in a Stack
+	class Task {
+		// constructor, task represents the task to be performed
+		constructor( task ) {
+			this.task = task;	// the task to perform
+			this.next = null;	// the next task in the stack
+			this.prev = null; 	// the previous task in the stack
+		}
+		...
+		
+		// Get the previous task this element is chained to
+		GetPrev() {
+			return this.prev;
+		}
+		
+		// Set the previous task this element is chained to
+		Prev( task ) {
+			this.prev = task;
+		}
+	}
+
+	// Definition for a Chain of Stacks
+	class StackChain {        
+		// Constructor: instantiate a stack in a chain, specifying the maximum size of the stack.
+		constructor( max ) {
+			this.max 	= max;		// maximum size of the stack
+			this.size   = 0;		// current size of the stack
+			this.top    = null;     // top of the stack
+			this.bottom = null;     // bottom of the stack
+			this.chain  = null; 	// next stack in the chain
+		}
+		
+		// Check if the Stack is empty
+		Empty() {
+			if ( this.top != null )
+				return false;
+			return true;
+		}
+		
+		// Push the task to the top of the stack
+		Push( task ) {
+			// Set the task next pointer to the current top
+			task.Next( this.top );
+			
+			// Chain the current top back to the task
+			if ( this.top != null )
+				this.top.Prev( task );
+				
+			// Set the top to this task
+			this.top = task;
+			
+			// only element on the stack, set the bottom to the top
+			if ( ++this.size == 1 )
+				this.bottom = this.top;
+				
+			// overflowed the maximum size of the stack
+			if ( this.size > this.max ) {
+				// Create a new stack in the chain of the same maximum size
+				if ( this.chain == null )
+					this.chain = new StackChain( this.max );
+				
+				// Push the bottom of this stack onto the top of the next stack in the chain
+				this.chain.Push( this.bottom );
+				
+				// Remove the bottom by setting the bottom to the previous element from the bottom
+				this.bottom = this.bottom.GetPrev();
+			}
+		}
+		
+		// Pop the task from the top of the stack
+		Pop() {
+			// Stack is Empty
+			if ( this.Empty() )
+				return null;
+				
+			// The task that is being popped from the stack
+			var task = this.top;
+			
+			// Stack is empty
+			if ( --this.size == 0 )
+				this.top = this.bottom = null;
+			else {
+				// Move the top to the current top's next pointer.
+				this.top = this.top.GetNext();
+				
+				// There is a another stack chained to this stack
+				if ( this.chain != null ) {
+					// Pop the top of the stack chained to this stack
+					var move = this.chain.Pop();
+					
+					// Add this task to the bottom of the stack
+					this.bottom.Next( move );
+					// Set the task's next to null
+					task.Next( null );
+					// Set the task as the new bottom of the stack
+					this.bottom = move;
+					
+					// If the stack chained to this one is empty, set the chain pointer to null
+					if ( this.chain.Empty() )
+						this.chain = null;
+				}
+			}
+			
+			// return the task that was popped
+			return task;
+		}
+	}
+	
+	// Test Driver
+	println( "Process tasks in order: 6, 5, 4, 3, 2, 1, 0" );
+	var stack = new StackChain( 3 );
+	for ( var i = 0; i < 7; i++ )
+		stack.Push( new Task( i ) );
+	for ( var i = 0; i < 7; i++ )
+		stack.Pop().Action();
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="btree"></a>

@@ -1,7 +1,8 @@
-// Definition for a Task element in a Queue
+// Definition for a Task element in a Stack
 class Task {
 	private Object task;        // the task to perform
-	private Task   next = null; // the next task in the queue
+	private Task   next = null; // the next task in the stack
+	private Task   prev = null; // the previous task in the stack
 
 	// constructor, task represents the task to be performed
 	public Task( Object task ) {
@@ -17,14 +18,7 @@ class Task {
 	public void Next( Task task ) {
 		next = task;
 	}
-	
-	// Action to take when task is processed
-	public void Action() {
-		System.out.println( task );
-	}
-	
-	private Task   prev = null; // the previous task in the stack
-	
+
 	// Get the previous task this element is chained to
 	public Task Prev() {
 		return prev;
@@ -34,6 +28,11 @@ class Task {
 	public void Prev( Task task ) {
 		prev = task;
 	}
+	
+	// Action to take when task is processed
+	public void Action() {
+		System.out.println( task );
+	}
 }
 
 // Definition for a Chain of Stacks
@@ -41,7 +40,7 @@ public class StackChain {
 	private Task top    = null;      // top of the stack
 	private Task bottom = null;      // bottom of the stack
 	private final int max;           // maximum size of the stack
-	private int size;                // current size of the stack
+	private int size = 0;            // current size of the stack
 	private StackChain chain = null; // next stack in the chain
 	
 	// Constructor: instantiate a stack in a chain, specifying the maximum size of the stack.

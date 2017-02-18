@@ -1,0 +1,142 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+	
+	// Definition for a Task element in a Stack
+	class Task {
+		// constructor, task represents the task to be performed
+		constructor( task ) {
+			this.task = task;	// the task to perform
+			this.next = null;	// the next task in the stack
+			this.prev = null; 	// the previous task in the stack
+		}
+		
+		// Get the next task this element is chained to
+		GetNext() {
+			return this.next;
+		}
+		
+		// Set the next task this element is chained to
+		Next( task ) {
+			this.next = task;
+		}
+
+		// Get the previous task this element is chained to
+		GetPrev() {
+			return this.prev;
+		}
+		
+		// Set the previous task this element is chained to
+		Prev( task ) {
+			this.prev = task;
+		}
+		
+		// Action to take when task is processed
+		Action() {
+			println( this.task );
+		}
+	}
+
+	// Definition for a Chain of Stacks
+	class StackChain {        
+		// Constructor: instantiate a stack in a chain, specifying the maximum size of the stack.
+		constructor( max ) {
+			this.max 	= max;		// maximum size of the stack
+			this.size   = 0;		// current size of the stack
+			this.top    = null;     // top of the stack
+			this.bottom = null;     // bottom of the stack
+			this.chain  = null; 	// next stack in the chain
+		}
+		
+		// Check if the Stack is empty
+		Empty() {
+			if ( this.top != null )
+				return false;
+			return true;
+		}
+		
+		// Push the task to the top of the stack
+		Push( task ) {
+			// Set the task next pointer to the current top
+			task.Next( this.top );
+			
+			// Chain the current top back to the task
+			if ( this.top != null )
+				this.top.Prev( task );
+				
+			// Set the top to this task
+			this.top = task;
+			
+			// only element on the stack, set the bottom to the top
+			if ( ++this.size == 1 )
+				this.bottom = this.top;
+				
+			// overflowed the maximum size of the stack
+			if ( this.size > this.max ) {
+				// Create a new stack in the chain of the same maximum size
+				if ( this.chain == null )
+					this.chain = new StackChain( this.max );
+				
+				// Push the bottom of this stack onto the top of the next stack in the chain
+				this.chain.Push( this.bottom );
+				
+				// Remove the bottom by setting the bottom to the previous element from the bottom
+				this.bottom = this.bottom.GetPrev();
+			}
+		}
+		
+		// Pop the task from the top of the stack
+		Pop() {
+			// Stack is Empty
+			if ( this.Empty() )
+				return null;
+				
+			// The task that is being popped from the stack
+			var task = this.top;
+			
+			// Stack is empty
+			if ( --this.size == 0 )
+				this.top = this.bottom = null;
+			else {
+				// Move the top to the current top's next pointer.
+				this.top = this.top.GetNext();
+				
+				// There is a another stack chained to this stack
+				if ( this.chain != null ) {
+					// Pop the top of the stack chained to this stack
+					var move = this.chain.Pop();
+					
+					// Add this task to the bottom of the stack
+					this.bottom.Next( move );
+					// Set the task's next to null
+					task.Next( null );
+					// Set the task as the new bottom of the stack
+					this.bottom = move;
+					
+					// If the stack chained to this one is empty, set the chain pointer to null
+					if ( this.chain.Empty() )
+						this.chain = null;
+				}
+			}
+			
+			// return the task that was popped
+			return task;
+		}
+	}
+	
+	// Test Driver
+	println( "Process tasks in order: 6, 5, 4, 3, 2, 1, 0" );
+	var stack = new StackChain( 3 );
+	for ( var i = 0; i < 7; i++ )
+		stack.Push( new Task( i ) );
+	for ( var i = 0; i < 7; i++ )
+		stack.Pop().Action();
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
