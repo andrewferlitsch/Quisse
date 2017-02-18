@@ -40,19 +40,19 @@ class Stack:
 	def Pop( self ):
 		# Stack is Empty
 		if self.Empty():
-			return
+			return False
 
 		# Perform the action for the task
 		self.top.Action()
 		
 		# Move the top to the current top's next pointer.
 		self.top = self.top.GetNext()
+		return True
 
 print("Process tasks in order: A, B and C" )
 stack = Stack()
 stack.Push( Task( "C" ) )
 stack.Push( Task( "B" ) )
 stack.Push( Task( "A" ) )
-stack.Pop()
-stack.Pop()
-stack.Pop()
+while stack.Pop():
+	pass

@@ -1873,9 +1873,10 @@ $(function() {
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="que3[0] = true; que3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="que3=[true,false,false]; que3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('que3')" ng-class='que3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que3=[false,true,false]; que3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('que3')" ng-class='que3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="que3=[false,false,true]; que3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('que3')" ng-class='que3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[true,false,false,false]; que3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('que3')" ng-class='que3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,true,false,false]; que3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('que3')" ng-class='que3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,false,true,false]; que3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('que3')" ng-class='que3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="que3=[false,false,false,true]; que3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('que3')" ng-class='que3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='que3[0]'>
@@ -1973,6 +1974,63 @@ public class Queue {
 }
 </pre>
 
+<pre class='w3-container' ng-show='que3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Definition for a Queue
+	class Queue {
+		...
+		
+		// Update the priority of the task and re-sort the queue
+		Update( task, priority ) {
+			// Update the task's priority
+			task.Priority( priority );
+			
+			// If the task is the head of the queue, remove it and update head to the next element
+			if ( this.head == task ) {
+				this.head.Next( this.head.GetNext() );
+			}
+			// Find the task in the queue
+			else {
+				var curr = this.head.GetNext();
+				var prev = this.head;
+				while ( curr != null ) {
+					// Remove the task from the queue and update previous element's next to this task's next element
+					if ( task == curr ) {
+						prev.Next( curr.GetNext() );
+						break;
+					}
+				}
+			}
+		
+			// Add the task back to the queue
+			this.Add( task );
+		}
+	}
+
+	// Test Driver
+	println("Process in sequential order tasks: C, B and A" );
+	var queue = new Queue();
+	queue.Add( new Task( "A", 1 ) );
+	queue.Add( new Task( "B", 3 ) );
+	var task =  new Task( "C", 2 );
+	queue.Add( task );
+	queue.Update( task, 4 );
+	while ( queue.Pop() );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <a name="stack"></a>
 <h3>5. Linked Lists - Stacks</h3>
 <p>
@@ -1981,9 +2039,10 @@ Depending on the type of chaining, one can use link lists to code queues and sta
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="stk1[0] = true; stk1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="stk1=[true,false,false]; stk1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('stk1')" ng-class='stk1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk1=[false,true,false]; stk1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('stk1')" ng-class='stk1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="stk1=[false,false,true]; stk1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('stk1')" ng-class='stk1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[true,false,false,false]; stk1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('stk1')" ng-class='stk1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,true,false,false]; stk1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('stk1')" ng-class='stk1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,false,true,false]; stk1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('stk1')" ng-class='stk1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="stk1=[false,false,false,true]; stk1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('stk1')" ng-class='stk1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='stk1[0]'>
@@ -2058,22 +2117,22 @@ class Stack:
 	def Pop( self ):
 		# Stack is Empty
 		if self.Empty():
-			return
+			return False
 
 		# Perform the action for the task
 		self.top.Action()
 		
 		# Move the top to the current top's next pointer.
 		self.top = self.top.GetNext()
+		return True
 
 print("Process tasks in order: A, B and C" )
 stack = Stack()
 stack.Push( Task( "C" ) )
 stack.Push( Task( "B" ) )
 stack.Push( Task( "A" ) )
-stack.Pop()
-stack.Pop()
-stack.Pop()
+while stack.Pop():
+	pass
 </pre>
 
 <pre class='w3-container' ng-show='stk1[2]'>
@@ -2126,13 +2185,14 @@ public class Stack {
 	public void Pop() {
 		// Stack is Empty
 		if ( Empty() )
-			return;
+			return false;
 			
 		// Perform the action for the task
 		top.Action();
 		
 		// Move the top to the current top's next pointer.
 		top = top.Next();
+		return true;
 	}
 
 	public static void main(String[] args) {
@@ -2141,11 +2201,92 @@ public class Stack {
 		stack.Push( new Task( "C" ) );
 		stack.Push( new Task( "B" ) );
 		stack.Push( new Task( "A" ) );
-		stack.Pop();
-		stack.Pop();
-		stack.Pop();
+		while ( stack.Pop() );
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='stk1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	// Definition for a Task element in a Stack
+	class Task {
+		// constructor, task represents the task to be performed
+		constructor( task ) {
+			this.task = task;	// the task to perform
+			this.next = null;	// the next task in the stack
+		}
+		
+		// Get the next task this element is chained to
+		GetNext() {
+			return this.next;
+		}
+		
+		// Set the next task this element is chained to
+		Next( task ) {
+			this.next = task;
+		}
+		
+		// Action to take when task is processed
+		Action() {
+			println( this.task );
+		}
+	}
+
+	// Definition for a Stack
+	class Stack {
+		// constructor
+		constructor() {
+			this.top = null;	// top of the stack
+		}
+		
+		// Check if the Stack is empty
+		Empty() {
+			if ( this.top == null )
+				return true;
+			return false;
+		}
+		
+		// Push the task to the top of the stack
+		Push( task ) {
+			// Set the task next pointer to the current top
+			task.Next( this.top );
+			// set the top to this task
+			this.top = task;
+		}
+		
+		// Pop the task from the top of the stack
+		Pop() {
+			// Stack is Empty
+			if ( this.Empty() )
+				return false;
+				
+			// Perform the action for the task
+			this.top.Action();
+			
+			// Move the top to the current top's next pointer.
+			this.top = this.top.GetNext();
+			return true;
+		}
+	}
+
+	println("Process tasks in order: A, B and C" );
+	var stack = new Stack();
+	stack.Push( new Task( "C" ) );
+	stack.Push( new Task( "B" ) );
+	stack.Push( new Task( "A" ) );
+	while ( stack.Pop() );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="stk2[0] = true; stk2cls[0] = 'w3-black'">

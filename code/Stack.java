@@ -1,7 +1,7 @@
-// Definition for a Task element in a Queue
+// Definition for a Task element in a Stack
 class Task {
 	private Object task;        // the task to perform
-	private Task   next = null; // the next task in the queue
+	private Task   next = null; // the next task in the stack
 
 	// constructor, task represents the task to be performed
 	public Task( Object task ) {
@@ -47,13 +47,14 @@ public class Stack {
 	public void Pop() {
 		// Stack is Empty
 		if ( Empty() )
-			return;
+			return false;
 			
 		// Perform the action for the task
 		top.Action();
 		
 		// Move the top to the current top's next pointer.
 		top = top.Next();
+		return true;
 	}
 
 	public static void main(String[] args) {
@@ -62,8 +63,6 @@ public class Stack {
 		stack.Push( new Task( "C" ) );
 		stack.Push( new Task( "B" ) );
 		stack.Push( new Task( "A" ) );
-		stack.Pop();
-		stack.Pop();
-		stack.Pop();
+		while ( stack.Pop() );
 	}
 }

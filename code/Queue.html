@@ -19,6 +19,11 @@ $(function() {
 		GetPriority() {
 			return this.priority;
 		}
+	
+		// Set the task's priority
+		Priority( priority ) {
+			this.priority = priority;
+		}
 		
 		// Set the task's priority
 		Priority( priority ) {
@@ -99,6 +104,32 @@ $(function() {
 			}
 		}
 		
+		// Update the priority of the task and re-sort the queue
+		Update( task, priority ) {
+			// Update the task's priority
+			task.Priority( priority );
+			
+			// If the task is the head of the queue, remove it and update head to the next element
+			if ( this.head == task ) {
+				this.head.Next( this.head.GetNext() );
+			}
+			// Find the task in the queue
+			else {
+				var curr = this.head.GetNext();
+				var prev = this.head;
+				while ( curr != null ) {
+					// Remove the task from the queue and update previous element's next to this task's next element
+					if ( task == curr ) {
+						prev.Next( curr.GetNext() );
+						break;
+					}
+				}
+			}
+		
+			// Add the task back to the queue
+			this.Add( task );
+		}
+		
 		// Remove the top of the queue and process the task
 		Pop() {
 			// Queue is empty
@@ -117,11 +148,13 @@ $(function() {
 	}
 
 	// Test Driver
-	println("Process in sequential order tasks: B, C and A" );
+	println("Process in sequential order tasks: C, B and A" );
 	var queue = new Queue();
 	queue.Add( new Task( "A", 1 ) );
 	queue.Add( new Task( "B", 3 ) );
-	queue.Add( new Task( "C", 2 ) );
+	var task =  new Task( "C", 2 );
+	queue.Add( task );
+	queue.Update( task, 4 );
 	while ( queue.Pop() );
 });
 </script>
