@@ -44,7 +44,7 @@ public class Stack {
 	}
 	
 	// Pop the task from the top of the stack
-	public void Pop() {
+	public boolean Pop() {
 		// Stack is Empty
 		if ( Empty() )
 			return false;

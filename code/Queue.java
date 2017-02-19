@@ -91,16 +91,17 @@ public class Queue {
 	}
 	
 	// Remove the top of the queue and process the task
-	public void Pop() {
+	public boolean Pop() {
 		// Queue is empty
 		if ( Empty() )
-			return;
+			return false;
 			
 		// Proces the task here
 		head.Action();
 		
 		// Move the head to the next element.
 		head = head.Next();
+		return true;
 	}	
 	
 	// Update the priority of the task and resort the queue
@@ -139,8 +140,6 @@ public class Queue {
 		Task task =  new Task( "C", 2 );
 		queue.Add( task );
 		queue.Update( task, 4 );
-		queue.Pop();
-		queue.Pop();
-		queue.Pop();
+		while ( queue.Pop() ) ;
 	}
 }
