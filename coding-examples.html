@@ -3078,9 +3078,10 @@ Some other terminology that is useful to know:
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="btr1[0] = true; btr1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="btr1=[true,false,false]; btr1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('btr1')" ng-class='btr1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="btr1=[false,true,false]; btr1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('btr1')" ng-class='btr1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="btr1=[false,false,true]; btr1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('btr1')" ng-class='btr1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr1=[true,false,false,false]; btr1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('btr1')" ng-class='btr1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr1=[false,true,false,false]; btr1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('btr1')" ng-class='btr1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr1=[false,false,true,false]; btr1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('btr1')" ng-class='btr1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr1=[false,false,false,true]; btr1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('btr1')" ng-class='btr1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='btr1[0]'>
@@ -3175,10 +3176,73 @@ class BinaryTree {
 }
 </pre>
 
+<pre class='w3-container' ng-show='btr1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+
+	// Binary Tree Class
+	class BinaryTree {
+		// Constructor: set the node data and left/right subtrees to null
+		constructor( key ) {
+			this.key   = key;	// node data
+			this.right = null;	// left binary subtree
+			this.left  = null;	// right binary subtree
+		}
+		
+		// Set the left binary subtree
+		set Left( left ) {
+			this.left = left;
+		}
+		
+		// Get the left binary subtree
+		get Left() {
+			return this.left;
+		}
+		
+		// Set the right binary subtree
+		set Right( right ) {
+			this.right = right;
+		}
+		
+		// Get the right binary subtree
+		get Right() {
+			return this.right;
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+	}
+	
+	// Test Driver
+	var tree   = new BinaryTree( 'A' );
+	tree.Left  = new BinaryTree( 'B' );
+	tree.Right = new BinaryTree( 'C' ) ;
+	println( "Print Tree: A,B,C");
+	println( tree.Key + "," + tree.Left.Key + "," + tree.Right.Key );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="btr2[0] = true; btr2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="btr2=[true,false,false]; btr2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('btr2')" ng-class='btr2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="btr2=[false,true,false]; btr2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('btr2')" ng-class='btr2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="btr2=[false,false,true]; btr2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('btr2')" ng-class='btr2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr2=[true,false,false,false]; btr2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('btr2')" ng-class='btr2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr2=[false,true,false,false]; btr2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('btr2')" ng-class='btr2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr2=[false,false,true,false]; btr2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('btr2')" ng-class='btr2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="btr2=[false,false,false,true]; btr2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('btr2')" ng-class='btr2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='btr2[0]'>
@@ -3187,7 +3251,7 @@ of a k-ary tree. For this, we would define a base (super) class with methods com
 class from the base (super) class with methods specific to a binary tree.
 </p>
 
-<h4>Algorithm</h4>
+<h4>Algorithm - Generalize from K-ary Tree</h4>
 <ol class='w3-ul'>
 	<li>The base class defines the key member and corresponding access methods.</li>
 	<li>The base class is made abstract, so that one has to derive (extend) a class to use it.</li>
@@ -3308,6 +3372,77 @@ class BinaryTree extends Node {
 }
 </pre>
 
+<pre class='w3-container' ng-show='btr2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	// Base Class definition for k-ary tree
+	class Node {
+		// constructor: set the node data
+		constructor( key ) {
+			this.key = key;	// node data
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+	}
+	
+	// Derived definition for a Binary Tree
+	class BinaryTree extends Node {
+		// Constructor: set the node data and left/right subtrees to null
+		constructor( key ) {
+			super( key );
+			this.right = null;	// right binary subtree
+			this.left = null;	// left binary subtree
+		}
+		
+		// Set the left binary subtree
+		set Left( left ) {
+			this.left = left;
+		}
+		
+		// Get the left binary subtree
+		get Left() {
+			return this.left;
+		}
+		
+		// Set the right binary subtree
+		set Right( right ) {
+			this.right = right;
+		}
+		
+		// Get the right binary subtree
+		get Right() {
+			return this.right;
+		}
+	}
+	
+	// Test Driver
+	var tree   = new BinaryTree( 'A' );
+	tree.Left  = new BinaryTree( 'B' );
+	tree.Right = new BinaryTree( 'C' ) ;
+	println( "Print Tree: A,B,C");
+	println( tree.Key + "," + tree.Left.Key + "," + tree.Right.Key );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
+
 <a name="bts"></a>
 <h3>7. Binary Tree Traversals</h3>
 
@@ -3329,9 +3464,10 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="bts1[0] = true; bts1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bts1=[true,false,false]; bts1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bts1')" ng-class='bts1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts1=[false,true,false]; bts1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bts1')" ng-class='bts1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts1=[false,false,true]; bts1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bts1')" ng-class='bts1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts1=[true,false,false,false]; bts1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts1')" ng-class='bts1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts1=[false,true,false,false]; bts1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts1')" ng-class='bts1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts1=[false,false,true,false]; bts1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bts1')" ng-class='bts1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts1=[false,false,false,true]; bts1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bts1')" ng-class='bts1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bts1[0]'>
@@ -3359,6 +3495,15 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 		if ( Left() != null ) Left().InOrder();
 		Action();
 		if ( Right() != null ) Right().InOrder();
+	}
+</pre>
+
+<pre class='w3-container' ng-show='bts1[3]'>
+	// InOrder Traversal
+	InOrder() {
+		if ( this.Left != null ) this.Left.InOrder();
+		Action();
+		if ( this.Right != null ) this.Right.InOrder();
 	}
 </pre>
 

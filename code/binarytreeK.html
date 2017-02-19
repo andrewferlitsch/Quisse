@@ -1,0 +1,93 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Base Class definition for k-ary tree
+	class Node {
+		// constructor: set the node data
+		constructor( key ) {
+			this.key = key;	// node data
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+	}
+	
+	// Derived definition for a Binary Tree
+	class BinaryTree extends Node {
+		// Constructor: set the node data and left/right subtrees to null
+		constructor( key ) {
+			super( key );
+			this.right = null;	// right binary subtree
+			this.left = null;	// left binary subtree
+		}
+		
+		// Set the left binary subtree
+		set Left( left ) {
+			this.left = left;
+		}
+		
+		// Get the left binary subtree
+		get Left() {
+			return this.left;
+		}
+		
+		// Set the right binary subtree
+		set Right( right ) {
+			this.right = right;
+		}
+		
+		// Get the right binary subtree
+		get Right() {
+			return this.right;
+		}
+	
+		// InOrder Traversal
+		InOrder() {
+			if ( this.Left != null ) this.Left.InOrder();
+			Action();
+			if ( this.Right != null ) this.Right.InOrder();
+		}
+		
+		// PreOrder Traversal
+		PreOrder() {
+			Action();
+			if ( this.Left != null ) this.Left.PreOrder();
+			if ( this.Right != null ) this.Right.PreOrder();
+		}
+		
+		// PostOrder Traversal
+		PostOrder() {
+			if ( this.Left != null ) this.Left.PostOrder();
+			if ( this.Right != null ) this.Right.PostOrder();
+			Action();
+		}
+	}
+	
+	// Test Driver
+	var tree   = new BinaryTree( 'A' );
+	tree.Left  = new BinaryTree( 'B' );
+	tree.Right = new BinaryTree( 'C' ) ;
+	println( "Print Tree: A,B,C");
+	println( tree.Key + "," + tree.Left.Key + "," + tree.Right.Key );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
+
+
+
+
+
