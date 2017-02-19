@@ -16,22 +16,22 @@ $(function() {
 		}
 		
 		// Get the next task this element is chained to
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next task this element is chained to
-		Next( task ) {
+		set Next( task ) {
 			this.next = task;
 		}
 
 		// Get the previous task this element is chained to
-		GetPrev() {
+		get Prev() {
 			return this.prev;
 		}
 		
 		// Set the previous task this element is chained to
-		Prev( task ) {
+		set Prev( task ) {
 			this.prev = task;
 		}
 		
@@ -62,11 +62,11 @@ $(function() {
 		// Push the task to the top of the stack
 		Push( task ) {
 			// Set the task next pointer to the current top
-			task.Next( this.top );
+			task.Next = this.top;
 			
 			// Chain the current top back to the task
 			if ( this.top != null )
-				this.top.Prev( task );
+				this.top.Prev = task;
 				
 			// Set the top to this task
 			this.top = task;
@@ -85,7 +85,7 @@ $(function() {
 				this.chain.Push( this.bottom );
 				
 				// Remove the bottom by setting the bottom to the previous element from the bottom
-				this.bottom = this.bottom.GetPrev();
+				this.bottom = this.bottom.Prev;
 			}
 		}
 		
@@ -103,7 +103,7 @@ $(function() {
 				this.top = this.bottom = null;
 			else {
 				// Move the top to the current top's next pointer.
-				this.top = this.top.GetNext();
+				this.top = this.top.Next;
 				
 				// There is a another stack chained to this stack
 				if ( this.chain != null ) {
@@ -111,9 +111,9 @@ $(function() {
 					var move = this.chain.Pop();
 					
 					// Add this task to the bottom of the stack
-					this.bottom.Next( move );
+					this.bottom.Next = move;
 					// Set the task's next to null
-					task.Next( null );
+					task.Next = null;
 					// Set the task as the new bottom of the stack
 					this.bottom = move;
 					

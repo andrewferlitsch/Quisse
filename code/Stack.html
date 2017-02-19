@@ -15,12 +15,12 @@ $(function() {
 		}
 		
 		// Get the next task this element is chained to
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next task this element is chained to
-		Next( task ) {
+		set Next( task ) {
 			this.next = task;
 		}
 		
@@ -47,7 +47,7 @@ $(function() {
 		// Push the task to the top of the stack
 		Push( task ) {
 			// Set the task next pointer to the current top
-			task.Next( this.top );
+			task.Next = this.top;
 			// set the top to this task
 			this.top = task;
 		}
@@ -62,7 +62,7 @@ $(function() {
 			this.top.Action();
 			
 			// Move the top to the current top's next pointer.
-			this.top = this.top.GetNext();
+			this.top = this.top.Next;
 			return true;
 		}
 	}

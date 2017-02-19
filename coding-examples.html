@@ -1409,12 +1409,12 @@ $(function() {
 		}
 		
 		// Get the next task this element is chained to
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next task this element is chained to
-		Next( task ) {
+		set Next( task ) {
 			this.next = task;
 		}
 		
@@ -1447,7 +1447,7 @@ $(function() {
 			}
 			// otherwise, add it as the new tail
 			else {
-				this.tail.Next( task );
+				this.tail.Next = task;
 				this.tail = task;
 			}
 		}
@@ -1462,7 +1462,7 @@ $(function() {
 			this.head.Action();
 			
 			// Move the head to the next element.
-			this.head = this.head.GetNext();
+			this.head = this.head.Next;
 			if ( this.Empty() )
 				this.tail = null;
 			return true;
@@ -1758,22 +1758,22 @@ $(function() {
 		}
 	
 		// Get the task's priority
-		GetPriority() {
+		get Priority() {
 			return this.priority;
 		}
 	
 		// Set the task's priority
-		Priority( priority ) {
+		set Priority( priority ) {
 			this.priority = priority;
 		}
 		
 		// Get the next task this element is chained to
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next task this element is chained to
-		Next( task ) {
+		set Next( task ) {
 			this.next = task;
 		}
 		
@@ -1816,9 +1816,9 @@ $(function() {
 			var prev = this.head;
 			while ( curr != null ) {
 				// Find a task who's priority is less than the new task
-				if ( task.GetPriority() > curr.GetPriority() ) {
+				if ( task.Priority > curr.Priority ) {
 					// Insert the task in front of the current task.
-					task.Next( curr );
+					task.Next = curr;
 					
 					// If inserting in front of the head of the queue, 
 					// make the new task the head of the queue
@@ -1826,18 +1826,18 @@ $(function() {
 						this.head = task;
 					// Otherwise, set the previous element's next to the new task
 					else {
-						prev.Next( task );
+						prev.Next = task;
 					}
 					break;
 				}
 				
 				prev = curr;
-				curr = curr.GetNext();
+				curr = curr.Next;
 			}
 			
 			// Add to the tail (end) of the queue
 			if ( curr == null ) {
-				prev.Next( task );
+				prev.Next = task;
 			}
 		}
 		
@@ -1851,7 +1851,7 @@ $(function() {
 			this.head.Action();
 			
 			// Move the head to the next element.
-			this.head = this.head.GetNext();
+			this.head = this.head.Next;
 			if ( this.Empty() )
 				this.tail = null;
 			return true;
@@ -1991,20 +1991,20 @@ $(function() {
 		// Update the priority of the task and re-sort the queue
 		Update( task, priority ) {
 			// Update the task's priority
-			task.Priority( priority );
+			task.Priority = priority;
 			
 			// If the task is the head of the queue, remove it and update head to the next element
 			if ( this.head == task ) {
-				this.head.Next( this.head.GetNext() );
+				this.head.Next = this.head.Next;
 			}
 			// Find the task in the queue
 			else {
-				var curr = this.head.GetNext();
+				var curr = this.head.Next;
 				var prev = this.head;
 				while ( curr != null ) {
 					// Remove the task from the queue and update previous element's next to this task's next element
 					if ( task == curr ) {
-						prev.Next( curr.GetNext() );
+						prev.Next = curr.Next;
 						break;
 					}
 				}
@@ -2226,12 +2226,12 @@ $(function() {
 		}
 		
 		// Get the next task this element is chained to
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next task this element is chained to
-		Next( task ) {
+		set Next( task ) {
 			this.next = task;
 		}
 		
@@ -2258,7 +2258,7 @@ $(function() {
 		// Push the task to the top of the stack
 		Push( task ) {
 			// Set the task next pointer to the current top
-			task.Next( this.top );
+			task.Next = this.top;
 			// set the top to this task
 			this.top = task;
 		}
@@ -2273,7 +2273,7 @@ $(function() {
 			this.top.Action();
 			
 			// Move the top to the current top's next pointer.
-			this.top = this.top.GetNext();
+			this.top = this.top.Next;
 			return true;
 		}
 	}
@@ -2587,12 +2587,12 @@ $(function() {
 		...
 		
 		// Get the previous task this element is chained to
-		GetPrev() {
+		get Prev() {
 			return this.prev;
 		}
 		
 		// Set the previous task this element is chained to
-		Prev( task ) {
+		set Prev( task ) {
 			this.prev = task;
 		}
 	}
@@ -2618,11 +2618,11 @@ $(function() {
 		// Push the task to the top of the stack
 		Push( task ) {
 			// Set the task next pointer to the current top
-			task.Next( this.top );
+			task.Next = this.top;
 			
 			// Chain the current top back to the task
 			if ( this.top != null )
-				this.top.Prev( task );
+				this.top.Prev = task;
 				
 			// Set the top to this task
 			this.top = task;
@@ -2641,7 +2641,7 @@ $(function() {
 				this.chain.Push( this.bottom );
 				
 				// Remove the bottom by setting the bottom to the previous element from the bottom
-				this.bottom = this.bottom.GetPrev();
+				this.bottom = this.bottom.Prev;
 			}
 		}
 		
@@ -2659,7 +2659,7 @@ $(function() {
 				this.top = this.bottom = null;
 			else {
 				// Move the top to the current top's next pointer.
-				this.top = this.top.GetNext();
+				this.top = this.top.Next;
 				
 				// There is a another stack chained to this stack
 				if ( this.chain != null ) {
@@ -2667,9 +2667,9 @@ $(function() {
 					var move = this.chain.Pop();
 					
 					// Add this task to the bottom of the stack
-					this.bottom.Next( move );
+					this.bottom.Next = move;
 					// Set the task's next to null
-					task.Next( null );
+					task.Next = null;
 					// Set the task as the new bottom of the stack
 					this.bottom = move;
 					
@@ -2815,6 +2815,7 @@ class Hanoi:
 			# now move the remainder of the tower on the intermediate tower to the end tower
 			self.Move( ndiscs - 1, intermediate, start, end );
 
+# Test Driver
 # Stack disks on first tower in decreasing size ( 7 .. 1 )
 hanoi = Hanoi()
 for i in range( 7, 0, -1 ):
@@ -2919,6 +2920,7 @@ public class Hanoi {
 		}
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
 		// Stack disks on first tower in decreasing size ( 7 .. 1 )
 		for ( int i = 7; i > 0; i-- )
@@ -2930,7 +2932,123 @@ public class Hanoi {
 </pre>
 
 <pre class='w3-container' ng-show='stk3[3]'>
-# Javascript
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	// Definition for a Disc element in a Stack (Tower)
+	class Disc {
+		// constructor, disc represents the disc on the stack (tower)
+		constructor( disc ) {
+			this.disc = disc;	// the disc (size)
+			this.next = null; 	// the next disc in the stack
+		}
+		
+		// Get the next disc this element is stacked on top of
+		get Next() {
+			return this.next;
+		}
+		
+		// Set the next disc this element is stacked on top of
+		set Next( disc ) {
+			this.next = disc;
+		}
+		
+		// Action to take when task is processed
+		Action() {
+			println( this.disc );
+		}
+	}
+
+	// Definition for a Stack (Tower)
+	class Stack {
+		// constructor
+		constructor( ) {
+			this.top = null;	// top of the stack
+		}
+		
+		// Check if the Stack (tower) is empty
+		Empty() {
+			if ( this.top == null )
+				return true;
+			return false;
+		}
+		
+		// Push the disc to the top of the stack
+		Push( disc ) {
+			// Set the disc next pointer to the current top (disc below)
+			disc.Next = this.top;
+			// set the top to this disc
+			this.top = disc;
+		}
+		
+		// Pop the disc from the top of the stack
+		Pop() {
+			// Stack is Empty
+			if ( this.Empty() )
+				return null;
+			
+			var disc = this.top;	// the disc to pop from the stack
+			
+			// Move the top to the current top's next pointer (disc below).
+			this.top = this.top.Next;
+			return disc;
+		}
+	}
+
+	// Definition for Towers of Hanoi
+	class Hanoi {
+		// constructor
+		constructor() {
+			this.towers = [];
+			for ( var i = 0; i < 3; i++ )
+				this.towers.push( new Stack() );
+		}
+		
+		// Print the disc stack on each tower
+		PrintTowers() {
+			var disc;
+			for ( var i = 0; i < 3; i++ ) {
+				println( "Tower " + ( i + 1 ) );
+				while ( ( disc = this.towers[ i ].Pop() ) != null ) 
+					disc.Action();
+			}
+		}
+		
+		// Move a stack of discs from the start tower to end tower, using the intermediate tower
+		// when the stack is more than one disc.
+		Move( ndiscs, start, intermediate, end ) {
+			// If the tower is empty, move the disc to the end tower (n==1)
+			if ( ndiscs == 1 ) 
+				end.Push( start.Pop() );
+			// Otherwise (n>1 case)
+			else {
+				// move the remainder of the tower to the intermediate tower 
+				this.Move( ndiscs - 1, start, end, intermediate );
+				// move the disc to the end tower
+				end.Push( start.Pop() );
+				// now move the remainder of the tower on the intermediate tower to the end tower
+				this.Move( ndiscs - 1, intermediate, start, end );
+			}
+		}
+	}
+	
+	// Test Driver
+	hanoi = new Hanoi();
+	// Stack disks on first tower in decreasing size ( 7 .. 1 )
+	for ( var i = 7; i > 0; i-- )
+		hanoi.towers[ 0 ].Push( new Disc( i ) );
+	hanoi.Move( 7, hanoi.towers[ 0 ], hanoi.towers[ 1 ], hanoi.towers[ 2 ] );
+	hanoi.PrintTowers();
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="btree"></a>

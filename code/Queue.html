@@ -16,27 +16,22 @@ $(function() {
 		}
 	
 		// Get the task's priority
-		GetPriority() {
+		get Priority() {
 			return this.priority;
 		}
 	
 		// Set the task's priority
-		Priority( priority ) {
-			this.priority = priority;
-		}
-		
-		// Set the task's priority
-		Priority( priority ) {
+		set Priority( priority ) {
 			this.priority = priority;
 		}
 		
 		// Get the next task this element is chained to
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next task this element is chained to
-		Next( task ) {
+		set Next( task ) {
 			this.next = task;
 		}
 		
@@ -79,9 +74,9 @@ $(function() {
 			var prev = this.head;
 			while ( curr != null ) {
 				// Find a task who's priority is less than the new task
-				if ( task.GetPriority() > curr.GetPriority() ) {
+				if ( task.Priority > curr.Priority ) {
 					// Insert the task in front of the current task.
-					task.Next( curr );
+					task.Next = curr;
 					
 					// If inserting in front of the head of the queue, 
 					// make the new task the head of the queue
@@ -89,38 +84,38 @@ $(function() {
 						this.head = task;
 					// Otherwise, set the previous element's next to the new task
 					else {
-						prev.Next( task );
+						prev.Next = task;
 					}
 					break;
 				}
 				
 				prev = curr;
-				curr = curr.GetNext();
+				curr = curr.Next;
 			}
 			
 			// Add to the tail (end) of the queue
 			if ( curr == null ) {
-				prev.Next( task );
+				prev.Next = task;
 			}
 		}
 		
 		// Update the priority of the task and re-sort the queue
 		Update( task, priority ) {
 			// Update the task's priority
-			task.Priority( priority );
+			task.Priority = priority;
 			
 			// If the task is the head of the queue, remove it and update head to the next element
 			if ( this.head == task ) {
-				this.head.Next( this.head.GetNext() );
+				this.head.Next = this.head.Next;
 			}
 			// Find the task in the queue
 			else {
-				var curr = this.head.GetNext();
+				var curr = this.head.Next;
 				var prev = this.head;
 				while ( curr != null ) {
 					// Remove the task from the queue and update previous element's next to this task's next element
 					if ( task == curr ) {
-						prev.Next( curr.GetNext() );
+						prev.Next = curr.Next;
 						break;
 					}
 				}
@@ -140,7 +135,7 @@ $(function() {
 			this.head.Action();
 			
 			// Move the head to the next element.
-			this.head = this.head.GetNext();
+			this.head = this.head.Next;
 			if ( this.Empty() )
 				this.tail = null;
 			return true;

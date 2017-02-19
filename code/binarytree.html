@@ -1,0 +1,64 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Binary Tree Class
+	class BinaryTree {
+		// Constructor: set the node data and left/right subtrees to null
+		constructor( key ) {
+			this.key   = key;	// node data
+			this.right = null;	// left binary subtree
+			this.left  = null;	// right binary subtree
+		}
+		
+		// Set the left binary subtree
+		set Left( left ) {
+			this.left = left;
+		}
+		
+		// Get the left binary subtree
+		get Left() {
+			return this.left;
+		}
+		
+		// Set the right binary subtree
+		set Right( right ) {
+			this.right = right;
+		}
+		
+		// Get the right binary subtree
+		get Right() {
+			return this.right;
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+	}
+	
+	// Test Driver
+	var tree   = new BinaryTree( 'A' );
+	tree.Left  = new BinaryTree( 'B' );
+	tree.Right = new BinaryTree( 'C' ) ;
+	println( "Print Tree: A,B,C");
+	println( tree.Key + "," + tree.Left.Key + "," + tree.Right.Key );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
+
+
+
+
+
