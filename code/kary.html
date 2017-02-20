@@ -1,0 +1,72 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Base (Super) class definition for a k-ary tree
+	class KNode {
+		// constructor: set the node data
+		constructor( k, key ) {
+			this.key = key;		// node data
+			this.k   = k;		// max number of children
+			this.children = [];	// Dynamic array for children
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+		
+		// Get the number of children
+		Size() {
+			return this.children.length;
+		}
+		
+		// Add another child (branch)
+		Add( key ) {
+			// exceeds number of allowed children
+			if ( this.Size() == this.k )
+				return null;
+			var e = new Tree( this.k, key );
+			this.children.push( e );
+			return e;
+		}
+		
+		// Get all the children of this node
+		get Children() {
+			return this.children;
+		}
+	}
+
+	// Definition for a k-ary tree
+	class Tree extends KNode {
+		constructor( k, key ) {
+			super( k, key );
+		}
+		
+		Action() {
+			// do something
+		}
+	}
+	
+	// Test Driver
+	var tree = new Tree( 3, 1 );
+	var child1 = tree.Add( 2 );
+	var child2 = tree.Add( 3 );
+	var child3 = tree.Add( 4 );
+	child1.Add( 5 );
+	child1.Add( 6 );
+	println( "Children of Root(3) = " + tree.Size() );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

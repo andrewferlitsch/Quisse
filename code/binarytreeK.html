@@ -73,6 +73,71 @@ $(function() {
 			if ( this.Right != null ) this.Right.PostOrder();
 			Action();
 		}
+	
+		// Calculate the maximum depth of the binary tree
+		MaxDepth( max )
+		{
+			max++;	// increment by one level for the node
+			
+			var lmax = max;
+			var rmax = max;	// maximum depth on left and right nodes.
+			
+			// Calculate the maximum depth along the left binary subtree
+			if ( this.Left != null )
+				lmax = this.Left.MaxDepth( max );
+			// Calculate the maximum depth along the right binary subtree
+			if ( this.Right != null )
+				rmax = this.Right.MaxDepth( max );
+			
+			return Math.max( lmax, rmax );
+		}
+	
+		// Calculate the minimum depth of the binary tree
+		MinDepth( min )
+		{
+			min++;	// increment by one level for the node
+			
+			var lmin = min;
+			var rmin = min;	// minimum depth on left and right nodes.
+			
+			// Calculate the maximum depth along the left binary subtree
+			if ( this.Left != null )
+				lmin = this.Left.MaxDepth( min );
+			// Calculate the maximum depth along the right binary subtree
+			if ( this.Right != null )
+				rmin = this.Right.MaxDepth( min );
+			
+			return Math.min( lmin, rmin );
+		}		
+	
+		// Calculate the minimum and maximum value in the binary tree
+		MinMax() {
+			var min = 2147483648;  // counter for min value (start at maximum signed int)
+			var max = -2147483647; // counter for max value (start at minimum signed int)
+				
+			// list of nodes to visit in node level order
+			var visit = [];	
+			visit.push( this );
+			
+			// sequentially visit each node in level order as it is dynamically added to the list
+			for ( var i = 0; i < visit.length; i++ ) {
+				// Perform the node action
+				if ( visit[ i ].Key > max )
+					max = visit[ i ].Key;
+				if ( visit[ i ].Key < min )
+					min = visit[ i ].Key;
+				
+				// Add to the list the child siblings of this node
+				if ( visit[ i ].Left != null )
+					visit.push( visit[ i ].Left );
+				if ( visit[ i ].Right != null )
+					visit.push( visit[ i ].Right );
+			}	
+			
+			var ret = [];
+			ret.push( min ); ret.push( max );
+			return ret;
+		}
 	}
 	
 	// Test Driver
@@ -81,6 +146,18 @@ $(function() {
 	tree.Right = new BinaryTree( 'C' ) ;
 	println( "Print Tree: A,B,C");
 	println( tree.Key + "," + tree.Left.Key + "," + tree.Right.Key );
+	
+	tree = new BinaryTree( 1 );
+    tree.Left  = new BinaryTree( 2 );
+    tree.Right = new BinaryTree( 3 );
+    tree.Left.Left  = new BinaryTree( 4 );
+    tree.Left.Right = new BinaryTree( 5 );
+    println("\nMax Depth(3) is  " + tree.MaxDepth( 0 ) );
+    println("\nMin Depth(2) is  " + tree.MinDepth( 0 ) );
+    
+	minmax = tree.MinMax();
+	println("\nMin Value(1) is  " + minmax[ 0 ] );
+	println("\nMax Value(5) is  " + minmax[ 1 ] );
 });
 </script>
 <body>

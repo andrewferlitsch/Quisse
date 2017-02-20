@@ -3508,9 +3508,10 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 </pre>
 
 <ul class="w3-navbar w3-light-grey" ng-init="bts2[0] = true; bts2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bts2=[true,false,false]; bts2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bts2')" ng-class='bts2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts2=[false,true,false]; bts2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bts2')" ng-class='bts2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts2=[false,false,true]; bts2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bts2')" ng-class='bts2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts2=[true,false,false,false]; bts2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts2')" ng-class='bts2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts2=[false,true,false,false]; bts2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts2')" ng-class='bts2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts2=[false,false,true,false]; bts2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bts2')" ng-class='bts2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts2=[false,false,false,true]; bts2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bts2')" ng-class='bts2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bts2[0]'>
@@ -3541,10 +3542,20 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<pre class='w3-container' ng-show='bts2[3]'>
+	// PreOrder Traversal
+	PreOrder() {
+		Action();
+		if ( this.Left != null ) this.Left.PreOrder();
+		if ( this.Right != null ) this.Right.PreOrder();
+	}
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="bts3[0] = true; bts3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bts3=[true,false,false]; bts3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bts3')" ng-class='bts3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts3=[false,true,false]; bts3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bts3')" ng-class='bts3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts3=[false,false,true]; bts3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bts3')" ng-class='bts3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts3=[true,false,false,false]; bts3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts3')" ng-class='bts3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts3=[false,true,false,false]; bts3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts3')" ng-class='bts3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts3=[false,false,true,false]; bts3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bts3')" ng-class='bts3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts3=[false,false,false,true]; bts3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bts3')" ng-class='bts3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bts3[0]'>
@@ -3575,10 +3586,20 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<pre class='w3-container' ng-show='bts3[3]'>
+	// PostOrder Traversal
+	PostOrder() {
+		if ( this.Left != null ) this.Left.PostOrder();
+		if ( this.Right != null ) this.Right.PostOrder();
+		Action();
+	}
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="bts4[0] = true; bts4cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bts4=[true,false,false]; bts4cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bts4')" ng-class='bts4cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts4=[false,true,false]; bts4cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bts4')" ng-class='bts4cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts4=[false,false,true]; bts4cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bts4')" ng-class='bts4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts4=[true,false,false,false]; bts4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts4')" ng-class='bts4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts4=[false,true,false,false]; bts4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts4')" ng-class='bts4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts4=[false,false,true,false]; bts4cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bts4')" ng-class='bts4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts4=[false,false,false,true]; bts4cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bts4')" ng-class='bts4cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bts4[0]'>
@@ -3669,15 +3690,65 @@ public class BFS {
 }
 </pre>
 
+<pre class='w3-container' ng-show='bts4[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	class BFS {
+		static BFS( root ) {
+			// Check if tree is empty
+			if ( root == null )
+				return;
+				
+			// list of nodes to visit in node level order
+			var visit = [];	
+			visit.push( root );
+			
+			// sequentially visit each node in level order as it is dynamically added to the list
+			for ( var i = 0; i < visit.length; i++ ) {
+				// Perform the node action
+				visit[ i ].Action();
+				
+				// Add to the list the child siblings of this node
+				if ( visit[ i ].Left != null )
+					visit.push( visit[ i ].Left );
+				if ( visit[ i ].Right != null )
+					visit.push( visit[ i ].Right );
+			}	
+		}
+	}
+	
+	// Test Driver
+	var tree   = new BinaryTree( "1" );
+	tree.Left  = new BinaryTree( "2" );
+	tree.Right = new BinaryTree( "3" );
+	tree.Left.Left  = new BinaryTree( "4" );
+	tree.Left.Right = new BinaryTree( "5" );
+	println( "BFS output 1 2 3 4 5" );
+	BFS.BFS( tree );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <p>
 If you are asked to count the size (number of nodes) of a binary tree, using any of the traversal methods, then replace the call to
 the method Action() with a counter that is increment each time a node is visited.
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="bts5[0] = true; bts5cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bts5=[true,false,false]; bts5cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bts5')" ng-class='bts5cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts5=[false,true,false]; bts5cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bts5')" ng-class='bts5cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts5=[false,false,true]; bts5cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bts5')" ng-class='bts5cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts5=[true,false,false,false]; bts5cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts5')" ng-class='bts5cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts5=[false,true,false,false]; bts5cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts5')" ng-class='bts5cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts5=[false,false,true,false]; bts5cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bts5')" ng-class='bts5cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts5=[false,false,false,true]; bts5cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bts5')" ng-class='bts5cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bts5[0]'>
@@ -3801,10 +3872,76 @@ class BinaryTree extends Node {
 }
 </pre>
 
+<pre class='w3-container' ng-show='bts5[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Derived definition for a Binary Tree
+	class BinaryTree extends Node {
+		...
+		// Calculate the maximum depth of the binary tree
+		MaxDepth( max )
+		{
+			max++;	// increment by one level for the node
+			
+			var lmax = max;
+			var rmax = max;	// maximum depth on left and right nodes.
+			
+			// Calculate the maximum depth along the left binary subtree
+			if ( this.Left != null )
+				lmax = this.Left.MaxDepth( max );
+			// Calculate the maximum depth along the right binary subtree
+			if ( this.Right != null )
+				rmax = this.Right.MaxDepth( max );
+			
+			return Math.max( lmax, rmax );
+		}
+	
+		// Calculate the minimum depth of the binary tree
+		MinDepth( min )
+		{
+			min++;	// increment by one level for the node
+			
+			var lmin = min;
+			var rmin = min;	// minimum depth on left and right nodes.
+			
+			// Calculate the maximum depth along the left binary subtree
+			if ( this.Left != null )
+				lmin = this.Left.MaxDepth( min );
+			// Calculate the maximum depth along the right binary subtree
+			if ( this.Right != null )
+				rmin = this.Right.MaxDepth( min );
+			
+			return Math.min( lmin, rmin );
+		}	
+	}
+	
+	// Test Driver
+	tree = new BinaryTree( 1 );
+    tree.Left  = new BinaryTree( 2 );
+    tree.Right = new BinaryTree( 3 );
+    tree.Left.Left  = new BinaryTree( 4 );
+    tree.Left.Right = new BinaryTree( 5 );
+    println("\nMax Depth(3) is  " + tree.MaxDepth( 0 ) );
+    println("\nMin Depth(2) is  " + tree.MinDepth( 0 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="bts6[0] = true; bts6cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bts6=[true,false,false]; bts6cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bts6')" ng-class='bts6cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts6=[false,true,false]; bts6cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bts6')" ng-class='bts6cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bts6=[false,false,true]; bts6cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bts6')" ng-class='bts6cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts6=[true,false,false,false]; bts6cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts6')" ng-class='bts6cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts6=[false,true,false,false]; bts6cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts6')" ng-class='bts6cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts6=[false,false,true,false]; bts6cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bts6')" ng-class='bts6cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bts6=[false,false,false,true]; bts6cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bts6')" ng-class='bts6cls[2]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bts6[0]'>
@@ -3911,6 +4048,66 @@ class BinaryTree extends Node {
 }
 </pre>
 
+<pre class='w3-container' ng-show='bts6[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Derived definition for a Binary Tree
+	class BinaryTree extends Node {
+		...		
+	
+		// Calculate the minimum and maximum value in the binary tree
+		MinMax() {
+			var min = 2147483648;  // counter for min value (start at maximum signed int)
+			var max = -2147483647; // counter for max value (start at minimum signed int)
+				
+			// list of nodes to visit in node level order
+			var visit = [];	
+			visit.push( this );
+			
+			// sequentially visit each node in level order as it is dynamically added to the list
+			for ( var i = 0; i < visit.length; i++ ) {
+				// Perform the node action
+				if ( visit[ i ].Key > max )
+					max = visit[ i ].Key;
+				if ( visit[ i ].Key < min )
+					min = visit[ i ].Key;
+				
+				// Add to the list the child siblings of this node
+				if ( visit[ i ].Left != null )
+					visit.push( visit[ i ].Left );
+				if ( visit[ i ].Right != null )
+					visit.push( visit[ i ].Right );
+			}	
+			
+			var ret = [];
+			ret.push( min ); ret.push( max );
+			return ret;
+		}
+	}
+	
+	// Test Driver
+	tree = new BinaryTree( 1 );
+    tree.Left  = new BinaryTree( 2 );
+    tree.Right = new BinaryTree( 3 );
+    tree.Left.Left  = new BinaryTree( 4 );
+    tree.Left.Right = new BinaryTree( 5 );
+	minmax = tree.MinMax();
+	println("\nMin Value(1) is  " + minmax[ 0 ] );
+	println("\nMax Value(5) is  " + minmax[ 1 ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <a name="kary"></a>
 <h3>8. k-ary Trees</h3>
 <p>
@@ -3920,9 +4117,10 @@ from, with the condition that the children (branch) members must be defined in t
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="kry1[0] = true; kry1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="kry1=[true,false,false]; kry1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('kry1')" ng-class='kry1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="kry1=[false,true,false]; kry1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('kry1')" ng-class='kry1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="kry1=[false,false,true]; kry1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('kry1')" ng-class='kry1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="kry1=[true,false,false,false]; kry1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('kry1')" ng-class='kry1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="kry1=[false,true,false,false]; kry1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('kry1')" ng-class='kry1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="kry1=[false,false,true,false]; kry1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('kry1')" ng-class='kry1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="kry1=[false,false,false,true]; kry1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('kry1')" ng-class='kry1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='kry1[0]'>
@@ -4054,6 +4252,81 @@ class Tree extends KNode {
 		// do something
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='kry1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+		
+	// Base (Super) class definition for a k-ary tree
+	class KNode {
+		// constructor: set the node data
+		constructor( k, key ) {
+			this.key = key;		// node data
+			this.k   = k;		// max number of children
+			this.children = [];	// Dynamic array for children
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+		
+		// Get the number of children
+		Size() {
+			return this.children.length;
+		}
+		
+		// Add another child (branch)
+		Add( key ) {
+			// exceeds number of allowed children
+			if ( this.Size() == this.k )
+				return null;
+			var e = new Tree( this.k, key );
+			this.children.push( e );
+			return e;
+		}
+		
+		// Get all the children of this node
+		get Children() {
+			return this.children;
+		}
+	}
+
+	// Definition for a k-ary tree
+	class Tree extends KNode {
+		constructor( k, key ) {
+			super( k, key );
+		}
+		
+		Action() {
+			// do something
+		}
+	}
+	
+	// Test Driver
+	var tree = new Tree( 3, 1 );
+	var child1 = tree.Add( 2 );
+	var child2 = tree.Add( 3 );
+	var child3 = tree.Add( 4 );
+	child1.Add( 5 );
+	child1.Add( 6 );
+	println( "Children of Root(3) = " + tree.Size() );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="bst"></a>
