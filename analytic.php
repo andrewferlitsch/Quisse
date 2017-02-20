@@ -31,9 +31,8 @@
 						   }
 						   else if ( $type == "next" || $type == "harder" || $type == "easier" ) {
 							   $diff = ( $timing - $last_time );
-							   if ( $diff < 20 ) {
-								   echo "SELECt tcount FROM questions where id=$id<br/>";
-								   echo "UPDATE questions set tcount=$tcount where id=$id";
+							   if ( $diff > 0 && $diff < 20 ) {
+								   echo "UPDATE questions set tcount=tcount+1,timing=timing+$diff where id=$id<br/>";
 							   }
 						   }
 						   $last_time = $timing;
