@@ -197,6 +197,8 @@ class BST {
 		tree.Insert( new BinaryTree( 2 ) );
 		tree.Insert( new BinaryTree( 4 ) );
 		tree.Insert( new BinaryTree( 1 ) );
+		BFS( tree.root );
+		System.out.println( "FIND(4) = " + tree.Find( 4 ).Key() + " FIND(1) = " + tree.Find(1).Key() );
 		tree.Delete( 6 );
 		System.out.println("BST level order: 3 2 4 1");
 		BFS( tree.root );

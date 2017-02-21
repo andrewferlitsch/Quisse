@@ -1,197 +1,211 @@
-/ Base Class definition for k-ary tree
-class Node {
-	// constructor: set the node data
-	constructor( key ) {
-		this.key = key;	// node data
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
 	}
 	
-	// Set the node data
-	set Key( key ) {
-		this.key = key;
-	}
-	
-	// Get the node data
-	get Key() {
-		return this.key;
-	}
-}
-
-// Derived definition for a Binary Tree
-class BinaryTree extends Node {
-	// Constructor: set the node data and left/right subtrees to null
-	constructor( key ) {
-        super( key );
-        right = null;	// right binary subtree
-        left = null;	// left binary subtree
-    }
-	
-	// Set the left binary subtree
-	set Left( left ) {
-		this.left = left;
-	}
-	
-	// Get the left binary subtree
-	get Left() {
-		return this.left;
-	}
-	
-	// Set the right binary subtree
-	set Right( right ) {
-		this.right = right;
-	}
-	
-	// Get the right binary subtree
-	get Right() {
-		return this.right;
-	}
-	
-	// Example action to perform on a node
-	Action() {
-		println( this.Key() );
-	}
-}
-
-// Definition for a binary search tree
-class BST {
-	// constructor
-	constructor() {
-		this.root = null;	// root of the binary search tree
-	}
-	
-	// Insert a node into a binary tree
-	Insert( node ) {
-		// Empty Tree, make the node the root
-		if ( this.root == null ) {
-			this.root = node;
-			return;
+	// Base Class definition for k-ary tree
+	class Node {
+		// constructor: set the node data
+		constructor( key ) {
+			this.key = key;	// node data
 		}
 		
-		// Follow a path to insert the node
-		var curr = this.root;
-		while ( true ) {
-			// node is a duplicate, do not insert
-			if ( node.Key == curr.Key ) {
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+	}
+
+	// Derived definition for a Binary Tree
+	class BinaryTree extends Node {
+		// Constructor: set the node data and left/right subtrees to null
+		constructor( key ) {
+			super( key );
+			this.right = null;	// right binary subtree
+			this.left = null;	// left binary subtree
+		}
+		
+		// Set the left binary subtree
+		set Left( left ) {
+			this.left = left;
+		}
+		
+		// Get the left binary subtree
+		get Left() {
+			return this.left;
+		}
+		
+		// Set the right binary subtree
+		set Right( right ) {
+			this.right = right;
+		}
+		
+		// Get the right binary subtree
+		get Right() {
+			return this.right;
+		}
+		
+		// Example action to perform on a node
+		Action() {
+			println( this.Key );
+		}
+	}
+
+	// Definition for a binary search tree
+	class BST {
+		// constructor
+		constructor() {
+			this.root = null;	// root of the binary search tree
+		}
+		
+		// Insert a node into a binary tree
+		Insert( node ) {
+			// Empty Tree, make the node the root
+			if ( this.root == null ) {
+				this.root = node;
 				return;
 			}
 			
-			// The node is less than the current node, traverse left
-			if ( node.Key < curr.Key ) {
-				// If there is no left node, make this node the left node
-				if ( curr.Left == null ) {
-					curr.Left = node;
+			// Follow a path to insert the node
+			var curr = this.root;
+			while ( true ) {
+				// node is a duplicate, do not insert
+				if ( node.Key == curr.Key ) {
 					return;
 				}
-				curr = curr.Left;
+				
+				// The node is less than the current node, traverse left
+				if ( node.Key < curr.Key ) {
+					// If there is no left node, make this node the left node
+					if ( curr.Left == null ) {
+						curr.Left = node;
+						return;
+					}
+					curr = curr.Left;
+				}
+				// The node is greater than to the current node, traverse left
+				else {
+					// If there is no right node, make this node the right node
+					if ( curr.Right == null ) {
+						curr.Right = node;
+						return;
+					}
+					curr = curr.Right;
+				}
 			}
-			// The node is greater than to the current node, traverse left
-			else {
-				// If there is no right node, make this node the right node
-				if ( curr.Right == null ) {
-					curr.Right = node;
+		}
+		
+		// Find a node in a binary tree
+		Find( key ) {
+				
+			// Follow a path to find the node
+			var curr = this.root;
+			while ( true ) {
+				// current node is null, return null (not found)
+				if ( curr == null )
+					return null;
+					
+				// the value is equal to the current node, return the current node
+				if ( key == curr.Key ) {
+					return curr;
+				}
+				
+				// The value is less than the current node, traverse left
+				if ( key < curr.Key ) {
+					curr = curr.Left;
+				}
+				// The value is greater than to the current node, traverse left
+				else {
+					curr = curr.Right;
+				}
+			}
+		}
+	
+		// Delete a node in a binary tree
+		Delete( key ) {
+
+			// Follow a path to find the node
+			var curr = this.root;
+			var prev = null;
+			var isLeft = false;
+			while ( true ) {
+				// current node is null, return (not found)
+				if ( curr == null )
+					return;
+					
+				// the value is equal to the current node, delete the node
+				if ( key == curr.Key ) {
+					if ( isLeft ) 
+						prev.Left =  null;
+					else
+						prev.Right = null;
+					var saveRoot = this.root;
+					this.root = prev;
+					if ( curr.Left  != null ) this.Insert( curr.Left );
+					if ( curr.Right != null ) this.Insert( curr.Right );
+					this.root = saveRoot;
 					return;
 				}
-				curr = curr.Right;
+				else if ( key < curr.Key ) {
+					isLeft = true;
+					prev = curr;
+					curr = curr.Left;
+				}
+				else {
+					isLeft = false;
+					prev = curr;
+					curr = curr.Right;
+				}
 			}
 		}
-	}
-		
-	// Find a node in a binary tree
-	Find( key ) {
-			
-		// Follow a path to find the node
-		var curr = this.root;
-		while ( true ) {
-			// current node is null, return null (not found)
-			if ( curr == null )
-				return null;
-				
-			// the value is equal to the current node, return the current node
-			if ( key == curr.Key ) {
-				return curr;
-			}
-			
-			// The value is less than the current node, traverse left
-			if ( key < curr.Key ) {
-				curr = curr.Left;
-			}
-			// The value is greater than to the current node, traverse left
-			else {
-				curr = curr.Right;
-			}
-		}
-	}
 	
-	// Delete a node in a binary tree
-	public void Delete( Object key ) {
-
-		// Follow a path to find the node
-		BinaryTree curr = root, prev = null;
-		boolean isLeft = false;
-		while ( true ) {
-			// current node is null, return (not found)
-			if ( curr == null )
+		static BFS( root ) {
+			
+			// Check if tree is empty
+			if ( root == null )
 				return;
 				
-			// the value is equal to the current node, delete the node
-			if ( (int) key == (int) curr.Key() ) {
-				if ( isLeft ) 
-					prev.Left( null );
-				else
-					prev.Right( null );
-				BinaryTree saveRoot = root;
-				root = prev;
-				if ( curr.Left()  != null ) Insert( curr.Left() );
-				if ( curr.Right() != null ) Insert( curr.Right() );
-				root = saveRoot;
-				return;
-			}
-			else if ( (int) key < (int) curr.Key() ) {
-				isLeft = true;
-				prev = curr;
-				curr = curr.Left();
-			}
-			else {
-				isLeft = false;
-				prev = curr;
-				curr = curr.Right();
-			}
+			// list of nodes to visit in node level order
+			var visit = [];	
+			visit.push( root );
+			
+			// sequentially visit in node in level order as it is dynamically added to the list
+			for ( var i = 0; i < visit.length; i++ ) {
+				// Perform the node action
+				visit[ i ].Action();
+				
+				// Add to the list the child siblings of this node
+				if ( visit[ i ].Left != null )
+					visit.push( visit[ i ].Left );
+				if ( visit[ i ].Right != null )
+					visit.push( visit[ i ].Right );
+			}	
 		}
 	}
 	
-	public static void BFS( BinaryTree root ) {
-		
-		// Check if tree is empty
-		if ( root == null )
-			return;
-			
-		// list of nodes to visit in node level order
-		LinkedList<BinaryTree> visit = new LinkedList<BinaryTree>();	
-		visit.add( root );
-		
-		// sequentially visit in node in level order as it is dynamically added to the list
-		for ( int i = 0; i < visit.size(); i++ ) {
-			// Perform the node action
-			visit.get( i ).Action();
-			
-			// Add to the list the child siblings of this node
-			if ( visit.get( i ).Left() != null )
-				visit.add( visit.get( i ).Left() );
-			if ( visit.get( i ).Right() != null )
-				visit.add( visit.get( i ).Right() );
-		}	
-	}
-	
-	// Driver method
-    public static void main(String[] args)
-    {
-        BST tree = new BST();
-		tree.Insert( new BinaryTree( 3 ) );
-		tree.Insert( new BinaryTree( 6 ) );
-		tree.Insert( new BinaryTree( 2 ) );
-		tree.Insert( new BinaryTree( 4 ) );
-		tree.Insert( new BinaryTree( 1 ) );
-		tree.Delete( 6 );
-		System.out.println("BST level order: 3 2 4 1");
-		BFS( tree.root );
-	}
-}
+	// Test Driver method
+    var tree = new BST();
+	tree.Insert( new BinaryTree( 3 ) );
+	tree.Insert( new BinaryTree( 6 ) );
+	tree.Insert( new BinaryTree( 2 ) );
+	tree.Insert( new BinaryTree( 4 ) );
+	tree.Insert( new BinaryTree( 1 ) );
+	println("BST level order: 3 2 6 1 4");
+	BST.BFS( tree.root );
+	println( "FIND(4) = " + tree.Find( 4 ).Key + " FIND(1) = " + tree.Find(1).Key );
+	tree.Delete( 6 );
+	println("BST level order: 3 2 4 1");
+	tree.BFS( tree.root );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

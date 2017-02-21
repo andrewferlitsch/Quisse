@@ -4338,9 +4338,10 @@ would be inserted on the left branch, while a node of 7 would be inserted on the
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="bst1[0] = true; bst1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bst1=[true,false,false]; bst1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bst1')" ng-class='bst1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bst1=[false,true,false]; bst1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bst1')" ng-class='bst1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bst1=[false,false,true]; bst1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bst1')" ng-class='bst1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst1=[true,false,false,false]; bst1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bst1')" ng-class='bst1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst1=[false,true,false,false]; bst1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bst1')" ng-class='bst1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst1=[false,false,true,false]; bst1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bst1')" ng-class='bst1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst1=[false,false,false,true]; bst1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bst1')" ng-class='bst1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bst1[0]'>
@@ -4472,10 +4473,81 @@ class BST {
 }
 </pre>
 
+<pre class='w3-container' ng-show='bst1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+
+	// Definition for a binary search tree
+	class BST {
+		// constructor
+		constructor() {
+			this.root = null;	// root of the binary search tree
+		}
+		
+		// Insert a node into a binary tree
+		Insert( node ) {
+			// Empty Tree, make the node the root
+			if ( this.root == null ) {
+				this.root = node;
+				return;
+			}
+			
+			// Follow a path to insert the node
+			var curr = this.root;
+			while ( true ) {
+				// node is a duplicate, do not insert
+				if ( node.Key == curr.Key ) {
+					return;
+				}
+				
+				// The node is less than the current node, traverse left
+				if ( node.Key < curr.Key ) {
+					// If there is no left node, make this node the left node
+					if ( curr.Left == null ) {
+						curr.Left = node;
+						return;
+					}
+					curr = curr.Left;
+				}
+				// The node is greater than to the current node, traverse left
+				else {
+					// If there is no right node, make this node the right node
+					if ( curr.Right == null ) {
+						curr.Right = node;
+						return;
+					}
+					curr = curr.Right;
+				}
+			}
+		}
+	}
+	
+	// Test Driver method
+    var tree = new BST();
+	tree.Insert( new BinaryTree( 3 ) );
+	tree.Insert( new BinaryTree( 6 ) );
+	tree.Insert( new BinaryTree( 2 ) );
+	tree.Insert( new BinaryTree( 4 ) );
+	tree.Insert( new BinaryTree( 1 ) );
+	println("BST level order: 3 2 6 1 4");
+	BST.BFS( tree.root );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="bst2[0] = true; bst2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bst2=[true,false,false]; bst2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bst2')" ng-class='bst2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bst2=[false,true,false]; bst2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bst2')" ng-class='bst2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bst2=[false,false,true]; bst2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bst2')" ng-class='bst2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst2=[true,false,false,false]; bst2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bst2')" ng-class='bst2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst2=[false,true,false,false]; bst2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bst2')" ng-class='bst2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst2=[false,false,true,false]; bst2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bst2')" ng-class='bst2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst2=[false,false,false,true]; bst2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bst2')" ng-class='bst2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bst2[0]'>
@@ -4515,7 +4587,7 @@ class BST:
 			else:
 				curr = curr.GetRight()
 				
-# Driver Method
+# Test Driver Method
 tree = BST()
 tree.Insert( BinaryTree( 3 ) )
 tree.Insert( BinaryTree( 6 ) )
@@ -4524,7 +4596,7 @@ tree.Insert( BinaryTree( 4 ) )
 tree.Insert( BinaryTree( 1 ) )
 print("BST level order: 3 2 6 1 4")
 BFS( tree.root )
-print( "FIND(4) = " + str( tree.Find( 4 ) ) + " FIND(0) = " + str( tree.Find(0) ) )
+print( "FIND(4) = " + str( tree.Find( 4 ).GetKey() ) + " FIND(1) = " + str( tree.Find( 1 ).GetKey() ) )
 </pre>
 
 <pre class='w3-container' ng-show='bst2[2]'>
@@ -4558,7 +4630,7 @@ class BST {
 		}
 	}
 	
-	// Driver method
+	// Test Driver method
 	public static void main(String[] args)
 	{
         BST tree = new BST();
@@ -4567,15 +4639,71 @@ class BST {
 		tree.Insert( new BinaryTree( 2 ) );
 		tree.Insert( new BinaryTree( 4 ) );
 		tree.Insert( new BinaryTree( 1 ) );
-		System.out.println( "FIND(4) = " + tree.Find( 4 ) + " FIND(0) = " + tree.Find(0) );
+		System.out.println( "FIND(4) = " + tree.Find( 4 ).Key() + " FIND(1) = " + tree.Find(1).Key() );
 	}
 }
 </pre>
 
+<pre class='w3-container' ng-show='bst2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Definition for a binary search tree
+	class BST {
+		...
+		// Find a node in a binary tree
+		Find( key ) {
+				
+			// Follow a path to find the node
+			var curr = this.root;
+			while ( true ) {
+				// current node is null, return null (not found)
+				if ( curr == null )
+					return null;
+					
+				// the value is equal to the current node, return the current node
+				if ( key == curr.Key ) {
+					return curr;
+				}
+				
+				// The value is less than the current node, traverse left
+				if ( key < curr.Key ) {
+					curr = curr.Left;
+				}
+				// The value is greater than to the current node, traverse left
+				else {
+					curr = curr.Right;
+				}
+			}
+		}
+	}
+	
+	// Test Driver method
+    var tree = new BST();
+	tree.Insert( new BinaryTree( 3 ) );
+	tree.Insert( new BinaryTree( 6 ) );
+	tree.Insert( new BinaryTree( 2 ) );
+	tree.Insert( new BinaryTree( 4 ) );
+	tree.Insert( new BinaryTree( 1 ) );
+	println( "FIND(4) = " + tree.Find( 4 ).Key + " FIND(1) = " + tree.Find(1).Key );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+	
 <ul class="w3-navbar w3-light-grey" ng-init="bst3[0] = true; bst3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="bst3=[true,false,false]; bst3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('bst3')" ng-class='bst3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bst3=[false,true,false]; bst3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('bst3')" ng-class='bst3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="bst3=[false,false,true]; bst3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('bst3')" ng-class='bst3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst3=[true,false,false,false]; bst3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bst3')" ng-class='bst3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst3=[false,true,false,false]; bst3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bst3')" ng-class='bst3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst3=[false,false,true,false]; bst3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('bst3')" ng-class='bst3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="bst3=[false,false,false,true]; bst3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('bst3')" ng-class='bst3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='bst3[0]'>
@@ -4614,7 +4742,7 @@ class BST {
 class BST:
 	...
 		
-	# Find a node in a binary tree
+	# Delete a node in a binary tree
 	def Delete( self, key ):
 
 		# Follow a path to find the node
@@ -4666,7 +4794,7 @@ BFS( tree.root )
 class BST {
 	...
 	
-	// Find a node in a binary tree
+	// Delete a node in a binary tree
 	public void Delete( Object key ) {
 
 		// Follow a path to find the node
@@ -4703,7 +4831,7 @@ class BST {
 		}
 	}
 	
-	// Driver method
+	// Test Driver method
     public static void main(String[] args)
     {
         BST tree = new BST();
@@ -4717,6 +4845,74 @@ class BST {
 		BFS( tree.root );
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='bst3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Definition for a binary search tree
+	class BST {
+		...
+		// Delete a node in a binary tree
+		Delete( key ) {
+
+			// Follow a path to find the node
+			var curr = this.root;
+			var prev = null;
+			var isLeft = false;
+			while ( true ) {
+				// current node is null, return (not found)
+				if ( curr == null )
+					return;
+					
+				// the value is equal to the current node, delete the node
+				if ( key == curr.Key ) {
+					if ( isLeft ) 
+						prev.Left =  null;
+					else
+						prev.Right = null;
+					var saveRoot = this.root;
+					this.root = prev;
+					if ( curr.Left  != null ) this.Insert( curr.Left );
+					if ( curr.Right != null ) this.Insert( curr.Right );
+					this.root = saveRoot;
+					return;
+				}
+				else if ( key < curr.Key ) {
+					isLeft = true;
+					prev = curr;
+					curr = curr.Left;
+				}
+				else {
+					isLeft = false;
+					prev = curr;
+					curr = curr.Right;
+				}
+			}
+		}
+	
+	// Test Driver method
+    var tree = new BST();
+	tree.Insert( new BinaryTree( 3 ) );
+	tree.Insert( new BinaryTree( 6 ) );
+	tree.Insert( new BinaryTree( 2 ) );
+	tree.Insert( new BinaryTree( 4 ) );
+	tree.Insert( new BinaryTree( 1 ) );
+	tree.Delete( 6 );
+	println("BST level order: 3 2 4 1");
+	BST.BFS( tree.root );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="arith"></a>
