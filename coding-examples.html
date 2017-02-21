@@ -4922,9 +4922,10 @@ A very basic arithmetic problem you maybe asked is to implement a multiply opera
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="art1[0] = true; art1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="art1=[true,false,false]; art1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('art1')" ng-class='art1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art1=[false,true,false]; art1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('art1')" ng-class='art1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art1=[false,false,true]; art1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('art1')" ng-class='art1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art1=[true,false,false,false]; art1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art1')" ng-class='art1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art1=[false,true,false,false]; art1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art1')" ng-class='art1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art1=[false,false,true,false]; art1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('art1')" ng-class='art1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art1=[false,false,false,true]; art1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('art1')" ng-class='art1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='art1[0]'>
@@ -4956,6 +4957,7 @@ def Mul( x, y ):
 
 	return result
 
+# Test Driver
 print( Mul( 5, 6 ) )
 </pre>
 
@@ -4977,16 +4979,51 @@ public class Calc
 		return result;
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
 		System.out.println( "5 * 6 = " + Mul( 5, 6 ) );
 	}
 }
 </pre>
 
+<pre class='w3-container' ng-show='art1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	class Calc
+	{
+		// Multiple using only + and equal operator
+		static Mul( x, y ) {
+			var result = 0;
+			var repeat = 0;
+			while ( true ) {
+				if ( repeat++ == y )
+					break;
+				result += x;
+			}
+			return result;
+		}
+	}
+	
+	// Test Driver
+	println( "5 * 6 = " + Calc.Mul( 5, 6 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="art2[0] = true; art2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="art2=[true,false,false]; art2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('art2')" ng-class='art2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art2=[false,true,false]; art2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('art2')" ng-class='art2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art2=[false,false,true]; art2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('art2')" ng-class='art2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art2=[true,false,false,false]; art2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art2')" ng-class='art2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art2=[false,true,false,false]; art2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art2')" ng-class='art2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art2=[false,false,true,false]; art2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('art2')" ng-class='art2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art2=[false,false,false,true]; art2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('art2')" ng-class='art2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='art2[0]'>
@@ -5025,6 +5062,7 @@ def Exp( x, e ):
 
 	return result
 
+# Test Driver
 print( Exp( 3, 4 ) )
 </pre>
 
@@ -5048,16 +5086,54 @@ public class Calc
 		return result;
 	}
 	
+	// Test Driver
 	public static void main(String[] args) {
 		System.out.println( "3 exp 4 = " + Exp( 3, 4 ) );
 	}
 }
 </pre>
 
+<pre class='w3-container' ng-show='art2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	class Calc
+	{
+		...
+		// Exponent using only + and equal operator
+		static Exp( x, e ) {
+			if ( e == 0 )
+				return 1;
+			var result = 1;
+			var repeat = 0;
+			while ( true ) {
+				if ( repeat++ == e )
+					break;
+				result = Calc.Mul( x, result );
+			}
+			return result;
+		}
+	}
+	
+	// Test Driver
+	println( "3 exp 4 = " + Calc.Exp( 3, 4 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="art3[0] = true; art3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="art3=[true,false,false]; art3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('art3')" ng-class='art3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art3=[false,true,false]; art3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('art3')" ng-class='art3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art3=[false,false,true]; art3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('art3')" ng-class='art3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art3=[true,false,false,false]; art3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art3')" ng-class='art3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art3=[false,true,false,false]; art3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art3')" ng-class='art3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art3=[false,false,true,false]; art3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('art3')" ng-class='art3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art3=[false,false,false,true]; art3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('art3')" ng-class='art3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='art3[0]'>
@@ -5066,7 +5142,7 @@ can be done by factoring the equation into fewer multiplication steps. There are
 the exponent in half, resulting in half the multiplications, one for even exponents and one for odd exponents.
 </p>
 
-<h4>Algorithm</h4>
+<h4>Algorithm - Exponent with Fewer Multiplication Steps</h4>
 <ol class='w3-ul'>
 	<li>Use the following factoring rules:
 		<ol>
@@ -5118,10 +5194,45 @@ public class Calc
 }
 </pre>
 
+<pre class='w3-container' ng-show='art3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	class Calc
+	{
+		...
+		// Exponent with half the multiplications
+		static Exp2( x, e ) {
+			if ( e == 0 )
+				return 1;
+			// even
+			if ( ( e % 2 ) == 0 )
+				return Calc.Exp( x * x, ( e / 2 ) );
+			// odd
+			else
+				return x * Calc.Exp( x * x, ( ( e - 1 ) / 2  ) );
+		}
+	}
+	
+	// Test Driver
+	println( "3 exp 4 = " + Calc.Exp2( 3, 4 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="art4[0] = true; art4cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="art4=[true,false,false]; art4cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('art4')" ng-class='art4cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art4=[false,true,false]; art4cls=['w3-lightgray','w3-black','w3-lightgray']; Python('art4')" ng-class='art4cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art4=[false,false,true]; art4cls=['w3-lightgray','w3-lightgray','w3-black']; Java('art4')" ng-class='art4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art4=[true,false,false,false]; art4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art4')" ng-class='art4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art4=[false,true,false,false]; art4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art4')" ng-class='art4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art4=[false,false,true,false]; art4cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('art4')" ng-class='art4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art4=[false,false,false,true]; art4cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('art4')" ng-class='art4cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='art4[0]'>
@@ -5154,7 +5265,8 @@ def GCD( x, y ):
 		y = remainder
 		
 	return x
-		
+
+# Test Driver	
 print( "GCD " + str( GCD( 12, 16 ) ) )
 </pre>
 
@@ -5179,16 +5291,57 @@ public class GCD {
 		return x;
 	}
 	
+	// Test Driver
 	public static void main(String[] args ) {
 		System.out.println( "GCD(4) " + GCD( 12, 16 ) );
 	}
 }
 </pre>
 
+<pre class='w3-container' ng-show='art4[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	class GCD {
+		// Euclid's algorithm as an iterative solution
+		static GCD( x, y )
+		{
+			// continue until the division of of the two numbers does not leave a remainder (evenly divisible)
+			while ( y > 0 )
+			{
+				// calculate the remainder of the division by between x and y
+				var remainder = ( y % x );
+				
+				// swap the value of x with y
+				x = y;
+				
+				// set y to the remainder
+				y = remainder;
+			}
+			
+			return x;
+		}
+	}
+	
+	// Test Driver
+	println( "GCD " + GCD.GCD( 12, 16 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="art5[0] = true; art5cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="art5=[true,false,false]; art5cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('art5')" ng-class='art5cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art5=[false,true,false]; art5cls=['w3-lightgray','w3-black','w3-lightgray']; Python('art5')" ng-class='art5cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art5=[false,false,true]; art5cls=['w3-lightgray','w3-lightgray','w3-black']; Java('art5')" ng-class='art5cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art5=[true,false,false,false]; art5cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art5')" ng-class='art5cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art5=[false,true,false,false]; art5cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art5')" ng-class='art5cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art5=[false,false,true,false]; art5cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('art5')" ng-class='art5cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art5=[false,false,false,true]; art5cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('art5')" ng-class='art5cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='art5[0]'>
@@ -5213,7 +5366,8 @@ def GCDR( x, y ):
 		return x
 			
 	return GCDR( y, ( y % x ) )
-	
+
+# Test Driver	
 print( "GCD " + str( GCDR( 12, 16 ) ) )
 </pre>
 
@@ -5229,16 +5383,48 @@ public class GCD {
 		return GCD( y, ( y % x ) );
 	}
 	
+	// Test Driver
 	public static void main(String[] args ) {
 		System.out.println( "GCD(4) " + GCD( 12, 16 ) );
 	}
 }
 </pre>
 
+<pre class='w3-container' ng-show='art5[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	class GCD {
+		...
+		// Euclid's algorithm as a recursive solution
+		static GCDR( x, y )
+		{
+			// return the current value of x when y is reduced to zero.
+			if ( y == 0 )
+				return x;
+				
+			return GCD.GCDR( y, ( y % x ) );
+		}	
+	}
+	
+	println( "GCD " + GCD.GCDR( 12, 16 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="art6[0] = true; art6cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="art6=[true,false,false]; art6cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('art6')" ng-class='art6cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art6=[false,true,false]; art6cls=['w3-lightgray','w3-black','w3-lightgray']; Python('art6')" ng-class='art6cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="art6=[false,false,true]; art6cls=['w3-lightgray','w3-lightgray','w3-black']; Java('art6')" ng-class='art6cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art6=[true,false,false,false]; art6cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art6')" ng-class='art6cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art6=[false,true,false,false]; art6cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art6')" ng-class='art6cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art6=[false,false,true,false]; art6cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('art6')" ng-class='art6cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="art6=[false,false,false,true]; art6cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('art6')" ng-class='art6cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='art6[0]'>
@@ -5258,7 +5444,8 @@ The least common multiple (LCM) is the product of the two numbers divided by the
 # Calculate the least common multiple
 def LCM( x, y ):
 	return ( x * y ) / GCD( x, y )
-	
+
+# Test Driver
 print( "LCM " + str( LCM( 6, 8 ) ) )
 </pre>
 
@@ -5271,10 +5458,38 @@ public class GCD {
 		return ( x * y ) / GCD( x, y );
 	}
 	
+	// Test Driver
 	public static void main(String[] args ) {
 		System.out.println( "LCM(24) " + LCM( 6, 8 ) );
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='art6[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	class GCD {
+		...		
+		// Calculate the least common multiple
+		static LCM( x, y )
+		{
+			return ( x * y ) / GCD.GCD( x, y );
+		}
+	}
+	
+	// Test Driver
+	println( "LCM " + GCD.LCM( 6, 8 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="encoding"></a>

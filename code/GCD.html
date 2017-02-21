@@ -1,0 +1,54 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+	
+	class GCD {
+		// Euclid's algorithm as an iterative solution
+		static GCD( x, y )
+		{
+			// continue until the division of of the two numbers does not leave a remainder (evenly divisible)
+			while ( y > 0 )
+			{
+				// calculate the remainder of the division by between x and y
+				var remainder = ( y % x );
+				
+				// swap the value of x with y
+				x = y;
+				
+				// set y to the remainder
+				y = remainder;
+			}
+			
+			return x;
+		}
+
+		// Euclid's algorithm as a recursive solution
+		static GCDR( x, y )
+		{
+			// return the current value of x when y is reduced to zero.
+			if ( y == 0 )
+				return x;
+				
+			return GCD.GCDR( y, ( y % x ) );
+		}	
+	
+		// Calculate the least common multiple
+		static LCM( x, y )
+		{
+			return ( x * y ) / GCD.GCD( x, y );
+		}
+	}
+	
+	// Test Driver
+	println( "GCD " + GCD.GCD( 12, 16 ) );
+	println( "GCD " + GCD.GCDR( 12, 16 ) );
+	println( "LCM " + GCD.LCM( 6, 8 ) );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
