@@ -1,129 +1,122 @@
-import java.util.LinkedList;
-
-// Base Class definition for k-ary tree
-abstract class Node {
-	// node data
-	private Object key;	
-	// action to perform on a node
-	public abstract void Action();
-	
+/ Base Class definition for k-ary tree
+class Node {
 	// constructor: set the node data
-	public Node( Object key ) {
-		this.key = key;
+	constructor( key ) {
+		this.key = key;	// node data
 	}
 	
 	// Set the node data
-	public void Key( Object key ) {
+	set Key( key ) {
 		this.key = key;
 	}
 	
 	// Get the node data
-	public Object Key() {
-		return key;
+	get Key() {
+		return this.key;
 	}
 }
 
 // Derived definition for a Binary Tree
 class BinaryTree extends Node {
-    private BinaryTree left;	// left binary subtree
-    private BinaryTree right;	// right binary subtree
-	
 	// Constructor: set the node data and left/right subtrees to null
-	public BinaryTree (Object key) {
+	constructor( key ) {
         super( key );
-        right = null;
-        left = null;
+        right = null;	// right binary subtree
+        left = null;	// left binary subtree
     }
 	
 	// Set the left binary subtree
-	public void Left( BinaryTree left ) {
+	set Left( left ) {
 		this.left = left;
 	}
 	
 	// Get the left binary subtree
-	public BinaryTree Left() {
-		return left;
+	get Left() {
+		return this.left;
 	}
 	
 	// Set the right binary subtree
-	public void Right( BinaryTree right ) {
+	set Right( right ) {
 		this.right = right;
 	}
 	
 	// Get the right binary subtree
-	public BinaryTree Right() {
-		return right;
+	get Right() {
+		return this.right;
 	}
 	
 	// Example action to perform on a node
-	public void Action() {
-		System.out.println( this.Key() );
+	Action() {
+		println( this.Key() );
 	}
 }
 
 // Definition for a binary search tree
 class BST {
-	public BinaryTree root = null;	// root of the binary search tree
+	// constructor
+	constructor() {
+		this.root = null;	// root of the binary search tree
+	}
 	
 	// Insert a node into a binary tree
-	public void Insert( BinaryTree node ) {
+	Insert( node ) {
 		// Empty Tree, make the node the root
-		if ( root == null ) {
-			root = node;
+		if ( this.root == null ) {
+			this.root = node;
 			return;
 		}
 		
 		// Follow a path to insert the node
-		BinaryTree curr = root;
+		var curr = this.root;
 		while ( true ) {
 			// node is a duplicate, do not insert
-			if ( (int) node.Key() == (int) curr.Key() ) {
+			if ( node.Key == curr.Key ) {
 				return;
 			}
 			
 			// The node is less than the current node, traverse left
-			if ( (int) node.Key() < (int) curr.Key() ) {
+			if ( node.Key < curr.Key ) {
 				// If there is no left node, make this node the left node
-				if ( curr.Left() == null ) {
-					curr.Left( node );
+				if ( curr.Left == null ) {
+					curr.Left = node;
 					return;
 				}
-				curr = curr.Left();
+				curr = curr.Left;
 			}
 			// The node is greater than to the current node, traverse left
 			else {
 				// If there is no right node, make this node the right node
-				if ( curr.Right() == null ) {
-					curr.Right( node );
+				if ( curr.Right == null ) {
+					curr.Right = node;
 					return;
 				}
-				curr = curr.Right();
+				curr = curr.Right;
 			}
 		}
 	}
 		
 	// Find a node in a binary tree
-	public BinaryTree Find( Object key ) {
+	Find( key ) {
 			
 		// Follow a path to find the node
-		BinaryTree curr = root;
+		var curr = this.root;
 		while ( true ) {
 			// current node is null, return null (not found)
 			if ( curr == null )
 				return null;
 				
 			// the value is equal to the current node, return the current node
-			if ( (int) key == (int) curr.Key() ) {
+			if ( key == curr.Key ) {
 				return curr;
 			}
 			
 			// The value is less than the current node, traverse left
-			if ( (int) key < (int) curr.Key() ) {
-				curr = curr.Left();
+			if ( key < curr.Key ) {
+				curr = curr.Left;
 			}
 			// The value is greater than to the current node, traverse left
 			else {
-				curr = curr.Right();
+				curr = curr.Right;
 			}
 		}
 	}

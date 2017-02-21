@@ -59,6 +59,18 @@ class DB
 		
 		return $result;
 	}
+	
+	/*
+	 * Add a timing entry to the database
+	 */
+	function UpdateTiming( $id, $timing ) {
+		$q = "UPDATE " . TBL_QUESTIONS . " SET tcount=tcount+1, timing=timing+$timing WHERE id=$id";
+		$result = mysqli_query( $this->connection, $q );
+		echo "Q $q<br/>";
+        echo mysql_error( $this->connection ) . "<br/>";
+		
+		return $result;
+	}
 }
 
 $db = new DB;

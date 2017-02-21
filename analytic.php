@@ -1,4 +1,11 @@
 <?php
+include "db.php";
+	
+function Timing( $id, $timing ) {
+	global $db;
+	$db->UpdateTiming( $id, $timing );	
+}
+	
 	$session   = "";
 	$category  = "";
 	$nsessions = 0;
@@ -32,7 +39,7 @@
 						   else if ( $type == "next" || $type == "harder" || $type == "easier" ) {
 							   $diff = ( $timing - $last_time );
 							   if ( $diff > 0 && $diff < 20 ) {
-								   echo "UPDATE questions set tcount=tcount+1,timing=timing+$diff where id=$id<br/>";
+								   Timing( $id, $diff );
 							   }
 						   }
 						   $last_time = $timing;
