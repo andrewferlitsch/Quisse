@@ -1,0 +1,46 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	class Encoding {
+		static Size( encoding ) {
+			var first = encoding[ 0 ];
+			
+			// checking leading bit
+			if ( ( first & 0x80 ) == 0 )
+				return 1;
+			if ( ( first & 0x40 ) == 0 )
+				return 2;
+			if ( ( first & 0x20 ) == 0 )
+				return 3;
+			if ( ( first & 0x10 ) == 0 )
+				return 4;
+			if ( ( first & 0x08 ) == 0 )
+				return 5;
+			if ( ( first & 0x04 ) == 0 )
+				return 6;
+			if ( ( first & 0x02 ) == 0 )
+				return 7;
+			if ( ( first & 0x01 ) == 0 )
+				return 8;
+			return 0;	// error
+		}
+	}
+		
+	// Test Driver
+	var encoding = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+	encoding[ 0 ] = 0x49;
+	println( "Size(1) = " + Encoding.Size( encoding ) );
+	encoding[ 0 ] = 0x89;
+	println( "Size(2) = " + Encoding.Size( encoding ) );
+	encoding[ 0 ] = 0xCB;
+	println( "Size(3) = " + Encoding.Size( encoding ) );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

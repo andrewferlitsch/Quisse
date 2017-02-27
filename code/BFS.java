@@ -1,4 +1,6 @@
 import java.util.LinkedList;
+import java.util.Stack;
+
 // Base Class definition for k-ary tree
 abstract class Node {
 	// node data
@@ -81,7 +83,7 @@ class BinaryTree extends Node {
 	}
 }
 public class BFS {
-	public static void BFS( BinaryTree root ) {
+	public static void BFS( BinaryTree root, Object goal ) {
 		
 		// Check if tree is empty
 		if ( root == null )
@@ -96,12 +98,79 @@ public class BFS {
 			// Perform the node action
 			visit.get( i ).Action();
 			
+			// If searching for a goal node and found, then stop
+			if ( goal != null && visit.get( i ).Key() == goal )
+				return;
+			
 			// Add to the list the child siblings of this node
 			if ( visit.get( i ).Left() != null )
 				visit.add( visit.get( i ).Left() );
 			if ( visit.get( i ).Right() != null )
 				visit.add( visit.get( i ).Right() );
 		}	
+	}
+	
+	public static Stack<BinaryTree> Path( BinaryTree root, Object goal ) {
+		// Check if tree is empty
+		if ( root == null )
+			return null;
+		
+		Stack<BinaryTree> ret = new Stack<BinaryTree>();
+		
+		// Node found, end search
+		if ( root.Key() == goal ) {
+			ret.push( root );
+			return ret;
+		}
+		
+		// Search left subtree for node
+		Stack<BinaryTree> left  = Path( root.Left(), goal );
+		
+		// node was found on left subtree
+		if ( left != null ) {
+			 left.push( root );
+			 return left;
+		}
+		
+		// Search right subtree for node
+		Stack<BinaryTree> right = Path( root.Right(), goal );	
+		
+		// node was found on right subtree
+		if ( right != null ) {
+			 right.push( root );
+			 return right;
+		}
+		
+		// node not in tree
+		return null;
+	}
+	
+	// Find the distance between two nodes
+	public static int Distance( BinaryTree root, Object node1, Object node2 ) {
+		// Get the path to the first node
+		Stack<BinaryTree> path1 = Path( root, node1 );
+		if ( path1 == null ) return 0;
+		
+		// Get the path to the second node
+		Stack<BinaryTree> path2 = Path( root, node2 );
+		if ( path2 == null ) return 0;
+
+		// The minimum distance between the nodes and the root
+		int i = Math.min( path1.size(), path2.size() ) - 1;		
+		// Find the common ancestor within the minimum distance
+		BinaryTree common = root;
+		for ( /**/; i > 0; i-- ) {
+			if ( path1.get( i ).Key() != path2.get( i ).Key() )
+				break;
+			common = path1.get( i );
+		}
+		
+		// Find the distances between the common ancestor and the two nodes
+		int dist1 = path1.size() - ( path1.size() - i ) + 1;
+		int dist2 = path2.size() - ( path2.size() - i ) + 1;
+		
+		// return the combined distances
+		return dist1 + dist2;
 	}
 	
 	public static void main( String[] args ) {
@@ -111,6 +180,17 @@ public class BFS {
 		tree.Left().Left( new BinaryTree( "4" ) );
 		tree.Left().Right( new BinaryTree( "5" ) );
 		System.out.println( "BFS output 1 2 3 4 5");
-		BFS( tree );
+		BFS( tree, null );
+		System.out.println( "BFS find node 4");
+		BFS( tree, "4" );
+		System.out.println( "Path find 4");
+		Stack<BinaryTree> path = BFS.Path( tree, "4" );
+		while ( !path.empty() ) {
+			System.out.println( path.pop().Key() );
+		}
+		
+		tree.Right().Left( new BinaryTree( "6" ) );
+		tree.Right().Right( new BinaryTree( "7" ) );
+		System.out.println( "Distance( 4, 6 ) = 4: " + BFS.Distance( tree, "4", "6") );
 	}
 }

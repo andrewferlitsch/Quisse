@@ -295,7 +295,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'CSS',
-    'How do you select all elements inside a div?',
+    'How do you select all paragraph elements inside a div?',
     'div p {}',
     2,
 	1

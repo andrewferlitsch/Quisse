@@ -80,7 +80,7 @@ public class Graph {
 	}
 	
 	// Depth first search of a graph (Iterative)
-	public static void DFS( Node root ) {
+	public static void DFS( Node root, Object goal ) {
 		// Create a stack for frontier nodes (nodes to be visited next)
 		Stack frontier = new Stack();
 		
@@ -95,6 +95,10 @@ public class Graph {
 			visit.Visited( Node.Visit.VISITED );
 			System.out.println( visit.Key() );
 			
+			// if searching for goal node and found, then stop
+			if ( goal != null && visit.Key() == goal )
+				return;
+			
 			// Add the node's neighbors (if not visited and not on frontier list) 
 			// to the frontier list
 			for ( Node node : visit.Neighbors() ) {
@@ -107,18 +111,48 @@ public class Graph {
 	}
 	
 	// Depth first search of a graph (Recursive)
-	public static void DFSR( Node root ) {
+	public static void DFSR( Node root, Object goal ) {
 		if ( root == null )
 			return;
 		
 		// mark the node as visited
 		root.Visited( Node.Visit.VISITED );
 		System.out.println( root.Key() );
+			
+		// if searching for goal node and found, then stop
+		if ( goal != null && root.Key() == goal )
+			return;
+		
+		// Recursively visit each unvisited neighbor
+		for ( Node node : root.Neighbors() ) {
+			
+			if ( node.Visited() == Node.Visit.UNVISITED ) {
+				DFSR( node, goal );
+			}
+		}
+	}
+	
+	// Depth limited search of a graph (Recursive)
+	public static void DFSR( Node root, Object goal, int limit ) {
+		if ( root == null )
+			return;
+		
+		// mark the node as visited
+		root.Visited( Node.Visit.VISITED );
+		System.out.println( root.Key() );
+			
+		// if searching for goal node and found, then stop
+		if ( root.Key() == goal )
+			return;
+		
+		// At maximum search depth ( and decrement limit for recursive call )
+		if ( --limit == 0 )
+			return;
 		
 		// Recursively visit each unvisited neighbor
 		for ( Node node : root.Neighbors() ) {
 			if ( node.Visited() == Node.Visit.UNVISITED ) {
-				DFSR( node );
+				DFSR( node, goal );
 			}
 		}
 	}
@@ -135,12 +169,23 @@ public class Graph {
 		nodes[ 3 ].Neighbor( nodes[ 4 ] );
 		nodes[ 3 ].Neighbor( nodes[ 5 ] );
 		nodes[ 4 ].Neighbor( nodes[ 5 ] );
+		System.out.println("BFS");
 		BFS( nodes[ 0 ] );
+		System.out.println("Iterative DFS");
 		for ( int i = 0; i < 6; i++ )
 			nodes[ i ].Visited( Node.Visit.UNVISITED);
-		DFS( nodes[ 0 ] );
+		DFS( nodes[ 0 ], null );
+		System.out.println("Iterative DFS with goal(5)");
 		for ( int i = 0; i < 6; i++ )
 			nodes[ i ].Visited( Node.Visit.UNVISITED);
-		DFSR( nodes[ 0 ] );
+		DFS( nodes[ 0 ], 5 );
+		System.out.println("Recursive DFS");
+		for ( int i = 0; i < 6; i++ )
+			nodes[ i ].Visited( Node.Visit.UNVISITED);
+		DFSR( nodes[ 0 ], null );
+		System.out.println("Recursive DFS with goal(5)");
+		for ( int i = 0; i < 6; i++ )
+			nodes[ i ].Visited( Node.Visit.UNVISITED);
+		DFSR( nodes[ 0 ], 5 );
 	}
 }

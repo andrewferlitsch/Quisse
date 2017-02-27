@@ -5501,9 +5501,10 @@ encoding.
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="enc1[0] = true; enc1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="enc1=[true,false,false]; enc1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('enc1')" ng-class='enc1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="enc1=[false,true,false]; enc1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('enc1')" ng-class='enc1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="enc1=[false,false,true]; enc1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('enc1')" ng-class='enc1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="enc1=[true,false,false,false]; enc1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('enc1')" ng-class='enc1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="enc1=[false,true,false,false]; enc1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('enc1')" ng-class='enc1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="enc1=[false,false,true,false]; enc1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('enc1')" ng-class='enc1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="enc1=[false,false,true,false]; enc1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('enc1')" ng-class='enc1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='enc1[0]'>
@@ -5583,6 +5584,55 @@ public class Encoding {
 }
 </pre>
 
+<pre class='w3-container' ng-show='enc1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	class Encoding {
+		static Size( encoding ) {
+			var first = encoding[ 0 ];
+			
+			// checking leading bit
+			if ( ( first & 0x80 ) == 0 )
+				return 1;
+			if ( ( first & 0x40 ) == 0 )
+				return 2;
+			if ( ( first & 0x20 ) == 0 )
+				return 3;
+			if ( ( first & 0x10 ) == 0 )
+				return 4;
+			if ( ( first & 0x08 ) == 0 )
+				return 5;
+			if ( ( first & 0x04 ) == 0 )
+				return 6;
+			if ( ( first & 0x02 ) == 0 )
+				return 7;
+			if ( ( first & 0x01 ) == 0 )
+				return 8;
+			return 0;	// error
+		}
+	}
+		
+	// Test Driver
+	var encoding = [ 0, 0, 0, 0, 0, 0, 0, 0 ];
+	encoding[ 0 ] = 0x49;
+	println( "Size(1) = " + Encoding.Size( encoding ) );
+	encoding[ 0 ] = 0x89;
+	println( "Size(2) = " + Encoding.Size( encoding ) );
+	encoding[ 0 ] = 0xCB;
+	println( "Size(3) = " + Encoding.Size( encoding ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <a name="sort"></a>
 <h3>12. Sorting</h3>
 <p>
@@ -5594,9 +5644,10 @@ a time complexity of O(n*n).
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="srt1[0] = true; srt1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="srt1=[true,false,false]; srt1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('srt1')" ng-class='srt1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt1=[false,true,false]; srt1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('srt1')" ng-class='srt1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt1=[false,false,true]; srt1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('srt1')" ng-class='srt1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt1=[true,false,false,false]; srt1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt1')" ng-class='srt1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt1=[false,true,false,false]; srt1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt1')" ng-class='srt1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt1=[false,false,true,false]; srt1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('srt1')" ng-class='srt1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt1=[false,false,false,true]; srt1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('srt1')" ng-class='srt1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='srt1[0]'>
@@ -5628,7 +5679,8 @@ def BubbleSort( data ):
 				data[ i + 1 ] = swap
 				swapped = True
 	return data
-	
+
+# Test Driver
 data = [ 5, 2, 4, 1, 6, 3 ]
 data = BubbleSort( data )
 for i in range( 0, len( data ) ):
@@ -5657,6 +5709,7 @@ class Sort {
 		return data;
 	}
 	
+	// Test Driver
 	public static void main( String[] args ) {
 		int[] data = new int[ 6 ];
 		data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
@@ -5667,10 +5720,55 @@ class Sort {
 }
 </pre>
 
+<pre class='w3-container' ng-show='srt1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	class Sort {
+		// Definition for a Bubble Sort
+		static BubbleSort( data ) {
+			var swapped = true;
+			// continue to repeat until no more adjacent values are swapped
+			while ( swapped ) {
+				swapped = false;
+				// Make a scan through the list
+				for ( var i = 0; i < data.length - 1; i++ ) {
+					// Compare adjacent values. If the first value > second value, swap the values.
+					if ( data[ i ] > data[ i + 1 ] ) {
+						var swap = data[ i ];
+						data[ i ] = data[ i + 1 ];
+						data[ i + 1 ] = swap;
+						swapped = true;
+					}
+				}
+			}
+			return data;
+		}
+	}
+	
+	// Test Driver
+	data = [];
+	data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+	data = Sort.BubbleSort( data );
+	for ( var i = 0; i < data.length; i++ )
+		println( data[ i ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="srt2[0] = true; srt2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="srt2=[true,false,false]; srt2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('srt2')" ng-class='srt2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt2=[false,true,false]; srt2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('srt2')" ng-class='srt2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt2=[false,false,true]; srt2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('srt2')" ng-class='srt2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt2=[true,false,false,false]; srt2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt2')" ng-class='srt2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt2=[false,true,false,false]; srt2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt2')" ng-class='srt2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt2=[false,false,true,false]; srt2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('srt2')" ng-class='srt2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt2=[false,false,false,true]; srt2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('srt2')" ng-class='srt2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='srt2[0]'>
@@ -5742,10 +5840,53 @@ class Sort {
 }
 </pre>
 
+<pre class='w3-container' ng-show='srt2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	class Sort {
+		// Definition for an Insertion Sort
+		static InsertionSort( data ) {
+			// iterate through the list for each element except the first element
+			for ( var i = 1; i < data.length; i++ ) {
+				// starting with the current element, remove/insert proceeding
+				// elements so they are in sorted order
+				for ( var j = i; j > 0; j-- ) {
+					// swap adjacent elements
+					if ( data[ j ] < data[ j - 1 ] ) {
+						var temp = data[ j ];
+						data[ j ] = data[ j -1 ];
+						data[ j - 1 ] = temp;
+					}
+				}
+			}
+			return data;
+		}
+	}
+	
+	// Test Driver
+	data = [];
+	data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+	data = Sort.InsertionSort( data );
+	for ( var i = 0; i < data.length; i++ )
+		println( data[ i ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="srt3[0] = true; srt3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="srt3=[true,false,false]; srt3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('srt3')" ng-class='srt3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt3=[false,true,false]; srt3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('srt3')" ng-class='srt3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt3=[false,false,true]; srt3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('srt3')" ng-class='srt3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt3=[true,false,false,false]; srt3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt3')" ng-class='srt3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt3=[false,true,false,false]; srt3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt3')" ng-class='srt3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt3=[false,false,true,false]; srt3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('srt3')" ng-class='srt3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt3=[false,false,false,true]; srt3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('srt3')" ng-class='srt3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='srt3[0]'>
@@ -5870,10 +6011,80 @@ class Sort {
 }
 </pre>
 
+<pre class='w3-container' ng-show='srt3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	class Sort {
+		// Definition for an Quick Sort
+		static QuickSort( data ) {
+			Sort.qSort( data, 0, data.length - 1 );
+			return data;
+		} 
+		
+		static qSort( data, low, high ) {
+			var i     = low;						// starting lower index
+			var j     = high;						// starting higher index
+			var mid   = Math.floor( low + ( high - low ) / 2 );	// midway index
+			var pivot = data[ mid ];				// pivot, value at the midway index
+			
+			// Divide the array into two partitions
+			while ( i <= j ) {
+				// keep advancing (ascending) the lower index until we find a value that is not less than the pivot
+				// we will move this value to the right half partition.
+				while ( data[ i ] < pivot ) {
+					i++;
+				}
+				// keep advancing (descending) the higher index until we find a value that is not greater than the pivot
+				// we will move this value to the left half partition.
+				while ( data[ j ] > pivot ) {
+					j--;
+				}
+				// if the lower index has past the higher index, there is no values to swap
+				// otherwise, swap the values and continue
+				if ( i <= j ) {
+					// swap the higher than pivot value on the left side with the lower than pivot value on the right side
+					var temp  = data[ i ];
+					data[ i ] = data[ j ];
+					data[ j ] = temp;
+
+					// advance the lower and higher indexes accordingly and continue
+					i++;
+					j--;
+				}
+			}        
+			
+			// recursively sort the two partitions if the index has not crossed over the pivot index
+			if ( low < j )
+				Sort.qSort( data, low, j );
+			if ( i < high )
+				Sort.qSort( data, i, high );
+		}
+	}
+	
+	// Test Driver
+	data = [];
+	data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+	data = Sort.QuickSort( data );
+	for ( var i = 0; i < data.length; i++ )
+		println( data[ i ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="srt4[0] = true; srt4cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="srt4=[true,false,false]; srt4cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('srt4')" ng-class='srt4cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt4=[false,true,false]; srt4cls=['w3-lightgray','w3-black','w3-lightgray']; Python('srt4')" ng-class='srt4cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="srt4=[false,false,true]; srt4cls=['w3-lightgray','w3-lightgray','w3-black']; Java('srt4')" ng-class='srt4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt4=[true,false,false,false]; srt4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt4')" ng-class='srt4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt4=[false,true,false,false]; srt4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt4')" ng-class='srt4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt4=[false,false,true,false]; srt4cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('srt4')" ng-class='srt4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="srt4=[false,false,false,true]; srt4cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('srt4')" ng-class='srt4cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='srt4[0]'>
@@ -6010,6 +6221,85 @@ class Sort {
 			System.out.println( data[ i ] );
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='srt4[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	class Sort {
+	
+		// Definition for an Quick Sort
+		static MergeSort( data ) {
+			// allocate space for a temporary copy of the data
+			var tdata = new Array( data.length );
+
+			// sort the data (pass in the temporary copy so routine is thread safe)
+			Sort.mSort( data, 0, data.length - 1, tdata );
+			return data;
+		} 
+		
+		static mSort( data, low, high, tdata ) {
+			// if the partition has more than one element, then recursively divide the partition and merge the parts back in
+			if ( low < high ) {
+				var mid   = Math.floor( low + ( high - low ) / 2 );	// midway index
+				
+				// sort the lower (first) half partition
+				Sort.mSort( data, low, mid, tdata );
+				// sort the upper (second) half partition
+				Sort.mSort( data, mid + 1, high, tdata );
+				
+				// merge the partitions together
+				Sort.merge( data, low, mid, high, tdata );
+			}
+		}
+		
+		static merge( data, low, mid, high, tdata ) {
+			// make a temporary copy of the two separately sorted partitions
+			for ( var i = low; i <= high; i++ )
+				tdata[ i ] = data[ i ];	        
+			
+			// starting from the beginning of the first partition, iteratively search for the next lowest
+			// number from the lower (first) and higher (second) and move into current position in the 
+			// lower (first) partition
+			var i = low, k = low;
+			var j = mid + 1;
+			while ( i <= mid && j <= high ) {            
+				if ( tdata[ i ] <= tdata[ j ] ) {
+					data[ k ] = tdata[ i ];
+					i++;
+				} else {
+					data[ k ] = tdata[ j ];
+					j++;
+				}
+				k++;
+			}
+			
+			// Copy any remaining elements back into the first partition
+			while ( i <= mid ) {
+				data[ k ] = tdata[ i ];
+				k++;
+				i++;
+			}
+		}
+	}
+	
+	// Test Driver
+	data = [];
+	data[ 0 ] = 5; data[ 1 ] = 2; data[ 2 ] = 4; data[ 3 ] = 1; data[ 4 ] = 6; data[ 5 ] = 3;
+	data = Sort.MergeSort( data );
+	for ( var i = 0; i < data.length; i++ )
+		println( data[ i ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="hash"></a>
