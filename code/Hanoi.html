@@ -15,12 +15,12 @@ $(function() {
 		}
 		
 		// Get the next disc this element is stacked on top of
-		GetNext() {
+		get Next() {
 			return this.next;
 		}
 		
 		// Set the next disc this element is stacked on top of
-		Next( disc ) {
+		set Next( disc ) {
 			this.next = disc;
 		}
 		
@@ -47,7 +47,7 @@ $(function() {
 		// Push the disc to the top of the stack
 		Push( disc ) {
 			// Set the disc next pointer to the current top (disc below)
-			disc.Next( this.top );
+			disc.Next = this.top;
 			// set the top to this disc
 			this.top = disc;
 		}
@@ -61,7 +61,7 @@ $(function() {
 			var disc = this.top;	// the disc to pop from the stack
 			
 			// Move the top to the current top's next pointer (disc below).
-			this.top = this.top.GetNext();
+			this.top = this.top.Next;
 			return disc;
 		}
 	}

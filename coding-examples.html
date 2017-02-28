@@ -6323,9 +6323,10 @@ issues to resolve:
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="has1[0] = true; has1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="has1=[true,false,false]; has1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('has1')" ng-class='has1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="has1=[false,true,false]; has1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('has1')" ng-class='has1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="has1=[false,false,true]; has1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('has1')" ng-class='has1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has1=[true,false,false,false]; has1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('has1')" ng-class='has1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has1=[false,true,false,false]; has1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('has1')" ng-class='has1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has1=[false,false,true,false]; has1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('has1')" ng-class='has1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has1=[false,false,false,true]; has1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('has1')" ng-class='has1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='has1[0]'>
@@ -6566,10 +6567,138 @@ public class Hash {
 }
 </pre>
 
+<pre class='w3-container' ng-show='has1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	// Definition for an Entry in the Hash Table (Dictionary)
+	class Entry {
+		// Constructor
+		constructor( key, value ) {
+			this.key   = key;    // the key value
+			this.value = value;  // the value for this key
+			this.next  = null;   // the next entry at this range
+		}
+	 
+		// Get the key
+		get Key() {
+			return this.key;
+		}
+	
+		// Accessors for setting and getting the value of the entry
+		get Value() {
+			return this.value;
+		}
+	
+		set Value( value ) {
+			this.value = value;
+		}
+
+		// Accessors for setting and getting the next entry on the chain
+		get Next() {
+			return this.next;
+		}
+		
+		set Next( next ) {
+			this.next = next;
+		}
+	
+		// Comparator for checking if key matches this entry.
+		Compare( key ) {
+			return ( this.key == key );
+		}
+	}
+
+	// Definition for a Modulo based Hashing Algorithm
+	class Hash {
+		// constructor
+		constructor( range ) {
+			// set the index range and allocate the index
+			this.RANGE = range;  // the range of the index.
+			this.index = []; this.index.length = this.RANGE; // the index
+		}
+	 
+		// Map the key into an index within the set range
+		Index( key ) {
+			return key % this.RANGE;
+		}
+	
+		// Add a key/value entry to the index
+		Add( key, value ) {
+			var ix = this.Index( key );
+			
+			// there is no entry at this index, add the key/value
+			if ( this.index[ ix ] == null ) {
+				this.index[ ix ] = new Entry( key, value );
+			}
+			else {
+				// See if the key already exists in the chain
+				var next = this.index[ ix ];
+				for ( /**/; next != null; next = next.Next ) {
+					// Entry found, update the value
+					if ( next.Compare( key ) ) {
+						next.Value = value;
+						break;
+					}
+				}
+				
+				// no entry found, add one
+				if ( next == null ) {
+					// Add the entry to the front of the chain
+					var add = new Entry( key, value );
+					add.Next = this.index[ ix ];
+					this.index[ ix ] = add;
+				}
+			}
+		}
+	
+		// Get the value for the key
+		Get( key ) {
+			var ix = this.Index( key );
+			
+			// See if the key exists in the chain at this entry in the index
+			var next = this.index[ ix ];
+			for ( /**/; next != null; next = next.Next ) {
+				// Entry found, update the value
+				if ( next.Compare( key ) )
+					return next.Value;
+			}
+			
+			// not found
+			return null;
+		}
+	}
+	
+	// Test Driver
+	var index = new Hash( 100 );
+	index.Add( 17,   100 );
+	index.Add( 117,  600 ); // this will cause a collision
+	index.Add( 228,  300 );
+	index.Add( 675,  400 );
+	index.Add( 2298, 500 );
+	index.Add( 117,  200 ); // this will cause an update
+	println( index.Get( 17 ) );
+	println( index.Get( 117 ) );
+	println( index.Get( 228 ) );
+	println( index.Get( 675 ) );
+	println( index.Get( 2298 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="has2[0] = true; has2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="has2=[true,false,false]; has2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('has2')" ng-class='has2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="has2=[false,true,false]; has2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('has2')" ng-class='has2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="has2=[false,false,true]; has2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('has2')" ng-class='has2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has2=[true,false,false,false]; has2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('has2')" ng-class='has2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has2=[false,true,false,false]; has2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('has2')" ng-class='has2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has2=[false,false,true,false]; has2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('has2')" ng-class='has2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has2=[false,false,false,true]; has2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('has2')" ng-class='has2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='has2[0]'>
@@ -6589,10 +6718,15 @@ in the object instance and return a 32 bit value. In Python, the equivalent is t
 	int ix = hashCode( key ) % RANGE;
 </pre>
 
+<pre class='w3-container' ng-show='has2[3]'>
+	var ix = hashCode( key ) % this.RANGE;
+</pre>
+
 <ul class="w3-navbar w3-light-grey" ng-init="has3[0] = true; has3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="has3=[true,false,false]; has3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('has3')" ng-class='has3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="has3=[false,true,false]; has3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('has3')" ng-class='has3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="has3=[false,false,true]; has3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('has3')" ng-class='has3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has3=[true,false,false,false]; has3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('has3')" ng-class='has3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has3=[false,true,false,false]; has3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('has3')" ng-class='has3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has3=[false,false,true,false]; has3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('has3')" ng-class='has3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="has3=[false,false,false,true]; has3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('has3')" ng-class='has3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='has3[0]'>
@@ -6807,6 +6941,117 @@ public class HashLP {
 		System.out.println( index.Get( 2298 ) );
 	}
 }
+</pre>
+
+<pre class='w3-container' ng-show='has3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}		
+	
+	// Definition for an Entry in the Hash Table (Dictionary)
+	class Entry {
+		// Constructor
+		constructor( key, value ) {
+			this.key   = key;   // the key value
+			this.value = value; // the value for this key
+		}
+	 
+		// Get the key
+		get Key() {
+			return this.key;
+		}
+	
+		// Accessors for setting and getting the value of the entry
+		get Value() {
+			return this.value;
+		}
+	
+		set Value( value ) {
+			this.value = value;
+		}
+		
+		// Comparator for checking if key matches this entry.
+		Compare( key ) {
+			return ( this.key == key );
+		}
+	}
+
+	// Definition for a Linear Probe Hashing Algorithm
+	class HashLP {
+		// constructor
+		constructor( range ) {
+			// set the index range and allocate the index
+			this.RANGE = range;  // the range of the index.
+			this.index = []; this.index.length = this.RANGE; // the index
+		}
+		 
+		// Map the key into an index within the set range
+		Index( key ) {
+			return key % this.RANGE;
+		}
+		
+		// Add a key/value entry to the index
+		Add( key, value ) {
+			var ix = this.Index( key );
+			
+			// Linear probe the entries for an empty or matching slot.
+			for ( /**/; ix < this.RANGE; ix++ ) {
+				// there is no entry at this index, add the key/value
+				if ( this.index[ ix ] == null ) {
+					this.index[ ix ] = new Entry( key, value );
+					break;
+				}
+					
+				// Entry found, update the value
+				if ( this.index[ ix ].Compare( key ) ) {
+					this.index[ ix ].Value = value;
+					break;
+				}
+			}
+		}
+		
+		// Get the value for the key
+		Get( key ) {
+			var ix = this.Index( key );
+			
+			// Linear probe the entries for an empty or matching slot.
+			for ( /**/; ix < this.RANGE; ix++ ) {
+				// there is no entry at this index, return not found
+				if ( this.index[ ix ] == null )
+					return null;
+					
+				// Entry found
+				if ( this.index[ ix ].Compare( key ) )
+					return this.index[ ix ].Value;
+			}
+			
+			// not found
+			return null;
+		}
+	}
+	
+	// Test Driver
+	var index = new HashLP( 100 );
+	index.Add( 17,   100 );
+	index.Add( 117,  600 ); // this will cause a collision
+	index.Add( 228,  300 );
+	index.Add( 675,  400 );
+	index.Add( 2298, 500 );
+	index.Add( 117,  200 ); // this will cause an update
+	println( index.Get( 17 ) );
+	println( index.Get( 117 ) );
+	println( index.Get( 228 ) );
+	println( index.Get( 675 ) );
+	println( index.Get( 2298 ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
 </pre>
 
 <a name="string"></a>

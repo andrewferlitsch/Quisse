@@ -1,0 +1,108 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+	
+	// Definition for an Entry in the Hash Table (Dictionary)
+	class Entry {
+		// Constructor
+		constructor( key, value ) {
+			this.key   = key;   // the key value
+			this.value = value; // the value for this key
+		}
+	 
+		// Get the key
+		get Key() {
+			return this.key;
+		}
+	
+		// Accessors for setting and getting the value of the entry
+		get Value() {
+			return this.value;
+		}
+	
+		set Value( value ) {
+			this.value = value;
+		}
+		
+		// Comparator for checking if key matches this entry.
+		Compare( key ) {
+			return ( this.key == key );
+		}
+	}
+
+	// Definition for a Linear Probe Hashing Algorithm
+	class HashLP {
+		// constructor
+		constructor( range ) {
+			// set the index range and allocate the index
+			this.RANGE = range;  // the range of the index.
+			this.index = []; this.index.length = this.RANGE; // the index
+		}
+		 
+		// Map the key into an index within the set range
+		Index( key ) {
+			return key % this.RANGE;
+		}
+		
+		// Add a key/value entry to the index
+		Add( key, value ) {
+			var ix = this.Index( key );
+			
+			// Linear probe the entries for an empty or matching slot.
+			for ( /**/; ix < this.RANGE; ix++ ) {
+				// there is no entry at this index, add the key/value
+				if ( this.index[ ix ] == null ) {
+					this.index[ ix ] = new Entry( key, value );
+					break;
+				}
+					
+				// Entry found, update the value
+				if ( this.index[ ix ].Compare( key ) ) {
+					this.index[ ix ].Value = value;
+					break;
+				}
+			}
+		}
+		
+		// Get the value for the key
+		Get( key ) {
+			var ix = this.Index( key );
+			
+			// Linear probe the entries for an empty or matching slot.
+			for ( /**/; ix < this.RANGE; ix++ ) {
+				// there is no entry at this index, return not found
+				if ( this.index[ ix ] == null )
+					return null;
+					
+				// Entry found
+				if ( this.index[ ix ].Compare( key ) )
+					return this.index[ ix ].Value;
+			}
+			
+			// not found
+			return null;
+		}
+	}
+	
+	// Test Driver
+	var index = new HashLP( 100 );
+	index.Add( 17,   100 );
+	index.Add( 117,  600 ); // this will cause a collision
+	index.Add( 228,  300 );
+	index.Add( 675,  400 );
+	index.Add( 2298, 500 );
+	index.Add( 117,  200 ); // this will cause an update
+	println( index.Get( 17 ) );
+	println( index.Get( 117 ) );
+	println( index.Get( 228 ) );
+	println( index.Get( 675 ) );
+	println( index.Get( 2298 ) );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
