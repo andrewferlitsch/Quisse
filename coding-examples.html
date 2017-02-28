@@ -7061,9 +7061,10 @@ a builtin library). You maybe asked to do both an iterative and a recursive solu
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="str1[0] = true; str1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="str1=[true,false,false]; str1cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('str1')" ng-class='str1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str1=[false,true,false]; str1cls=['w3-lightgray','w3-black','w3-lightgray']; Python('str1')" ng-class='str1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str1=[false,false,true]; str1cls=['w3-lightgray','w3-lightgray','w3-black']; Java('str1')" ng-class='str1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str1=[true,false,false,false]; str1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('str1')" ng-class='str1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str1=[false,true,false,false]; str1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('str1')" ng-class='str1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str1=[false,false,true,false]; str1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('str1')" ng-class='str1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str1=[false,false,false,true]; str1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('str1')" ng-class='str1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='str1[0]'>
@@ -7086,7 +7087,8 @@ def Reverse( original ):
 		reversed += original[ i ]
 		
 	return reversed
-	
+
+# Test Driver	
 print( Reverse( "abcdefg" ) )
 </pre>
 
@@ -7107,6 +7109,7 @@ public class Strings {
 		return reversed.toString();
 	}
 	
+	// Test Driver
 	public static void main( String[] args ) {
 		System.out.println( Reverse( "abcdefg" ) );
 		
@@ -7114,10 +7117,46 @@ public class Strings {
 }
 </pre>
 
+<pre class='w3-container' ng-show='str1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		// Reverse the order of a string (Iterative)
+		static Reverse( original ) {
+			// Create a second string to hold/return the reversed string
+			var length = original.length;
+			var reversed = "";
+			
+			// copy over the string in reverse order
+			for ( var i = length-1; i >= 0; i-- ) {
+				reversed += original[ i ];
+			}
+			
+			return reversed;
+		}
+	}
+	
+	// Test Driver
+	println( Strings.Reverse( "abcdefg" ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>	
+
 <ul class="w3-navbar w3-light-grey" ng-init="str2[0] = true; str2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="str2=[true,false,false]; str2cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('str2')" ng-class='str2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str2=[false,true,false]; str2cls=['w3-lightgray','w3-black','w3-lightgray']; Python('str2')" ng-class='str2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str2=[false,false,true]; str2cls=['w3-lightgray','w3-lightgray','w3-black']; Java('str2')" ng-class='str2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str2=[true,false,false,false]; str2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('str2')" ng-class='str2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str2=[false,true,false,false]; str2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('str2')" ng-class='str2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str2=[false,false,true,false]; str2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('str2')" ng-class='str2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str2=[false,false,false,true]; str2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('str2')" ng-class='str2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='str2[0]'>
@@ -7135,7 +7174,8 @@ def ReverseR( original ):
 	if len( original ) > 1:
 		return ReverseR( original[1:] ) + original[ 0 ]
 	return original
-	
+
+# Test Driver
 print( ReverseR( "abcdefg" ) )
 </pre>
 
@@ -7150,6 +7190,7 @@ public class Strings {
 		return original;
 	}
 	
+	// Test Driver
 	public static void main( String[] args ) {
 		System.out.println( ReverseR( "abcdefg" ) );
 		
@@ -7157,10 +7198,40 @@ public class Strings {
 }
 </pre>
 
+<pre class='w3-container' ng-show='str2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		...
+		// Reverse the order of a string (Recursion)
+		static ReverseR( original ) {
+			if ( original.length > 1 )
+				return this.ReverseR( original.substring( 1 ) ) + original[ 0 ];
+			return original;
+		}
+	}
+	
+	// Test Driver
+	println( Strings.ReverseR( "abcdefg" ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>	
+
 <ul class="w3-navbar w3-light-grey" ng-init="str3[0] = true; str3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="str3=[true,false,false]; str3cls=['w3-black','w3-lightgray','w3-lightgray']; Algo('str3')" ng-class='str3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str3=[false,true,false]; str3cls=['w3-lightgray','w3-black','w3-lightgray']; Python('str3')" ng-class='str3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str3=[false,false,true]; str3cls=['w3-lightgray','w3-lightgray','w3-black']; Java('str3')" ng-class='str3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str3=[true,false,false,false]; str3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('str3')" ng-class='str3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str3=[false,true,false,false]; str3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('str3')" ng-class='str3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str3=[false,false,true,false]; str3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']; Java('str3')" ng-class='str3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str3=[false,false,false,true]; str3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']; Javascript('str3')" ng-class='str3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='str3[0]'>
@@ -7187,6 +7258,7 @@ def Palindrome( s ):
 			return False
 	return True
 
+# Test Driver
 print( Palindrome( "noon" ) )
 print( Palindrome( "rotator" ) )
 print( Palindrome( "notone" ) )
@@ -7206,6 +7278,7 @@ public class Strings {
 		return true;
 	}
 	
+	// Test Driver
 	public static void main( String[] args ) {
 		System.out.println( Palindrome( "noon" ) );
 		System.out.println( Palindrome( "rotator" ) );
@@ -7215,10 +7288,45 @@ public class Strings {
 }
 </pre>
 
+<pre class='w3-container' ng-show='str3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		...
+		// Determine if a string is a Palindrome
+		static Palindrome( s ) {
+			var length = s.length;
+			for ( var i = 0; i < length / 2; i++ ) {
+				if ( s[ i ] != s[ length - i - 1 ] )
+					return false;
+			}
+			return true;
+		}
+	}
+	
+	// Test Driver
+	println( Strings.Palindrome( "noon" ) );
+	println( Strings.Palindrome( "rotator" ) );
+	println( Strings.Palindrome( "notone" ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>	
+
 <ul class="w3-navbar w3-light-grey" ng-init="str4[0] = true; str4cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="str4=[true,false,false]; str4cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str4cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str4=[false,true,false]; str4cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str4cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str4=[false,false,true]; str4cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str4=[true,false,false,false]; str4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='str4cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str4=[false,true,false,false]; str4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='str4cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str4=[false,false,true,false]; str4cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']" ng-class='str4cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str4=[false,false,false,true]; str4cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']" ng-class='str4cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='str4[0]'>
@@ -7309,10 +7417,63 @@ public class Strings {
 }
 </pre>
 
+<pre class='w3-container' ng-show='str4[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		...
+		// Determine if a string is a Palindrome for Phrases
+		static PalindromeP( s ) {
+			var length = s.length;
+			for ( var i = 0, j = length - 1; i < j; /**/ ) {
+				if ( Strings.isPunctOrSpace( s[ i ] ) )  {
+					i++;
+					continue;
+				}
+				if ( Strings.isPunctOrSpace( s[ j ] ) ) {
+					j--;
+					continue;
+				}
+
+				if ( s[ i ].toLowerCase() !=  s[ j ].toLowerCase() )
+					return false;
+				i++; 
+				if ( j != i ) j--;
+			}
+			return true;
+		}
+	
+		static isPunctOrSpace( c ) {
+			var val = c.charCodeAt(0);
+			return  ( val >= 32 && val <= 47 ) ||
+					( val >= 58 && val <= 64 ) ||
+					( val >= 91 && val <= 96 ) ||
+					( val >= 123 && val <= 126 );
+		}
+	}
+	
+	// Test Driver
+	println( Strings.PalindromeP( "my gym" ) );
+	println( Strings.PalindromeP( "Red rum, sir, is murder" ) );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>	
+
 <ul class="w3-navbar w3-light-grey" ng-init="str5[0] = true; str5cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="str5=[true,false,false]; str5cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str5cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str5=[false,true,false]; str5cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str5cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str5=[false,false,true]; str5cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str5cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str5=[true,false,false,false]; str5cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='str5cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str5=[false,true,false,false]; str5cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='str5cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str5=[false,false,true,false]; str5cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']" ng-class='str5cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str5=[false,false,false,true]; str5cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']" ng-class='str5cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='str5[0]'>
@@ -7364,10 +7525,51 @@ public class Strings {
 }
 </pre>
 
+<pre class='w3-container' ng-show='str5[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		...
+		// Count the number of occurrences of a character in a string
+		static CharOccur( s ) {
+			var counter = []; // codes 32 .. 127 are printable (so skip first 32)
+			counter.length = 96
+			// initialize the counter
+			for ( var i = 0; i < 96; i++ ) 
+				counter[ i ] = 0;
+				
+			// use counter as an accumulator while we count each character in string
+			var length = s.length;
+			for ( var i = 0; i < length; i++ ) {
+				counter[ s.charCodeAt( i ) - 32 ]++;	// offset ascii code by 32
+			}
+			return counter;
+		}
+	}
+	
+	// Test Driver
+	var res = Strings.CharOccur( "jack and jill jumped over the hill to fetch a pale of water");
+	for ( var i = 32; i < 128; i++ )
+		if ( res[ i - 32 ] > 0 ) println( String.fromCharCode(i) + ": " + res[ i - 32 ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>	
+
 <ul class="w3-navbar w3-light-grey" ng-init="str6[0] = true; str6cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="str6=[true,false,false]; str6cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='str6cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str6=[false,true,false]; str6cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='str6cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="str6=[false,false,true]; str6cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='str6cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str6=[true,false,false,false]; str6cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='str6cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str6=[false,true,false,false]; str6cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='str6cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str6=[false,false,true,false]; str6cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']" ng-class='str6cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="str6=[false,false,false,true]; str6cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']" ng-class='str6cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='str6[0]'>
@@ -7420,6 +7622,40 @@ public class Strings {
 	}
 }
 </pre>
+
+<pre class='w3-container' ng-show='str6[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}	
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		...
+		// Count all duplicated characters
+		static DupChar( s ) {
+			// Get the character occurrences
+			var dup = Strings.CharOccur( s );
+			// Mask out all single count occurrences
+			for ( var i = 0; i < dup.length; i++ )
+				dup[ i ] &= ~0x001;
+			return dup;
+		}
+	}
+	
+	// Test Driver
+	res = Strings.DupChar( "jack and jill jumped over the hill to fetch a pale of water");
+	for ( var i = 32; i < 128; i++ )
+		if ( res[ i - 32 ] > 0 ) println( String.fromCharCode(i) + ": " + res[ i - 32 ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>	
 
 <a name="graph"></a>
 <h3>15. Graphs</h3>

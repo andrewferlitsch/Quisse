@@ -1,0 +1,116 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+	
+	// Definition for String Manipulation Routines
+	class Strings {
+		// Reverse the order of a string (Iterative)
+		static Reverse( original ) {
+			// Create a second string to hold/return the reversed string
+			var length = original.length;
+			var reversed = "";
+			
+			// copy over the string in reverse order
+			for ( var i = length-1; i >= 0; i-- ) {
+				reversed += original[ i ];
+			}
+			
+			return reversed;
+		}
+	
+		// Reverse the order of a string (Recursion)
+		static ReverseR( original ) {
+			if ( original.length > 1 )
+				return this.ReverseR( original.substring( 1 ) ) + original[ 0 ];
+			return original;
+		}
+	
+		// Determine if a string is a Palindrome
+		static Palindrome( s ) {
+			var length = s.length;
+			for ( var i = 0; i < length / 2; i++ ) {
+				if ( s[ i ] != s[ length - i - 1 ] )
+					return false;
+			}
+			return true;
+		}
+	
+		// Determine if a string is a Palindrome for Phrases
+		static PalindromeP( s ) {
+			var length = s.length;
+			for ( var i = 0, j = length - 1; i < j; /**/ ) {
+				if ( Strings.isPunctOrSpace( s[ i ] ) )  {
+					i++;
+					continue;
+				}
+				if ( Strings.isPunctOrSpace( s[ j ] ) ) {
+					j--;
+					continue;
+				}
+
+				if ( s[ i ].toLowerCase() !=  s[ j ].toLowerCase() )
+					return false;
+				i++; 
+				if ( j != i ) j--;
+			}
+			return true;
+		}
+	
+		static isPunctOrSpace( c ) {
+			var val = c.charCodeAt(0);
+			return  ( val >= 32 && val <= 47 ) ||
+					( val >= 58 && val <= 64 ) ||
+					( val >= 91 && val <= 96 ) ||
+					( val >= 123 && val <= 126 );
+		}
+	
+		// Count the number of occurrences of a character in a string
+		static CharOccur( s ) {
+			var counter = []; // codes 32 .. 127 are printable (so skip first 32)
+			counter.length = 96
+			// initialize the counter
+			for ( var i = 0; i < 96; i++ ) 
+				counter[ i ] = 0;
+				
+			// use counter as an accumulator while we count each character in string
+			var length = s.length;
+			for ( var i = 0; i < length; i++ ) {
+				counter[ s.charCodeAt( i ) - 32 ]++;	// offset ascii code by 32
+			}
+			return counter;
+		}
+		
+		// Count all duplicated characters
+		static DupChar( s ) {
+			// Get the character occurrences
+			var dup = Strings.CharOccur( s );
+			// Mask out all single count occurrences
+			for ( var i = 0; i < dup.length; i++ )
+				dup[ i ] &= ~0x001;
+			return dup;
+		}
+	}
+	
+	// Test Driver
+	println( Strings.Reverse( "abcdefg" ) );
+	println( Strings.ReverseR( "abcdefg" ) );
+	println( Strings.Palindrome( "noon" ) );
+	println( Strings.Palindrome( "rotator" ) );
+	println( Strings.Palindrome( "notone" ) );
+	println( Strings.PalindromeP( "my gym" ) );
+	println( Strings.PalindromeP( "Red rum, sir, is murder" ) );
+	var res = Strings.CharOccur( "jack and jill jumped over the hill to fetch a pale of water");
+	for ( var i = 32; i < 128; i++ )
+		if ( res[ i - 32 ] > 0 ) println( String.fromCharCode(i) + ": " + res[ i - 32 ] );
+	res = Strings.DupChar( "jack and jill jumped over the hill to fetch a pale of water");
+	for ( var i = 32; i < 128; i++ )
+		if ( res[ i - 32 ] > 0 ) println( String.fromCharCode(i) + ": " + res[ i - 32 ] );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>
