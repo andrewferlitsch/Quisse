@@ -4,9 +4,8 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 .directive( "nav", function() {
 	return {
 		restrict: 'A',
-		template: "<div style='text-align: center'>" +
+		template: "<div style='text-align: center; margin-top: -25px; margin-bottom: -10px'>" +
 				  "<img src='quisse.png'/>" +
-				  "<h4 style='margin-top: -15px'>The Technical Interview</h4>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/'>Flashcard</a></li>" +
