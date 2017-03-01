@@ -1,0 +1,140 @@
+<html lang="en-US">
+<head>
+	<title>Kids Quisse</title>
+	<meta charset="utf-8">
+	<meta name='keywords' content='test, quiz, interview, interview questions, technical interview, technical questions'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="flip.css">
+	<style>
+	hr { color: steelblue;} h1 { cursor: pointer; text-align: center; }
+	h2, h3 { color: black; }
+	.final { display: inline-block; width: 180px; font-weight: bold; }
+	</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-3662373-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body ng-app="kids" ng-init='test=false;' style='margin: 20px;' ng-controller="kidsCtrl">
+	<header ng-controller="navCtrl">
+		<div nav></div>
+	</header>
+	
+	<section>
+		<div  kids></div>
+	</section>
+
+	<section>	
+		
+		<div ng-show='view["Addition"]' ng-controller="addCtrl" questions-add></div>
+				
+		<div ng-show='view["Subtraction"]' ng-controller="subCtrl" questions-sub></div>
+				
+		<div ng-show='view["Multiply"]' ng-controller="mulCtrl" questions-mul></div>
+				
+		<div ng-show='view["Divide"]' ng-controller="divCtrl" questions-div></div>
+
+		<div ng-controller="finalCtrl" final id='final'></div>
+	
+	</section>
+	
+	<div style='height: 300px'></div>
+	<footer style='text-align: center; color: gray'><br/>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
+<script>
+var technical = angular.module( 'kids', []);
+	
+var totalQuestions = 0;
+var totalCorrect   = 0;
+
+/*
+ * Tally (Score) results for a category
+ */
+var final_in_view = false;
+function Tally( category, nquestions, correct ) {
+	totalQuestions += nquestions;
+	totalCorrect   += correct;
+	UpdateScore();
+}
+
+/*
+ * Undo the Tally (Score) for a category
+ */
+function UnTally( category, nquestions, correct ) {
+	totalQuestions -= nquestions
+	totalCorrect -= correct;
+	UpdateScore();
+}
+
+/* Update the Final Score
+*/
+function UpdateScore() {
+	setTimeout(function () { 
+		var scope = angular.element($("#final")).scope();
+		scope.$apply(function(){
+			scope.totalQuestions = totalQuestions;
+			scope.totalCorrect   = totalCorrect;var percentCorrect = 0;
+			if ( scope.totalQuestions > 0 )
+				scope.percentCorrect = ( ( scope.totalCorrect * 100 ) / scope.totalQuestions ).toFixed(2) + "%";
+			else
+				scope.percentCorrect = "";
+		});
+	}, 200);
+}
+
+/* Capture timestamps when user proceeds to next question or marks correct
+ */
+var timing = [];
+var send = false;
+var session;
+function Timestamp( category, id, type ) {
+	// on first call, setup timer and variables for sending timing metrics to server
+	if ( send == false ) {
+		send = true;
+		session = Math.round( Math.random() * 10000 );
+		setTimeout( function() { SendServer(); }, 10000 );
+	}
+	
+	// store timing metrics until periodic upload to server
+	var time = Math.floor( Date.now() / 1000 );
+	timing.push( { session: session, category: category, id: id, type: type, time: time } );
+	
+	return time;
+}
+
+/*
+ * Send Timing Metrics to the Server
+ */
+function SendServer() {
+	if ( timing.length > 0 ) {	
+		$.ajax({
+			url: "/timing.php",
+			type: 'post',
+			data: { timing },
+			success: function( data, status ) { },
+			error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
+		});
+		timing = [];
+	}
+	setTimeout( function() { SendServer(); }, 10000 );
+}
+
+$(function() {
+})
+</script>
+<script src="nav.js"></script>
+<script src="head.js"></script>
+<script src="kids.js"></script>
+<script src="mathctrl.js"></script>
+<script src="final.js"></script>
+</body>
+</html>
