@@ -5,7 +5,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 	return {
 		restrict: 'A',
 		template: "<div style='text-align: center; margin-top: -25px; margin-bottom: -10px'>" +
-				  "<img src='quisse.png'/>" +
+				  "<img src='/quisse.png'/>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/'>Flashcard</a></li>" +
