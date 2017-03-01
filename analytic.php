@@ -38,7 +38,7 @@ function Timing( $id, $timing ) {
 						   }
 						   else if ( $type == "next" || $type == "harder" || $type == "easier" ) {
 							   $diff = ( $timing - $last_time );
-							   if ( $diff > 0 && $diff < 20 ) {
+							   if ( $diff > 1 && $diff < 20 ) {
 								   Timing( $id, $diff );
 							   }
 						   }

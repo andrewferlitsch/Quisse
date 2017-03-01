@@ -1,0 +1,255 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Definition for a Queue
+	class Queue {
+		// constructor
+		constructor() {
+			this.head = null;	// the head of the queue
+			this.tail = null;	// the tail of the queue
+		}
+		
+		// Check if Queue is empty
+		Empty() {
+			if ( this.head == null )
+				return true;
+			return false;
+		}
+		
+		// Add a node to the queue
+		Add( node ) {
+			// the queue is empty, set head and tail to the task
+			if ( this.Empty() ) {
+				this.head = this.tail = node;
+			}
+			// otherwise, add it as the new tail
+			else {
+				this.tail.Next = node;
+				this.tail = node;
+			}
+		}
+		
+		Remove() {
+			// Queue is empty
+			if ( this.Empty() )
+				return null;
+				
+			var temp = this.head;
+			
+			// Move the head to the next element.
+			this.head = this.head.Next;
+			if ( this.Empty() )
+				this.tail = null;
+			
+			return temp;
+		}
+	}
+
+	// Definition for a Stack
+	class Stack {
+		// constructor
+		constructor() {
+			this.top = null;	// top of the stack
+		}
+		
+		// Check if the Stack is empty
+		Empty() {
+			if ( this.top == null )
+				return true;
+			return false;
+		}
+		
+		// Push the task to the top of the stack
+		Push( node ) {
+			// Set the task next pointer to the current top
+			node.Next = this.top;
+			// set the top to this task
+			this.top = node;
+		}
+		
+		// Pop the task from the top of the stack
+		Pop() {
+			// Stack is Empty
+			if ( this.Empty() )
+				return false;
+				
+			// Perform the action for the task
+			var temp = this.top;
+			
+			// Move the top to the current top's next pointer.
+			this.top = this.top.Next;
+			return temp;
+		}
+	}
+
+	// Visit State
+	var Visit = {
+		UNVISITED: 1,	// not visited or on frontier (while)
+		FRONTIER: 2,	// on frontier, waiting to be visited (gray)
+		VISITED: 3		// visited (black)
+	};
+		
+	// Definition for a node in a graph
+	class Node {
+		// constructor
+		constructor( key ) {
+			this.key = key;	// node data
+			this.visited = Visit.UNVISITED;  // node has been visited
+			this.neighbors = [];
+		}
+		
+		// Get the Key
+		get Key() {
+			return this.key;
+		}
+		
+		// Add a neighbor to this node
+		Neighbor( neighbor ) {
+			// list the node as a neighbor of this node
+			this.neighbors.push( neighbor );
+			
+			// list this node as a neighbor of the node
+			neighbor.neighbors.push( this );
+		}
+		
+		// Get the nodes neighbors
+		get Neighbors() {
+			return this.neighbors;
+		}
+		
+		// Set the node visit 
+		set Visited( visited ) {
+			this.visited = visited;
+		}
+		
+		// Get whether the node has been visited
+		get Visited() {
+			return this.visited;
+		}
+	}
+	
+	// Definition for a Graph
+	class Graph {
+		// Breadth first search of a graph
+		static BFS( root ) {
+			// Create a queue for frontier nodes (nodes to be visited next)
+			var frontier = new Queue();
+			
+			// Add the root node to the frontier
+			frontier.Add( root );
+			root.Visited = Visit.FRONTIER;
+			
+			// Traverse each node in the frontier list
+			while ( !frontier.Empty() ) {
+				// visit the next node
+				var visit = frontier.Remove();
+				visit.Visited = Visit.VISITED;
+				println( visit.Key );
+				
+				// Add the node's neighbors (if not visited and not on frontier list) 
+				// to the frontier list
+				for ( var i = 0; i < visit.Neighbors.length; i++ ) {
+					var node = visit.Neighbors[ i ];
+					if ( node.Visited == Visit.UNVISITED ) {
+						frontier.Add( node );
+						node.Visited = Visit.FRONTIER;
+					}
+				}
+			}
+		}
+	
+		// Depth first search of a graph (Iterative)
+		static DFS( root, goal ) {
+			// Create a stack for frontier nodes (nodes to be visited next)
+			var frontier = new Stack();
+			
+			// Add the root node to the frontier
+			frontier.Push( root );
+			root.Visited = Visit.FRONTIER;
+			
+			// Traverse each node in the frontier list
+			while ( !frontier.Empty() ) {
+				// visit the next node
+				var visit = frontier.Pop();
+				visit.Visited = Visit.VISITED;
+				println( visit.Key );
+				
+				// if searching for goal node and found, then stop
+				if ( goal != null && visit.Key == goal )
+					return;
+				
+				// Add the node's neighbors (if not visited and not on frontier list) 
+				// to the frontier list	
+				for ( var i = 0; i < visit.Neighbors.length; i++ ) {
+					var node = visit.Neighbors[ i ];
+					if ( node.Visited == Visit.UNVISITED ) {
+						frontier.Push( node );
+						node.Visited = Visit.FRONTIER;
+					}
+				}
+			}
+		}
+	
+		// Depth limited search of a graph (Recursive)
+		static DFSR( root, goal, limit ) {
+			if ( root == null )
+				return;
+			
+			// mark the node as visited
+			root.Visited = Visit.VISITED;
+			println( root.Key );
+				
+			// if searching for goal node and found, then stop
+			if ( root.Key == goal )
+				return;
+			
+			// At maximum search depth ( and decrement limit for recursive call )
+			if ( --limit == 0 )
+				return;
+			
+			// Recursively visit each unvisited neighbor
+			for ( var i = 0; i < root.Neighbors.length; i++ ) {
+				var node = root.Neighbors[ i ];
+				if ( node.Visited == Visit.UNVISITED ) {
+					Graph.DFSR( node, goal );
+				}
+			}
+		}
+	}
+	
+	// Test Driver
+	nodes = []; nodes.length = 6;
+	for ( var i = 0; i < 6; i++ )
+		nodes[ i ] = new Node( i );
+	nodes[ 0 ].Neighbor( nodes[ 1 ] );
+	nodes[ 0 ].Neighbor( nodes[ 2 ] );
+	nodes[ 0 ].Neighbor( nodes[ 3 ] );
+	nodes[ 1 ].Neighbor( nodes[ 2 ] );
+	nodes[ 1 ].Neighbor( nodes[ 3 ] );
+	nodes[ 3 ].Neighbor( nodes[ 4 ] );
+	nodes[ 3 ].Neighbor( nodes[ 5 ] );
+	nodes[ 4 ].Neighbor( nodes[ 5 ] );
+	println("BFS");
+	Graph.BFS( nodes[ 0 ] );
+	println("Iterative DFS");
+    for ( var i = 0; i < 6; i++ )
+		nodes[ i ].Visited = Visit.UNVISITED;
+	Graph.DFS( nodes[ 0 ], null );
+	println("Iterative DFS with goal(5)");
+	for ( var i = 0; i < 6; i++ )
+		nodes[ i ].Visited = Visit.UNVISITED;
+	Graph.DFS( nodes[ 0 ], 5 );
+	println("Recursive DFS");
+	for ( var i = 0; i < 6; i++ )
+		nodes[ i ].Visited = Visit.UNVISITED;
+	Graph.DFSR( nodes[ 0 ], null );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

@@ -7678,9 +7678,10 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 </p>
 
 <ul class="w3-navbar w3-light-grey" ng-init="gra1[0] = true; gra1cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="gra1=[true,false,false]; gra1cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='gra1cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="gra1=[false,true,false]; gra1cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='gra1cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="gra1=[false,false,true]; gra1cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='gra1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra1=[true,false,false,false]; gra1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='gra1cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra1=[false,true,false,false]; gra1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='gra1cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra1=[false,false,true,false]; gra1cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']" ng-class='gra1cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra1=[false,false,false,true]; gra1cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']" ng-class='gra1cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='gra1[0]'>
@@ -7759,6 +7760,7 @@ def BFS( root ):
 				frontier.Add( node )
 				node.Visited( node.FRONTIER )
 
+# Test Driver
 nodes = [None] * 6;
 for i in range( 0, 6 ):
 	nodes[ i ] = Node( i )
@@ -7854,6 +7856,7 @@ public class Graph {
 		}
 	}
 	
+	// Test Driver
 	public static void main(String[] args ) {
 		Node nodes[] = new Node[ 6 ];
 		for ( int i = 0; i < 6; i++ )
@@ -7871,10 +7874,118 @@ public class Graph {
 }
 </pre>
 
+<pre class='w3-container' ng-show='gra1[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+
+	// Visit State
+	var Visit = {
+		UNVISITED: 1,	// not visited or on frontier (while)
+		FRONTIER: 2,	// on frontier, waiting to be visited (gray)
+		VISITED: 3		// visited (black)
+	};
+		
+	// Definition for a node in a graph
+	class Node {
+		// constructor
+		constructor( key ) {
+			this.key = key;	// node data
+			this.visited = Visit.UNVISITED;  // node has been visited
+			this.neighbors = [];
+		}
+		
+		// Get the Key
+		get Key() {
+			return this.key;
+		}
+		
+		// Add a neighbor to this node
+		Neighbor( neighbor ) {
+			// list the node as a neighbor of this node
+			this.neighbors.push( neighbor );
+			
+			// list this node as a neighbor of the node
+			//neighbor.neighbors.push( this );
+		}
+		
+		// Get the nodes neighbors
+		get Neighbors() {
+			return this.neighbors;
+		}
+		
+		// Set the node visit 
+		set Visited( visited ) {
+			this.visited = visited;
+		}
+		
+		// Get whether the node has been visited
+		get Visited() {
+			return this.visited;
+		}
+	}
+	
+	// Definition for a Graph
+	class Graph {
+		// Breadth first search of a graph
+		static BFS( root ) {
+			// Create a queue for frontier nodes (nodes to be visited next)
+			var frontier = new Queue();
+			
+			// Add the root node to the frontier
+			frontier.Add( root );
+			root.Visited = Visit.FRONTIER;
+			
+			// Traverse each node in the frontier list
+			while ( !frontier.Empty() ) {
+				// visit the next node
+				var visit = frontier.Remove();
+				visit.Visited = Visit.VISITED;
+				println( visit.Key );
+				
+				// Add the node's neighbors (if not visited and not on frontier list) 
+				// to the frontier list
+				for ( var i = 0; i < visit.Neighbors.length; i++ ) {
+					var node = visit.Neighbors[ i ];
+					if ( node.Visited == Visit.UNVISITED ) {
+						frontier.Add( node );
+						node.Visited = Visit.FRONTIER;
+					}
+				}
+			}
+		}
+	}
+	
+	// Test Driver
+	nodes = []; nodes.length = 6;
+	for ( var i = 0; i < 6; i++ )
+		nodes[ i ] = new Node( i );
+	nodes[ 0 ].Neighbor( nodes[ 1 ] );
+	nodes[ 0 ].Neighbor( nodes[ 2 ] );
+	nodes[ 0 ].Neighbor( nodes[ 3 ] );
+	nodes[ 1 ].Neighbor( nodes[ 2 ] );
+	nodes[ 1 ].Neighbor( nodes[ 3 ] );
+	nodes[ 3 ].Neighbor( nodes[ 4 ] );
+	nodes[ 3 ].Neighbor( nodes[ 5 ] );
+	nodes[ 4 ].Neighbor( nodes[ 5 ] );
+	println("BFS");
+	Graph.BFS( nodes[ 0 ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>		
+
 <ul class="w3-navbar w3-light-grey" ng-init="gra2[0] = true; gra2cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="gra2=[true,false,false]; gra2cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='gra2cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="gra2=[false,true,false]; gra2cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='gra2cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="gra2=[false,false,true]; gra2cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='gra2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra2=[true,false,false,false]; gra2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='gra2cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra2=[false,true,false,false]; gra2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='gra2cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra2=[false,false,true,false]; gra2cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']" ng-class='gra2cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra2=[false,false,false,true]; gra2cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']" ng-class='gra2cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='gra2[0]'>
@@ -7912,7 +8023,8 @@ def DFS( root ):
 			if node.GetVisited() == node.UNVISITED:
 				frontier.Push( node )
 				node.Visited( node.FRONTIER )
-	
+
+# Test Driver				
 nodes = [None] * 6;
 for i in range( 0, 6 ):
 	nodes[ i ] = Node( i )
@@ -7960,6 +8072,7 @@ public class Graph {
 		}
 	}
 	
+	// Test Driver
 	public static void main(String[] args ) {
 		Node nodes[] = new Node[ 6 ];
 		for ( int i = 0; i < 6; i++ )
@@ -7977,10 +8090,73 @@ public class Graph {
 }
 </pre>
 
+<pre class='w3-container' ng-show='gra2[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Definition for a Graph
+	class Graph {
+	
+		// Depth first search of a graph (Iterative)
+		static DFS( root ) {
+			// Create a stack for frontier nodes (nodes to be visited next)
+			var frontier = new Stack();
+			
+			// Add the root node to the frontier
+			frontier.Push( root );
+			root.Visited = Visit.FRONTIER;
+			
+			// Traverse each node in the frontier list
+			while ( !frontier.Empty() ) {
+				// visit the next node
+				var visit = frontier.Pop();
+				visit.Visited = Visit.VISITED;
+				println( visit.Key );
+
+				// Add the node's neighbors (if not visited and not on frontier list) 
+				// to the frontier list	
+				for ( var i = 0; i < visit.Neighbors.length; i++ ) {
+					var node = visit.Neighbors[ i ];
+					if ( node.Visited == Visit.UNVISITED ) {
+						frontier.Push( node );
+						node.Visited = Visit.FRONTIER;
+					}
+				}
+			}
+		}
+	}
+	
+	// Test Driver
+	nodes = []; nodes.length = 6;
+	for ( var i = 0; i < 6; i++ )
+		nodes[ i ] = new Node( i );
+	nodes[ 0 ].Neighbor( nodes[ 1 ] );
+	nodes[ 0 ].Neighbor( nodes[ 2 ] );
+	nodes[ 0 ].Neighbor( nodes[ 3 ] );
+	nodes[ 1 ].Neighbor( nodes[ 2 ] );
+	nodes[ 1 ].Neighbor( nodes[ 3 ] );
+	nodes[ 3 ].Neighbor( nodes[ 4 ] );
+	nodes[ 3 ].Neighbor( nodes[ 5 ] );
+	nodes[ 4 ].Neighbor( nodes[ 5 ] );
+	Graph.DFS( nodes[ 0 ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>		
+
 <ul class="w3-navbar w3-light-grey" ng-init="gra3[0] = true; gra3cls[0] = 'w3-black'">
-	 <li><a href="javascript:void(0)" ng-click="gra3=[true,false,false]; gra3cls=['w3-black','w3-lightgray','w3-lightgray']" ng-class='gra3cls[0]'>Algorithm</a></li>
-	 <li><a href="javascript:void(0)" ng-click="gra3=[false,true,false]; gra3cls=['w3-lightgray','w3-black','w3-lightgray']" ng-class='gra3cls[1]'>Python</a></li>
-	 <li><a href="javascript:void(0)" ng-click="gra3=[false,false,true]; gra3cls=['w3-lightgray','w3-lightgray','w3-black']" ng-class='gra3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra3=[true,false,false,false]; gra3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='gra3cls[0]'>Algorithm</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra3=[false,true,false,false]; gra3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='gra3cls[1]'>Python</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra3=[false,false,true,false]; gra3cls=['w3-lightgray','w3-lightgray','w3-black','w3-lightgray']" ng-class='gra3cls[2]'>Java</a></li>
+	 <li><a href="javascript:void(0)" ng-click="gra3=[false,false,false,true]; gra3cls=['w3-lightgray','w3-lightgray','w3-lightgray','w3-black']" ng-class='gra3cls[3]'>Javascript</a></li>
 </ul>
 
 <div ng-show='gra3[0]'>
@@ -8008,7 +8184,8 @@ def DFSR( root ):
 		node = nodes.Get( i )
 		if node.GetVisited() == node.UNVISITED:
 			DFSR( node )
-			
+
+# Test Driver			
 nodes = [None] * 6;
 for i in range( 0, 6 ):
 	nodes[ i ] = Node( i )
@@ -8046,6 +8223,7 @@ public class Graph {
 		}
 	}
 	
+	// Test Driver
 	public static void main(String[] args ) {
 		Node nodes[] = new Node[ 6 ];
 		for ( int i = 0; i < 6; i++ )
@@ -8062,6 +8240,58 @@ public class Graph {
 	}
 }
 </pre>
+
+<pre class='w3-container' ng-show='gra3[3]'>
+&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+&lt;script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "&lt;br/>" + text );
+	}
+	...
+	
+	// Definition for a Graph
+	class Graph {
+	
+		// Depth limited search of a graph (Recursive)
+		static DFSR( root ) {
+			if ( root == null )
+				return;
+			
+			// mark the node as visited
+			root.Visited = Visit.VISITED;
+			println( root.Key );
+			
+			// Recursively visit each unvisited neighbor
+			for ( var i = 0; i < root.Neighbors.length; i++ ) {
+				var node = root.Neighbors[ i ];
+				if ( node.Visited == Visit.UNVISITED ) {
+					Graph.DFSR( node, goal );
+				}
+			}
+		}
+	}
+	
+	// Test Driver
+	nodes = []; nodes.length = 6;
+	for ( var i = 0; i < 6; i++ )
+		nodes[ i ] = new Node( i );
+	nodes[ 0 ].Neighbor( nodes[ 1 ] );
+	nodes[ 0 ].Neighbor( nodes[ 2 ] );
+	nodes[ 0 ].Neighbor( nodes[ 3 ] );
+	nodes[ 1 ].Neighbor( nodes[ 2 ] );
+	nodes[ 1 ].Neighbor( nodes[ 3 ] );
+	nodes[ 3 ].Neighbor( nodes[ 4 ] );
+	nodes[ 3 ].Neighbor( nodes[ 5 ] );
+	nodes[ 4 ].Neighbor( nodes[ 5 ] );
+	Graph.DFSR( nodes[ 0 ] );
+});
+&lt;/script>
+&lt;body>
+	&lt;div id='output'>&lt;/div>
+&lt;/body>
+</pre>		
 
 <footer>
 <br/>
