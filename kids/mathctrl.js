@@ -135,7 +135,7 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 .directive( "questionsAdd", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'flip.html'
+		templateUrl: '/flip.html'
 	}
 });
 
@@ -285,7 +285,7 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 .directive( "questionsSub", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'flip.html'
+		templateUrl: '/flip.html'
 	}
 });
 
@@ -429,7 +429,7 @@ technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScro
 .directive( "questionsMul", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'flip.html'
+		templateUrl: '/flip.html'
 	}
 });
 
@@ -576,6 +576,6 @@ technical.controller( 'divCtrl', function( $scope, $http, $location, $anchorScro
 .directive( "questionsDiv", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'flip.html'
+		templateUrl: '/flip.html'
 	}
 });

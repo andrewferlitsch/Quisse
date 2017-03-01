@@ -1,6 +1,7 @@
 technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) {
 	$scope.title 	= "Final Score";
 	$scope.show 	= true;
+	$scope.showlef  = true;
 	$scope.totalQuestions = 0;
 	$scope.totalCorrect   = 0;
 	$scope.percentCorrect = "";
@@ -16,8 +17,13 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  "	<p><span class='final'>Number of Questions</span>: <span id='totalQuestions' class='w3-badge'>{{totalQuestions}}</span></p>" +
 				  "	<p><span class='final'>Total Correct</span>: <span id='totalCorrect' class='w3-badge w3-green'>{{totalCorrect}}</span></p>" +
 				  " <p><span class='final'>Percent Correct</span>: <span id='percentCorrect' class='w3-badge w3-green'>{{percentCorrect}}</span></p>" +
-				  "</div>" +
-				  "<div class='w3-container'>" +
+				  "</div>"
+	}
+})
+.directive( "bottomInterview", function() {
+	return {
+		restrict: 'A',
+		template: "<div class='w3-container'>" +
 				  "	<h3>Preparing for a Technical Phone Screen</h3>" +
 				  "	<p>Questions are selected at random and may increase or decrease in difficulty, depending on your answers and time spent.</p>" +
 				  "	<p style='color: orange; cursor: pointer' ng-click='showleft=!showleft'>&#9205; Instructions</p>" +
@@ -32,6 +38,11 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  " 		<li>When completed, your results are displayed at the bottom of the page.</li>" +
 				  "		</ol>" +
 				  "	</div>" +
+				  " <div class='w3-container' style='color: orange; text-align: center;'>" +
+				  "		<a href='preparing-for-technical-interview.html'>Advice</a>" +
+				  "		<a href=''>About</a>" +
+				  "		<a href=''>Contact</a>" +
+				  " </div>" +
 				  "</div>"
 	}
 });
