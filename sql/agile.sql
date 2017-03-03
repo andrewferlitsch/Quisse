@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS questions
   rank      TINYINT 	 NOT NULL DEFAULT 1,
   toggle	TINYINT		 NOT NULL DEFAULT 1,
   timing    INT			 NOT NULL DEFAULT 0,
+  tcount	int			 NOT NULL default 0,
+  list		text		 NULL,
 
   INDEX(category),
   INDEX(rank)

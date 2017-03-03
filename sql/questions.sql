@@ -8,6 +8,8 @@ create table questions
 	rank	 	tinyint		    not null default 1,
 	toggle		tinyint			not null default 1,
 	timing		int				not null default 0,
+	tcount		int				not null default 0,
+	list		text			null,
 
 	index	(category),
 	index	(rank)

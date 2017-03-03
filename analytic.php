@@ -3,7 +3,8 @@ include "db.php";
 	
 function Timing( $id, $timing ) {
 	global $db;
-	$db->UpdateTiming( $id, $timing );	
+	$db->UpdateTiming( $id, $timing );
+	echo "ID $id, TIMING $timing<br/>";
 }
 	
 	$session   = "";
@@ -29,6 +30,10 @@ function Timing( $id, $timing ) {
 			$id       = $columns[ 2 ];
 			$type     = $columns[ 3 ];
 			$timing   = $columns[ 4 ];
+			
+			// not a question in the database
+			if ( $id == -1 )
+				continue;
 			
 			switch ( $category ) {
 			case "coding": break;
