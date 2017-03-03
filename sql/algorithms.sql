@@ -197,7 +197,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'Algorithms',
-    'This algorithm is known as the first algorithm and disoovered by an Ancient Greek mathematician in 300 BC?',
+    'This algorithm is known as the first algorithm and discovered by an Ancient Greek mathematician in 300 BC?',
     'Euclid''s Algorithm for Greatest Common Denominator.',
     2,
 	1

@@ -26,7 +26,11 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 		}
 		
 		num1 = Math.floor( num1 * coff1 );
+		if ( num1 < 10 && coff1 == 100 )
+			num1 += 10;
 		num2 = Math.floor( num2 * coff2 );
+		if ( num2 == 0 && coff2 > 10 )
+			num2 = num1;
 		var result = num1 + num2;
 		
 		return [ { question: num1 + ' + ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
@@ -176,7 +180,11 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		}
 		
 		num1 = Math.floor( num1 * coff1 );
+		if ( num1 < 10 && coff1 == 100 )
+			num1 += 10;
 		num2 = Math.floor( num2 * coff2 );
+		if ( num2 == 0 && coff2 > 10 )
+			num2 = Math.floor( num1 / 2 );
 		var result = num1 - num2;
 		
 		return [ { question: num1 + ' - ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
@@ -320,7 +328,11 @@ technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScro
 		}
 		
 		num1 = Math.floor( num1 * coff1 );
+		if ( num1 < 6 && coff1 > 6 )
+			num1 += 2;
 		num2 = Math.floor( num2 * coff2 );
+		if ( num2 < 6 && coff2 > 6 )
+			num2 += 2;
 		var result = num1 * num2;
 		
 		return [ { question: num1 + ' x ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];

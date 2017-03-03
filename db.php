@@ -66,10 +66,38 @@ class DB
 	function UpdateTiming( $id, $timing ) {
 		$q = "UPDATE " . TBL_QUESTIONS . " SET tcount=tcount+1, timing=timing+$timing WHERE id=$id";
 		$result = mysqli_query( $this->connection, $q );
-		echo "Q $q<br/>";
-        echo mysql_error( $this->connection ) . "<br/>";
+		//echo "Q $q<br/>";
+        //echo mysql_error( $this->connection ) . "<br/>";
 		
 		return $result;
+	}
+	
+	/*
+	 * Get a count of the total number of questions in the database, or in a category
+	 */
+	function Count( $category ) {
+		$q = "SELECT count(*) FROM " . TBL_QUESTIONS;
+		if ( $category != "" )
+			$q .= " WHERE category='$category'";
+		$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+		//echo mysql_error( $this->connection ) . "<br/>";
+		
+		$data = mysqli_fetch_array( $result );
+		return $data[ 0 ];
+	}
+	
+	/*
+	 * Get a question from the database
+	 */
+	function GetQuestion( $id ) {
+		$q = "SELECT * FROM " . TBL_QUESTIONS . " WHERE id = '$id'";
+		$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+		//echo mysql_error( $this->connection ) . "<br/>";
+		
+		$data = mysqli_fetch_array( $result );
+		return $data;
 	}
 }
 

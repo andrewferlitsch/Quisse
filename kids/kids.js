@@ -1,5 +1,5 @@
 technical.controller( 'kidsCtrl', function( $scope ) {
-	$scope.categories = [ "Addition", "Subtraction", "Multiply", "Divide" ];
+	$scope.categories = [ "Addition", "Subtraction", "Multiply", "Divide", "Group" ];
 	$scope.view = [];
 	for ( var cat in $scope.categories ) {
 		$scope.view[ cat ] = false;
