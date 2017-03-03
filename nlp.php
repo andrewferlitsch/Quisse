@@ -23,7 +23,9 @@ class NLP {
 	//
 	function Reduce( $question ) {
 		// replace punctuation with blank space
+		//	can't get single quote to work
 		$question = preg_replace( '/\?|\(|\)|\$|\.|\/|:|<|>|=|;|\+|\-|\,/', " ", $question );
+		
 		// split on blank space
 		$words = explode( ' ', $question );
 		
@@ -38,8 +40,16 @@ class NLP {
 			else if ( $len == 3 ) {
 				switch ( $words[ $i ] ) {
 				case "int": $toks[] = "integer"; break;
-				case "STL": $toks[] = "stl"; break;
-				case "CSS": $toks[] = "css"; break;
+				case "tag": $toks[] = "tag"; break;
+				case "add": $toks[] = "add"; break;
+				case "row": $toks[] = "row"; break;
+				case "box": $toks[] = "box"; break;
+				case "max": $toks[] = "maximum"; break;
+				case "min": $toks[] = "minimum"; break;
+				default: // All Caps abbreviation
+						 if ( strtoupper( $words[ $i ] ) == $words[ $i ] )
+							$toks[] = $words[ $i ];
+						 break;
 				}	
 			}
 		}
@@ -48,7 +58,7 @@ class NLP {
 		$count = count( $toks );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$toks[ $i ] = strtolower( $toks[ $i ] );
-			// remove hyphenated
+			// remove hyphenated (obsolete)
 			$toks[ $i ] = str_replace( "-", "", $toks[ $i ] );
 		}
 		
@@ -56,20 +66,29 @@ class NLP {
 		$tokens = array();
 		for ( $i = 0; $i < $count; $i++ ) {
 			switch ( $toks[ $i ] ) {
-			// remove
-			case "across":
-			case "after":
-			case "been": case "being":
+			// stop words
+			case "about": case "across": case "after":
+			case "before": case "been": case "being": case "between":
 			case "consist":
 			case "describe": case "does" : case "during":
-			case "each":
-			case "from":
+			case "each": case "eight": case "example": case "explain":
+			case "first": case "five": case "four": case "from":
+			case "give":
+			case "happen": case "have": case "having":
 			case "into":
+			case "just":
 			case "keep":
-			case "same": case "some":
-			case "that": case "then": case "this":
+			case "later":
+			case "make": case "meant": case "most":
+			case "nine":
+			case "occur": case "once": case "only": case "over":
+			case "part": case "prior":
+			case "running":
+			case "same": case "seven": case "should": case "some":
+			case "taking": case "tell": case "than": case "that": case "then": case "their": case "there": case "this": case "three":
 			case "used": case "using":
-			case "ways": case "what": case "when": case "where": case "which": case "will": case "with": break;
+			case "ways": case "what": case "when": case "where": case "which": case "will": case "with": 
+			case "your": break;
 			
 			// replace
 			case "angularjs": $tokens[] = "angular"; break;
@@ -84,7 +103,7 @@ class NLP {
 			}
 		}
 		
-		// ending 
+		// stemming
 		$count = count( $tokens );
 		for ( $i = 0; $i < $count; $i++ ) { 
 			$end = substr( $tokens[ $i ], -3 );
@@ -104,9 +123,20 @@ class NLP {
 			// drop ing ending
 			else if ( $end == "ing" ) {
 				switch ( $tokens[ $i ] ) {
-				case "string": break;
+				case "string": case "substring": case "docstring": case "pickling": break;
 				case "writing": $tokens[ $i ] = "write"; break;
 				case "sampling": $tokens[ $i ] = "sample"; break;
+				case "indicating": $tokens[ $i ] = "indicate"; break;
+				case "creating": $tokens[ $i ] = "create"; break;
+				case "hiding": $tokens[ $i ] = "hide"; break;
+				case "adding": $tokens[ $i ] = "add"; break;
+				case "removing": $tokens[ $i ] = "remove"; break;
+				case "sharing": $tokens[ $i ] = "share"; break;
+				case "encoding": $tokens[ $i ] = "encode"; break;
+				case "paging": $tokens[ $i ] = "page"; break;
+				case "scheduling": $tokens[ $i ] = "schedule"; break;
+				case "slicing": $tokens[ $i ] = "slice"; break;
+				case "recycling": $tokens[ $i ] = "recycle"; break;
 				default:
 					// drop duplicate n, m or d when adding ing
 					if ( ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'n' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'n' ) ||
@@ -127,7 +157,12 @@ class NLP {
 				switch ( $ch ) {
 				// es plural
 				case 's': case 'x': case 'z':
-					$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 2 );
+					switch ( $tokens[ $i ] ) {
+					case "cases": $tokens[ $i ] = "case"; break;
+					default:
+						$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 2 );
+						break;
+					}
 					break;
 				case 'h':
 					$ch = $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ];
@@ -146,9 +181,17 @@ class NLP {
 				}
 				continue;
 			}
-			// possessive
+			// possessive (obsolete)
 			else if ( $end == "'s" ) {
 				$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 2 );
+				continue;
+			}
+			
+			// past tense ending in ed
+			if ( $end == "ed" ) {
+				// ed after r, keep the e
+				if ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 3 ] == 'r' )
+					$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 1 );
 			}
 			
 			$end = substr( $tokens[ $i ], -1 );
@@ -157,7 +200,11 @@ class NLP {
 				// do not remove if double s
 				if ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 2 ] == 's' )
 					continue;
-				$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 1 );
+				switch ( $tokens[ $i ] ) {
+				case "status": break;
+				default: $tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 1 );
+						break;
+				}
 				continue;
 			}
 		}
@@ -181,7 +228,7 @@ class NLP {
 
 // Create an NLP object
 $nlp = new NLP();
-for ( $i = 260; $i < 330; $i++ ) {
+for ( $i = 600; $i < 800; $i++ ) {
 $q = $nlp->Question( $i );
 echo $q['question']. "<br/>";
 $tokens = $nlp->Reduce( $q['question'] );
