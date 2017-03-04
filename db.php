@@ -117,6 +117,26 @@ class DB
 	}
 	
 	/*
+	 * Get Questions for a Category
+	 */
+	function GetQuestions( $category ) {
+		$q = "SELECT * FROM " . TBL_QUESTIONS . " WHERE category='$category'";
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
+		$questions = array();
+        while ( $data = mysqli_fetch_array( $result ) )
+        {
+			$questions[] = $data;
+        }
+		
+		return $questions;
+	}
+	
+	/*
 	 * Get a question from the database
 	 */
 	function GetQuestion( $id ) {

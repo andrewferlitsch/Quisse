@@ -14,12 +14,26 @@ include "../db.php";
 	<style>
 	body { padding: 10px; }
 	h2 { color: black; }
+	.error { weight: bold; color: red; }
 	</style>
 <script>
 $(function() {
+	var questions;	// list of questions
+	var index;		// index into list of questions
+	
+	// Select a category
 	$("#category").change( function() {
 		var category = this.value;
 		$.get("/admin/get.php?category=" + category, function( data, status ) {
+			questions = JSON.parse( data );
+			
+			// populate the first question
+			question  = questions[ 0 ];
+			$("#id").html( question.id );
+			index = 0;
+		})
+		.fail (function( response ) {
+			$("#err-cat").html( "Get Categories Failed: errCode = " + response.status );
 		});	 
 	})
 	
@@ -46,8 +60,8 @@ $(function() {
 		<!-- category -->
 		<label for='category' class='w3-label'>Category</label>
 		<select id='category' name='category' class='w3-input'>
+			<option></option>
 			<?php $categories = $db->GetCategories();
-			print_r( $categories );
 			$ncat = count( $categories );
 			for ( $i = 0; $i < $ncat; $i++ ) {
 				$category = $categories[ $i ];
@@ -55,10 +69,11 @@ $(function() {
 			}
 			?>
 		</select>
+		<span id='err-cat' class='error'></span>
 		
 		<!-- ID -->
 		<label for='id' class='w3-label'>ID:</label>
-		<span id='id'></span><br/><br/>
+		<span id='id' name='id'></span><br/><br/>
 
 		<!-- Next, Prev, New -->
 		<button id='prev' class='w3-btn w3-blue'>Prev</button>
