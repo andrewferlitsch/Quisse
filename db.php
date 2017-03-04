@@ -12,6 +12,7 @@ class DB
 {
 	var $connection;         // The MySQL database connection
 	var $error;				 // error message
+	var $debug = false;		 // debugging
 	
 	/* Database object constructor */
 	function DB()
@@ -31,8 +32,10 @@ class DB
 	{
 		$q = "SELECT id,rank,question,answer,toggle FROM " . TBL_QUESTIONS . " WHERE category = '$category'";
 		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-        //echo mysql_error( $this->connection ) . "<br/>";
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
 
 		$questions = array();
         while ( $data = mysqli_fetch_array( $result ) )
@@ -54,20 +57,10 @@ class DB
 				'$answer',
 				'$rank' )";
 		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-        //echo mysql_error( $this->connection ) . "<br/>";
-		
-		return $result;
-	}
-	
-	/*
-	 * Update the timing data for an entry in the database
-	 */
-	function UpdateTiming( $id, $timing ) {
-		$q = "UPDATE " . TBL_QUESTIONS . " SET tcount=tcount+1, timing=timing+$timing WHERE id=$id";
-		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-        //echo mysql_error( $this->connection ) . "<br/>";
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
 		
 		return $result;
 	}
@@ -80,11 +73,47 @@ class DB
 		if ( $category != "" )
 			$q .= " WHERE category='$category'";
 		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-		//echo mysql_error( $this->connection ) . "<br/>";
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
 		
 		$data = mysqli_fetch_array( $result );
 		return $data[ 0 ];
+	}
+	
+	/*
+	 * Update the timing data for an entry in the database
+	 */
+	function UpdateTiming( $id, $timing ) {
+		$q = "UPDATE " . TBL_QUESTIONS . " SET tcount=tcount+1, timing=timing+$timing WHERE id=$id";
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
+		return $result;
+	}
+	
+	/*
+	 * Get List of all Categories
+	 */
+	function GetCategories() {
+		$q = "SELECT DISTINCT category FROM " . TBL_QUESTIONS;
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
+		$categories = array();
+        while ( $data = mysqli_fetch_array( $result ) )
+        {
+			$categories[] = $data[ 'category' ];
+        }
+		
+		return $categories;
 	}
 	
 	/*
@@ -93,8 +122,10 @@ class DB
 	function GetQuestion( $id ) {
 		$q = "SELECT * FROM " . TBL_QUESTIONS . " WHERE id = '$id'";
 		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-		//echo mysql_error( $this->connection ) . "<br/>";
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
 		
 		$data = mysqli_fetch_array( $result );
 		return $data;
@@ -116,8 +147,10 @@ class DB
 		$q .= "\" WHERE id=$id";
 		
 		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-        //echo mysql_error( $this->connection ) . "<br/>";
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
 		
 		return $result;
 	}
@@ -131,8 +164,11 @@ class DB
 			$q = "SELECT id,words FROM " . TBL_QUESTIONS . " WHERE id != $id AND category = '$category'" .
 			     " AND words LIKE '%" . $word_vector[ $i ] . "%'";
 				 $result = mysqli_query( $this->connection, $q );
-			//echo "Q $q<br/>";
-			//echo mysql_error( $this->connection ) . "<br/>";
+
+			if ( $this->debug == true ) {
+				echo "Q $q". PHP_EOL;
+				echo mysqli_error( $this->connection ) . PHP_EOL;
+			}
 			
 			// get the IDs of the similar matching questions
 			if ( mysqli_num_rows($result) > 0 ) {
@@ -159,8 +195,10 @@ class DB
 		$q .= "\" WHERE id=$id";
 		
 		$result = mysqli_query( $this->connection, $q );
-		//echo "Q $q<br/>";
-        //echo mysql_error( $this->connection ) . "<br/>";
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
 		
 		return $result;	
 	}
