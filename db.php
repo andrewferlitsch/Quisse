@@ -61,7 +61,7 @@ class DB
 	}
 	
 	/*
-	 * Add a timing entry to the database
+	 * Update the timing data for an entry in the database
 	 */
 	function UpdateTiming( $id, $timing ) {
 		$q = "UPDATE " . TBL_QUESTIONS . " SET tcount=tcount+1, timing=timing+$timing WHERE id=$id";
@@ -98,6 +98,71 @@ class DB
 		
 		$data = mysqli_fetch_array( $result );
 		return $data;
+	}
+	
+	/*
+	 * Update the word vector for an entry in the database
+	 */
+	function UpdateWords( $id, $words ) {
+		$q = "UPDATE " . TBL_QUESTIONS . " SET words = \"";
+		
+		$count = count( $words );
+		for ( $i = 0; $i < $count; $i++ ) {
+			if ( $i > 0 )
+				$q .= ",";
+			$q .= $words[ $i ];
+		}
+		
+		$q .= "\" WHERE id=$id";
+		
+		$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+        //echo mysql_error( $this->connection ) . "<br/>";
+		
+		return $result;
+	}
+	
+	/*
+	 * Find word vector similar matches for question
+	 */
+	function WordsMatch( $id, $category, $word_vector ) {
+		$ids = array();
+		for ( $i = 0; $i < count( $word_vector ); $i++ ) {
+			$q = "SELECT id,words FROM " . TBL_QUESTIONS . " WHERE id != $id AND category = '$category'" .
+			     " AND words LIKE '%" . $word_vector[ $i ] . "%'";
+				 $result = mysqli_query( $this->connection, $q );
+			//echo "Q $q<br/>";
+			//echo mysql_error( $this->connection ) . "<br/>";
+			
+			// get the IDs of the similar matching questions
+			if ( mysqli_num_rows($result) > 0 ) {
+				while ( ( $data = mysqli_fetch_array( $result ) ) != null )
+					$ids[] = $data[ 'id' ];
+			}
+		}
+		return $ids;
+	}
+	
+	/*
+	 * Update the similar matches for an entry in the database
+	 */
+	function UpdateSimilar( $id, $ids ) {
+		$q = "UPDATE " . TBL_QUESTIONS . " SET similar = \"";
+		
+		$count = count( $ids );
+		for ( $i = 0; $i < $count; $i++ ) {
+			if ( $i > 0 )
+				$q .= ",";
+			$q .= $ids[ $i ];
+		}
+		
+		$q .= "\" WHERE id=$id";
+		
+		$result = mysqli_query( $this->connection, $q );
+		//echo "Q $q<br/>";
+        //echo mysql_error( $this->connection ) . "<br/>";
+		
+		return $result;	
 	}
 }
 

@@ -156,8 +156,8 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'JQuery',
     'What does the .each() method do?',
-    'A shorthand where several methods for an object can be chained together and executed as a single statement. e.g., $(''button'').on(...).css(...).show()',
-    2,
+    'This method iterates through all the elements of an array or properties in an object.',
+	2,
 	1
   );
 
@@ -165,7 +165,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'JQuery',
     'What is method chaining?',
-    'This method iterates through all the elements of an array or properties in an object.',
+    'A shorthand where several methods for an object can be chained together and executed as a single statement. e.g., $(''button'').on(...).css(...).show()',
     2,
 	1
   );

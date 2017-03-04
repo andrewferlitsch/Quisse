@@ -51,7 +51,7 @@ INSERT INTO questions (category, question, answer, rank, toggle)
 INSERT INTO questions (category, question, answer, rank, toggle) 
   VALUES (
     'Algorithms',
-    'A Big O notation for time complexity is constant?',
+    'A Big O notation for time complexity when the complexity is constant?',
     'O(1)',
     1,
 	1

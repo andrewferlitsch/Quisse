@@ -3,24 +3,27 @@ include "db.php";
 
 // Natural Language Processing for Questions
 class NLP {
-	// Get a question from the database
-	//
+	/*
+	 * Get a question from the database
+	*/
 	function Question( $id ) {
 		global $db;
 		
 		return $db->GetQuestion( $id );
 	}
 	
-	// Get Count of questions in database
-	//
+	/*
+	 * Get Count of questions in database
+	*/
 	function Count( $category ) {
 		global $db;
 		
 		return $db->Count( $category );
 	}
 	
-	// Reduce Text to a Common Reduced Form
-	//
+	/*
+	 * Reduce Text to a Common Reduced Form
+	*/
 	function Reduce( $question ) {
 		// replace punctuation with blank space
 		//	can't get single quote to work
@@ -212,26 +215,68 @@ class NLP {
 		return $tokens;
 	}
 	
-	//
+	/*
+	 * Do a Reduce on all questions in the database
+	 */
 	function ReduceAll() {
+		global $db;
+		
 		// get total count of questions in db
-		$count = $this->Count();
+		$count = $this->Count( "" );
 		
 		// Process one question at a time
-		for ( $i = 0; $i < $count; $i++ ) {
+		for ( $i = 1; $i <= $count; $i++ ) {
 			$entry = $this->Question( $i );
 			
-			$tokens = Reduce( $entry[ 'question' ] );
+			$tokens = $this->Reduce( $entry[ 'question' ] );
+			echo "<pre>$i: " . $entry['question']. "</pre>";
+			print_r( $tokens ); echo "<br/>";
+			$db->UpdateWords( $i, $tokens );
+		}
+	}
+	
+	/*
+	 * Find Matches for questions's Word Vector from other questions
+	 */
+	function ReduceMatch( $id ) {
+		global $db;
+		
+		// get the word vector and category for this question
+		$entry = $db->GetQuestion( $id );
+		$word_vector = explode( ",", $entry[ 'words' ] );
+		$category    = $entry[ 'category' ];
+		
+		// entry has a non-zero length word vector
+		if ( count( $word_vector ) > 0 ) {
+			// get IDs of similar matching questions
+			$ids = $db->WordsMatch( $id, $category, $word_vector );
+			
+			// entry has non-zero length similar matches
+			if ( count( $ids ) > 0 ) {
+				echo "<pre>ID $id:" . $entry[ 'question' ]. "<br/>";
+				echo "A: " . $entry[ 'answer' ] . "<br/>";
+				for ( $i = 0; $i < count( $ids ); $i++ ) {
+					$entry = $db->GetQuestion( $ids[ $i ] );
+					echo "S: " . $entry[ 'answer' ] . "<br/>";
+				}
+				echo "</pre><br/>";
+				$db->UpdateSimilar( $id, $ids );
+			}
 		}
 	}
 }
 
 // Create an NLP object
 $nlp = new NLP();
-for ( $i = 600; $i < 800; $i++ ) {
-$q = $nlp->Question( $i );
-echo $q['question']. "<br/>";
-$tokens = $nlp->Reduce( $q['question'] );
-print_r( $tokens ); echo "<br/>";
+
+// Create the word vector for each question
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+$nlp->ReduceAll();
+
+// Find similar matching questions
+for ( $id = 1; $id < 820; $id++ ) {
+	$nlp->ReduceMatch( $id );
 }
+
 ?> 
