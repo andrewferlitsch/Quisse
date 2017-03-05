@@ -212,8 +212,16 @@ class DB
 			
 			// get the IDs of the similar matching questions
 			if ( mysqli_num_rows($result) > 0 ) {
-				while ( ( $data = mysqli_fetch_array( $result ) ) != null )
-					$ids[] = $data[ 'id' ];
+				while ( ( $data = mysqli_fetch_array( $result ) ) != null ) {
+					// check for duplicates
+					$count = count( $ids );
+					for ( $j = 0; $j < $count; $j++ ) {
+						if ( $ids[ $j ] == $data[ 'id' ] )
+							break;
+					} 
+					if ( $j == $count )
+						$ids[] = $data[ 'id' ];
+				}
 			}
 		}
 		return $ids;

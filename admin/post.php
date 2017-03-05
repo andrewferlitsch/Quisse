@@ -9,12 +9,12 @@ if ( isset( $_POST[ 'category' ] ) ) {
 	$level    = $_POST[ 'level' ];
 	
 	if ( $action == "add" ) {
-		$result = $db->Add( $category, $question, $answer, $rank );
+		$result = $db->Add( $category, $question, $answer, $level );
 	}
 	else if ( $action == "update" ) {
-		$result = $db->Update( $id, $question, $answer, $rank );
+		$result = $db->Update( $id, $question, $answer, $level );
 	}
 	
-	return $result;
+	echo $result;
 }
 ?>

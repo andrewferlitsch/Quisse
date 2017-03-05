@@ -107,7 +107,10 @@ $(function() {
 				questions[ index ].question = $("#question").val();
 				questions[ index ].answer   = $("#answer").val();
 				questions[ index ].level    = $("#level").val();
-				console.log( "RES " + data );
+				if ( action == "add" ) {
+					$("#id").html( data );
+					questions[ index ].id = data;
+				}
 			}
 		)
 		.fail (function( response ) {
