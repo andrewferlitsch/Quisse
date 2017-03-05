@@ -223,8 +223,8 @@ INSERT INTO questions (category, question, answer, rank, toggle )
 INSERT INTO questions (category, question, answer, rank, toggle ) 
   VALUES (
     'C++',
-    'What are all the storage class types?',
-    'auto, extern, register, static, mutable',
+    'What are all the storage class types and modifiers?',
+    'auto, extern, register, static, mutable, volatile and const',
     3,
 	1
   );

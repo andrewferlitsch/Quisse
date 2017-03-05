@@ -276,7 +276,7 @@ INSERT INTO questions (category, question, answer, rank, toggle )
   VALUES (
     'C',
     'What is call by value and call by reference?',
-    'In call by reference, the value of the variable is passed as a parameter to a function. In call by reference, the address of the variable is passed as a parameter to a function.',
+    'In call by value, the value of the variable is passed as a parameter to a function. In call by reference, the address of the variable is passed as a parameter to a function.',
     3,
 	0
   );

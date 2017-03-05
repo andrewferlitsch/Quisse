@@ -18,35 +18,101 @@ include "../db.php";
 	</style>
 <script>
 $(function() {
+	var category;	// selected category
 	var questions;	// list of questions
 	var index;		// index into list of questions
+	var size;		// size of question index
 	
 	// Select a category
 	$("#category").change( function() {
-		var category = this.value;
-		$.get("/admin/get.php?category=" + category, function( data, status ) {
+		category = this.value;
+		$.get("/admin/get.php?category=" + category.replace( /\+/g, "%2B").replace( /#/g, "%23"), function( data, status ) {
 			questions = JSON.parse( data );
+			index = 0;
+			size  = questions.length;
 			
 			// populate the first question
-			question  = questions[ 0 ];
-			$("#id").html( question.id );
-			index = 0;
+			Populate();
 		})
 		.fail (function( response ) {
 			$("#err-cat").html( "Get Categories Failed: errCode = " + response.status );
 		});	 
 	})
 	
+	// Goto previous question in category
 	$("#prev").click( function() {
-		
+		if ( index == 0 )
+			index = size - 1;
+		else
+			index--;
+		Populate();
 	})
 	
+	// Goto next question in category
 	$("#next").click( function() {
-		
+		if ( index == size - 1 )
+			index = 0;
+		else
+			index++;
+		Populate();
 	})
 	
+	// Populate input form
+	function Populate() {
+		var question  = questions[ index ];
+		$("#id").html( question.id );
+		$("#question").val( question.question );
+		$("#answer").val( question.answer );
+		$("#level").val( question.level );
+		$("#submit").val( "Update" );
+	}
+	
+	// Clear input form to enter new question
 	$("#new").click( function() {
+		$("#id").html( "" );
+		$("#question").val( "" );
+		$("#answer").val( "" );
+		$("#level").val( 1 );
+		$("#submit").val( "Add" );
+	})
+	
+	// Submit new or updated question
+	$("#submit").click( function() {
+		var action;
 		
+		// Add a question
+		if ( $(this).val() == "Add" ) {
+			action = "add";
+			$("#submit").val( "Update" );
+			
+			// increment the list of questions by one
+			index = size;
+			size++;
+			questions.push( { question: "", answer: "", level: "" } );
+		}
+		// Update a question
+		else {
+			action = "update";
+		}
+	
+		$.post( "/admin/post.php",
+			{ action  : action,
+			  category: category,
+			  id      : $("#id").html(),
+			  question: $("#question").val(),
+			  answer  : $("#answer").val(),
+			  level   : $("#level").val()
+			},
+			function ( data, status ) {
+				questions[ index ].question = $("#question").val();
+				questions[ index ].answer   = $("#answer").val();
+				questions[ index ].level    = $("#level").val();
+				console.log( "RES " + data );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-sub").html( "Unable to Add/Update: errCode = " + response.status );
+		});	 
 	})
 })
 </script>
@@ -100,7 +166,8 @@ $(function() {
 		<br/>
 		
 		<!-- Submit -->
-		<input type='submit' value='Submit'/>
+		<input type='submit' id='submit' value='Update'/>
+		<span id='err-sub' class='error'></span>
 	</section>
 	
 	<footer>

@@ -62,6 +62,26 @@ class DB
 			echo mysqli_error( $this->connection ) . PHP_EOL;
 		}
 		
+		return mysqli_insert_id( $this->connection );
+	}
+	
+	/* 
+	 * Update a question
+	 */
+	function Update( $id, $question, $answer, $rank )
+	{
+		$q = "UPDATE " . TBL_QUESTIONS . " SET " . 
+				"id='$id',
+				question='$question',
+				answer='$answer',
+				rank='$rank'" .
+			"WHERE id = $id";
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
 		return $result;
 	}
 	
