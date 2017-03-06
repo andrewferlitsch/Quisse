@@ -3,7 +3,8 @@ include "../db.php";
 ?>
 <html lang="en-US">
 <head>
-	<title>Quisse Admin</title>
+	<title>Quisse Admin - NLP Dashboard</title>
+	<meta NAME="robots" CONTENT="noindex, nofollow">
 	<meta charset="utf-8">
 	<meta name='keywords' content=''>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -123,6 +124,7 @@ $(function() {
 <body>
 	<header style='text-align: center'>
 		<h2>Quisse Admin</h2>
+		<h3>Q&A Dashboard</h3>
 	</header>
 	
 	<section class='w3-container'>

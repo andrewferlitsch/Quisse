@@ -3,8 +3,8 @@
 <hr/>
 <div style='font-size: 20px;' ng-show='show'>
 	<div class="flip" ng-repeat='question in random' class='w3-container'> 
-        <div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1; Flip(question.id, isFlipped1 )"> 
-            <div class="face front w3-teal w3-round-large w3-xlarge">
+		<div class="card" ng-class="{'flipped':isFlipped1}" ng-click="isFlipped1=!isFlipped1; Flip(question.id, isFlipped1 )"> 
+			<div class="face front w3-teal w3-round-large w3-xlarge">
 				<span style='font-size: 14pt; color: gold;'>Level: {{question.rank}} </span><br/>
                 Question: {{question.question}}
 				<p style='font-size: 11pt; color: gold;'>Click to Flip</p>
@@ -13,18 +13,15 @@
                 Answer: {{question.answer}} 
 				<p style='font-size: 11pt; color: gold;'>Click to Flip</p>
             </div>
-        </div> 
-		<div class='w3-container'><label>Got It!</label> <input class='w3-check' type='checkbox' ng-model='checked' ng-change='Correct( checked, question.id )'/>
 		</div>
 	</div>
 	<br/>
 	<div class='w3-right'>
-		<button class='w3-btn w3-teal w3-small' ng-click='Easier( random[0].id )'>-</button>
-		<button class='w3-btn w3-teal w3-small' ng-click='Same( random[0].id )'>Next</button>
-		<button class='w3-btn w3-teal w3-small' ng-click='Harder( random[0].id )'>+</button><br/>
+		<button class='w3-btn w3-teal w3-small fa fa-check' ng-click='Same( random[0].id ); Correct( true, random[ 0 ].id )'> Next</button>
+		<button class='w3-btn w3-teal w3-small fa fa-times' ng-click='Same( random[0].id )'> Next</button>
 	</div> 
 	<div class='w3-left'>
-		<button class='w3-btn w3-red w3-small' ng-click='Reset(  random[0].id )'>Reset</button>
+		<button class='w3-btn w3-red w3-small' ng-click='Reset( random[0].id )'>Reset</button>
 	</div>
 	<div style='clear:both;'>&nbsp;</div>
 </div>

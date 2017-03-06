@@ -24,6 +24,12 @@ a.index:link, a.index:visited {
 	text-decoration: none;
 	color		   : steelblue;
 }
+a.list:link, a.list:visited {
+	text-decoration: none;
+	color		   : darkorange;
+}
+
+.expand { font-weight: bold; color: darkorange; cursor: pointer }
 </style>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -88,21 +94,114 @@ unable to pass this part of the coding portion, you will probably not continue t
 </p>
 
 <ol class='w3-ul'>
-	<li><a class='index' href='#prime'>Prime Numbers</a></li>
-	<li><a class='index' href='#fibonacci'>Fibonacci Sequence</a></li>
-	<li><a class='index' href='#dynamic'>Dynamic Arrays</a></li>
-	<li><a class='index' href='#queue'>Linked Lists - Queue</a></li>
-	<li><a class='index' href='#stack'>Linked Lists - Stack</a></li>
-	<li><a class='index' href='#btree'>Binary Trees</a></li>
-	<li><a class='index' href='#bts'>Binary Tree Traversals</a></li>
-	<li><a class='index' href='#kary'>K-ary Trees</a></li>
-	<li><a class='index' href='#bst'>Binary Search Trees</a></li>
-	<li><a class='index' href='#arith'>Arithmetic Operations</a></li>
-	<li><a class='index' href='#encoding'>Variable Length Byte Encoding</a></li>
-	<li><a class='index' href='#sort'>Sorting</a></li>
-	<li><a class='index' href='#hash'>Hashing</a></li>
-	<li><a class='index' href='#string'>String Manipulations</a></li>
-	<li><a class='index' href='#graph'>Graphs</a></li>
+	<li><a class='index' href='#prime'>Prime Numbers</a><span class='expand' ng-click='prime=!prime'> +</span>
+		<ul ng-show='prime'>
+			<li><a class='list' href="#prime1">Standard</a></li>
+			<li><a class='list' href="#prime2">Skip Even Numbers</a></li>
+			<li><a class='list' href="#prime3">Skip Even Numbers, and divide only by numbers one-third or less than the number.</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#fibonacci'>Fibonacci Sequence</a><span class='expand' ng-click='fibonacci=!fibonacci'> +</span>
+		<ul ng-show='fibonacci'>
+			<li><a class='list' href="#fibonacci1">Recursive</a></li>
+			<li><a class='list' href="#fibonacci2">Iterative</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#dynamic'>Dynamic Arrays</a><span class='expand' ng-click='dynamic=!dynamic'> +</span>
+		<ul ng-show='dynamic'>
+			<li><a class='list' href="#dynamic1">Add/Get</a></li>
+			<li><a class='list' href="#dynamic2">Delete</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#queue'>Linked Lists - Queue</a><span class='expand' ng-click='queue=!queue'> +</span>
+		<ul ng-show='queue'>
+			<li><a class='list' href="#queue1">Queue</a></li>
+			<li><a class='list' href="#queue2">Queue with Task Priority</a></li>
+			<li><a class='list' href="#queue3">Queue with Dynamic Priority Update</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#stack'>Linked Lists - Stack</a><span class='expand' ng-click='stack=!stack'> +</span>
+		<ul ng-show='stack'>
+			<li><a class='list' href="#stack1">Stack</a></li>
+			<li><a class='list' href="#stack2">Chain of Stacks</a></li>
+			<li><a class='list' href="#stack3">Towers of Hanoi</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#btree'>Binary Trees</a><span class='expand' ng-click='btree=!btree'> +</span>
+		<ul ng-show='btree'>
+			<li><a class='list' href="#btree1">Standard</a></li>
+			<li><a class='list' href="#btree2">Generalize from K-ary Tree</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#bts'>Binary Tree Traversals</a><span class='expand' ng-click='bts=!bts'> +</span>
+		<ul ng-show='bts'>
+			<li><a class='list' href="#bts1">Inorder</a></li>
+			<li><a class='list' href="#bts2">Preorder</a></li>
+			<li><a class='list' href="#bts3">Postorder</a></li>
+			<li><a class='list' href="#bts4">Level Order</a></li>
+			<li><a class='list' href="#bts5">Maximum and Minimum Depth of Binary Tree</a></li>
+			<li><a class='list' href="#bts6">Maximum and Minimum Value</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#kary'>K-ary Trees</a><span class='expand' ng-click='kary=!kary'> +</span>
+		<ul ng-show='kary'>
+			<li><a class='list' href="#kary1">Standard</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#bst'>Binary Search Trees</a><span class='expand' ng-click='bst=!bst'> +</span>
+		<ul ng-show='bst'>
+			<li><a class='list' href="#bst1">Insert</a></li>
+			<li><a class='list' href="#bst2">Find</a></li>
+			<li><a class='list' href="#bst3">Delete</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#arith'>Arithmetic Operations</a><span class='expand' ng-click='arith=!arith'> +</span>
+		<ul ng-show='arith'>
+			<li><a class='list' href="#arith1">Multiply</a></li>
+			<li><a class='list' href="#arith2">Exponent</a></li>
+			<li><a class='list' href="#arith3">Exponent with Fewer Multiplication Steps</a></li>
+			<li><a class='list' href="#arith4">GCD Iterative Solution</a></li>
+			<li><a class='list' href="#arith5">GCD Recursive Solution</a></li>
+			<li><a class='list' href="#arith6">LCM</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#encoding'>Variable Length Byte Encoding</a><span class='expand' ng-click='encoding=!encoding'> +</span>
+		<ul ng-show='encoding'>
+			<li><a class='list' href="#encoding1">Byte Encoding</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#sort'>Sorting</a><span class='expand' ng-click='sort=!sort'> +</span>
+		<ul ng-show='sort'>
+			<li><a class='list' href="#sort1">Bubble Sort</a></li>
+			<li><a class='list' href="#sort2">Insertion Sort</a></li>
+			<li><a class='list' href="#sort3">Quick Sort</a></li>
+			<li><a class='list' href="#sort4">Merge Sort</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#hash'>Hashing</a><span class='expand' ng-click='hash=!hash'> +</span>
+		<ul ng-show='hash'>
+			<li><a class='list' href="#hash1">Integer Hash</a></li>
+			<li><a class='list' href="#hash2">String (Object) Hash</a></li>
+			<li><a class='list' href="#hash3">Hash Table with Linear Probing</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#string'>String Manipulations</a><span class='expand' ng-click='string=!string'> +</span>
+		<ul ng-show='string'>
+			<li><a class='list' href="#string1">Reverse String (Iterative)</a></li>
+			<li><a class='list' href="#string2">Reverse String (Recursive)</a></li>
+			<li><a class='list' href="#string3">Palindrome</a></li>
+			<li><a class='list' href="#string4">Palindrome (Phrases)</a></li>
+			<li><a class='list' href="#string5">Character Count</a></li>
+			<li><a class='list' href="#string6">Duplicate Characters</a></li>
+		</ul>
+	</li>
+	<li><a class='index' href='#graph'>Graphs</a><span class='expand' ng-click='graph=!graph'> +</span>
+		<ul ng-show='graph'>
+			<li><a class='list' href="#graph1">BFS Graph Traversal</a></li>
+			<li><a class='list' href="#graph2">DFS Graph Traversal (Iterative)</a></li>
+			<li><a class='list' href="#graph3">DFS Graph Traversal (Recursive)</a></li>
+		</ul>
+	</li>
 </ol>
 
 <a name="prime"></a>
@@ -112,6 +211,10 @@ The most basic coding example you might get asked is to write an algorithm to ou
 Prime numbers are numbers that are only divisible by one and itself. The algorithm is a 
 straight forward iterative algorithm.
 </p>
+
+<a name="prime1"></a>
+<h4>Standard</h4>
+
 <ul class="w3-navbar w3-light-grey" ng-init="pri1[0] = true; pri1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="pri1=[true,false,false,false]; pri1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('pri1')" ng-class='pri1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="pri1=[false,true,false,false]; pri1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('pri1')" ng-class='pri1cls[1]'>Python</a></li>
@@ -126,7 +229,6 @@ number two is also a prime number, since there are no numbers between one and tw
 to divide by. Therefore, I generally like to start the iterative process at three, though
 you may choose to start it at two.
 </p>
-<h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>For each number, we attempt to divide it by every number less than it, except for one.</li>
 	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
@@ -212,6 +314,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="prime2"></a>
+<h4>Skip Even Numbers</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="pri2[0] = true; pri2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="pri2=[true,false,false,false]; pri2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('pri2')" ng-class='pri2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="pri2=[false,true,false,false]; pri2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('pri2')" ng-class='pri2cls[1]'>Python</a></li>
@@ -225,7 +329,6 @@ Can we make an improvement? Yes. Since we know all even numbers are divisible by
 can skip checking even numbers and only check odd numbers. Likewise, since we know odd numbers are not divisible by even numbers,
 we can skip dividing by even numbers and only divide by odd numbers.
 </p>
-<h4>Algorithm - Skip Even Numbers</h4>
 <ol class='w3-ul'>
 	<li>For each odd number, we attempt to divide it by every odd number less than it, except for one.</li>
 	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
@@ -314,6 +417,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="prime3"></a>
+<h4>Skip Even Numbers, and divide only by numbers one-third or less than the number</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="pri3[0] = true; pri3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="pri3=[true,false,false,false]; pri3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('pri3')" ng-class='pri3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="pri3=[false,true,false,false]; pri3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('pri3')" ng-class='pri3cls[1]'>Python</a></li>
@@ -327,8 +432,6 @@ Can we make another improvement? Yes. Since we are skipping even numbers, we kno
 Therefore, any divisible number must be one-third or less the value of the number. We can cut down on the number of iterations by only dividing
 the first 1/3 of values less than the number.
 </p>
-
-<h4>Algorithm - Skip Even Numbers, and divide only by numbers one-third or less than the number.</h4>
 <ol class='w3-ul'>
 	<li>For each odd number, we attempt to divide it by every odd number that is less than one-third of the number, except for one and two.</i>
 	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>
@@ -423,6 +526,8 @@ F(n-1) + F(n-2); that is the summation of the previous two values in the sequenc
 solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very short recursive algorithm.
 </p>
 
+<a name="fibonacci1"></a>
+<h4>Recursive</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="fib1[0] = true; fib1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="fib1=[true,false,false,false]; fib1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('fib1')" ng-class='fib1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="fib1=[false,true,false,false]; fib1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('fib1')" ng-class='fib1cls[1]'>Python</a></li>
@@ -431,7 +536,6 @@ solutions use F(0) = 0 and F(1) = 1. This sequence can be written in a very shor
 </ul>
 
 <div  ng-show='fib1[0]'>
-<h4>Algorithm - Recursive</h4>
 <ol class='w3-ul'>
 	<li>If n = 0, then return 0.</li>
 	<li>If n = 1, then return 1.</li>
@@ -510,6 +614,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="fibonacci2"></a>
+<h4>Iterative</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="fib2[0] = true; fib2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="fib2=[true,false,false,false]; fib2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('fib2')" ng-class='fib2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="fib2=[false,true,false,false]; fib2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('fib2')" ng-class='fib2cls[1]'>Python</a></li>
@@ -520,9 +626,7 @@ $(function() {
 <div ng-show='fib2[0]'>
 <p>
 It is common to be asked if you can write the algorithm for an iterative solution (looping - no recursion).
-</p>
-
-<h4>Algorithm - Iterative</h4> 
+</p> 
 <ol class='w3-ul'>
 	<li>If n = 0, then return 0.</li>
 	<li>If n = 1, then return 1.</li>
@@ -631,6 +735,8 @@ by indices 0=>A, 1=>B and 2=>D. If we insert a C between B and D, the ordering w
 as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and index 3 to D.
 </p>
 
+<a name="dynamic1"></a>
+<h4>Add/Get</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="dyn1[0] = true; dyn1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="dyn1=[true,false,false,false]; dyn1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('dyn1')" ng-class='dyn1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="dyn1=[false,true,false,false]; dyn1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('dyn1')" ng-class='dyn1cls[1]'>Python</a></li>
@@ -642,8 +748,6 @@ as indices 0=>A, 1=>B, 2=>C and 3=>D. Note how index 2 now relates to C and inde
 <p>
 You maybe asked to implement a dynamic array using a class. You would be expected to implement at least an Add() and Get() methods.
 </p>
-
-<h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>Define a class for an element.
 		<ul>
@@ -886,6 +990,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="dynamic2"></a>
+<h4>Delete</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="dyn2[0] = true; dyn2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="dyn2=[true,false,false,false]; dyn2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('dyn2')" ng-class='dyn2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="dyn2=[false,true,false,false]; dyn2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('dyn2')" ng-class='dyn2cls[1]'>Python</a></li>
@@ -897,8 +1003,6 @@ $(function() {
 <p>Once you've solved the Add() and Get() methods, you maybe asked to code the methods for Delete() and Insert(). In the below coding
 example, I solve for an insert after. You maybe additionally asked to code an insert before, or both.
 </p>
-
-<h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>Define a Delete() method.
 		<ul>
@@ -1208,6 +1312,8 @@ A linked list is a data structure where each element is linked to another elemen
 Depending on the type of chaining, one can use link lists to code queues and stacks. A queue is also known as a FIFO (first-in-first-out) structure.
 </p>
 
+<a name="queue1"></a>
+<h4>Queue</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="que1[0] = true; que1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="que1=[true,false,false,false]; que1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('que1')" ng-class='que1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="que1=[false,true,false,false]; que1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('que1')" ng-class='que1cls[1]'>Python</a></li>
@@ -1222,8 +1328,6 @@ is added to the end of the tail, becoming the new tail. Throughout the chain, ea
 proceeding to the tail (forward chaining). A queue is typically used to process elements in the same sequential order they were added (FIFO). To process
 an element, one removes the head (current element to process) of the queue and sets the new head to the next element following the previous head.
 <p>
-
-<h4>Algorithm - Queue</h4>
 <ol class='w3-ul'>
 	<li>Define a Task object.
 		<ul>
@@ -1483,6 +1587,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="queue2"></a>
+<h4>Queue with Task Priority</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="que2[0] = true; que2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="que2=[true,false,false,false]; que2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('que2')" ng-class='que2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="que2=[false,true,false,false]; que2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('que2')" ng-class='que2cls[1]'>Python</a></li>
@@ -1494,8 +1600,6 @@ $(function() {
 <p>
 You maybe asked to improve the coding example by being ask to add a task priority and sort the queue according to the task's priority.
 </p>
-
-<h4>Algorithm - Queue with Task Priority</h4>
 <ol class='w3-ul'>
 	<li>Define a Task object.
 		<ul>
@@ -1872,6 +1976,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="queue3"></a>
+<h4>Queue with Dynamic Priority Update</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="que3[0] = true; que3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="que3=[true,false,false,false]; que3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('que3')" ng-class='que3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="que3=[false,true,false,false]; que3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('que3')" ng-class='que3cls[1]'>Python</a></li>
@@ -1883,8 +1989,6 @@ $(function() {
 <p>
 You maybe further asked to make another improvement to dynamically change a priority of a task and resort the queue accordingly.
 </p>
-
-<h4>Algorithm - Queue with Dynamic Priority Update</h4>
 <ol class='w3-ul'>
 	<li>Update the priority of the task.</li>
 	<li>Locate task in the queue and remove the task.</li>
@@ -2038,6 +2142,8 @@ A linked list is a data structure where each element is linked to another elemen
 Depending on the type of chaining, one can use link lists to code queues and stacks. A stack is also known as a LIFO (last-in-first-out) structure.
 </p>
 
+<a name="stack1"></a>
+<h4>Stack</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="stk1[0] = true; stk1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="stk1=[true,false,false,false]; stk1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('stk1')" ng-class='stk1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="stk1=[false,true,false,false]; stk1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('stk1')" ng-class='stk1cls[1]'>Python</a></li>
@@ -2052,8 +2158,6 @@ is added to the top of the stack, becoming the new top. Throughout the chain, ea
 proceeding to the bottom (forward chaining). A stack is typically used to process elements in the reverse sequential order they were added (LIFO). To process
 an element, one removes the top (current element to process) of the stack and sets the new top to the next element following the previous top.
 <p>
-
-<h4>Algorithm - Stack</h4>
 <ol class='w3-ul'>
 	<li>Define a Task object.
 		<ul>
@@ -2292,6 +2396,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="stack2"></a>
+<h4>Chain of Stacks</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="stk2[0] = true; stk2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="stk2=[true,false,false,false]; stk2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('stk2')" ng-class='stk2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="stk2=[false,true,false,false]; stk2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('stk2')" ng-class='stk2cls[1]'>Python</a></li>
@@ -2310,8 +2416,6 @@ to the bottom of the stack, and so forth.
 Unlike the previous stack example, where we implicitly performed the task when it was popped, we will this time return the task on a pop and
 let the application explicitly invoke performing the task. This will simplify the push and pop operations in a chain.
 </p>
-
-<h4>Algorithm - Chain of Stacks</h4>
 <ol class='w3-ul'>
 	<li>Define a Task object.
 		<ul>
@@ -2698,6 +2802,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="stack3"></a>
+<h4>Towers of Hanoi</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="stk3[0] = true; stk3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="stk3=[true,false,false,false]; stk3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('stk3')" ng-class='stk3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="stk3=[false,true,false,false]; stk3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('stk3')" ng-class='stk3cls[1]'>Python</a></li>
@@ -2715,8 +2821,6 @@ In this puzzle, you want to move all the discs from the first tower (pole) to th
 	<li>You can not place a larger disc on top of a smaller disc.</li>
 </ul>
 </p>
-
-<h4>Algorithm - Towers of Hanoi</h4>
 <ol class='w3-ul'>
 	<li>Create three stacks for the towers.</li>
 	<li>Initialize the start position by pushing onto the first stack (tower) a set of discs in decreasing size (larger to smaller).</li>
@@ -3077,6 +3181,8 @@ Some other terminology that is useful to know:
 </ul>
 </p>
 
+<a name="btree1"></a>
+<h4>Standard</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="btr1[0] = true; btr1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="btr1=[true,false,false,false]; btr1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('btr1')" ng-class='btr1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="btr1=[false,true,false,false]; btr1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('btr1')" ng-class='btr1cls[1]'>Python</a></li>
@@ -3085,7 +3191,6 @@ Some other terminology that is useful to know:
 </ul>
 
 <div ng-show='btr1[0]'>
-<h4>Algorithm</h4>
 <p>
 You maybe asked to code a class definition for a binary tree node. The binary tree node will have the following members/methods:
 <ol class='w3-ul'>
@@ -3238,6 +3343,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="btree2"></a>
+<h4>Generalize from K-ary Tree</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="btr2[0] = true; btr2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="btr2=[true,false,false,false]; btr2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('btr2')" ng-class='btr2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="btr2=[false,true,false,false]; btr2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('btr2')" ng-class='btr2cls[1]'>Python</a></li>
@@ -3250,8 +3357,6 @@ $(function() {
 of a k-ary tree. For this, we would define a base (super) class with methods common to k-ary trees, and then derive (extend) a binary tree 
 class from the base (super) class with methods specific to a binary tree.
 </p>
-
-<h4>Algorithm - Generalize from K-ary Tree</h4>
 <ol class='w3-ul'>
 	<li>The base class defines the key member and corresponding access methods.</li>
 	<li>The base class is made abstract, so that one has to derive (extend) a class to use it.</li>
@@ -3463,6 +3568,8 @@ For depth first traversal or search (DFS), a tree can be traversed either inorde
 If you are ask questions about a binary search tree (BST), most likely the algorithm will use a postorder traversal.
 </p>
 
+<a name="bts1"></a>
+<h4>Inorder</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bts1[0] = true; bts1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bts1=[true,false,false,false]; bts1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts1')" ng-class='bts1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bts1=[false,true,false,false]; bts1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts1')" ng-class='bts1cls[1]'>Python</a></li>
@@ -3471,7 +3578,6 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 </ul>
 
 <div ng-show='bts1[0]'>
-<h4>Algorithm - Inorder</h4>
 <ol class='w3-ul'>
 	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
 	<li>Traverse back to the root node.</li>
@@ -3507,6 +3613,8 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<a name="bts2"></a>
+<h4>Preorder</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bts2[0] = true; bts2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bts2=[true,false,false,false]; bts2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts2')" ng-class='bts2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bts2=[false,true,false,false]; bts2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts2')" ng-class='bts2cls[1]'>Python</a></li>
@@ -3515,7 +3623,6 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 </ul>
 
 <div ng-show='bts2[0]'>
-<h4>Algorithm - Preorder</h4>
 <ol class='w3-ul'>
 	<li>Traverse to the root node.</li>
 	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
@@ -3551,6 +3658,8 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<a name="bts3"></a>
+<h4>Postorder</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bts3[0] = true; bts3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bts3=[true,false,false,false]; bts3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts3')" ng-class='bts3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bts3=[false,true,false,false]; bts3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts3')" ng-class='bts3cls[1]'>Python</a></li>
@@ -3559,7 +3668,6 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 </ul>
 
 <div ng-show='bts3[0]'>
-<h4>Algorithm - Postorder</h4>
 <ol class='w3-ul'>
 	<li>From the current node (root), traverse to left node. Recursively apply the algorithm to the left node.</li>
 	<li>From the current node (root), traverse to right node. Recursively apply the algorithm to the right node.</li>
@@ -3595,6 +3703,8 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 	}
 </pre>
 
+<a name="bts4"></a>
+<h4>Level Order</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bts4[0] = true; bts4cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bts4=[true,false,false,false]; bts4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts4')" ng-class='bts4cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bts4=[false,true,false,false]; bts4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts4')" ng-class='bts4cls[1]'>Python</a></li>
@@ -3607,8 +3717,6 @@ If you are ask questions about a binary search tree (BST), most likely the algor
 A breadth first traversal or search (BFS) traverses a tree one node level at a time, visiting each node at that level, generally from left to right.
 This traversal is referred to as a level order traversal.
 </p>
-
-<h4>Algorithm - Level Order</h4>
 <ol class='w3-ul'>
 	<li>If the root node is non-null, add the root to the nodes to visit in sequential order.</li>
 	<li>While there are nodes to visit, do:
@@ -3744,6 +3852,8 @@ If you are asked to count the size (number of nodes) of a binary tree, using any
 the method Action() with a counter that is increment each time a node is visited.
 </p>
 
+<a name="bts5"></a>
+<h4>Maximum and Minimum Depth of Binary Tree</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bts5[0] = true; bts5cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bts5=[true,false,false,false]; bts5cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts5')" ng-class='bts5cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bts5=[false,true,false,false]; bts5cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts5')" ng-class='bts5cls[1]'>Python</a></li>
@@ -3757,8 +3867,6 @@ the method Action() with a counter that is increment each time a node is visited
 from the root to the leaf node that is the furthest from the root, while the minimum depth is the number of nodes
 from the root to the leaf node that is the closest the root.
 </p>
-
-<h4>Algorithm - Maximum and Minimum Depth of Binary Tree</h4>
 <ol class='w3-ul'>
 	<li>Do a preorder traversal of the tree starting from the root.</li>
 	<li>When a node is visited, increment the depth count by 1.</li>
@@ -3937,6 +4045,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="bts6"></a>
+<h4>Maximum and Minimum Value</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bts6[0] = true; bts6cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bts6=[true,false,false,false]; bts6cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bts6')" ng-class='bts6cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bts6=[false,true,false,false]; bts6cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bts6')" ng-class='bts6cls[1]'>Python</a></li>
@@ -3948,8 +4058,6 @@ $(function() {
 <p>Another addition you maybe asked is to add to your solution a method to calculate the maximum and minimum value of the tree. The maximum
 value is the node with the maximum value of all nodes, while the minimum value is the node with the minimum value of all nodes.
 </p>
-
-<h4>Algorithm - Maximum and Minimum Value</h4>
 <ol class='w3-ul'>
 	<li>Do a level order (Breadth First) traversal of the tree.</li>
 	<li>Keep a counter of the maximum and minimum value encountered.</li>
@@ -4116,6 +4224,8 @@ that may at most k children. You may be challenged, by being asked to create a b
 from, with the condition that the children (branch) members must be defined in the base (super) class.
 </p>
 
+<a name="kary1"></a>
+<h4>Standard</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="kry1[0] = true; kry1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="kry1=[true,false,false,false]; kry1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('kry1')" ng-class='kry1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="kry1=[false,true,false,false]; kry1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('kry1')" ng-class='kry1cls[1]'>Python</a></li>
@@ -4128,8 +4238,6 @@ from, with the condition that the children (branch) members must be defined in t
 Since we do not know in the base (super) class how many children (branches) each node will have, we will use a dynamic array to represent the
 member for children. In the Java coding example, I will use the predefined dynamic array type ArrayList.
 </p>
-
-<h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>The base class defines the key member and corresponding access methods.</li>
 	<li>The base class defines a member for the maximum number of children and a dynamic array for pointers to the children.</li>
@@ -4337,6 +4445,8 @@ node is greater than, and where there are no duplicate values. For example, if t
 would be inserted on the left branch, while a node of 7 would be inserted on the right branch.
 </p>
 
+<a name="bst1"></a>
+<h4>Insert</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bst1[0] = true; bst1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bst1=[true,false,false,false]; bst1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bst1')" ng-class='bst1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bst1=[false,true,false,false]; bst1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bst1')" ng-class='bst1cls[1]'>Python</a></li>
@@ -4348,8 +4458,6 @@ would be inserted on the left branch, while a node of 7 would be inserted on the
 <p>
 You maybe asked to code the algorithm to insert, find and delete nodes in a binary search tree.
 </p>
-
-<h4>Algorithm - Insert</h4>
 <ol class='w3-ul'>
 	<li>If the root node is null, make the root the node.</li>
 	<li>Otherwise, starting at the root, traverse the tree:
@@ -4543,6 +4651,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="bst2"></a>
+<h4>Find</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bst2[0] = true; bst2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bst2=[true,false,false,false]; bst2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bst2')" ng-class='bst2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bst2=[false,true,false,false]; bst2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bst2')" ng-class='bst2cls[1]'>Python</a></li>
@@ -4551,8 +4661,6 @@ $(function() {
 </ul>
 
 <div ng-show='bst2[0]'>
-
-<h4>Algorithm - Find</h4>
 <ol class='w3-ul'>
 	<li>Starting at the root, traverse a path in the tree.</li>
 	<li>If the current node is null, return not found.</li>
@@ -4698,7 +4806,9 @@ $(function() {
 	&lt;div id='output'>&lt;/div>
 &lt;/body>
 </pre>
-	
+
+<a name="bst3"></a>	
+<h4>Delete</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="bst3[0] = true; bst3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="bst3=[true,false,false,false]; bst3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('bst3')" ng-class='bst3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="bst3=[false,true,false,false]; bst3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('bst3')" ng-class='bst3cls[1]'>Python</a></li>
@@ -4707,7 +4817,6 @@ $(function() {
 </ul>
 
 <div ng-show='bst3[0]'>
-<h4>Algorithm - Delete</h4>
 <ol class='w3-ul'>
 	<li>Traverse the tree, starting with the root and remember the previous node visited.</li>
 	<li>If the current node is null, return (not found).</li>
@@ -4921,6 +5030,8 @@ $(function() {
 A very basic arithmetic problem you maybe asked is to implement a multiply operation where you can only use the addition and equality operator.
 </p>
 
+<a name="arith1"></a>
+<h4>Multiply</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="art1[0] = true; art1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="art1=[true,false,false,false]; art1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art1')" ng-class='art1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="art1=[false,true,false,false]; art1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art1')" ng-class='art1cls[1]'>Python</a></li>
@@ -4929,7 +5040,6 @@ A very basic arithmetic problem you maybe asked is to implement a multiply opera
 </ul>
 
 <div ng-show='art1[0]'>
-<h4>Algorithm - Multiply</h4>
 <ol class='w3-ul'>
 	<li>Initialize accumulators for result and repeat to 0.</li>
 	<li>Loop indefinitely for 'x + y'</li>
@@ -5019,6 +5129,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="arith2"></a>
+<h4>Exponent</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="art2[0] = true; art2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="art2=[true,false,false,false]; art2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art2')" ng-class='art2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="art2=[false,true,false,false]; art2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art2')" ng-class='art2cls[1]'>Python</a></li>
@@ -5030,8 +5142,6 @@ $(function() {
 <p>
 You would then be likely asked to extend the solution to include an exponent operation where you can only use the addition and equality operator.
 </p>
-
-<h4>Algorithm - Exponent</h4>
 <ol class='w3-ul'>
 	<li>If the exponent is zero, return 1.</li>
 	<li>Initialize accumulators for result to 1 and repeat to 0.</li>
@@ -5129,6 +5239,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="arith3"></a>
+<h4>Exponent with Fewer Multiplication Steps</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="art3[0] = true; art3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="art3=[true,false,false,false]; art3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art3')" ng-class='art3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="art3=[false,true,false,false]; art3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art3')" ng-class='art3cls[1]'>Python</a></li>
@@ -5142,7 +5254,6 @@ can be done by factoring the equation into fewer multiplication steps. There are
 the exponent in half, resulting in half the multiplications, one for even exponents and one for odd exponents.
 </p>
 
-<h4>Algorithm - Exponent with Fewer Multiplication Steps</h4>
 <ol class='w3-ul'>
 	<li>Use the following factoring rules:
 		<ol>
@@ -5228,6 +5339,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="arith4"></a>
+<h4>GCD Iterative Solution</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="art4[0] = true; art4cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="art4=[true,false,false,false]; art4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art4')" ng-class='art4cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="art4=[false,true,false,false]; art4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art4')" ng-class='art4cls[1]'>Python</a></li>
@@ -5240,7 +5353,6 @@ $(function() {
 dates back to 300BC. It is a very efficient algorithm that involves a few small steps. It can be coded as iteratively or recursively.
 </p>
 
-<h4>Algorithm - GCD Iterative Solution</h4>
 <ol class='w3-ul'>
 	<li>Calculate the remainder of dividing the 2nd number by the first number (y % x).</li>
 	<li>Swap the value of the first number (x) with the second number (y).</li>
@@ -5337,6 +5449,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="arith5"></a>
+<h4>GCD Recursive Solution</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="art5[0] = true; art5cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="art5=[true,false,false,false]; art5cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art5')" ng-class='art5cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="art5=[false,true,false,false]; art5cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art5')" ng-class='art5cls[1]'>Python</a></li>
@@ -5348,8 +5462,6 @@ $(function() {
 <p>
 You maybe then be asked to code the solution using recursion.
 </p>
-
-<h4>Algorithm - GCD Recursive Solution</h4>
 <ol class='w3-ul'>
 	<li>When the 2nd number (y) is reduced to zero, return the current value of the first number (x).</li>
 	<li>Otherwise, swap the first number (x) with the second number (y) and set the 2nd number (y) to the remainder
@@ -5420,6 +5532,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="arith6"></a>
+<h4>LCM</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="art6[0] = true; art6cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="art6=[true,false,false,false]; art6cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('art6')" ng-class='art6cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="art6=[false,true,false,false]; art6cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('art6')" ng-class='art6cls[1]'>Python</a></li>
@@ -5433,7 +5547,6 @@ Finally, you maybe asked to extend your solution to additionally find the least 
 The least common multiple (LCM) is the product of the two numbers divided by the GCD of the two numbers.
 </p>
 
-<h4>Algorithm - LCM</h4>
 <ol class='w3-ul'>
 	<li>Multiple the first and second number.</li>
 	<li>Divide the result by the GCD of the two numbers.</li>
@@ -5500,6 +5613,8 @@ bit, then we can use the position of the zero bit to determine the byte length, 
 encoding.
 </p>
 
+<a name="encoding1"></a>
+<h4>Byte Encoding</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="enc1[0] = true; enc1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="enc1=[true,false,false,false]; enc1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('enc1')" ng-class='enc1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="enc1=[false,true,false,false]; enc1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('enc1')" ng-class='enc1cls[1]'>Python</a></li>
@@ -5508,7 +5623,6 @@ encoding.
 </ul>
 
 <div ng-show='enc1[0]'>
-<h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>If the most significant bit is zero, then the encoding is one byte long and the remaining bits are the encoding.</li>
 	<li>If the most significant bit is one, the bit position (most to least significant) is the number of bytes in the encoding,
@@ -5643,6 +5757,8 @@ swapped. The term bubble sort comes from the concept that the smaller (or larger
 a time complexity of O(n*n).
 </p>
 
+<a name="sort1"></a>
+<h4>Bubble Sort</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="srt1[0] = true; srt1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="srt1=[true,false,false,false]; srt1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt1')" ng-class='srt1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="srt1=[false,true,false,false]; srt1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt1')" ng-class='srt1cls[1]'>Python</a></li>
@@ -5651,7 +5767,6 @@ a time complexity of O(n*n).
 </ul>
 
 <div ng-show='srt1[0]'>
-<h4>Algorithm - Bubble Sort</h4>
 <ol class='w3-ul'>
 	<li>Make a pass through the list of values.
 		<ul>
@@ -5764,6 +5879,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="sort2"></a>
+<h4>Insertion Sort</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="srt2[0] = true; srt2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="srt2=[true,false,false,false]; srt2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt2')" ng-class='srt2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="srt2=[false,true,false,false]; srt2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt2')" ng-class='srt2cls[1]'>Python</a></li>
@@ -5776,8 +5893,6 @@ $(function() {
 On each iteration it advances to the next element and inserts the element into the correct position in the list. It's performance is good
 on small sets, but poor on large sets with a time complexity of O(n*n).
 </p>
-
-<h4>Algorithm - Insertion Sort</h4>
 <ol class='w3-ul'>
 	<li>Iterate through the list of elements.
 		<ul>
@@ -5882,6 +5997,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="sort3"></a>
+<h4>Quick Sort</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="srt3[0] = true; srt3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="srt3=[true,false,false,false]; srt3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt3')" ng-class='srt3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="srt3=[false,true,false,false]; srt3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt3')" ng-class='srt3cls[1]'>Python</a></li>
@@ -5897,8 +6014,6 @@ than the pivot are moved to the first (left) partition and all values greater th
 the second (right) partition. The process is then applied recursively to each partition. The average time complexity
 is O(n*logn), with a worst case complexity of O(n*n).
 </p>
-
-<h4>Algorithm - Quick Sort</h4>
 <ol class='w3-ul'>
 	<li>Calculate a midpoint in the list. The value at the midpoint is the pivot value.</li>
 	<li>Move all values in the first partition that are not less than the pivot to the second partition.</li>
@@ -6080,6 +6195,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="sort4"></a>
+<h4>Merge Sort (top-down)</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="srt4[0] = true; srt4cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="srt4=[true,false,false,false]; srt4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('srt4')" ng-class='srt4cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="srt4=[false,true,false,false]; srt4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('srt4')" ng-class='srt4cls[1]'>Python</a></li>
@@ -6094,7 +6211,6 @@ partitions together and sorts them. This algorithm can be implemented either top
 The average and worst time complexity is O(n*logn).
 </p>
 
-<h4>Algorithm - Merge Sort (top-down)</h4>
 <ol class='w3-ul'>
 	<li>Allocate space for a temporary copy of the array.</li>
 	<li>Recursively split the data into two partitions (halves), until each partition is a single element.</li>
@@ -6322,6 +6438,8 @@ issues to resolve:
 </ol>
 </p>
 
+<a name="hash1"></a>
+<h4>Integer Hash</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="has1[0] = true; has1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="has1=[true,false,false,false]; has1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('has1')" ng-class='has1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="has1=[false,true,false,false]; has1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('has1')" ng-class='has1cls[1]'>Python</a></li>
@@ -6335,7 +6453,6 @@ range, consuming less memory, handle collisions (two integers map to the same in
 module operator (integer remainder) to divide the number by the range size and use the remainder as the index.
 </p>
 
-<h4>Algorithm</h4>
 <ol class='w3-ul'>
 	<li>Map each integer value into a smaller fixed size integer range using the modulo operator.</li>
 	<li>If there is no entry at the index, add the key/value to the index as the first entry in the chain.</li>
@@ -6694,6 +6811,8 @@ $(function() {
 &lt;/body>
 </pre>
 
+<a name="hash2"></a>
+<h4>String (Object) Hash</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="has2[0] = true; has2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="has2=[true,false,false,false]; has2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('has2')" ng-class='has2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="has2=[false,true,false,false]; has2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('has2')" ng-class='has2cls[1]'>Python</a></li>
@@ -6722,6 +6841,8 @@ in the object instance and return a 32 bit value. In Python, the equivalent is t
 	var ix = hashCode( key ) % this.RANGE;
 </pre>
 
+<a name="hash3"></a>
+<h4>Hash Table with Linear Probing</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="has3[0] = true; has3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="has3=[true,false,false,false]; has3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('has3')" ng-class='has3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="has3=[false,true,false,false]; has3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('has3')" ng-class='has3cls[1]'>Python</a></li>
@@ -6736,8 +6857,6 @@ When we have a collision, we simply place the entry at the next empty index afte
 the calculated index, and if the keys do not match, we probe downward in a linear fashion until we find the matching key or
 an empty entry (key is not in the hash table).
 </p>
-
-<h4>Algorithm: Hash Table with Linear Probing</h4>
 <ol class='w3-ul'>
 	<li>Map each value into a fixed size integer range using a hash function.</li>
 	<li>If there is no entry at the index, add the key/value to the index.</li>
@@ -7060,6 +7179,8 @@ $(function() {
 a builtin library). You maybe asked to do both an iterative and a recursive solution.
 </p>
 
+<a name="string1"></a>
+<h4>Reverse String (Iterative)</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="str1[0] = true; str1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="str1=[true,false,false,false]; str1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('str1')" ng-class='str1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="str1=[false,true,false,false]; str1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('str1')" ng-class='str1cls[1]'>Python</a></li>
@@ -7068,7 +7189,6 @@ a builtin library). You maybe asked to do both an iterative and a recursive solu
 </ul>
 
 <div ng-show='str1[0]'>
-<h4>Algorithm - Reverse String (Iterative)</h4>
 <ol class='w3-ul'>
 	<li>Create a StringBuffer (or character array) to hold the reversed string.</li>
 	<li>Starting at the end of the string and moving backwards, append each character to the reversed string.</li>
@@ -7152,6 +7272,9 @@ $(function() {
 &lt;/body>
 </pre>	
 
+<a name="string2"></a>
+<h4>Reverse String (Recursive)</h4>
+
 <ul class="w3-navbar w3-light-grey" ng-init="str2[0] = true; str2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="str2=[true,false,false,false]; str2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('str2')" ng-class='str2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="str2=[false,true,false,false]; str2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('str2')" ng-class='str2cls[1]'>Python</a></li>
@@ -7160,7 +7283,6 @@ $(function() {
 </ul>
 
 <div ng-show='str2[0]'>
-<h4>Algorithm - Revere String (Recursive)</h4>
 <ol class='w3-ul'>
 	<li>If the original string is one character, if so then return the string.</li>
 	<li>Otherwise, break the string into two parts: the first character and the remainder of the string.</li>
@@ -7227,6 +7349,8 @@ $(function() {
 &lt;/body>
 </pre>	
 
+<a name="string3"></a>
+<h4>Palindrome</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="str3[0] = true; str3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="str3=[true,false,false,false]; str3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']; Algo('str3')" ng-class='str3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="str3=[false,true,false,false]; str3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']; Python('str3')" ng-class='str3cls[1]'>Python</a></li>
@@ -7240,8 +7364,6 @@ A palindrome is the same word/phrase spelled forward or backwards, such as: mada
 be to reverse the string and compare the reversed string to the original. But, you are likely to be asked to solve the
 algorithm without making a copy of the string, for single word palindromes.
 </p>
-
-<h4>Algorithm - Palindrome</h4>
 <ol class='w3-ul'>
 	<li>Iterate through the first half of the string. When the string is an odd number of characters, skip the middle character.</li>
 	<li>On each iteration, compare the current character at the front of the string to the same position but from the rear of the string.</li>
@@ -7322,6 +7444,8 @@ $(function() {
 &lt;/body>
 </pre>	
 
+<a name="string4"></a>
+<h4>Palindrome (Phrases)</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="str4[0] = true; str4cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="str4=[true,false,false,false]; str4cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='str4cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="str4=[false,true,false,false]; str4cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='str4cls[1]'>Python</a></li>
@@ -7335,8 +7459,6 @@ regardless of the positioning of spaces, punctuation and capitalizing, such as: 
 by making a first pass thru the string to remove spaces, punctuation and lowercase, since strings are immutable; hence,
 if you modify the original string, you end up making a copy.
 </p>
-
-<h4>Algorithm - Palindrome (Phrases)</h4>
 <ol class='w3-ul'>
 	<li>Iterate simultaneously from the front (forward) and back (backward) of the string, until the two iterators meet.</li>
 	<li>If current character of either iterator is a punctuation or space character, then advance the corresponding iterator.</li>
@@ -7469,6 +7591,8 @@ $(function() {
 &lt;/body>
 </pre>	
 
+<a name="string5"></a>
+<h4>Character Count</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="str5[0] = true; str5cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="str5=[true,false,false,false]; str5cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='str5cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="str5=[false,true,false,false]; str5cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='str5cls[1]'>Python</a></li>
@@ -7479,8 +7603,6 @@ $(function() {
 <div ng-show='str5[0]'>
 <p>A simple algorithm you maybe ask is to count all occurrences of every character in a string.
 </p>
-
-<h4>Algorithm - Character Count</h4>
 <ol class='w3-ul'>
 	<li>Create a counter for the 96 ASCII printable characters.</li>
 	<li>Iterate through the string, incrementing the character specific index in the counter for each character.</li>
@@ -7565,6 +7687,8 @@ $(function() {
 &lt;/body>
 </pre>	
 
+<a name="string6"></a>
+<h4>Duplicate Chars</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="str6[0] = true; str6cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="str6=[true,false,false,false]; str6cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='str6cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="str6=[false,true,false,false]; str6cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='str6cls[1]'>Python</a></li>
@@ -7575,8 +7699,6 @@ $(function() {
 <div ng-show='str6[0]'>
 <p>You maybe asked to make a variation of this by counting only duplicated characters (i.e., at least two occurrences).
 </p>
-
-<h4>Algorithm - Duplicate Chars</h4>
 <ol class='w3-ul'>
 	<li>Make a pass over the string to generate a character count index.</li>
 	<li>Make a pass over the character count index using a bitwise mask to mask out single character occurrences 
@@ -7677,6 +7799,8 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 <p>Below are examples for a breadth first search, followed by a iterative and recursive solutions for depth first search.
 </p>
 
+<a name="graph1"></a>
+<h4>BFS Graph Traversal</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="gra1[0] = true; gra1cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="gra1=[true,false,false,false]; gra1cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='gra1cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="gra1=[false,true,false,false]; gra1cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='gra1cls[1]'>Python</a></li>
@@ -7685,7 +7809,6 @@ Generally, the algorithm will implement a tricolor node marking to indicate:
 </ul>
 
 <div ng-show='gra1[0]'>
-<h4>Algorithm - BFS Graph Traversal</h4>
 <ol class='w3-ul'>
 	<li>Create a queue for the frontier list (waiting to be visited) and add the root (starting) node to the queue.</li>
 	<li>While there are nodes on the frontier waiting to be visited, pop the next node from the queue, and marked it as visited.</li>
@@ -7981,6 +8104,8 @@ $(function() {
 &lt;/body>
 </pre>		
 
+<a name="graph2"></a>
+<h4>DFS Graph Traversal (Iterative)</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="gra2[0] = true; gra2cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="gra2=[true,false,false,false]; gra2cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='gra2cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="gra2=[false,true,false,false]; gra2cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='gra2cls[1]'>Python</a></li>
@@ -7989,7 +8114,6 @@ $(function() {
 </ul>
 
 <div ng-show='gra2[0]'>
-<h4>Algorithm - DFS Graph Traversal (Iterative)</h4>
 <ol class='w3-ul'>
 	<li>Create a stack for the frontier list (waiting to be visited) and add the root (starting) node to the stack.</li>
 	<li>While there are nodes on the frontier waiting to be visited, pop the next node from the stack, and marked it as visited.</li>
@@ -8152,6 +8276,8 @@ $(function() {
 &lt;/body>
 </pre>		
 
+<a name="graph3"></a>
+<h4>DFS Graph Traversal (Recursive)</h4>
 <ul class="w3-navbar w3-light-grey" ng-init="gra3[0] = true; gra3cls[0] = 'w3-black'">
 	 <li><a href="javascript:void(0)" ng-click="gra3=[true,false,false,false]; gra3cls=['w3-black','w3-lightgray','w3-lightgray','w3-lightgray']" ng-class='gra3cls[0]'>Algorithm</a></li>
 	 <li><a href="javascript:void(0)" ng-click="gra3=[false,true,false,false]; gra3cls=['w3-lightgray','w3-black','w3-lightgray','w3-lightgray']" ng-class='gra3cls[1]'>Python</a></li>
@@ -8160,7 +8286,6 @@ $(function() {
 </ul>
 
 <div ng-show='gra3[0]'>
-<h4>Algorithm - DFS Graph Traversal (Recursive)</h4>
 <ol class='w3-ul'>
 	<li>If the node is null, then stop.</li>
 	<li>Visit the node.</li>

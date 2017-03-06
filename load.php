@@ -9,8 +9,8 @@ function Load( $category ) {
 	$rows = $db->Load( $category );
 	foreach ( $rows as $row ) {
 		$id       = $row[ 'id' ];
-		$question = str_replace( '"', '$quot;', $row[ 'question' ] );
-		$answer   = str_replace( '"', '$quot;', $row[ 'answer' ] );
+		$question = str_replace( '"', '\\"', $row[ 'question' ] );
+		$answer   = str_replace( '"', '\\"', $row[ 'answer' ] );
 		$rank     = $row[ 'rank' ];
 		$toggle	  = $row[ 'toggle' ];
 		
