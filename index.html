@@ -99,13 +99,41 @@ var technical = angular.module( 'technical', []);
 /*
  * Randomly pick a question of a specified ranking
  */
-function pickNext( questions, rank, id ) {
+function pickNext( questions, rank, id, correct ) {
 	var len = questions.length - 1;
 	while ( true ) {
 		var pick = Math.round( Math.random() * len );
+		// check if this question is the target rank and not the same question as before
 		if ( questions[ pick ].rank == rank &&
 		     questions[ pick ].id != id ) {
 			return [ questions[ pick ] ];
+		}
+	}
+}
+
+/*
+ * Randomly pick a question of a specified ranking
+ */
+function pickNextS( questions, rank, id, correct ) {
+	// scan the question list for all questions at this rank level
+	var len = questions.length - 1;
+	var list = [];
+	for ( var i = 0; i < len; i++ ) {
+		if ( questions[ i ].rank == rank )
+			list.push( questions[ i ] );
+	}
+	
+	// Check if there are any questions at this level
+	len = list.length - 1;
+	if ( len == 0 )
+		return;
+		
+	while ( true ) {
+		var pick = Math.round( Math.random() * len );
+		// check if this question is the target rank and not the same question as before
+		if ( list[ pick ].rank == rank &&
+		     list[ pick ].id != id ) {
+			return [ list[ pick ] ];
 		}
 	}
 }

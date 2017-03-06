@@ -17,8 +17,8 @@
 	</div>
 	<br/>
 	<div class='w3-right'>
-		<button class='w3-btn w3-teal w3-small fa fa-check' ng-click='Correct( true, random[ 0 ].id ); Same( random[0].id )'> Next</button>
-		<button class='w3-btn w3-teal w3-small fa fa-times' ng-click='Same( random[0].id )'> Next</button>
+		<button class='w3-btn w3-teal w3-small fa fa-check' ng-click='Same( random[0].id, true  )'> Next</button>
+		<button class='w3-btn w3-teal w3-small fa fa-times' ng-click='Same( random[0].id, false )'> Next</button>
 	</div> 
 	<div class='w3-left'>
 		<button class='w3-btn w3-red w3-small' ng-click='Reset( random[0].id )'>Reset</button>
