@@ -99,7 +99,7 @@ var technical = angular.module( 'technical', []);
 /*
  * Randomly pick a question of a specified ranking
  */
-function pickNext( questions, rank, id, correct ) {
+function pickNextS( questions, rank, id, correct ) {
 	var len = questions.length - 1;
 	while ( true ) {
 		var pick = Math.round( Math.random() * len );
@@ -114,19 +114,27 @@ function pickNext( questions, rank, id, correct ) {
 /*
  * Randomly pick a question of a specified ranking
  */
-function pickNextS( questions, rank, id, correct ) {
+function pickNext( questions, rank, id, correct ) {
 	// scan the question list for all questions at this rank level
 	var len = questions.length - 1;
 	var list = [];
 	for ( var i = 0; i < len; i++ ) {
-		if ( questions[ i ].rank == rank )
+		// if question has been answered correctly, then set rank level
+		// to zero to not be selected again
+		if ( correct && questions[ i ].id == id ) {
+			questions[ i ].rank = 0;
+		}
+		else if ( questions[ i ].rank == rank )
 			list.push( questions[ i ] );
 	}
 	
 	// Check if there are any questions at this level
 	len = list.length - 1;
-	if ( len == 0 )
-		return;
+	if ( len == 0 ) {
+		if ( rank == 1 || rank == 2 )
+			return pickNext( questions, rank + 1, id, correct );
+		return [ { id: 0, question: "You Passed", answer: "No Questions Remain" } ];
+	}
 		
 	while ( true ) {
 		var pick = Math.round( Math.random() * len );
