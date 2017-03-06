@@ -133,19 +133,6 @@ function pickNext( questions, rank, id ) {
 		}
 	}
 }
-
-/*
- * Suggest new Ranking for Question to Server
- */
-function SaveRank( category, id, rank ) {
-	$.ajax({
-		url: "/interview/rank.php",
-		type: 'post',
-		data: {'category': category, 'id': id, 'rank': rank },
-		success: function( data, status ) { },
-		error: function(xhr) { alert( xhr.status + " " + xhr.statusText ); }
-	});
-}
 	
 var totalQuestions = 0;
 var totalCorrect   = 0;
