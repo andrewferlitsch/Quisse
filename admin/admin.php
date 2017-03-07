@@ -28,6 +28,7 @@ $(function() {
 	$("#category").change( function() {
 		category = this.value;
 		$.get("/admin/get.php?category=" + category.replace( /\+/g, "%2B").replace( /#/g, "%23"), function( data, status ) {
+			data = data.replace(/(\r\n|\n)/g, '\\n');
 			questions = JSON.parse( data );
 			index = 0;
 			size  = questions.length;
