@@ -32,6 +32,7 @@ $(function() {
 			questions = JSON.parse( data );
 			index = 0;
 			size  = questions.length;
+			$("#size").html( size );
 			
 			// populate the first question
 			Populate();
@@ -66,7 +67,31 @@ $(function() {
 		$("#question").val( question.question );
 		$("#answer").val( question.answer );
 		$("#level").val( question.level );
+		$("#tcount").html( question.tcount );
+		var timing = 0;
+		if ( question.tcount > 0 )
+			timing = question.timing / question.tcount;
+		
+		$("#timing").html( timing .toFixed(2));
+		$("#words").html( question.words );
 		$("#submit").val( "Update" );
+				
+		$("#similar").html( "" );
+		var similar = question.similar.split( "," );
+		if ( similar.length > 0 ) {
+			for ( var i = 0; i < similar.length; i++ ) {
+				$.get("/admin/get.php?id=" + similar[ i ], function( data, status ) {
+					data = data.replace(/(\r\n|\n)/g, '\\n');
+					var question = JSON.parse( data );
+					var answer   = question.answer;
+					var id       = question.id;
+					$("#similar").html( $("#similar").html() + id + ":" + answer + "<br/>" );
+				})
+				.fail (function( response ) {
+					$("#err-sim").html( "Get Question Failed: errCode = " + response.status );
+				});	 
+			}
+		}
 	}
 	
 	// Clear input form to enter new question
@@ -119,6 +144,14 @@ $(function() {
 			$("#err-sub").html( "Unable to Add/Update: errCode = " + response.status );
 		});	 
 	})
+	
+	// Refresh the bag of words
+	$("#refresh-words").click( function() {
+	});
+	
+	// Refresh the list of similar questions
+	$("#refresh-similar").click( function() {
+	});
 })
 </script>
 </head>
@@ -145,7 +178,16 @@ $(function() {
 		
 		<!-- ID -->
 		<label for='id' class='w3-label'>ID:</label>
-		<span id='id' name='id'></span><br/><br/>
+		<span id='id' name='id'></span>&nbsp;
+		<!-- No of Questions -->
+		<label for='size' class='w3-label'>No. of Questions:</label>
+		<span id='size' name='size'></span>&nbsp;
+		<!-- total responses -->
+		<label for='tcount' class='w3-label'>Response Count:</label>
+		<span id='tcount' name='tcount'></span>&nbsp;
+		<!-- Ave Timing -->
+		<label for='timing' class='w3-label'>Ave Timing:</label>
+		<span id='timing' name='timing'></span><br/><br/>
 
 		<!-- Next, Prev, New -->
 		<button id='prev' class='w3-btn w3-blue'>Prev</button>
@@ -159,7 +201,7 @@ $(function() {
 		
 		<!-- Answer -->
 		<label for='answer' class='w3-label'>Answer:</label>
-		<textarea id='answer' name='answer' cols=40 rows=4 required=true class='w3-input'>
+		<textarea id='answer' name='answer' cols=40 rows=3 required=true class='w3-input'>
 		</textarea>
 		
 		<!-- Rank -->
@@ -172,10 +214,23 @@ $(function() {
 		<br/>
 		
 		<!-- Submit -->
+		<!--
 		<input type='submit' id='submit' value='Update'/>
-		<span id='err-sub' class='error'></span>
+		<span id='err-sub' class='error'></span><br/>
+		-->
+		
+		<!-- Bag of Words -->
+		<label for='words' class='w3-label'>Bag of Words</label>
+		<button id='refresh-words' class='w3-btn w3-blue w3-small'>Refresh</button>
+		<pre name='words' id='words'></pre>
+		
+		<!-- Similar Matching Questions -->
+		<label for='similar' class='w3-label'>Similar Questions</label>
+		<button id='refresh-similar' class='w3-btn w3-blue w3-small'>Refresh</button>
+		<pre name='similar' id='similar'></pre>
+		<span id='err-sim' class='error'></span>
 	</section>
-	
+
 	<footer>
 	</footer>
 </body>

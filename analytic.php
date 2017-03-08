@@ -41,13 +41,13 @@ function Timing( $id, $timing ) {
 								$last_time = $timing;
 								continue;
 						   }
-						   else if ( $type == "next" || $type == "harder" || $type == "easier" ) {
+						   else if ( $type == "next" ) {
 							   $diff = ( $timing - $last_time );
 							   if ( $diff > 1 && $diff < 20 ) {
 								   Timing( $id, $diff );
 							   }
+							   $last_time = $timing;
 						   }
-						   $last_time = $timing;
 						   break;
 			}
 		}
