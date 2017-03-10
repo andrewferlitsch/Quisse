@@ -95,6 +95,16 @@
 		<div advice></div>
 	</section>
 	
+	<!-- About -->
+	<section ng-show='page["About"]' ng-controller="aboutCtrl" >
+		<div about></div>
+	</section>
+	
+	<!-- Contact -->
+	<section ng-show='page["Contact"]' ng-controller="contactCtrl" >
+		<div contact></div>
+	</section>
+	
 	<footer ng-controller="footerCtrl" id='footer'>
 			<div footer></div>
 	</footer>
@@ -257,5 +267,7 @@ function SendServer() {
 <script src="final.js"></script>
 <script src="footer.js"></script>
 <script src="advice.js"></script>
+<script src="about.js"></script>
+<script src="contact.js"></script>
 </body>
 </html>

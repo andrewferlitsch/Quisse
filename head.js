@@ -26,8 +26,6 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		$scope.page[ page ] = true;
 		$scope.lastpage = page;
 	}
-	$scope.showAdvice = function() { $scope.showPage( "Advice" ); }
-	$scope.showInterview = function() { $scope.showPage( "Interview" ); }
 })
 .directive( "interview", function() {
 	return {

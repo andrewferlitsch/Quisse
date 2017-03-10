@@ -1,4 +1,4 @@
-technical.controller( 'adviceCtrl', function( $scope, $rootScope ) {
+technical.controller( 'adviceCtrl', function( $scope ) {
 })
 .directive( "advice", function() {
 	return {
