@@ -30,73 +30,77 @@
 		<div nav></div>
 	</header>
 	
-	<section>
+	<!-- Technical Interview -->
+	<section ng-show='page["Interview"]'>
 		<div  interview></div>
-	</section>
 
-	<section>	
-		
-		<div ng-show='view["Web"]' ng-controller="webCtrl" questions-web></div>
-		
-		<div ng-show='view["HTML"]' ng-controller="htmlCtrl" questions-html></div>
-		
-		<div ng-show='view["HTML5"]' ng-controller="html5Ctrl" questions-html5></div>
-		
-		<div ng-show='view["CSS"]' ng-controller="cssCtrl" questions-css></div>
-		
-		<div ng-show='view["Javascript"]' ng-controller="jsCtrl" questions-js></div>
-		
-		<div ng-show='view["JQuery"]' ng-controller="jqueryCtrl" questions-jquery></div>
-		
-		<div ng-show='view["AngularJS"]' ng-controller="angularCtrl" questions-angular></div>
-		
-		<div ng-show='view["Java"]' ng-controller="javaCtrl" questions-java></div>
-		
-		<div ng-show='view["C#"]' ng-controller="csharpCtrl" questions-csharp></div>
-		
-		<div ng-show='view["C++"]' ng-controller="cppCtrl" questions-cpp></div>
-		
-		<div ng-show='view["C"]' ng-controller="cCtrl" questions-c></div>
-		
-		<div ng-show='view["R"]' ng-controller="rCtrl" questions-r></div>
-		
-		<div ng-show='view["Python"]' ng-controller="pythonCtrl" questions-python></div>
-		
-		<div ng-show='view["Data Science"]' ng-controller="dataScienceCtrl" questions-data-science></div>
-		
-		<div ng-show='view["Algorithms"]' ng-controller="algorithmsCtrl" questions-algoritms></div>
-		
-		<div ng-show='view["OS"]' ng-controller="osCtrl" questions-os></div>
-		
-		<div ng-show='view["OOP Design"]' ng-controller="oopCtrl" questions-oop></div>
-		
-		<div ng-show='view["DOS"]' ng-controller="dosCtrl" questions-dos></div>
-		
-		<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl" questions-mysql></div>
-		
-		<div ng-show='view["MySQL DBA"]' ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
-		
-		<div ng-show='view["QA"]' ng-controller="qaCtrl" questions-qa></div>
-		
-		<div ng-show='view["Agile"]' ng-controller="agileCtrl" questions-agile></div>
-		
-		<div ng-show='view["Network"]' ng-controller="networkCtrl" questions-network></div>
-		
-		<div ng-show='view["Security"]' ng-controller="securityCtrl" questions-security></div>
+		<div>	
+			<div ng-show='view["Web"]' ng-controller="webCtrl" questions-web></div>
 			
-		<div ng-controller="finalCtrl" id='final'>
-			<div final></div>
-			<div bottom-interview></div>
+			<div ng-show='view["HTML"]' ng-controller="htmlCtrl" questions-html></div>
+			
+			<div ng-show='view["HTML5"]' ng-controller="html5Ctrl" questions-html5></div>
+			
+			<div ng-show='view["CSS"]' ng-controller="cssCtrl" questions-css></div>
+			
+			<div ng-show='view["Javascript"]' ng-controller="jsCtrl" questions-js></div>
+			
+			<div ng-show='view["JQuery"]' ng-controller="jqueryCtrl" questions-jquery></div>
+			
+			<div ng-show='view["AngularJS"]' ng-controller="angularCtrl" questions-angular></div>
+			
+			<div ng-show='view["Java"]' ng-controller="javaCtrl" questions-java></div>
+			
+			<div ng-show='view["C#"]' ng-controller="csharpCtrl" questions-csharp></div>
+			
+			<div ng-show='view["C++"]' ng-controller="cppCtrl" questions-cpp></div>
+			
+			<div ng-show='view["C"]' ng-controller="cCtrl" questions-c></div>
+			
+			<div ng-show='view["R"]' ng-controller="rCtrl" questions-r></div>
+			
+			<div ng-show='view["Python"]' ng-controller="pythonCtrl" questions-python></div>
+			
+			<div ng-show='view["Data Science"]' ng-controller="dataScienceCtrl" questions-data-science></div>
+			
+			<div ng-show='view["Algorithms"]' ng-controller="algorithmsCtrl" questions-algoritms></div>
+			
+			<div ng-show='view["OS"]' ng-controller="osCtrl" questions-os></div>
+			
+			<div ng-show='view["OOP Design"]' ng-controller="oopCtrl" questions-oop></div>
+			
+			<div ng-show='view["DOS"]' ng-controller="dosCtrl" questions-dos></div>
+			
+			<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl" questions-mysql></div>
+			
+			<div ng-show='view["MySQL DBA"]' ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
+			
+			<div ng-show='view["QA"]' ng-controller="qaCtrl" questions-qa></div>
+			
+			<div ng-show='view["Agile"]' ng-controller="agileCtrl" questions-agile></div>
+			
+			<div ng-show='view["Network"]' ng-controller="networkCtrl" questions-network></div>
+			
+			<div ng-show='view["Security"]' ng-controller="securityCtrl" questions-security></div>
+				
+			<div ng-controller="finalCtrl" id='final'>
+				<div final></div>
+				<div bottom-interview></div>
+			</div>
 		</div>
-	
 	</section>
 	
-	<div ng-controller="footerCtrl" id='footer'>
+	<!-- Advice -->
+	<section ng-show='page["Advice"]' ng-controller="adviceCtrl" >
+		<div advice></div>
+	</section>
+	
+	<footer ng-controller="footerCtrl" id='footer'>
 			<div footer></div>
-	</div>
+	</footer>
 	
 	<div style='height: 300px'></div>
-	<footer style='text-align: center; color: gray'><br/>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
+	
 <script>
 var technical = angular.module( 'technical', []);
 
@@ -252,5 +256,6 @@ function SendServer() {
 <script src="security.php"></script>
 <script src="final.js"></script>
 <script src="footer.js"></script>
+<script src="advice.js"></script>
 </body>
 </html>

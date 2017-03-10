@@ -1,5 +1,4 @@
 technical.controller( 'navCtrl', function( $scope, $rootScope ) {
-	$rootScope.advice = false;
 })
 .directive( "nav", function() {
 	return {
@@ -8,7 +7,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 				  "<img src='/quisse.png'/>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
-				  "	<li><a href='/'>Flashcard</a></li>" +
+				  "	<li><a href='javascript:void(0)' ng-click='showInterview();'>Flashcard</a></li>" +
 				  "	<li><a href='coding-examples.html'>Coding</a></li>" +
 				  "	<li><a href='/kids'>Kids</a></li>" +
 				  "</ul>" +

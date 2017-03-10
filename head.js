@@ -7,14 +7,27 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		$scope.view[ cat ] = false;
 	}
 	$scope.showCategory = function( cat) {
-		if ( $scope.last != "" )
-			$scope.view[ $scope.last ] = false;
+		if ( $scope.lastcat != "" )
+			$scope.view[ $scope.lastcat ] = false;
 		$scope.view[ cat ] = true;
-		$scope.last = cat;
+		$scope.lastcat = cat;
 		
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);
 	}
+	
+	$scope.page = [];
+	$scope.page[ "Interview" ] = true;
+	$scope.page[ "Advice" ] = false;
+	$scope.lastpage = "Interview";
+	$scope.showPage = function( page ) {
+		if ( $scope.lastpage != "" )
+			$scope.page[ $scope.lastpage ] = false;
+		$scope.page[ page ] = true;
+		$scope.lastpage = page;
+	}
+	$scope.showAdvice = function() { $scope.showPage( "Advice" ); }
+	$scope.showInterview = function() { $scope.showPage( "Interview" ); }
 })
 .directive( "interview", function() {
 	return {
