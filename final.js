@@ -40,7 +40,7 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  "	</div>" +
 				  " <div class='w3-container' style='color: orange; text-align: center;'>" +
 				  "		<a href='preparing-for-technical-interview.html'>Advice</a>" +
-				  "		<a href=''>About</a>" +
+				  "		<a href='about.html'>About</a>" +
 				  "		<a href=''>Contact</a>" +
 				  " </div>" +
 				  "</div>"
