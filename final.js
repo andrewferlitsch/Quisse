@@ -38,11 +38,6 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 				  " 		<li>When completed, your results are displayed at the bottom of the page.</li>" +
 				  "		</ol>" +
 				  "	</div>" +
-				  " <div class='w3-container' style='color: orange; text-align: center;'>" +
-				  "		<a href='preparing-for-technical-interview.html'>Advice</a>" +
-				  "		<a href='about.html'>About</a>" +
-				  "		<a href=''>Contact</a>" +
-				  " </div>" +
 				  "</div>"
 	}
 });
