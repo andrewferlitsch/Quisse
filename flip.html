@@ -16,14 +16,16 @@
 		</div>
 	</div>
 	<br/>
-	<div class='w3-right'>
-		<button class='w3-btn w3-teal w3-small fa fa-times' ng-click='Same( random[0].id, false )'> Next</button>
-		<button class='w3-btn w3-teal w3-small fa fa-check' ng-click='Same( random[0].id, true  )'> Next</button>
-	</div> 
-	<div class='w3-left'>
-		<button class='w3-btn w3-red w3-small' ng-click='Reset( random[0].id )'>Reset</button>
-	</div>
-	<div style='clear:both;'>&nbsp;</div>
+	<section ng-show='!quiz'>
+		<div class='w3-right'>
+			<button class='w3-btn w3-teal w3-small fa fa-times' ng-click='Same( random[0].id, false )'> Next</button>
+			<button class='w3-btn w3-teal w3-small fa fa-check' ng-click='Same( random[0].id, true  )'> Next</button>
+		</div> 
+		<div class='w3-left'>
+			<button class='w3-btn w3-red w3-small' ng-click='Reset( random[0].id )'>Reset</button>
+		</div>
+		<div style='clear:both;'>&nbsp;</div>
+	</section>
 	
 	<div ng-show='quiz' style='text-align: center'>
 		<button class='w3-btn w3-round w3-large w3-orange' ng-click="qa=false;multi=true">Take Quiz</button>

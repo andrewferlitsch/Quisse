@@ -188,21 +188,6 @@
 var technical = angular.module( 'technical', []);
 
 /*
- * Randomly pick a question of a specified ranking [obsolete]
- */
-function pickNextS( questions, rank, id, correct ) {
-	var len = questions.length - 1;
-	while ( true ) {
-		var pick = Math.round( Math.random() * len );
-		// check if this question is the target rank and not the same question as before
-		if ( questions[ pick ].rank == rank &&
-		     questions[ pick ].id != id ) {
-			return [ questions[ pick ] ];
-		}
-	}
-}
-
-/*
  * Randomly pick a question of a specified ranking
  */
 function pickNext( questions, rank, id, correct ) {
@@ -272,6 +257,22 @@ function UpdateScore() {
 				scope.percentCorrect = "";
 		});
 	}, 200);
+}
+
+/*
+ *
+ */
+function pickMulti( id ) {
+	var len  = questions.length - 1
+	var pick;
+	while ( true ) {
+		var pick = Math.round( Math.random() * len );
+		if ( pick != id )
+			break;
+	}
+	var similar = questions[ pick ].similar;
+	if ( similar.length < 3 )
+		return pickMulti( id );
 }
 
 /* Capture timestamps when user proceeds to next question or marks correct
