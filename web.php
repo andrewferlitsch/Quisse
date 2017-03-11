@@ -9,4 +9,10 @@ technical.controller( 'webCtrl', function( $scope, $http, $location, $anchorScro
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiWeb", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

@@ -35,7 +35,9 @@
 		<div  interview></div>
 
 		<div>	
-			<div ng-show='view["Web"]' ng-controller="webCtrl" questions-web></div>
+			<div ng-show='view["Web"]' ng-controller="webCtrl" >
+				<div ng-show='qa' questions-web></div>
+			</div>
 			
 			<div ng-show='view["HTML"]' ng-controller="htmlCtrl" questions-html></div>
 			
@@ -111,11 +113,12 @@
 	
 	<div style='height: 300px'></div>
 	
+	<audio id="beep" src="http://www.soundjay.com/button/beep-07.wav"></audio>
 <script>
 var technical = angular.module( 'technical', []);
 
 /*
- * Randomly pick a question of a specified ranking
+ * Randomly pick a question of a specified ranking [obsolete]
  */
 function pickNextS( questions, rank, id, correct ) {
 	var len = questions.length - 1;

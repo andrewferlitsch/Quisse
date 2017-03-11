@@ -1,4 +1,17 @@
 technical.controller( 'interviewCtrl', function( $scope ) {
+	// page view
+	$scope.page = [];
+	$scope.page[ "Interview" ] = true;
+	$scope.page[ "Advice" ] = false;
+	$scope.lastpage = "Interview";
+	$scope.showPage = function( page ) {
+		if ( $scope.lastpage != "" )
+			$scope.page[ $scope.lastpage ] = false;
+		$scope.page[ page ] = true;
+		$scope.lastpage = page;
+	}
+	
+	// technical view
 	$scope.categories = [ "Agile", "Algorithms", "AngularJS", "C", "C++", "C#", "CSS", "Data Science", "DOS", 
 						  "HTML", "HTML5", "Java", "Javascript", "JQuery", "MySQL", "MySQL DBA", "Network", "OOP Design", 
 						  "OS", "QA", "R", "Python", "Security", "Web" ];
@@ -15,17 +28,8 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);
 	}
-	
-	$scope.page = [];
-	$scope.page[ "Interview" ] = true;
-	$scope.page[ "Advice" ] = false;
-	$scope.lastpage = "Interview";
-	$scope.showPage = function( page ) {
-		if ( $scope.lastpage != "" )
-			$scope.page[ $scope.lastpage ] = false;
-		$scope.page[ page ] = true;
-		$scope.lastpage = page;
-	}
+	$scope.qa    = true;
+	$scope.multi = false;
 })
 .directive( "interview", function() {
 	return {
