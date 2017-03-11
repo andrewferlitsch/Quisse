@@ -14,7 +14,7 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 	// technical view
 	$scope.categories = [ "Agile", "Algorithms", "AngularJS", "C", "C++", "C#", "CSS", "Data Science", "DOS", 
 						  "HTML", "HTML5", "Java", "Javascript", "JQuery", "MySQL", "MySQL DBA", "Network", "OOP Design", 
-						  "OS", "QA", "R", "Python", "Security", "Web" ];
+						  "OS", "Python", "QA", "R", "Security", "Web" ];
 	$scope.view = [];
 	for ( var cat in $scope.categories ) {
 		$scope.view[ cat ] = false;

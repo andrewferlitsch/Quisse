@@ -273,6 +273,7 @@ function pickMulti( id ) {
 	var similar = questions[ pick ].similar;
 	if ( similar.length < 3 )
 		return pickMulti( id );
+	return questions[ pick ];
 }
 
 /* Capture timestamps when user proceeds to next question or marks correct
