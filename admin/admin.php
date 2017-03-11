@@ -27,11 +27,8 @@ $(function() {
 	
 	// Select a category
 	$("#category").change( function() {
+		ClearStatus();
 		category = this.value;
-		$("#err-cat").html( "" );
-		$("#ok-sub").html( "" );
-		$("#ok-red").html( "" );
-		$("#ok-sim").html( "" );
 		$.get("/admin/get.php?category=" + category.replace( /\+/g, "%2B").replace( /#/g, "%23"), function( data, status ) {
 			data = data.replace(/(\r\n|\n)/g, '\\n');
 			questions = JSON.parse( data );
@@ -49,22 +46,22 @@ $(function() {
 	
 	// Goto previous question in category
 	$("#prev").click( function() {
+		ClearStatus();
 		if ( index == 0 )
 			index = size - 1;
 		else
 			index--;
 		Populate();
-		$("#ok-sub").html( "" );
 	})
 	
 	// Goto next question in category
 	$("#next").click( function() {
+		ClearStatus();
 		if ( index == size - 1 )
 			index = 0;
 		else
 			index++;
 		Populate();
-		$("#ok-sub").html( "" );
 	})
 	
 	// Populate input form
@@ -104,6 +101,7 @@ $(function() {
 	
 	// Clear input form to enter new question
 	$("#new").click( function() {
+		ClearStatus();
 		$("#id").html( "" );
 		$("#question").val( "" );
 		$("#answer").val( "" );
@@ -113,7 +111,7 @@ $(function() {
 		$("#tcount").html( "" );
 		$("#timing").html( "" );
 		$("#submit").val( "Add" );
-		$("#ok-sub").html( "" );
+		$("#size").html( ++size );
 	})
 	
 	// Submit new or updated question
@@ -135,6 +133,7 @@ $(function() {
 			action = "update";
 		}
 	
+		$("#ok-sub").html( "" );
 		$("#err-sub").html( "" );
 		$.post( "/admin/post.php",
 			{ action  : action,
@@ -182,6 +181,8 @@ $(function() {
 	
 	// Refresh the list of similar questions
 	$("#refresh-similar").click( function() {
+		$("#ok-sim").html( "" );
+		$("#err-sim").html( "" );
 		$.post( "/admin/nlp.php",
 			{ action  : "similar",
 			  id      : $("#id").html()
@@ -196,7 +197,16 @@ $(function() {
 		.fail (function( response ) {
 			$("#err-sim").html( "Unable to Similar: errCode = " + response.status );
 		});	 
-	});	
+	})
+	
+	function ClearStatus() {
+		$("#ok-sub").html( "" );
+		$("#err-sub").html( "" );
+		$("#ok-red").html( "" );
+		$("#err-red").html( "" );
+		$("#ok-sim").html( "" );
+		$("#err-sim").html( "" );
+	}
 })
 </script>
 </head>
