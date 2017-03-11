@@ -9,4 +9,10 @@ technical.controller( 'mysqlCtrl', function( $scope, $http, $location, $anchorSc
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiMysql", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

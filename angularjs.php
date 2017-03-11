@@ -9,4 +9,10 @@ technical.controller( 'angularCtrl', function( $scope, $http, $location, $anchor
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiAngular", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

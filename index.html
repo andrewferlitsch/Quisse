@@ -45,49 +45,115 @@
 				<div ng-show='multi' multi-html></div>
 			</div>
 			
-			<div ng-show='view["HTML5"]' ng-controller="html5Ctrl" questions-html5></div>
+			<div ng-show='view["HTML5"]' ng-controller="html5Ctrl">
+				<div ng-show='qa' questions-html5></div>
+				<div ng-show='multi' multi-html5></div>
+			</div>
 			
-			<div ng-show='view["CSS"]' ng-controller="cssCtrl" questions-css></div>
+			<div ng-show='view["CSS"]' ng-controller="cssCtrl">
+				<div ng-show='qa' questions-css></div>
+				<div ng-show='multi' multi-css></div>
+			</div>
 			
-			<div ng-show='view["Javascript"]' ng-controller="jsCtrl" questions-js></div>
+			<div ng-show='view["Javascript"]' ng-controller="jsCtrl">
+				<div ng-show='qa' questions-js></div>
+				<div ng-show='multi' multi-js></div>
+			</div>
 			
-			<div ng-show='view["JQuery"]' ng-controller="jqueryCtrl" questions-jquery></div>
+			<div ng-show='view["JQuery"]' ng-controller="jqueryCtrl">
+				<div ng-show='qa' questions-jquery></div>
+				<div ng-show='multi' multi-jquery></div>
+			</div>
 			
-			<div ng-show='view["AngularJS"]' ng-controller="angularCtrl" questions-angular></div>
+			<div ng-show='view["AngularJS"]' ng-controller="angularCtrl">
+				<div ng-show='qa' questions-angular></div>
+				<div ng-show='multi' multi-angular></div>
+			</div>
 			
-			<div ng-show='view["Java"]' ng-controller="javaCtrl" questions-java></div>
+			<div ng-show='view["Java"]' ng-controller="javaCtrl">
+				<div ng-show='qa' questions-java></div>
+				<div ng-show='multi' multi-java></div>
+			</div>
 			
-			<div ng-show='view["C#"]' ng-controller="csharpCtrl" questions-csharp></div>
+			<div ng-show='view["C#"]' ng-controller="csharpCtrl">
+				<div ng-show='qa' questions-csharp></div>
+				<div ng-show='multi' multi-csharp></div>
+			</div>
 			
-			<div ng-show='view["C++"]' ng-controller="cppCtrl" questions-cpp></div>
+			<div ng-show='view["C++"]' ng-controller="cppCtrl">
+				<div ng-show='qa' questions-cpp></div>
+				<div ng-show='multi' multi-cpp></div>
+			</div>
 			
-			<div ng-show='view["C"]' ng-controller="cCtrl" questions-c></div>
+			<div ng-show='view["C"]' ng-controller="cCtrl">
+				<div ng-show='qa' questions-c></div>
+				<div ng-show='multi' multi-c></div>
+			</div>
 			
-			<div ng-show='view["R"]' ng-controller="rCtrl" questions-r></div>
+			<div ng-show='view["R"]' ng-controller="rCtrl">
+				<div ng-show='qa' questions-r></div>
+				<div ng-show='multi' multi-r></div>
+			</div>
 			
-			<div ng-show='view["Python"]' ng-controller="pythonCtrl" questions-python></div>
+			<div ng-show='view["Python"]' ng-controller="pythonCtrl">
+				<div ng-show='qa' questions-python></div>
+				<div ng-show='multi' multi-python></div>
+			</div>
 			
-			<div ng-show='view["Data Science"]' ng-controller="dataScienceCtrl" questions-data-science></div>
+			<div ng-show='view["Data Science"]' ng-controller="dataScienceCtrl">
+				<div ng-show='qa' questions-data-science></div>
+				<div ng-show='multi' multi-data-science></div>
+			</div>
 			
-			<div ng-show='view["Algorithms"]' ng-controller="algorithmsCtrl" questions-algoritms></div>
+			<div ng-show='view["Algorithms"]' ng-controller="algorithmsCtrl">
+				<div ng-show='qa' questions-algorithms></div>
+				<div ng-show='multi' multi-algorithms></div>
+			</div>
 			
-			<div ng-show='view["OS"]' ng-controller="osCtrl" questions-os></div>
+			<div ng-show='view["OS"]' ng-controller="osCtrl">
+				<div ng-show='qa' questions-os></div>
+				<div ng-show='multi' multi-os></div>
+			</div>
 			
-			<div ng-show='view["OOP Design"]' ng-controller="oopCtrl" questions-oop></div>
+			<div ng-show='view["OOP Design"]' ng-controller="oopCtrl">
+				<div ng-show='qa' questions-oop></div>
+				<div ng-show='multi' multi-oop></div>
+			</div>
 			
-			<div ng-show='view["DOS"]' ng-controller="dosCtrl" questions-dos></div>
+			<div ng-show='view["DOS"]' ng-controller="dosCtrl">
+				<div ng-show='qa' questions-dos></div>
+				<div ng-show='multi' multi-dos></div>
+			</div>
 			
-			<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl" questions-mysql></div>
+			<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl">
+				<div ng-show='qa' questions-mysql></div>
+				<div ng-show='multi' multi-mysql></div>
+			</div>
 			
-			<div ng-show='view["MySQL DBA"]' ng-controller="mysqlDbaCtrl" questions-mysql-dba></div>
+			<div ng-show='view["MySQL DBA"]' ng-controller="mysqlDbaCtrl">
+				<div ng-show='qa' questions-mysql-dba></div>
+				<div ng-show='multi' multi-mysql-dba></div>
+			</div>
 			
-			<div ng-show='view["QA"]' ng-controller="qaCtrl" questions-qa></div>
+			<div ng-show='view["QA"]' ng-controller="qaCtrl">
+				<div ng-show='qa' questions-qa></div>
+				<div ng-show='multi' multi-qa></div>
+			</div>
 			
-			<div ng-show='view["Agile"]' ng-controller="agileCtrl" questions-agile></div>
+			<div ng-show='view["Agile"]' ng-controller="agileCtrl">
+				<div ng-show='qa' questions-agile></div>
+				<div ng-show='multi' multi-agile></div>
+			</div>
 			
-			<div ng-show='view["Network"]' ng-controller="networkCtrl" questions-network></div>
+			<div ng-show='view["Network"]' ng-controller="networkCtrl">
+				<div ng-show='qa' questions-network></div>
+				<div ng-show='multi' multi-network></div>
+			</div>
 			
-			<div ng-show='view["Security"]' ng-controller="securityCtrl" questions-security></div>
+			<div ng-show='view["Security"]' ng-controller="securityCtrl" questions>
+				<div ng-show='qa' questions-security></div>
+				<div ng-show='multi' multi-security></div>
+			</div>
 				
 			<div ng-controller="finalCtrl" id='final'>
 				<div final></div>

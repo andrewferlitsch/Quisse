@@ -9,4 +9,10 @@ technical.controller( 'csharpCtrl', function( $scope, $http, $location, $anchorS
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiCsharp", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

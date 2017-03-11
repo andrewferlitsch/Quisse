@@ -9,4 +9,10 @@ technical.controller( 'agileCtrl', function( $scope, $http, $location, $anchorSc
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiAgile", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

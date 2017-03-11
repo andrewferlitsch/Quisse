@@ -9,4 +9,10 @@ technical.controller( 'networkCtrl', function( $scope, $http, $location, $anchor
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	} 
+})
+.directive( "multiNetwork", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

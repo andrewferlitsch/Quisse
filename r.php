@@ -9,4 +9,10 @@ technical.controller( 'rCtrl', function( $scope, $http, $location, $anchorScroll
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiR", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

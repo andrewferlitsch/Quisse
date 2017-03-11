@@ -9,4 +9,10 @@ technical.controller( 'pythonCtrl', function( $scope, $http, $location, $anchorS
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiPython", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

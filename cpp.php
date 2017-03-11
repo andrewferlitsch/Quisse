@@ -9,4 +9,10 @@ technical.controller( 'cppCtrl', function( $scope, $http, $location, $anchorScro
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiCpp", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

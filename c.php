@@ -9,4 +9,10 @@ technical.controller( 'cCtrl', function( $scope, $http, $location, $anchorScroll
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiC", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

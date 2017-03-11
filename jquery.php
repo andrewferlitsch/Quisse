@@ -9,4 +9,10 @@ technical.controller( 'jqueryCtrl', function( $scope, $http, $location, $anchorS
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiJquery", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

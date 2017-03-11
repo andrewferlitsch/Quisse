@@ -9,4 +9,10 @@ technical.controller( 'dosCtrl', function( $scope, $http, $location, $anchorScro
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiDos", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

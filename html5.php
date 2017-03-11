@@ -9,4 +9,10 @@ technical.controller( 'html5Ctrl', function( $scope, $http, $location, $anchorSc
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiHtml5", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

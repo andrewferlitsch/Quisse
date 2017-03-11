@@ -9,4 +9,10 @@ technical.controller( 'securityCtrl', function( $scope, $http, $location, $ancho
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiSecurity", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

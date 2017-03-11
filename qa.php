@@ -9,4 +9,10 @@ technical.controller( 'qaCtrl', function( $scope, $http, $location, $anchorScrol
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiQa", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

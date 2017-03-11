@@ -4,9 +4,15 @@ technical.controller( 'algorithmsCtrl', function( $scope, $http, $location, $anc
 	
 	<?php include "qactrl.js"; ?>
 })
-.directive( "questionsAlgoritms", function() {
+.directive( "questionsAlgorithms", function() {
 	return {
 		restrict: 'A',
 		templateUrl: 'flip.html'
+	}
+})
+.directive( "multiAlgorithms", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
 	}
 });

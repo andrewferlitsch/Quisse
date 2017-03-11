@@ -9,4 +9,10 @@ technical.controller( 'windowsCtrl', function( $scope, $http, $location, $anchor
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiWindows", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });

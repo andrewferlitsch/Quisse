@@ -9,4 +9,10 @@ technical.controller( 'osCtrl', function( $scope, $http, $location, $anchorScrol
 		restrict: 'A',
 		templateUrl: 'flip.html'
 	}
+})
+.directive( "multiOs", function() {
+	return {
+		restrict: 'A',
+		templateUrl: 'multi.html'
+	}
 });
