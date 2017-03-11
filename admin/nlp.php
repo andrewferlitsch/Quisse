@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../db.php";
 
 // Natural Language Processing for Questions
 class NLP {
@@ -162,6 +162,7 @@ class NLP {
 				case 's': case 'x': case 'z':
 					switch ( $tokens[ $i ] ) {
 					case "cases": $tokens[ $i ] = "case"; break;
+					case "prioritizes": $tokens[ $i ] = "prioritize"; break;
 					default:
 						$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 2 );
 						break;
@@ -212,6 +213,23 @@ class NLP {
 			}
 		}
 
+		return $tokens;
+	}
+	
+	/*
+	 * Do a Reduce on a question in the database
+	 */
+	function ReduceQuestion( $id ) {
+		global $db;
+
+		// get the question data
+		$entry = $this->Question( $id );
+		
+		// reduce to a bag of words
+		$tokens = $this->Reduce( $entry[ 'question' ] );
+		
+		// store back into the database
+		$db->UpdateWords( $id, $tokens );
 		return $tokens;
 	}
 	
@@ -272,11 +290,34 @@ $nlp = new NLP();
 // Create the word vector for each question
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$nlp->ReduceAll();
+
+if ( isset( $_POST[ 'action' ] ) ) {
+	$id = $_POST[ 'id' ];
+	// Reduce a Question
+	if ( $_POST[ 'action' ] == "reduce" ) {
+		$res = $nlp->ReduceQuestion( $id );
+		$count = count( $res );
+		for ( $i = 0; $i < $count; $i++ ) {
+			if ( $i > 0 ) echo ",";
+			echo $res[ $i ];
+		}
+	}
+	else if ( $_POST[ 'action' ] == "similar" ) {
+		$res = $nlp->ReduceMatch( $id );
+		$count = count( $res );
+		for ( $i = 0; $i < $count; $i++ ) {
+			if ( $i > 0 ) echo ",";
+			echo $res[ $i ];
+		}
+	}
+}
+
+
+//$nlp->ReduceAll();
 
 // Find similar matching questions
-for ( $id = 1; $id < 820; $id++ ) {
-	$nlp->ReduceMatch( $id );
-}
+//for ( $id = 1; $id < 820; $id++ ) {
+	//$nlp->ReduceMatch( $id );
+//}
 
 ?> 

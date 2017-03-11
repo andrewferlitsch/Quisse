@@ -16,6 +16,7 @@ include "../db.php";
 	body { padding: 10px; }
 	h2 { color: black; }
 	.error { weight: bold; color: red; }
+	.ok { weight: bold; color: green; }
 	</style>
 <script>
 $(function() {
@@ -27,6 +28,10 @@ $(function() {
 	// Select a category
 	$("#category").change( function() {
 		category = this.value;
+		$("#err-cat").html( "" );
+		$("#ok-sub").html( "" );
+		$("#ok-red").html( "" );
+		$("#ok-sim").html( "" );
 		$.get("/admin/get.php?category=" + category.replace( /\+/g, "%2B").replace( /#/g, "%23"), function( data, status ) {
 			data = data.replace(/(\r\n|\n)/g, '\\n');
 			questions = JSON.parse( data );
@@ -49,6 +54,7 @@ $(function() {
 		else
 			index--;
 		Populate();
+		$("#ok-sub").html( "" );
 	})
 	
 	// Goto next question in category
@@ -58,6 +64,7 @@ $(function() {
 		else
 			index++;
 		Populate();
+		$("#ok-sub").html( "" );
 	})
 	
 	// Populate input form
@@ -76,6 +83,7 @@ $(function() {
 		$("#words").html( question.words );
 		$("#submit").val( "Update" );
 				
+		$("#err-sim").html( "" );
 		$("#similar").html( "" );
 		var similar = question.similar.split( "," );
 		if ( similar.length > 0 ) {
@@ -100,7 +108,12 @@ $(function() {
 		$("#question").val( "" );
 		$("#answer").val( "" );
 		$("#level").val( 1 );
+		$("#words").html( "" );
+		$("#similar").html( "" );
+		$("#tcount").html( "" );
+		$("#timing").html( "" );
 		$("#submit").val( "Add" );
+		$("#ok-sub").html( "" );
 	})
 	
 	// Submit new or updated question
@@ -122,6 +135,7 @@ $(function() {
 			action = "update";
 		}
 	
+		$("#err-sub").html( "" );
 		$.post( "/admin/post.php",
 			{ action  : action,
 			  category: category,
@@ -138,6 +152,7 @@ $(function() {
 					$("#id").html( data );
 					questions[ index ].id = data;
 				}
+				$("#ok-sub").html( "Done" );
 			}
 		)
 		.fail (function( response ) {
@@ -147,18 +162,47 @@ $(function() {
 	
 	// Refresh the bag of words
 	$("#refresh-words").click( function() {
-	});
+		$("#ok-red").html( "" );
+		$("#err-red").html( "" );
+		$.post( "/admin/nlp.php",
+			{ action  : "reduce",
+			  id      : $("#id").html()
+			},
+			function ( data, status ) {
+				console.log( data );
+				$("#words").html( data );
+				questions[ index ].words = data;
+				$("#ok-red").html( "Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-red").html( "Unable to Reduce: errCode = " + response.status );
+		});	 
+	})
 	
 	// Refresh the list of similar questions
 	$("#refresh-similar").click( function() {
-	});
+		$.post( "/admin/nlp.php",
+			{ action  : "similar",
+			  id      : $("#id").html()
+			},
+			function ( data, status ) {
+				console.log( data );
+				$("#similar").val( data );
+				questions[ index ].similar = data;
+				$("#ok-sim").html( "Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-sim").html( "Unable to Similar: errCode = " + response.status );
+		});	 
+	});	
 })
 </script>
 </head>
 <body>
 	<header style='text-align: center'>
-		<h2>Quisse Admin</h2>
-		<h3>Q&A Dashboard</h3>
+		<h2>Quisse Admin Dashboard</h2>
 	</header>
 	
 	<section class='w3-container'>
@@ -214,21 +258,23 @@ $(function() {
 		<br/>
 		
 		<!-- Submit -->
-		<!--
 		<input type='submit' id='submit' value='Update'/>
+		<span id='ok-sub' class='ok'></span><br/>
 		<span id='err-sub' class='error'></span><br/>
-		-->
 		
 		<!-- Bag of Words -->
 		<label for='words' class='w3-label'>Bag of Words</label>
 		<button id='refresh-words' class='w3-btn w3-blue w3-small'>Refresh</button>
+		<span id='ok-red' class='ok'></span>
+		<span id='err-red' class='error'></span>
 		<pre name='words' id='words'></pre>
 		
 		<!-- Similar Matching Questions -->
 		<label for='similar' class='w3-label'>Similar Questions</label>
 		<button id='refresh-similar' class='w3-btn w3-blue w3-small'>Refresh</button>
-		<pre name='similar' id='similar'></pre>
+		<span id='ok-sim' class='ok'></span>
 		<span id='err-sim' class='error'></span>
+		<pre name='similar' id='similar'></pre>
 	</section>
 
 	<footer>
