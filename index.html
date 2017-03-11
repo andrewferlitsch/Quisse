@@ -37,9 +37,13 @@
 		<div>	
 			<div ng-show='view["Web"]' ng-controller="webCtrl" >
 				<div ng-show='qa' questions-web></div>
+				<div ng-show='multi' multi-web></div>
 			</div>
 			
-			<div ng-show='view["HTML"]' ng-controller="htmlCtrl" questions-html></div>
+			<div ng-show='view["HTML"]' ng-controller="htmlCtrl">
+				<div ng-show='qa' questions-html></div>
+				<div ng-show='multi' multi-html></div>
+			</div>
 			
 			<div ng-show='view["HTML5"]' ng-controller="html5Ctrl" questions-html5></div>
 			

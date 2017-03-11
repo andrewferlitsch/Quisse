@@ -28,8 +28,6 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);
 	}
-	$scope.qa    = true;
-	$scope.multi = false;
 })
 .directive( "interview", function() {
 	return {
