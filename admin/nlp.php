@@ -322,8 +322,6 @@ if ( isset( $_POST[ 'action' ] ) ) {
 		for ( $id = 1; $id < $count; $id++ )
 			$nlp->ReduceMatch( $id );
 	}
-	else if ( $_POST[ 'action' ] == "timing" ) {
-	}
 }
 
 ?> 

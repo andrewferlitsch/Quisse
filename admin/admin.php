@@ -239,6 +239,17 @@ $(function() {
 	})
 	
 	$("#timing").click( function() {
+		$.post( "/admin/timing.php",
+			{ action  : "timing",
+			  category: category,
+			},
+			function ( data, status ) {
+				$("#ok-tim").html( data + "<br/>Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-tim").html( "Unable to Timing: errCode = " + response.status );
+		});	 
 	})
 })
 </script>
