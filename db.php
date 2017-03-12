@@ -250,6 +250,20 @@ class DB
 		
 		return $result;	
 	}
+	
+	/*
+	 * Get the Average and Maximum Time for the Category
+	 */
+	function AvgMaxTiming( $category ) {
+		$q = "SELECT AVG(timing/tcount),MAX(timing/tcount) FROM " . TBL_QUESTIONS . " WHERE category=$category AND tcount>0";
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+				echo "Q $q". PHP_EOL;
+				echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
+		return mysqli_fetch_array( $result );
+	}
 }
 
 $db = new DB;

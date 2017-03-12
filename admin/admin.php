@@ -29,6 +29,8 @@ $(function() {
 	$("#category").change( function() {
 		ClearStatus();
 		category = this.value;
+		if ( category == "" )
+			return;
 		$.get("/admin/get.php?category=" + category.replace( /\+/g, "%2B").replace( /#/g, "%23"), function( data, status ) {
 			data = data.replace(/(\r\n|\n)/g, '\\n');
 			questions = JSON.parse( data );
@@ -83,7 +85,7 @@ $(function() {
 		$("#err-sim").html( "" );
 		$("#similar").html( "" );
 		var similar = question.similar.split( "," );
-		if ( similar.length > 0 ) {
+		if ( question.similar != "" ) {
 			for ( var i = 0; i < similar.length; i++ ) {
 				$.get("/admin/get.php?id=" + similar[ i ], function( data, status ) {
 					data = data.replace(/(\r\n|\n)/g, '\\n');
@@ -188,7 +190,6 @@ $(function() {
 			  id      : $("#id").html()
 			},
 			function ( data, status ) {
-				console.log( data );
 				$("#similar").val( data );
 				questions[ index ].similar = data;
 				$("#ok-sim").html( "Done" );
@@ -207,6 +208,38 @@ $(function() {
 		$("#ok-sim").html( "" );
 		$("#err-sim").html( "" );
 	}
+	
+	$("#reduce-all").click( function() {
+		$.post( "/admin/nlp.php",
+			{ action  : "reduceall",
+			  category: category
+			},
+			function ( data, status ) {
+				$("#ok-all").html( data + "<br/>Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-all").html( "Unable to Reduce All: errCode = " + response.status );
+		});	 
+	})
+	
+	$("#similar-all").click( function() {
+		$.post( "/admin/nlp.php",
+			{ action  : "similarall",
+			  category: category,
+			  count   : 920
+			},
+			function ( data, status ) {
+				$("#ok-sim-all").html( data + "<br/>Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-sim-all").html( "Unable to Similar All: errCode = " + response.status );
+		});	 
+	})
+	
+	$("#timing").click( function() {
+	})
 })
 </script>
 </head>
@@ -285,6 +318,17 @@ $(function() {
 		<span id='ok-sim' class='ok'></span>
 		<span id='err-sim' class='error'></span>
 		<pre name='similar' id='similar'></pre>
+	</section>
+	<hr/>
+	
+	<section>
+		<button id='reduce-all' class='w3-btn w3-blue w3-small'>Reduce All</button>
+		<span id='ok-all' class='ok'></span>
+		<span id='err-all' class='error'></span><br/>
+		<button id='similar-all' class='w3-btn w3-blue w3-small'>Similar All</button>
+		<span id='ok-sim-all' class='ok'></span>
+		<span id='err-sim-all' class='error'></span><br/>
+		<button id='timing' class='w3-btn w3-blue w3-small'>Timing</button>
 	</section>
 
 	<footer>

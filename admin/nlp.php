@@ -243,14 +243,16 @@ class NLP {
 		$count = $this->Count( "" );
 		
 		// Process one question at a time
+		echo "[";
 		for ( $i = 1; $i <= $count; $i++ ) {
 			$entry = $this->Question( $i );
 			
 			$tokens = $this->Reduce( $entry[ 'question' ] );
-			echo "<pre>$i: " . $entry['question']. "</pre>";
-			print_r( $tokens ); echo "<br/>";
+			if ( $i > 1 ) echo ",";
+			echo "$i";
 			$db->UpdateWords( $i, $tokens );
 		}
+		echo "]";
 	}
 	
 	/*
@@ -279,6 +281,7 @@ class NLP {
 				}
 				echo "</pre><br/>";
 				$db->UpdateSimilar( $id, $ids );
+				return $ids;
 			}
 		}
 	}
@@ -292,9 +295,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ( isset( $_POST[ 'action' ] ) ) {
-	$id = $_POST[ 'id' ];
 	// Reduce a Question
 	if ( $_POST[ 'action' ] == "reduce" ) {
+		$id = $_POST[ 'id' ];
 		$res = $nlp->ReduceQuestion( $id );
 		$count = count( $res );
 		for ( $i = 0; $i < $count; $i++ ) {
@@ -303,6 +306,7 @@ if ( isset( $_POST[ 'action' ] ) ) {
 		}
 	}
 	else if ( $_POST[ 'action' ] == "similar" ) {
+		$id = $_POST[ 'id' ];
 		$res = $nlp->ReduceMatch( $id );
 		$count = count( $res );
 		for ( $i = 0; $i < $count; $i++ ) {
@@ -310,14 +314,16 @@ if ( isset( $_POST[ 'action' ] ) ) {
 			echo $res[ $i ];
 		}
 	}
+	else if ( $_POST[ 'action' ] == "reduceall" ) {
+		$nlp->ReduceAll();
+	}
+	else if ( $_POST[ 'action' ] == "similarall" ) {
+		$count = $_POST[ 'count' ];
+		for ( $id = 1; $id < $count; $id++ )
+			$nlp->ReduceMatch( $id );
+	}
+	else if ( $_POST[ 'action' ] == "timing" ) {
+	}
 }
-
-
-//$nlp->ReduceAll();
-
-// Find similar matching questions
-//for ( $id = 1; $id < 820; $id++ ) {
-	//$nlp->ReduceMatch( $id );
-//}
 
 ?> 
