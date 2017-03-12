@@ -210,6 +210,8 @@ $(function() {
 	}
 	
 	$("#reduce-all").click( function() {
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
 		$.post( "/admin/nlp.php",
 			{ action  : "reduceall",
 			  category: category
@@ -224,31 +226,51 @@ $(function() {
 	})
 	
 	$("#similar-all").click( function() {
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
 		$.post( "/admin/nlp.php",
 			{ action  : "similarall",
 			  category: category,
 			  count   : 920
 			},
 			function ( data, status ) {
-				$("#ok-sim-all").html( data + "<br/>Done" );
+				$("#ok-all").html( data + "<br/>Done" );
 			}
 		)
 		.fail (function( response ) {
-			$("#err-sim-all").html( "Unable to Similar All: errCode = " + response.status );
+			$("#err-all").html( "Unable to Similar All: errCode = " + response.status );
 		});	 
 	})
 	
-	$("#timing").click( function() {
+	$("#timing-scan").click( function() {
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
 		$.post( "/admin/timing.php",
-			{ action  : "timing",
+			{ action  : "scan",
 			  category: category,
 			},
 			function ( data, status ) {
-				$("#ok-tim").html( data + "<br/>Done" );
+				$("#ok-all").html( data + "<br/>Done" );
 			}
 		)
 		.fail (function( response ) {
-			$("#err-tim").html( "Unable to Timing: errCode = " + response.status );
+			$("#err-all").html( "Unable to Timing: errCode = " + response.status );
+		});	 
+	})
+	
+	$("#timing-level").click( function() {
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
+		$.post( "/admin/timing.php",
+			{ action  : "level",
+			  category: category,
+			},
+			function ( data, status ) {
+				$("#ok-all").html( data + "<br/>Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-all").html( "Unable to Timing: errCode = " + response.status );
 		});	 
 	})
 })
@@ -312,9 +334,11 @@ $(function() {
 		<br/>
 		
 		<!-- Submit -->
+		<!--
 		<input type='submit' id='submit' value='Update'/>
 		<span id='ok-sub' class='ok'></span><br/>
 		<span id='err-sub' class='error'></span><br/>
+		-->
 		
 		<!-- Bag of Words -->
 		<label for='words' class='w3-label'>Bag of Words</label>
@@ -332,14 +356,14 @@ $(function() {
 	</section>
 	<hr/>
 	
-	<section>
+	<section class='w3-container'>
 		<button id='reduce-all' class='w3-btn w3-blue w3-small'>Reduce All</button>
+		<button id='similar-all' class='w3-btn w3-blue w3-small'>Set Similar</button>
+		<button id='timing-scan' class='w3-btn w3-blue w3-small'>Timing Scan</button>
+		<button id='timing-level' class='w3-btn w3-blue w3-small'>Adjust Levels</button>
+		
 		<span id='ok-all' class='ok'></span>
-		<span id='err-all' class='error'></span><br/>
-		<button id='similar-all' class='w3-btn w3-blue w3-small'>Similar All</button>
-		<span id='ok-sim-all' class='ok'></span>
-		<span id='err-sim-all' class='error'></span><br/>
-		<button id='timing' class='w3-btn w3-blue w3-small'>Timing</button>
+		<span id='err-all' class='error'></span><br/><br/>
 	</section>
 
 	<footer>

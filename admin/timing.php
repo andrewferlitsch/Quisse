@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../db.php";
 	
 function Timing( $id, $timing ) {
 	global $db;
@@ -7,12 +7,13 @@ function Timing( $id, $timing ) {
 	echo "ID $id, TIMING $timing<br/>";
 }
 	
+function Scan() {
 	$session   = "";
 	$category  = "";
 	$nsessions = 0;
 	$last_time = 0;
 	
-	$handle = fopen( "timing.csv", "r" );
+	$handle = fopen( "../timing.csv", "r" );
 	if ( $handle ) {
 		while ( ( $line = fgets( $handle ) ) ) {
 			$columns = split( ",", $line );
@@ -54,4 +55,17 @@ function Timing( $id, $timing ) {
 		fclose( $handle );
 		echo "SESSIONS: $nsessions<br/>";
 	}
+}
+
+function Level() {
+	
+}
+
+if ( isset( $_POST[ 'action' ] ) ) {
+	$action = $_POST[ 'action' ];
+	if ( $action == "scan" )
+		Scan();
+	else if ( $action == "level" )
+		Level();
+}
 ?>
