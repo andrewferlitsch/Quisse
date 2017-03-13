@@ -289,7 +289,42 @@ class NLP {
 	}
 	
 	/*
-	 * Find Matches for questions's Word Vector from other questions
+	 * Find Similar Matches for questions' Word Vector from other questions
+	 */
+	function ReduceMatchCategory( $category ) {
+		global $db;
+		
+		// Get all questions in this category
+		$questions = $this->Category( $category );
+		
+		// get total count of questions in this category
+		$count = count( $questions );
+		$res = array();
+		for ( $i = 0; $i < $count; $i++ ) {
+			$entry = $questions[ $i ];
+			$word_vector = explode( ",", $entry[ 'words' ] );
+			
+			// entry has a non-zero length word vector
+			if ( count( $word_vector ) > 0 ) {
+				$id = $entry[ 'id' ];
+				// get IDs of similar matching questions
+				$ids = $db->WordsMatch( $id, $category, $word_vector );
+			
+				// entry has non-zero length similar matches
+				if ( count( $ids ) > 0 ) {
+					for ( $j = 0; $j < count( $ids ); $j++ ) {
+						$db->GetQuestion( $ids[ $j ] );
+					}
+					$db->UpdateSimilar( $id, $ids );
+					array_push( $res, $ids );
+				}
+			}
+		}
+		return $res;
+	}
+	
+	/*
+	 * Find Similar Matches for questions' Word Vector from other questions
 	 */
 	function ReduceMatch( $id ) {
 		global $db;

@@ -57,15 +57,20 @@ function Scan() {
 	}
 }
 
-function Level() {
+function Level( $category ) {
+	global $db;
 	
+	return $db->AvgMaxTiming( $category );
 }
 
 if ( isset( $_POST[ 'action' ] ) ) {
 	$action = $_POST[ 'action' ];
 	if ( $action == "scan" )
 		Scan();
-	else if ( $action == "level" )
-		Level();
+	else if ( $action == "level" ) {
+		$category = $_POST[ 'category' ];
+		$res = Level( $category );
+		echo $res[ 0 ] . "," . $res[ 1 ] . "," . $res[ 2 ];
+	}
 }
 ?>

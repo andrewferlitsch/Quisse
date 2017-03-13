@@ -216,7 +216,7 @@ $(function() {
 			{ action  : "reduce-all"
 			},
 			function ( data, status ) {
-				$("#ok-all").html( data + "<br/>Done" );
+				$("#ok-all").html( data );
 			}
 		)
 		.fail (function( response ) {
@@ -232,7 +232,7 @@ $(function() {
 			  category: category
 			},
 			function ( data, status ) {
-				$("#ok-all").html( data + "<br/>Done" );
+				$("#ok-all").html( data );
 			}
 		)
 		.fail (function( response ) {
@@ -247,7 +247,7 @@ $(function() {
 			{ action  : "similar-all"
 			},
 			function ( data, status ) {
-				$("#ok-all").html( data + "<br/>Done" );
+				$("#ok-all").html( data );
 			}
 		)
 		.fail (function( response ) {
@@ -263,7 +263,7 @@ $(function() {
 			  category: category
 			},
 			function ( data, status ) {
-				$("#ok-all").html( data + "<br/>Done" );
+				$("#ok-all").html( data );
 			}
 		)
 		.fail (function( response ) {
@@ -279,7 +279,7 @@ $(function() {
 			  category: category,
 			},
 			function ( data, status ) {
-				$("#ok-all").html( data + "<br/>Done" );
+				$("#ok-all").html( data );
 			}
 		)
 		.fail (function( response ) {
@@ -295,7 +295,8 @@ $(function() {
 			  category: category,
 			},
 			function ( data, status ) {
-				$("#ok-all").html( data + "<br/>Done" );
+				res = data.split( "," );
+				$("#ok-all").html( "AVE " + res[ 0 ] + " MAX " + res[ 1 ] + " MAX-AVE " + res[ 2 ] );
 			}
 		)
 		.fail (function( response ) {

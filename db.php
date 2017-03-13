@@ -255,14 +255,74 @@ class DB
 	 * Get the Average and Maximum Time for the Category
 	 */
 	function AvgMaxTiming( $category ) {
-		$q = "SELECT AVG(timing/tcount),MAX(timing/tcount) FROM " . TBL_QUESTIONS . " WHERE category=$category AND tcount>0";
+		// Calculate Ave, Max (and Min)
+		$q = "SELECT AVG(timing/tcount),MAX(timing/tcount) FROM " . TBL_QUESTIONS . " WHERE category='$category' AND tcount>1";
 		$result = mysqli_query( $this->connection, $q );
 		if ( $this->debug == true ) {
 				echo "Q $q". PHP_EOL;
 				echo mysqli_error( $this->connection ) . PHP_EOL;
 		}
 		
-		return mysqli_fetch_array( $result );
+		$res = mysqli_fetch_array( $result );
+		$ave = $res[ 0 ];
+		$max = $res[ 1 ];
+		
+		// set a low pivot point
+		$low = $res[ 1 ] - $res[ 0 ];
+		array_push( $res, $low );
+		
+		// Calculate Learned Difficulty
+		$questions = $this->GetQuestions( $category );
+		$count = count( $questions );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$question = $questions[ $i ];
+			$timing   = $question[ 'timing' ];
+			$tcount   = $question[ 'tcount' ];
+			if ( $tcount > 1 ) {
+				$q = "UPDATE " . TBL_QUESTIONS . " SET level = ";
+				$mean     = $timing / $tcount;
+				if ( $mean <= $low )
+					$q .= "1";
+				else if ( $mean <= $ave )
+					$q .= "2";
+				else
+					$q .= "3";
+				$q .= " WHERE id=" . $question[ 'id' ];
+				mysqli_query( $this->connection, $q );
+				if ( $this->debug == true ) {
+					echo "Q $q". PHP_EOL;
+					echo mysqli_error( $this->connection ) . PHP_EOL;
+				}
+			}
+		}
+		return $res;
+	}
+	
+	/*
+	 * 
+	 */
+	function AdaptiveTiming( $category ) {
+		$q = "SELECT id,timing/tcount FROM " . TBL_QUESTIONS . " WHERE category='$category' AND tcount>1 ORDER BY timing/tcount";
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+				echo "Q $q". PHP_EOL;
+				echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
+		$count = mysqli_num_rows( $result );
+		$low   = round( $count / 3 );
+		$mid   = $low * 2;
+		
+		for ( $i = 0; $i < $count; $i++ ) {
+			$data = mysqli_fetch_array( $result );
+			$id   = $data[ 'id' ];
+			if ( $i <= $low )
+				;
+			else if ( $i <= $mid )
+				;
+			else
+				;
+		}
 	}
 }
 
