@@ -22,6 +22,15 @@ class NLP {
 	}
 	
 	/*
+	 * Get all questions from a category
+	*/
+	function Category( $category ) {
+		global $db;
+		
+		return $db->GetQuestions( $category );
+	}
+	
+	/*
 	 * Reduce Text to a Common Reduced Form
 	*/
 	function Reduce( $question ) {
@@ -256,6 +265,30 @@ class NLP {
 	}
 	
 	/*
+	 * Do a Reduce on all questions in a category
+	 */
+	function ReduceCategory( $category ) {
+		global $db;
+		
+		// Get all questions in this category
+		$questions = $this->Category( $category );
+		
+		// get total count of questions in this category
+		$count = count( $questions );
+		
+		// Process one question at a time
+		$ids = array();
+		for ( $i = 0; $i < $count; $i++ ) {
+			$entry = $this->Question( $questions[ $i ][ 'id' ] );
+			
+			$tokens = $this->Reduce( $entry[ 'question' ] );
+			$db->UpdateWords( $questions[ $i ][ 'id' ], $tokens );
+			array_push( $ids, $questions[ $i ][ 'id' ] );
+		}
+		return $ids;
+	}
+	
+	/*
 	 * Find Matches for questions's Word Vector from other questions
 	 */
 	function ReduceMatch( $id ) {
@@ -273,13 +306,9 @@ class NLP {
 			
 			// entry has non-zero length similar matches
 			if ( count( $ids ) > 0 ) {
-				echo "<pre>ID $id:" . $entry[ 'question' ]. "<br/>";
-				echo "A: " . $entry[ 'answer' ] . "<br/>";
 				for ( $i = 0; $i < count( $ids ); $i++ ) {
 					$entry = $db->GetQuestion( $ids[ $i ] );
-					echo "S: " . $entry[ 'answer' ] . "<br/>";
 				}
-				echo "</pre><br/>";
 				$db->UpdateSimilar( $id, $ids );
 				return $ids;
 			}
@@ -305,6 +334,22 @@ if ( isset( $_POST[ 'action' ] ) ) {
 			echo $res[ $i ];
 		}
 	}
+	// Reduce all questions in category
+	else if ( $_POST[ 'action' ] == "reduce-cat" ) {
+		$category = $_POST[ 'category' ];
+		$ids = $nlp->ReduceCategory( $category );
+		$count = count( $ids );
+		echo "[";
+		for ( $i = 0; $i < $count; $i++ ) {
+			echo $ids[ $i ] . ",";
+		}
+		echo "]";
+	}
+	// Reduce all questions
+	else if ( $_POST[ 'action' ] == "reduce-all" ) {
+		$nlp->ReduceAll();
+	}
+	// Find Similar for a Question
 	else if ( $_POST[ 'action' ] == "similar" ) {
 		$id = $_POST[ 'id' ];
 		$res = $nlp->ReduceMatch( $id );
@@ -314,13 +359,30 @@ if ( isset( $_POST[ 'action' ] ) ) {
 			echo $res[ $i ];
 		}
 	}
-	else if ( $_POST[ 'action' ] == "reduceall" ) {
-		$nlp->ReduceAll();
+	else if ( $_POST[ 'action' ] == "similar-cat" ) {
+		$category = $_POST[ 'category' ];
+		$ids = $nlp->ReduceMatchCategory( $category );
+		$count = count( $ids );
+		echo "[";
+		for ( $i = 0; $i < $count; $i++ ) {
+			echo $ids[ $i ] . ",";
+		}
+		echo "]";
 	}
-	else if ( $_POST[ 'action' ] == "similarall" ) {
-		$count = $_POST[ 'count' ];
-		for ( $id = 1; $id < $count; $id++ )
-			$nlp->ReduceMatch( $id );
+	else if ( $_POST[ 'action' ] == "similar-all" ) {
+		$count = $nlp->Count( "" );
+		echo "[";
+		for ( $id = 1; $id < $count; $id++ ) {
+			if ( $id > 1 ) echo ",";
+			$ids = $nlp->ReduceMatch( $id );
+			echo "{id: $id, ids: [";
+			for ( $i = 0; $i < count( $ids ); $i++ ) {
+				if ( $i > 0 ) echo ",";
+				echo $ids[ $i ];
+			}
+			echo "] }";
+		}
+		echo "]";
 	}
 }
 

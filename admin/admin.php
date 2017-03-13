@@ -177,7 +177,7 @@ $(function() {
 			}
 		)
 		.fail (function( response ) {
-			$("#err-red").html( "Unable to Reduce: errCode = " + response.status );
+			$("#err-red").html( "Unable to Reduce Question: errCode = " + response.status );
 		});	 
 	})
 	
@@ -196,7 +196,7 @@ $(function() {
 			}
 		)
 		.fail (function( response ) {
-			$("#err-sim").html( "Unable to Similar: errCode = " + response.status );
+			$("#err-sim").html( "Unable to find Similar Questions: errCode = " + response.status );
 		});	 
 	})
 	
@@ -213,8 +213,7 @@ $(function() {
 		$("#ok-all").html( "" );
 		$("#err-all").html( "" );
 		$.post( "/admin/nlp.php",
-			{ action  : "reduceall",
-			  category: category
+			{ action  : "reduce-all"
 			},
 			function ( data, status ) {
 				$("#ok-all").html( data + "<br/>Done" );
@@ -225,20 +224,50 @@ $(function() {
 		});	 
 	})
 	
-	$("#similar-all").click( function() {
+	$("#reduce-cat").click( function() {
 		$("#ok-all").html( "" );
 		$("#err-all").html( "" );
 		$.post( "/admin/nlp.php",
-			{ action  : "similarall",
-			  category: category,
-			  count   : 920
+			{ action  : "reduce-cat",
+			  category: category
 			},
 			function ( data, status ) {
 				$("#ok-all").html( data + "<br/>Done" );
 			}
 		)
 		.fail (function( response ) {
-			$("#err-all").html( "Unable to Similar All: errCode = " + response.status );
+			$("#err-all").html( "Unable to Reduce Category: errCode = " + response.status );
+		});	 
+	})
+	
+	$("#similar-all").click( function() {
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
+		$.post( "/admin/nlp.php",
+			{ action  : "similar-all"
+			},
+			function ( data, status ) {
+				$("#ok-all").html( data + "<br/>Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-all").html( "Unable to find Similar All: errCode = " + response.status );
+		});	 
+	})
+	
+	$("#similar-cat").click( function() {
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
+		$.post( "/admin/nlp.php",
+			{ action  : "similar-cat",
+			  category: category
+			},
+			function ( data, status ) {
+				$("#ok-all").html( data + "<br/>Done" );
+			}
+		)
+		.fail (function( response ) {
+			$("#err-all").html( "Unable to find Similar Category: errCode = " + response.status );
 		});	 
 	})
 	
@@ -357,11 +386,13 @@ $(function() {
 	<hr/>
 	
 	<section class='w3-container'>
-		<button id='reduce-all' class='w3-btn w3-blue w3-small'>Reduce All</button>
-		<button id='similar-all' class='w3-btn w3-blue w3-small'>Set Similar</button>
-		<button id='timing-scan' class='w3-btn w3-blue w3-small'>Timing Scan</button>
+		<button id='reduce-cat' class='w3-btn w3-blue w3-small'>Reduce Category</button>
+		<button id='reduce-all' class='w3-btn w3-teal w3-small'>Reduce All</button>
+		<button id='similar-cat' class='w3-btn w3-blue w3-small'>Similar Category</button>
+		<button id='similar-all' class='w3-btn w3-teal w3-small'>Similar All</button>
+		<button id='timing-scan' class='w3-btn w3-green w3-small'>Scan Timing Data</button>
 		<button id='timing-level' class='w3-btn w3-blue w3-small'>Adjust Levels</button>
-		
+		<br/>
 		<span id='ok-all' class='ok'></span>
 		<span id='err-all' class='error'></span><br/><br/>
 	</section>
