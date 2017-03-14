@@ -20,11 +20,16 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 	for ( var cat in $scope.categories ) {
 		$scope.view[ cat ] = false;
 	}
+	
 	$scope.showCategory = function( cat) {
 		if ( $scope.lastcat != "" )
 			$scope.view[ $scope.lastcat ] = false;
 		$scope.view[ cat ] = true;
 		$scope.lastcat = cat;
+		
+		// reset scoring
+		totalQuestions = 0;
+		totalCorrect   = 0;
 		
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);

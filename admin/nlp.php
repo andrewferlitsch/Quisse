@@ -339,12 +339,14 @@ class NLP {
 			$ids = $db->WordsMatch( $id, $category, $word_vector );
 			
 			// entry has non-zero length similar matches
+			$res = array();
 			if ( count( $ids ) > 0 ) {
 				for ( $i = 0; $i < count( $ids ); $i++ ) {
 					$entry = $db->GetQuestion( $ids[ $i ] );
+					array_push( $res, $entry );
 				}
 				$db->UpdateSimilar( $id, $ids );
-				return $ids;
+				return $res;
 			}
 		}
 	}
@@ -389,8 +391,8 @@ if ( isset( $_POST[ 'action' ] ) ) {
 		$res = $nlp->ReduceMatch( $id );
 		$count = count( $res );
 		for ( $i = 0; $i < $count; $i++ ) {
-			if ( $i > 0 ) echo ",";
-			echo $res[ $i ];
+			if ( $i > 0 ) echo "<br/>";
+			echo $res[ $i ]['id'] . ":" . $res[ $i ][ 'answer'];
 		}
 	}
 	else if ( $_POST[ 'action' ] == "similar-cat" ) {

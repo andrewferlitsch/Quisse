@@ -190,7 +190,7 @@ $(function() {
 			  id      : $("#id").html()
 			},
 			function ( data, status ) {
-				$("#similar").val( data );
+				$("#similar").html( data );
 				questions[ index ].similar = data;
 				$("#ok-sim").html( "Done" );
 			}
@@ -207,6 +207,8 @@ $(function() {
 		$("#err-red").html( "" );
 		$("#ok-sim").html( "" );
 		$("#err-sim").html( "" );
+		$("#ok-all").html( "" );
+		$("#err-all").html( "" );
 	}
 	
 	$("#reduce-all").click( function() {
@@ -365,11 +367,9 @@ $(function() {
 		<br/>
 		
 		<!-- Submit -->
-		<!--
 		<input type='submit' id='submit' value='Update'/>
 		<span id='ok-sub' class='ok'></span><br/>
 		<span id='err-sub' class='error'></span><br/>
-		-->
 		
 		<!-- Bag of Words -->
 		<label for='words' class='w3-label'>Bag of Words</label>
