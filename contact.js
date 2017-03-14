@@ -1,3 +1,4 @@
+// Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
 technical.controller( 'contactCtrl', function( $scope ) {
 })
 .directive( "contact", function() {

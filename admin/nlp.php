@@ -35,8 +35,7 @@ class NLP {
 	*/
 	function Reduce( $question ) {
 		// replace punctuation with blank space
-		//	can't get single quote to work
-		$question = preg_replace( '/\?|\(|\)|\$|\.|\/|:|<|>|=|;|\+|\-|\,/', " ", $question );
+		$question = preg_replace( '/\?|\(|\)|\$|\.|\/|:|<|>|=|;|\+|\-|\,|\'/', " ", $question );
 		
 		// split on blank space
 		$words = explode( ' ', $question );
@@ -400,7 +399,14 @@ if ( isset( $_POST[ 'action' ] ) ) {
 		$count = count( $ids );
 		echo "[";
 		for ( $i = 0; $i < $count; $i++ ) {
-			echo $ids[ $i ] . ",";
+			if ( $i > 0 ) echo ",";
+			$n = count( $ids[ $i ] );
+			echo "{ ids:";
+			for ( $j = 0; $j < $n; $j++ ) {
+				if ( $j > 0 ) echo ",";
+				echo $ids[ $i ][ $j ];
+			}
+			echo "}";
 		}
 		echo "]";
 	}

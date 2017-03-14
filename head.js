@@ -1,3 +1,4 @@
+// Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
 technical.controller( 'interviewCtrl', function( $scope ) {
 	// page view
 	$scope.page = [];
@@ -35,7 +36,8 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		template: "<h4 style='margin-top: -20px; text-align: center; color: steelblue'>The Technical Interview</h4>" +
 				  "<p>Use our 900 question/answer dataset to practice a technical phone screen.</p>" +
 				  "<label for='category' class='w3-label'>Select Skill Category:</label>" +
-				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)'>" +
+				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
+				  "	<option value='' disabled selected>Select a category...</option>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
 				  "</select>"
 	}

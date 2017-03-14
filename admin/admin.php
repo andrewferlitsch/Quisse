@@ -1,4 +1,6 @@
 <?php
+/* Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
+ */
 include "../db.php";
 ?>
 <html lang="en-US">
@@ -14,7 +16,7 @@ include "../db.php";
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style>
 	body { padding: 10px; }
-	h2 { color: black; }
+	h2 { color: steelblue; }
 	.error { weight: bold; color: red; }
 	.ok { weight: bold; color: green; }
 	</style>
@@ -113,7 +115,6 @@ $(function() {
 		$("#tcount").html( "" );
 		$("#timing").html( "" );
 		$("#submit").val( "Add" );
-		$("#size").html( ++size );
 	})
 	
 	// Submit new or updated question
@@ -127,7 +128,7 @@ $(function() {
 			
 			// increment the list of questions by one
 			index = size;
-			size++;
+			$("#size").html( ++size );
 			questions.push( { question: "", answer: "", level: "" } );
 		}
 		// Update a question
@@ -170,7 +171,6 @@ $(function() {
 			  id      : $("#id").html()
 			},
 			function ( data, status ) {
-				console.log( data );
 				$("#words").html( data );
 				questions[ index ].words = data;
 				$("#ok-red").html( "Done" );
@@ -315,8 +315,8 @@ $(function() {
 	<section class='w3-container'>
 		<!-- category -->
 		<label for='category' class='w3-label'>Category</label>
-		<select id='category' name='category' class='w3-input'>
-			<option></option>
+		<select id='category' name='category' class='w3-input' required>
+			<option value='' disabled selected>Select a category...</option>
 			<?php $categories = $db->GetCategories();
 			$ncat = count( $categories );
 			for ( $i = 0; $i < $ncat; $i++ ) {
