@@ -3,7 +3,7 @@ include "../db.php";
 ?>
 <html lang="en-US">
 <head>
-	<title>Quisse Admin - NLP Dashboard</title>
+	<title>Quisse - Admin Dashboard</title>
 	<meta NAME="robots" CONTENT="noindex, nofollow">
 	<meta charset="utf-8">
 	<meta name='keywords' content=''>
@@ -306,8 +306,9 @@ $(function() {
 })
 </script>
 </head>
-<body>
-	<header style='text-align: center'>
+<body ng-app="technical">
+	<header style='text-align: center' ng-controller="interviewCtrl">
+		<div nav></div>
 		<h2>Quisse Admin Dashboard</h2>
 	</header>
 	
@@ -398,7 +399,14 @@ $(function() {
 		<span id='err-all' class='error'></span><br/><br/>
 	</section>
 
-	<footer>
+	<footer ng-controller="footerCtrl" id='footer'>
+			<div footer></div>
 	</footer>
+
+<script>
+var technical = angular.module( 'technical', []);
+</script>
+<script src="../nav.js"></script
+<script src="../footer.js"></script>
 </body>
 </html>

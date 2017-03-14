@@ -299,7 +299,7 @@ class DB
 	}
 	
 	/*
-	 * 
+	 *Adaptive Setting of Levels from Timing Data
 	 */
 	function AdaptiveTiming( $category ) {
 		$q = "SELECT id,timing/tcount FROM " . TBL_QUESTIONS . " WHERE category='$category' AND tcount>1 ORDER BY timing/tcount";
@@ -313,16 +313,28 @@ class DB
 		$low   = round( $count / 3 );
 		$mid   = $low * 2;
 		
+		$res = array();
 		for ( $i = 0; $i < $count; $i++ ) {
-			$data = mysqli_fetch_array( $result );
-			$id   = $data[ 'id' ];
+			$question = mysqli_fetch_array( $result );
+			$id   = $question[ 'id' ];
+			$q = "UPDATE " . TBL_QUESTIONS . " SET level = ";
 			if ( $i <= $low )
-				;
+				$q .= "1";
 			else if ( $i <= $mid )
-				;
+				$q .= "2";
 			else
-				;
+				$q .= "3";
+			$q .= " WHERE id=" . $question[ 'id' ];
+			mysqli_query( $this->connection, $q );
+			if ( $this->debug == true ) {
+				echo "Q $q". PHP_EOL;
+				echo mysqli_error( $this->connection ) . PHP_EOL;
+			}
+			
+			array_push( $res, $id );
 		}
+		
+		return $res;
 	}
 }
 

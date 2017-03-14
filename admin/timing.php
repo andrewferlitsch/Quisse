@@ -60,7 +60,7 @@ function Scan() {
 function Level( $category ) {
 	global $db;
 	
-	return $db->AvgMaxTiming( $category );
+	return $db->AdaptiveTiming( $category );
 }
 
 if ( isset( $_POST[ 'action' ] ) ) {
@@ -70,7 +70,7 @@ if ( isset( $_POST[ 'action' ] ) ) {
 	else if ( $action == "level" ) {
 		$category = $_POST[ 'category' ];
 		$res = Level( $category );
-		echo $res[ 0 ] . "," . $res[ 1 ] . "," . $res[ 2 ];
+		echo $res;
 	}
 }
 ?>

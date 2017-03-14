@@ -1,8 +1,11 @@
+<!-- Copyright(c) 2016-2017, Andrew Ferlitsch, All Rights Reserved
+-->
 <html lang="en-US">
 <head>
 	<title>Technical Interview Questions</title>
 	<meta charset="utf-8">
-	<meta name='keywords' content='test, quiz, interview, interview questions, technical interview, technical questions'>
+	<meta name="description" content="Free Technical Interview Tutorials">
+	<meta name='keywords' content='test, quiz, interview, interview questions, technical interview, technical questions, tutorial'>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -309,7 +312,7 @@ function SendServer() {
 		$.ajax({
 			url: "/timing.php",
 			type: 'post',
-			data: { timing },
+			data: { 'timing': timing },
 			success: function( data, status ) { },
 			error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
 		});
