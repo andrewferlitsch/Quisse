@@ -94,7 +94,7 @@ $(function() {
 					var question = JSON.parse( data );
 					var answer   = question.answer;
 					var id       = question.id;
-					$("#similar").html( $("#similar").html() + id + ":" + answer + "<br/>" );
+					$("#similar").html( $("#similar").html() + id + ":" + answer + "\n" );
 				})
 				.fail (function( response ) {
 					$("#err-sim").html( "Get Question Failed: errCode = " + response.status );
@@ -383,7 +383,7 @@ $(function() {
 		<button id='refresh-similar' class='w3-btn w3-blue w3-small'>Refresh</button>
 		<span id='ok-sim' class='ok'></span>
 		<span id='err-sim' class='error'></span>
-		<pre name='similar' id='similar'></pre>
+		<textarea name='similar' id='similar' class='w3-input' rows=4></textarea>
 	</section>
 	<hr/>
 	

@@ -391,7 +391,7 @@ if ( isset( $_POST[ 'action' ] ) ) {
 		$res = $nlp->ReduceMatch( $id );
 		$count = count( $res );
 		for ( $i = 0; $i < $count; $i++ ) {
-			if ( $i > 0 ) echo "<br/>";
+			if ( $i > 0 ) echo "\n";
 			echo $res[ $i ]['id'] . ":" . $res[ $i ][ 'answer'];
 		}
 	}
