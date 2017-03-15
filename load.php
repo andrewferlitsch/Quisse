@@ -11,11 +11,19 @@ function Load( $category ) {
 		$id       = $row[ 'id' ];
 		$question = trim( str_replace( '"', '\\"', $row[ 'question' ] ) );
 		$answer   = trim( str_replace( '"', '\\"', $row[ 'answer' ] ) );
+		$level    = $row[ 'level' ];
 		$rank     = $row[ 'rank' ];
 		$toggle	  = $row[ 'toggle' ];
-		$words	  = $row[ 'words' ];
+
+		if ( $level != NULL ) {
+			// limit changing preset level (rank) from learned level by 1
+			if ( $level > $rank )
+				$rank++;
+			else if ( $level < $rank )
+				$rank--;
+		}
 		
-		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toggle\": $toggle, \"words\": \"$words\", \"similar\": \"$similar\" },";
+		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toggle\": $toggle, \"level\": \"$level\" },";
 	}
 	
 	$data .= "{}]";

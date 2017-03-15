@@ -30,7 +30,7 @@ class DB
 	 */
 	function Load( $category )
 	{
-		$q = "SELECT id,rank,question,answer,toggle FROM " . TBL_QUESTIONS . " WHERE category = '$category'";
+		$q = "SELECT id,rank,question,answer,toggle,level FROM " . TBL_QUESTIONS . " WHERE category = '$category'";
 		$result = mysqli_query( $this->connection, $q );
 		if ( $this->debug == true ) {
 			echo "Q $q". PHP_EOL;

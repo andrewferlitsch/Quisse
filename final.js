@@ -1,7 +1,7 @@
 technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) {
 	$scope.title 	= "Final Score";
 	$scope.show 	= true;
-	$scope.showleft = true;
+	$scope.showleft = false;
 	$scope.totalQuestions = 0;
 	$scope.totalCorrect   = 0;
 	$scope.percentCorrect = "";

@@ -202,8 +202,18 @@ class NLP {
 			// past tense ending in ed
 			if ( $end == "ed" ) {
 				// ed after r, keep the e
-				if ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 3 ] == 'r' )
-					$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 1 );
+				if ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 3 ] == 'r' ) {
+					switch ( $tokens[ $i ] ) {
+					case "triggered": $tokens[ $i ] = "trigger"; break;
+					default:
+						$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 1 );
+					}
+				}
+				// ed after double p, drop the ped
+				else if ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 3 ] == 'p' && 
+						  $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'p') {
+					$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 3 );
+				}
 			}
 			
 			$end = substr( $tokens[ $i ], -1 );
