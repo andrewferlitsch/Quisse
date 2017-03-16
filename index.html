@@ -264,13 +264,14 @@ function UpdateScore() {
 			else
 				scope.percentCorrect = "";
 		});
-	}, 200);
+	}, 250);
 }
 
 /*
- *
+ * Pick a multi-choice question
  */
-function pickMulti( id ) {
+function pickMulti( questions, rank, id, correct ) {
+	// Get a question at random
 	var len  = questions.length - 1
 	var pick;
 	while ( true ) {
@@ -278,9 +279,12 @@ function pickMulti( id ) {
 		if ( pick != id )
 			break;
 	}
-	var similar = questions[ pick ].similar;
-	if ( similar.length < 3 )
-		return pickMulti( id );
+	
+	// Get the question's similar
+	var choices = questions[ pick ].similar.split(",");
+	// If it does not have at least 3 choices, get another question
+	if ( choices.length < 3 )
+		return pickMulti( questions, rank, id, correct );
 	return questions[ pick ];
 }
 

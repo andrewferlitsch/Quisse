@@ -14,6 +14,7 @@ function Load( $category ) {
 		$level    = $row[ 'level' ];
 		$rank     = $row[ 'rank' ];
 		$toggle	  = $row[ 'toggle' ];
+		$similar  = $row[ 'similar' ];
 
 		if ( $level != NULL ) {
 			// limit changing preset level (rank) from learned level by 1
@@ -23,7 +24,7 @@ function Load( $category ) {
 				$rank--;
 		}
 		
-		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toggle\": $toggle, \"level\": \"$level\" },";
+		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toggle\": $toggle, \"level\": \"$level\", \"similar\": \"$similar\" },";
 	}
 	
 	$data .= "{}]";

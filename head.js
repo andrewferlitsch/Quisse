@@ -1,5 +1,5 @@
 // Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
-technical.controller( 'interviewCtrl', function( $scope ) {
+technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 	// page view
 	$scope.page = [];
 	$scope.page[ "Interview" ] = true;
@@ -28,12 +28,20 @@ technical.controller( 'interviewCtrl', function( $scope ) {
 		$scope.lastcat = cat;
 		
 		// reset scoring
-		totalQuestions = 0;
+		totalQuestions = 0;	// are these needed ?
 		totalCorrect   = 0;
 		
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);
+		
+		// NEW
+		$rootScope.$broadcast('category', cat );
 	}
+	
+	// NEW
+	$scope.$on('reset', function(event, args) {
+		$scope.showCategory( args );
+	})
 })
 .directive( "interview", function() {
 	return {

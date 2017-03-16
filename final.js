@@ -5,6 +5,16 @@ technical.controller( 'finalCtrl', function( $scope, $location, $anchorScroll ) 
 	$scope.totalQuestions = 0;
 	$scope.totalCorrect   = 0;
 	$scope.percentCorrect = "";
+	
+	$scope.cat = "";
+	$scope.$on('category', function(event, args) {
+		$scope.cat = args;
+	})
+	
+	// NEW
+	$scope.Reset = function() {
+		$rootScope.$broadcast( 'reset', $scope.cat );
+	}
 })
 .directive( "final", function() {
 	return {
