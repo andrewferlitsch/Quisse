@@ -11,5 +11,11 @@
 	<label class='w3-label' for='m3'>{{ m[ 3 ] }}</label><br/>
 </fieldset>
 
-<span style='font-weight: bold; color: green' ng-if='iscorrect==true'>Correct</span>
-<span style='font-weight: bold; color: red' ng-if='iscorrect==false'>Not Correct</span>
+<div class='w3-right'>
+	<button class='w3-btn w3-teal w3-small' ng-click='Next( question.id )'>Next</button>
+</div>
+<div class='w3-left'>
+	<span style='font-weight: bold; color: green' ng-if='iscorrect==true'>Correct</span>
+	<span style='font-weight: bold; color: red' ng-if='iscorrect==false'>Not Correct</span>
+</div>
+<div style='clear:both;'>&nbsp;</div>
