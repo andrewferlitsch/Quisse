@@ -242,15 +242,6 @@ function Tally( category, nquestions, correct ) {
 	UpdateScore();
 }
 
-/*
- * Undo the Tally (Score) for a category
- */
-function UnTally( category, nquestions, correct ) {
-	totalQuestions -= nquestions
-	totalCorrect -= correct;
-	UpdateScore();
-}
-
 /* Update the Final Score
 */
 function UpdateScore() {

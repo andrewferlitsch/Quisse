@@ -28,13 +28,13 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 		$scope.lastcat = cat;
 		
 		// reset scoring
-		totalQuestions = 0;	// are these needed ?
+		totalQuestions = 0;	
 		totalCorrect   = 0;
 		
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);
 		
-		// NEW
+		// Pass the category onto the final score controller
 		$rootScope.$broadcast('category', cat );
 	}
 	
