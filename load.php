@@ -24,7 +24,7 @@ function Load( $category ) {
 				$rank--;
 		}
 		
-		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toggle\": $toggle, \"level\": \"$level\", \"similar\": \"$similar\" },";
+		$data .= "{ \"id\": $id, \"rank\": $rank, \"question\": \"$question\", \"answer\": \"$answer\", \"toggle\": $toggle, \"level\": \"$level\", \"similar\": \"$similar\", \"answered\": \"false\" },";
 	}
 	
 	$data .= "{}]";

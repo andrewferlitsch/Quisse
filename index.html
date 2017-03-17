@@ -203,12 +203,12 @@ function pickNext( questions, rank, id, correct ) {
 	var len = questions.length - 1;
 	var list = [];
 	for ( var i = 0; i < len; i++ ) {
-		// if question has been answered correctly, then set rank level
-		// to zero to not be selected again
+		// if question has been answered correctly, then set answered
+		// to true to not be selected again
 		if ( correct && questions[ i ].id == id ) {
-			questions[ i ].rank = 0;
+			questions[ i ].answered = true;
 		}
-		else if ( questions[ i ].rank == rank )
+		else if ( questions[ i ].rank == rank && questions[ i ].answered != true )
 			list.push( questions[ i ] );
 	}
 	
@@ -267,7 +267,7 @@ function pickMulti( questions, rank, id, correct ) {
 	var pick;
 	while ( true ) {
 		var pick = Math.round( Math.random() * len );
-		if ( pick != id )
+		if ( pick != id && questions[ pick ].answered == false )
 			break;
 	}
 	
