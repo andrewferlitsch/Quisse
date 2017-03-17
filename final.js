@@ -1,3 +1,4 @@
+// Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
 technical.controller( 'finalCtrl', function( $scope, $rootScope, $location, $anchorScroll ) {
 	$scope.title 	= "Final Score";
 	$scope.show 	= true;
