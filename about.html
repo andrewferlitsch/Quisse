@@ -5,3 +5,87 @@ h3 { color: steelblue; }
 	<section style='text-align: center'>
 		<h3>About: Version {{version}}</h3>
 	</section>
+	
+	<section class='w3-container'>
+		<h4>What is Quisse?</h4>
+		<p>
+			Quisse is designed to help individuals prepare for technical interviews. 
+			Quisse consists of flashcards, multi-choice quizzes, and coding challenge tutorials.
+		</p>
+		
+		<h4>Selecting a Category</h4>
+		<p>
+			There are 25 technical categories to choose from. Use the 'Select Skill Category'
+			drop down to select a skill to quiz yourself on. At anytime, you can select other
+			categories to quiz yourself on.
+		</p>
+		
+		<h4>Flashcards</h4>
+		<p>
+		After you selected a category, you will be prompted with flashcards. Each flashcard will show
+		a question. When you flip the flashcard (by clicking on it), it will show the answer. Use the
+		Next buttons to advance to the next card. You can self-score yourself by selecing the Next button
+		with the checkmark when you got the answer correct, or the Next button with the X when you did not
+		answer the question correctly.
+		</p>
+		<p>
+		The questions start at difficulty level 1, and will progressively advance to level 3. At each level,
+		questions are selected at random. Once you've indicated you answered the question correctly, you will
+		not see the question. The flashcards use an adaptive testing method to determine when to advance (or decrease)
+		the difficulty level based on your self-scoring.
+		</p>
+		<p>
+		The difficulty level of each question is dynamically determined from the history of timings and
+		self-scoring from past users. Your timings and self-scoring will be added to this history - thanks for
+		helping Quisse be smarter and a better product!
+		</p>
+		<p>
+		Once the adaptive method determines you have passed, a You Passed will be displayed with a beep, and
+		a button will appear to proceed to the Multiple Choice quiz section.
+		</p>
+		
+		<h4>Multiple Choice Quiz</h4>
+		<p>
+		Once you have completed the flashcard section, you can select the Start Quiz button to start the
+		multiple choice quiz section. In this section, you will be presented with a question and four choices
+		for answers, of which only one is correct. If you select the correct choice, a Correct will be displayed;
+		otherwise a Not Correct will be displayed. Use the Next button to go to the next question.
+		</p>
+		<p>
+		The questions start at difficulty level 1, and will progressively advance to level 3. At each level,
+		questions are selected at random. Once you have answered a question correctly, you will not see it again.
+		The multiple choice use an adaptive testing method to determine when to advance (or decrease)
+		the difficulty level based on your scoring.
+		</p>
+		<p>
+		The four choices consist of the correct answer and three wrong answers. The three wrong answers
+		come from the answers to questions in the same category. A natural language processing (NLP) method
+		is used to compare a question for similarity to other questions in the category. The answers to
+		questions determined to be similar are then used as the wrong answers to the question.
+		</p>
+		
+		<h4>Scoring</h4>
+		<p>
+		In both the flashcard and multiple choice section, scoring is kept at the bottom of the page in
+		the Score section.
+		</p>
+		
+		<h4>Reset</h4>
+		<p>
+		At any time, you can restart the testing in a category with the Reset button in the Score section.
+		This will reset the scoring and return you back to the beginning of the flashcards.
+		</p>
+		
+		<h4>Coding</h4>
+		<p>
+		The Coding section has short tutorials (refresher) on basic computer science algorithms and
+		data structures. For each example, a version is shown in Java, Python and Javascript. Each example
+		is commented, comes with test data, and where applicable written in an OOP design.
+		</p>
+		
+		<h4>Last Note</h4>
+		<p>
+		We will be continually improving our adaptive testing techniques, timing analysis and NLP processing
+		to provide you with the most effective training experience possible - the Staff at Quizze.
+		</p>
+	</section>

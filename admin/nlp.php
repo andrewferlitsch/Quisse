@@ -148,11 +148,13 @@ class NLP {
 				case "scheduling": $tokens[ $i ] = "schedule"; break;
 				case "slicing": $tokens[ $i ] = "slice"; break;
 				case "recycling": $tokens[ $i ] = "recycle"; break;
+				case "calculating": $tokens[ $i ] = "calculate"; break;
 				default:
-					// drop duplicate n, m or d when adding ing
+					// drop duplicate n, m, t or d when adding ing
 					if ( ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'n' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'n' ) ||
 						 ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'm' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'm' ) ||
-						 ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'd' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'd' ) )
+						 ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'd' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'd' ) ||
+						 ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 't' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 't' ) )
 						$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 4 );
 					else
 						$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 3 );
@@ -223,7 +225,7 @@ class NLP {
 				if ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 2 ] == 's' )
 					continue;
 				switch ( $tokens[ $i ] ) {
-				case "status": break;
+				case "analysis": case "bias": case "status": break;
 				default: $tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 1 );
 						break;
 				}

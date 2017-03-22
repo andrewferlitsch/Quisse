@@ -128,6 +128,11 @@
 				<div ng-show='multi' multi-dos></div>
 			</div>
 			
+			<div ng-show='view["Machine Learning"]' ng-controller="mlCtrl">
+				<div ng-show='qa' questions-ml></div>
+				<div ng-show='multi' multi-ml></div>
+			</div>
+			
 			<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl">
 				<div ng-show='qa' questions-mysql></div>
 				<div ng-show='multi' multi-mysql></div>
@@ -357,6 +362,7 @@ function SendServer() {
 <script src="agile.php"></script>
 <script src="network.php"></script>
 <script src="security.php"></script>
+<script src="ml.php"></script>
 <script src="final.js"></script>
 <script src="footer.js"></script>
 <script src="advice.js"></script>

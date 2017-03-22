@@ -3,17 +3,19 @@
 	<h4 class='w3-label' style='color: green'>{{question.question}}
 		<span style='font-size: 12pt; color: orange;' class='w3-right'>Level: {{question.rank}} </span>
 	</h4>
-	<input type='radio' name='multi' id='m0' value='1' class='w3-radio' ng-click='Choice(0, question.id)' ng-disabled='disable' ng-model='checked'/>
-	<label class='w3-label' for='m0'>{{ m[ 0 ] }}<label><br/>
-	<input type='radio' name='multi' id='m1' value='2' class='w3-radio' ng-click='Choice(1, question.id)' ng-disabled='disable' ng-model='checked'/>
-	<label class='w3-label' for='m1'>{{ m[ 1 ] }}</label><br/>
-	<input type='radio' name='multi' id='m2' value='3' class='w3-radio' ng-click='Choice(2, question.id)' ng-disabled='disable' ng-model='checked'/>
-	<label class='w3-label' for='m2'>{{ m[ 2 ] }}</label><br/>
-	<input type='radio' name='multi' id='m3' value='4' class='w3-radio' ng-click='Choice(3, question.id)' ng-disabled='disable' ng-model='checked'/>
-	<label class='w3-label' for='m3'>{{ m[ 3 ] }}</label><br/>
+	<div ng-show='!passed'>
+		<input type='radio' name='multi' id='m0' value='1' class='w3-radio' ng-click='Choice(0, question.id)' ng-disabled='disable' ng-model='checked'/>
+		<label class='w3-label' for='m0'>{{ m[ 0 ] }}<label><br/>
+		<input type='radio' name='multi' id='m1' value='2' class='w3-radio' ng-click='Choice(1, question.id)' ng-disabled='disable' ng-model='checked'/>
+		<label class='w3-label' for='m1'>{{ m[ 1 ] }}</label><br/>
+		<input type='radio' name='multi' id='m2' value='3' class='w3-radio' ng-click='Choice(2, question.id)' ng-disabled='disable' ng-model='checked'/>
+		<label class='w3-label' for='m2'>{{ m[ 2 ] }}</label><br/>
+		<input type='radio' name='multi' id='m3' value='4' class='w3-radio' ng-click='Choice(3, question.id)' ng-disabled='disable' ng-model='checked'/>
+		<label class='w3-label' for='m3'>{{ m[ 3 ] }}</label><br/>
+	</div>
 </fieldset>
 
-<div class='w3-right'>
+<div class='w3-right' ng-show='!passed'>
 	<button class='w3-btn w3-teal w3-small' ng-click='Multi( question.id )'>Next</button>
 </div>
 <div class='w3-left'>
