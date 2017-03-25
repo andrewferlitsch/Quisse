@@ -6,7 +6,7 @@ class Users {
 	var $errmsg = "";
 	
 	// Add (Register) a new user
-	function NewUser( $username, $password, $confirm, $email ) {
+	function NewUser( $username, $email, $password, $confirm ) {
 		// Check format of username
 		if ( !( $username = $this->ValidName( $username ) ) && $username != "" ) {
 			return !( $this->error = true );
@@ -23,6 +23,16 @@ class Users {
 		}
 
 		$hpassword = md5( $password );
+		
+		$q = "INSERT INTO " . TBL_QUESTIONS . " (username,email,password,created,lastlogin) VALUES " .
+			 "($username,$email,$hpassword,SYSDATE(),SYSDATE() )";
+		
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
 		return $hpassword;
 	}
 	
@@ -121,12 +131,13 @@ class Users {
 }
 
 $users = new Users();
-echo $users->NewUser( "", "", "", "" );
-echo $users->errmsg . "<br/>";
-echo $users->NewUser( "andy", "", "", "" );
-echo $users->errmsg . "<br/>";
-echo $users->NewUser( "andy", "good", "", "" );
-echo $users->errmsg . "<br/>";
-echo $users->NewUser( "andy", "good", "bob", "" );
-echo $users->errmsg . "<br/>";
+if ( isset( $_GET['new'] ) ) {
+	$username = $_GET['username'];
+	$email    = $_GET['email'];
+    $password = $_GET[ 'password' ];
+    $confirm  = $_GET[ 'confirm' ];
+
+	$rc = $users->NewUser( $username, $email, $password, $confirm );
+	echo $rc . $users->errmsg;
+}
 ?>
