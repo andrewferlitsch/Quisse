@@ -6,6 +6,7 @@ define("TBL_USERS", "users" );
 class Users {
 	var $error  = false;
 	var $errmsg = "";
+	var $userid = -1;
 	
 	// Add (Register) a new user
 	function NewUser( $username, $email, $password, $confirm ) {
@@ -163,7 +164,7 @@ class Users {
 		
 		$hpassword = md5( $password );
 		
-		$q = "SELECT password FROM " . TBL_USERS . " WHERE " . $where;
+		$q = "SELECT password,userid FROM " . TBL_USERS . " WHERE " . $where;
 		$result = mysqli_query( $db->connection, $q );
 		if ( $db->debug == true ) {
 			echo "Q $q". PHP_EOL;
@@ -178,7 +179,32 @@ class Users {
 			return !( $this->error = true );
 		}
 		
+		$this->userid = $data[ 'id' ];
+		
+		$_SESSION["username"] = $username;
+		$_SESSION["email"]    = $email;
+		$_SESSION["userid"]   = $this->userid;
+		
 		return $hpassword;
+	}
+	
+	function Logout() {
+		unset( $_SESSION );
+	}
+	
+	// Get information for a user
+	function GetUser( $userid ) {
+		global $db;
+		
+		$q = "SELECT * FROM " . TBL_USERS . " WHERE id=$userid";
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		$data = mysqli_fetch_array( $result );
+		return $data;
 	}
 	
 	function ResetPassword() {
@@ -202,14 +228,29 @@ if ( isset( $_POST['new'] ) ) {
     $confirm  = $_POST[ 'confirm' ];
 
 	$rc = $users->NewUser( $username, $email, $password, $confirm );
-	echo $rc . $users->errmsg;
+	//echo $rc . $users->errmsg;
 }
-else if ( isset( $_GET['login']) ) {
-	$username = $_GET['username'];
-	$email    = $_GET['email'];
-    $password = $_GET[ 'password' ];
+else if ( isset( $_POST['login']) ) {
+	$username = $_POST['username'];
+	$email    = $_POST['email'];
+    $password = $_POST[ 'password' ];
 	
 	$rc = $users->Login( $username, $email, $password );
-	echo $rc . $users->errmsg;
+	//echo $rc . $users->errmsg;
+}
+else if ( isset( $_POST['logout'] ) ) {
+	$users->Logout();
+}
+else if ( isset( $_GET['get'] ) ) {
+	$userid    = $_GET['userid'];
+	$user      = $users->GetUser( $userid );
+	$id        = $user[ 'id' ];
+	$username  = $user[ 'username' ];
+	$email     = $user[ 'email' ];
+	$created   = $user[ 'created' ];
+	$lastlogin = $user[ 'lastlogin' ];
+	$active    = $user[ 'active' ];
+	echo "{ \"id\": $id, \"username\": \"$username\", \"email\": \"$email\", 
+	\"created\": \"$created\", \"lastlogin\": \"$lastlogin\", \"active\": \"$active\" }";
 }
 ?>
