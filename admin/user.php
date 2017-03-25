@@ -12,17 +12,20 @@ class Users {
 		global $db;
 		
 		// Check format of username
-		$username = trim( $username );
+		$username = $this->Strip( $username );
 		if ( $username != "" && !( $username = $this->ValidName( $username ) ) ) {
 			return !( $this->error = true );
 		}
 		
 		// Check format of password
+		$password = $this->Strip( $password );
+		$confirm  = $this->Strip( $confirm );
 		if ( !( $password = $this->ValidPassword( $password, $confirm ) ) ) {
 			return !( $this->error = true );
 		}
 		
 		// Check format of email address
+		$email = $this->Strip( $email );
 		if ( !( $email = $this->ValidEmail( $email ) ) ) {
 			return !( $this->error = true );
 		}
@@ -43,9 +46,6 @@ class Users {
 	
 	// Check if name is valid syntax
 	function ValidName( $username ) {
-		$username = strip_tags( $username );
-		$username = htmlspecialchars( $username );
-		
 		// Check if name has been registered already
 		if ( $username != "" ) {
 			if ( $this->IsRegisteredName( $username ) ) {
@@ -59,19 +59,11 @@ class Users {
 	
 	// Check if password is valid syntax
 	function ValidPassword( $password, $confirm ) {
-		$password = trim( $password );
-		$password = strip_tags( $password );
-		$password = htmlspecialchars( $password );
-		
 		// Password Required
 		if ( $password == "" ) {
 			$this->errmsg = "No password specified.";
 			return false;
 		}
-		
-		$confirm = trim( $confirm );
-		$confirm = strip_tags( $confirm );
-		$confirm = htmlspecialchars( $confirm );
 		
 		// Confirm Password Required
 		if ( $confirm == "" ) {
@@ -90,13 +82,9 @@ class Users {
 	
 	// Check if email is valid syntax
 	function ValidEmail( $email ) {
-		$email = trim( $email );
-		$email = strip_tags( $email );
-		$email = htmlspecialchars( $email );
-		
 		// Email Required
 		if ( $email == "" ) {
-			$this->errmsg = "No password specified.";
+			$this->errmsg = "No email specified.";
 			return false;
 		}
 		
@@ -148,25 +136,80 @@ class Users {
 		return false;
 	}
 	
-	function Login( $username, $password ) {
+	// User Login
+	function Login( $username, $email, $password ) {
+		global $db;
+		
+		$username = $this->Strip( $username );
+		$email    = $this->Strip( $email );
+		$password = $this->Strip( $password );
+		
+		// login by username
+		if ( $username != "" ) {
+			if ( !$this->IsRegisteredName( $username ) ) {
+				$this->errmsg = "Username not valid.";
+				return !( $this->error = true );
+			}
+			$where = "username='$username'";
+		}
+		// login by email
+		else {
+			if ( !$this->IsRegisteredEmail( $email ) ) {
+				$this->errmsg = "Email not valid.";
+				return !( $this->error = true );
+			}
+			$where = "email='$email'";
+		}
 		
 		$hpassword = md5( $password );
+		
+		$q = "SELECT password FROM " . TBL_USERS . " WHERE " . $where;
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		$data = mysqli_fetch_array( $result );
+		$storedpassword = $data[ 'password' ];
+		
+		if ( $storedpassword != $hpassword ) {
+			$this->errmsg = "Password not valid.";
+			return !( $this->error = true );
+		}
+		
 		return $hpassword;
 	}
 	
 	function ResetPassword() {
 		
 	}
+	
+	// Strip input of whitespace, tags and special characters
+	function Strip( $name ) {
+		$name = trim( $name );
+		$name = strip_tags( $name );
+		$name = htmlspecialchars( $name );
+		return $name;
+	}
 }
 
 $users = new Users();
-if ( isset( $_GET['new'] ) ) {
+if ( isset( $_POST['new'] ) ) {
+	$username = $_POST['username'];
+	$email    = $_POST['email'];
+    $password = $_POST[ 'password' ];
+    $confirm  = $_POST[ 'confirm' ];
+
+	$rc = $users->NewUser( $username, $email, $password, $confirm );
+	echo $rc . $users->errmsg;
+}
+else if ( isset( $_GET['login']) ) {
 	$username = $_GET['username'];
 	$email    = $_GET['email'];
     $password = $_GET[ 'password' ];
-    $confirm  = $_GET[ 'confirm' ];
-
-	$rc = $users->NewUser( $username, $email, $password, $confirm );
+	
+	$rc = $users->Login( $username, $email, $password );
 	echo $rc . $users->errmsg;
 }
 ?>
