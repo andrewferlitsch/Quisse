@@ -1,14 +1,19 @@
 <?php
 include "../db.php";
 
+define("TBL_USERS", "users" );
+
 class Users {
 	var $error  = false;
 	var $errmsg = "";
 	
 	// Add (Register) a new user
 	function NewUser( $username, $email, $password, $confirm ) {
+		global $db;
+		
 		// Check format of username
-		if ( !( $username = $this->ValidName( $username ) ) && $username != "" ) {
+		$username = trim( $username );
+		if ( $username != "" && !( $username = $this->ValidName( $username ) ) ) {
 			return !( $this->error = true );
 		}
 		
@@ -24,13 +29,13 @@ class Users {
 
 		$hpassword = md5( $password );
 		
-		$q = "INSERT INTO " . TBL_QUESTIONS . " (username,email,password,created,lastlogin) VALUES " .
-			 "($username,$email,$hpassword,SYSDATE(),SYSDATE() )";
+		$q = "INSERT INTO " . TBL_USERS . " (username,email,password,created,lastlogin) VALUES " .
+			 "('$username','$email','$hpassword',SYSDATE(),SYSDATE() )";
 		
-		$result = mysqli_query( $this->connection, $q );
-		if ( $this->debug == true ) {
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
 			echo "Q $q". PHP_EOL;
-			echo mysqli_error( $this->connection ) . PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
 		}
 		
 		return $hpassword;
@@ -38,7 +43,6 @@ class Users {
 	
 	// Check if name is valid syntax
 	function ValidName( $username ) {
-		$username = trim( $username );
 		$username = strip_tags( $username );
 		$username = htmlspecialchars( $username );
 		
@@ -111,11 +115,36 @@ class Users {
 		return $email;
 	}
 	
-	function IsRegisteredName( $name ) {
+	// Check if name already exists
+	function IsRegisteredName( $username ) {
+		global $db;
+		
+		$q = "Select username FROM " . TBL_USERS . " WHERE username='$username'";
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		if ( mysqli_num_rows( $result ) > 0 )
+			return true;
 		return false;
 	}
 	
-	function IsRegisteredEmail( $name ) {
+	// Check if email already exists
+	function IsRegisteredEmail( $email ) {
+		global $db;
+		
+		$q = "Select email FROM " . TBL_USERS . " WHERE email='$email'";
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		if ( mysqli_num_rows( $result ) > 0 )
+			return true;
+		
 		return false;
 	}
 	
