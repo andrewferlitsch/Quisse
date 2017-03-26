@@ -108,7 +108,7 @@ class Users {
 	function IsRegisteredName( $username ) {
 		global $db;
 		
-		$q = "Select username FROM " . TBL_USERS . " WHERE username='$username'";
+		$q = "SELECT username FROM " . TBL_USERS . " WHERE username='$username'";
 		$result = mysqli_query( $db->connection, $q );
 		if ( $db->debug == true ) {
 			echo "Q $q". PHP_EOL;
@@ -207,6 +207,21 @@ class Users {
 		return $data;
 	}
 	
+	// Return the number of users
+	function Count() {
+		global $db;
+		
+		$q = "SELECT count(id) FROM " . TBL_USERS;
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		$data = mysqli_fetch_array( $result );
+		return $data[ 0 ];
+	}
+	
 	function ResetPassword() {
 		
 	}
@@ -228,7 +243,11 @@ if ( isset( $_POST['new'] ) ) {
     $confirm  = $_POST[ 'confirm' ];
 
 	$rc = $users->NewUser( $username, $email, $password, $confirm );
-	//echo $rc . $users->errmsg;
+	
+	if ( $users->error ) {
+		echo $users->errmsg;
+		header("HTTP/1.1 501 " . $users->errmsg );
+	}
 }
 else if ( isset( $_POST['login']) ) {
 	$username = $_POST['username'];
@@ -236,7 +255,9 @@ else if ( isset( $_POST['login']) ) {
     $password = $_POST[ 'password' ];
 	
 	$rc = $users->Login( $username, $email, $password );
-	//echo $rc . $users->errmsg;
+	
+	if ( $users->error )
+		echo $users->errmsg;
 }
 else if ( isset( $_POST['logout'] ) ) {
 	$users->Logout();
@@ -252,5 +273,8 @@ else if ( isset( $_GET['get'] ) ) {
 	$active    = $user[ 'active' ];
 	echo "{ \"id\": $id, \"username\": \"$username\", \"email\": \"$email\", 
 	\"created\": \"$created\", \"lastlogin\": \"$lastlogin\", \"active\": \"$active\" }";
+}
+else if ( isset( $_GET['count'] ) ) {
+	echo $users->Count();
 }
 ?>

@@ -310,7 +310,7 @@ $(function() {
 </script>
 </head>
 <body ng-app="technical">
-	<header style='text-align: center' ng-controller="interviewCtrl">
+	<header ng-controller="navCtrl" style='text-align:center'>
 		<div nav></div>
 		<h2>Quisse Admin Dashboard</h2>
 	</header>
@@ -407,7 +407,7 @@ $(function() {
 <script>
 var technical = angular.module( 'technical', []);
 </script>
-<script src="../nav.js"></script
+<script src="../nav.js"></script>
 <script src="../footer.js"></script>
 </body>
 </html>
