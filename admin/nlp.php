@@ -323,9 +323,9 @@ class NLP {
 			
 				// entry has non-zero length similar matches
 				if ( count( $ids ) > 0 ) {
-					$db->UpdateSimilar( $id, $ids );
 					array_push( $res, $ids );
 				}
+				$db->UpdateSimilar( $id, $ids );
 			}
 		}
 		return $res;
@@ -355,9 +355,9 @@ class NLP {
 					$entry = $db->GetQuestion( $pair[ 1 ] );
 					array_push( $res, $entry );
 				}
-				$db->UpdateSimilar( $id, $ids );
-				return $res;
 			}
+			$db->UpdateSimilar( $id, $ids );
+			return $res;
 		}
 	}
 }
