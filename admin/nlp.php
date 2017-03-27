@@ -323,9 +323,6 @@ class NLP {
 			
 				// entry has non-zero length similar matches
 				if ( count( $ids ) > 0 ) {
-					for ( $j = 0; $j < count( $ids ); $j++ ) {
-						$db->GetQuestion( $ids[ $j ] );
-					}
 					$db->UpdateSimilar( $id, $ids );
 					array_push( $res, $ids );
 				}
@@ -354,7 +351,8 @@ class NLP {
 			$res = array();
 			if ( count( $ids ) > 0 ) {
 				for ( $i = 0; $i < count( $ids ); $i++ ) {
-					$entry = $db->GetQuestion( $ids[ $i ] );
+					$pair = explode( ":", $ids[ $i ] );
+					$entry = $db->GetQuestion( $pair[ 1 ] );
 					array_push( $res, $entry );
 				}
 				$db->UpdateSimilar( $id, $ids );
@@ -433,7 +431,7 @@ if ( isset( $_POST[ 'action' ] ) ) {
 			echo "{id: $id, ids: [";
 			for ( $i = 0; $i < count( $ids ); $i++ ) {
 				if ( $i > 0 ) echo ",";
-				echo $ids[ $i ];
+				echo $ids[ $i ][ 0 ];
 			}
 			echo "] }";
 		}

@@ -216,16 +216,41 @@ class DB
 					// check for duplicates
 					$count = count( $ids );
 					for ( $j = 0; $j < $count; $j++ ) {
-						if ( $ids[ $j ] == $data[ 'id' ] )
+						$pair = explode( ":", $ids[ $j ] ); 
+						if ( $pair[ 1 ] == $data[ 'id' ] ) {
+							$pair[ 0 ]++;
+							$ids[ $j ] = $pair[ 0 ] . ":" . $pair[ 1 ];
 							break;
+						}
 					} 
+
+					// first occurrence
 					if ( $j == $count )
-						$ids[] = $data[ 'id' ];
+						$ids[] = "1:" . $data[ 'id' ];
 				}
 			}
 		}
-		return $ids;
+		return $this->SortSimilar( $ids );
 	}
+	
+	function SortSimilar( $ids ) {
+		$changed = false;
+		$count = count( $ids );
+		for ( $i = 1; $i < $count; $i++ ) {
+			$pair1 = explode( ":", $ids[ $i - 1 ] );
+			$pair2 = explode( ":", $ids[ $i ] );
+			if ( $pair1[ 0 ] < $pair2[ 0 ] ) {
+				$temp = $ids[ $i - 1 ];
+				$ids[ $i - 1 ] = $ids[ $i ];
+				$ids[ $i ] = $temp;
+				$changed = true;
+			}
+		}
+		
+		if ( $changed == true )
+			return $this->SortSimilar( $ids );
+		return $ids;
+	} 
 	
 	/*
 	 * Update the similar matches for an entry in the database

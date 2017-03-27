@@ -90,7 +90,8 @@ $(function() {
 		var similar = question.similar.split( "," );
 		if ( question.similar != "" ) {
 			for ( var i = 0; i < similar.length; i++ ) {
-				$.get("/admin/get.php?id=" + similar[ i ], function( data, status ) {
+				var pair = similar[ i ].split(":");
+				$.get("/admin/get.php?id=" + pair[ 1 ], function( data, status ) {
 					data = data.replace(/(\r\n|\n)/g, '\\n');
 					var question = JSON.parse( data );
 					var answer   = question.answer;
