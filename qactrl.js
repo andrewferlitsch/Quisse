@@ -150,7 +150,7 @@
 		
 		$scope.question = pickMulti( $scope.questions, $scope.rank, id, false );
 		
-		if ( question.question == "You Passed" ) {
+		if ( $scope.question.question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.passed = true;
 			$scope.iscorrect = "";
@@ -166,9 +166,10 @@
 		for ( var i = 0, j = 0; i < 4; i++ ) {
 			// skip the slot where the answer is
 			if ( i == answer ) continue;
-				
+			
+			var pair = choices[ j ].split(":");
 			for ( var k = 0; k < $scope.questions.length; k++ ) {
-				if ( $scope.questions[ k ].id == choices[ j ] ) {
+				if ( $scope.questions[ k ].id == pair[ 1 ] ) {
 					$scope.m[ i ] = $scope.questions[ k ].answer;
 					break;
 				}
