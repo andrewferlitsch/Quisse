@@ -402,6 +402,15 @@ $(function() {
 
 	<footer ng-controller="footerCtrl" id='footer'>
 			<div footer></div>
+			<form method='post' action='admin.php'>
+				<label for='username'>Username:
+					<input type='text' name='username' />
+				</label>
+				<label for='password'>Password:
+					<input type='text' name='password' />
+				</label>
+				<input type='submit' value='Login'/>
+			</form>
 	</footer>
 
 <script>

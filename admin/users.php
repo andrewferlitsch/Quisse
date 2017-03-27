@@ -79,6 +79,7 @@ $(function() {
 		$("#email").val( user.email );
 		$("#created").val( user.created );
 		$("#lastlogin").val( user.lastlogin );
+		$("#active").val( user.active );
 		
 		$("#error").html("");
 		$("#ok").html("");
@@ -151,17 +152,18 @@ $(function() {
 			</label>
 			
 			<label for='created' class='w3-label' id='lcreated'>Created:
-				<input type='date' name='created'  class='w3-input'/>
+				<input type='date' name='created'  id='created' class='w3-input'/>
 			</label>
 			
 			<label for='lastlogin' class='w3-label' id='llastlogin'>LastLogin:
-				<input type='date' name='lastlogin'  class='w3-input'/>
+				<input type='date' name='lastlogin' id='lastlogin' class='w3-input'/>
 			</label>
 			
+			<br/>
 			<label for='active' class='w3-label'>Active:</label>
 			<select name='active' id='active'>
+				<option value='0'>0</option>
 				<option value='1'>1</option>
-				<option value='2'>2</option>
 			</select>
 			<br/>
 			

@@ -188,6 +188,7 @@ class Users {
 		return $hpassword;
 	}
 	
+	// Logout
 	function Logout() {
 		unset( $_SESSION );
 	}
@@ -205,6 +206,22 @@ class Users {
 		
 		$data = mysqli_fetch_array( $result );
 		return $data;
+	}
+	
+	function UpdateUser( $userid, $username, $email, $password, $active ) {
+		global $db;
+		
+		$q = "UPDATE " . TBL_USERS . " SET username='$username' AND email='$email'";
+		if ( $password != "" ) {
+			$hpassword = md5( $password );
+			$q .= " AND password='$hpassword'";
+		}
+		$q .= " WHERE id=$userid";
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
 	}
 	
 	// Return the number of users
