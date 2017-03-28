@@ -282,7 +282,7 @@ function pickMulti( questions, rank, id, correct ) {
 	
 	// Check if there are any questions at this level
 	len = list.length - 1;
-	if ( len == 0 ) {
+	if ( len < 0 ) {
 		if ( rank == 1 || rank == 2 )
 			return pickMulti( questions, rank + 1, id, correct );
 		return { id: 0, question: "You Passed", answer: "No Questions Remain" };

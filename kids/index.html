@@ -50,8 +50,14 @@
 	
 	</section>
 	
+
+	<footer ng-controller="footerCtrl" id='footer'>
+			<div footer></div>
+	</footer>
+	
 	<div style='height: 300px'></div>
-	<footer style='text-align: center; color: gray'><br/>Copyright(c) 2016-17, Andrew Ferlitsch, Co-Organizer, Portland Data Science Group</footer>
+	
+	<audio id="beep" src="http://www.soundjay.com/button/beep-07.wav"></audio>
 <script>
 var technical = angular.module( 'kids', []);
 	
@@ -139,5 +145,6 @@ $(function() {
 <script src="mathctrl.js"></script>
 <script src="grpctrl.js"></script>
 <script src="/final.js"></script>
+<script src="/footer.js"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ technical.controller( 'kidsCtrl', function( $scope ) {
 		template: "<h4 style='margin-top: -20px; text-align: center; color: steelblue'>Quisse for Kids</h4>" +
 				  "<p>Use our question/answer dataset to practice learning math.</p>" +
 				  "<label for='category' class='w3-label'>Select Learning Category:</label>" +
-				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)'>" +
+				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
 				  "</select>"
 	}

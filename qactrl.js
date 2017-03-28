@@ -157,6 +157,8 @@
 			return;
 		}
 		
+		Timestamp( $scope.name, $scope.question.id, "multi" );
+		
 		// place the correct answer in a random location
 		answer = Math.floor( Math.random() * 4 );
 		$scope.m[ answer ] = $scope.question.answer;
@@ -202,8 +204,10 @@
 				}
 			}
 		}
-		else 
-			$scope.iscorrect = false;
+		else {
+			$scope.iscorrect = false
+			Timestamp( $scope.name, id, "incorrect" );
+		}
 		$scope.disable = true;
 	}
 
