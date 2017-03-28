@@ -55,6 +55,9 @@ class NLP {
 				case "add": $toks[] = "add"; break;
 				case "row": $toks[] = "row"; break;
 				case "box": $toks[] = "box"; break;
+				case "Web": 
+				case "web": $toks[] = "web"; break;
+				case "net": $toks[] = "net"; break;
 				case "max": $toks[] = "maximum"; break;
 				case "min": $toks[] = "minimum"; break;
 				default: // All Caps abbreviation
@@ -149,6 +152,7 @@ class NLP {
 				case "slicing": $tokens[ $i ] = "slice"; break;
 				case "recycling": $tokens[ $i ] = "recycle"; break;
 				case "calculating": $tokens[ $i ] = "calculate"; break;
+				case "managing": $tokens[ $i ] = "manage"; break;
 				default:
 					// drop duplicate n, m, t or d when adding ing
 					if ( ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'n' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'n' ) ||

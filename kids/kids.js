@@ -21,6 +21,7 @@ technical.controller( 'kidsCtrl', function( $scope ) {
 				  "<p>Use our question/answer dataset to practice learning math.</p>" +
 				  "<label for='category' class='w3-label'>Select Learning Category:</label>" +
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
+				  "	<option value='' disabled selected>Select a category...</option>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
 				  "</select>"
 	}
