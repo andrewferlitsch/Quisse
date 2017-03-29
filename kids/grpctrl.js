@@ -12,55 +12,57 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 						  id: 1
 						}
 					  ];
-	$scope.groups = [ { category: "Animal", sub: "Pet", desc: "Household Pets", list: [ "cat", "dog", "bird" ]
+	$scope.groups = [ { category: "Animal", major: "Mammal", sub: "Pet", desc: "Household Pets", list: [ "cat", "dog", "bird" ]
 					  },
-					  { category: "Animal", sub: "Pet", desc: "Rodent Pets", list: [ "gerbil", "hamster", "guinea pig" ]
+					  { category: "Animal", major: "Mammal", minor: "Pet", desc: "Rodent Pets", list: [ "gerbil", "hamster", "guinea pig" ]
 					  },
-					  { category: "Animal", sub: "Pet", desc: "Bird Pets", list: [ "canary", "parakeet", "parrot" ]
+					  { category: "Animal", major: "Mammal", minor: "Pet", desc: "Reptile Pets", list: [ "snake", "turtle", "lizard" ]
 					  },
-					  { category: "Animal", sub: "Pet", desc: "Reptile Pets", list: [ "snake", "turtle", "lizard" ]
+					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Farm Animals", list: [ "pig", "cow", "chicken" ]
 					  },
-					  { category: "Animal", sub: "Farm", desc: "Farm Animals", list: [ "pig", "cow", "chicken" ]
+					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Packing Animals", list: [ "horse", "mule", "donkey" ]
 					  },
-					  { category: "Animal", sub: "Farm", desc: "Packing Animals", list: [ "horse", "mule", "donkey" ]
+					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Herd Animals", list: [ "cattle", "sheep", "llamas" ]
 					  },
-					  { category: "Animal", sub: "Farm", desc: "Herd Animals", list: [ "cattle", "sheep", "llamas" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Predator Animals", list: [ "lion", "tiger", "leopard" ]
 					  },
-					  { category: "Animal", sub: "Wild", desc: "Africa Predator Animals", list: [ "lion", "tiger", "leopard" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Large Animals", list: [ "elephant", "giraffe", "rhinoceros" ]
 					  },
-					  { category: "Animal", sub: "Wild", desc: "Africa Large Animals", list: [ "elephant", "giraffe", "rhinoceros" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Predator Animals", list: [ "bear", "wolf", "coyote" ]
 					  },
-					  { category: "Animal", sub: "Wild", desc: "America Predator Animals", list: [ "bear", "wolf", "coyote" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Grazing Animals", list: [ "moose", "deer", "antelope" ]
 					  },
-					  { category: "Animal", sub: "Wild", desc: "America Grazing Animals", list: [ "moose", "deer", "antelope" ]
+					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River Fish", list: [ "pike", "trout", "catfish"]
 					  },
-					  { category: "Fish", sub: "River", desc: "Common River Fish", list: [ "pike", "trout", "catfish"]
+					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River/Ocean Fish", list: [ "salmon", "bass", "sturgeon"]
 					  },
-					  { category: "Fish", sub: "River", desc: "Common River/Ocean Fish", list: [ "salmon", "bass", "sturgeon"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Common Ocean Fish", list: [ "tuna", "bluefish", "cod"]
 					  },
-					  { category: "Fish", sub: "Ocean", desc: "Common Ocean Fish", list: [ "tuna", "bluefish", "cod"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Sea Mammals", list: [ "dolphin", "whale", "sea lion"]
 					  },
-					  { category: "Fish", sub: "Ocean", desc: "Sea Mammals", list: [ "dolphin", "whale", "sea lion"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Crustaceans", list: [ "crab", "shrimp", "krill"]
 					  },
-					  { category: "Fish", sub: "Ocean", desc: "Crustaceans", list: [ "crab", "shrimp", "krill"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Ocean Predators", list: [ "shark", "orca", "sea snake"]
 					  },
-					  { category: "Fish", sub: "Ocean", desc: "Ocean Predators", list: [ "shark", "orca", "sea snake"]
+					  { category: "Animal", major: "Fish", minor: "Pets", desc: "Fish Pets", list: [ "angelfish", "goldfish", "guppy"]
 					  },
-					  { category: "Bird", sub: "Wild", desc: "Common Birds", list: [ "pigeon", "woodpecker", "owl" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Common Birds", list: [ "pigeon", "woodpecker", "owl" ]
 					  },
-					  { category: "Bird", sub: "Wild", desc: "Flightless Birds", list: [ "ostrich", "emu", "penguin" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Flightless Birds", list: [ "ostrich", "emu", "penguin" ]
 					  },
-					  { category: "Bird", sub: "Wild", desc: "Birds of Prey", list: [ "hawk", "eagle", "falcon" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Birds of Prey", list: [ "hawk", "eagle", "falcon" ]
 					  },
-					  { category: "Bird", sub: "Wild", desc: "Migrating Birds", list: [ "geese", "harrier", "duck" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Migrating Birds", list: [ "geese", "harrier", "duck" ]
 					  },
-					  { category: "Transportation", sub: "Land", desc: "Public Transport", list: [ "bus", "train", "street car" ]
+					  { category: "Animal", major: "Bird", minor: "Pet", desc: "Bird Pets", list: [ "canary", "parakeet", "parrot" ]
 					  },
-					  { category: "Transportation", sub: "Land", desc: "Personal Transportation", list: [ "car", "motorcycle", "bike" ]
+					  { category: "Transportation", major: "Land", minor: "Public", desc: "Public Transport", list: [ "bus", "train", "street car" ]
 					  },
-					  { category: "Transportation", sub: "Water", desc: "Public Ocean Transport", list: [ "ferry", "ocean liner", "cruise ship" ]
+					  { category: "Transportation", major: "Land", minor: "Personal", desc: "Personal Transportation", list: [ "car", "motorcycle", "minivan" ]
 					  },
-					  { category: "Transportation", sub: "Water", desc: "Sailing Ships", list: [ "sail boat", "yacht", "cutter" ]
+					  { category: "Transportation", major: "Water", minor: "Public", desc: "Public Ocean Transport", list: [ "ferry", "ocean liner", "cruise ship" ]
+					  },
+					  { category: "Transportation", major: "Water", minor: "Personal", desc: "Sailing Ships", list: [ "sail boat", "yacht", "cutter" ]
 					  }
 					];
 					
@@ -77,7 +79,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 
 		onnext = Timestamp( $scope.name, 0, "init" );
 	  
-		Tally( $scope.name, 1, 0 );
+		Tally( $scope.name, 0, 0 );
 		
 		counter = 0;
 		$scope.nquestions = 0;
@@ -94,20 +96,34 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		var answer = $scope.groups[ select ].desc + ":";
 		var wrong = "";
 		
-		if ( level > 0 ) {
-			while ( true ) {
-				var n = Math.floor( Math.random() * $scope.Size );
-				// do not pick the same selection
-				if ( n == select ) continue;
+		while ( true ) {
+			var n = Math.floor( Math.random() * $scope.Size );
+			// do not pick the same selection
+			if ( n == select ) continue;
 				
-				// look for a group that is not the same category
+			// look for a group that is not the same category
+			if ( level == 1 ) {
 				if ( $scope.groups[ n ].category == $scope.groups[ select ].category )
 					continue;
-				
-				// randomly pick one item from this group's list as the item that does not belong
-				wrong = $scope.groups[ n ].list[ Math.floor( Math.random() * 3 ) ];
-				break;
 			}
+			// look for a group that is the same category, but not same major subcategory
+			else if ( level == 2 ){
+				if ( $scope.groups[ n ].category != $scope.groups[ select ].category ||
+				     $scope.groups[ n ].major    == $scope.groups[ select ].major )
+					continue;
+			}
+			// look for a group that is the same category and major subcategory, but not the
+			// same minor subcategory
+			else if ( level == 3 ){
+				if ( $scope.groups[ n ].category != $scope.groups[ select ].category ||
+				     $scope.groups[ n ].major    != $scope.groups[ select ].major ||
+				     $scope.groups[ n ].minor    == $scope.groups[ select ].minor )
+					continue;
+			}
+				
+			// randomly pick one item from this group's list as the item that does not belong
+			wrong = $scope.groups[ n ].list[ Math.floor( Math.random() * 3 ) ];
+			break;
 		}
 		
 		var list = "";
