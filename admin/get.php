@@ -10,12 +10,13 @@ if ( isset( $_GET[ 'category' ] ) ) {
 		$id       = $entry[ 'id' ];
 		$question = str_replace( '"', '\\"', $entry[ 'question' ] );
 		$answer   = str_replace( '"', '\\"', $entry[ 'answer' ] );
-		$level    = $entry[ 'rank' ];
+		$rank     = $entry[ 'rank' ];
+		$level    = $entry[ 'level' ];
 		$tcount   = $entry[ 'tcount' ];
 		$timing   = $entry[ 'timing' ];
 		$words    = $entry[ 'words' ];
 		$similar  = $entry[ 'similar' ];
-		$out .= "{ \"id\": $id, \"question\": \"$question\", \"answer\": \"$answer\", \"level\": $level, \"tcount\": $tcount, \"timing\": $timing, \"words\": \"$words\", \"similar\": \"$similar\" }";
+		$out .= "{ \"id\": $id, \"question\": \"$question\", \"answer\": \"$answer\", \"rank\": $rank,  \"level\": \"$level\", \"tcount\": $tcount, \"timing\": $timing, \"words\": \"$words\", \"similar\": \"$similar\" }";
 		
 		// not the last entry
 		if ( $i < $count - 1 )

@@ -75,6 +75,7 @@ $(function() {
 		$("#id").html( question.id );
 		$("#question").val( question.question );
 		$("#answer").val( question.answer );
+		$("#rank").val( question.rank );
 		$("#level").val( question.level );
 		$("#tcount").html( question.tcount );
 		var timing = 0;
@@ -111,7 +112,8 @@ $(function() {
 		$("#id").html( "" );
 		$("#question").val( "" );
 		$("#answer").val( "" );
-		$("#level").val( 1 );
+		$("#rank").val( 1 );
+		$("#level").val( "" );
 		$("#words").html( "" );
 		$("#similar").html( "" );
 		$("#tcount").html( "" );
@@ -146,12 +148,12 @@ $(function() {
 			  id      : $("#id").html(),
 			  question: $("#question").val(),
 			  answer  : $("#answer").val(),
-			  level   : $("#level").val()
+			  rank    : $("#rank").val()
 			},
 			function ( data, status ) {
 				questions[ index ].question = $("#question").val();
 				questions[ index ].answer   = $("#answer").val();
-				questions[ index ].level    = $("#level").val();
+				questions[ index ].rank     = $("#rank").val();
 				if ( action == "add" ) {
 					$("#id").html( data );
 					questions[ index ].id = data;
@@ -360,12 +362,15 @@ $(function() {
 		</textarea>
 		
 		<!-- Rank -->
-		<label for='level' class='w3-label'>Level</label>
-		<select id='level' name='level' class='w3-input'>
+		<label for='rank' class='w3-label'>Level (Original)</label>
+		<select id='rank' name='rank' class='w3-input'>
 			<option value='1'>1</option>
 			<option value='2'>2</option>
 			<option value='3'>3</option>
 		</select>
+		
+		<label for='level' class='w3-label'>Level (Learned)</label>
+		<input id='level' name='level' class='w3-input' readonly/>
 		<br/>
 		
 		<!-- Submit -->

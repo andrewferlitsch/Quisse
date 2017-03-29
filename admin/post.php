@@ -6,13 +6,13 @@ if ( isset( $_POST[ 'category' ] ) ) {
 	$id       = $_POST[ 'id' ];
 	$question = addslashes( $_POST[ 'question' ] );
 	$answer   = addslashes( $_POST[ 'answer' ] );
-	$level    = $_POST[ 'level' ];
+	$rank     = $_POST[ 'rank' ];
 	
 	if ( $action == "add" ) {
-		$result = $db->Add( $category, $question, $answer, $level );
+		$result = $db->Add( $category, $question, $answer, $rank );
 	}
 	else if ( $action == "update" ) {
-		$result = $db->Update( $id, $question, $answer, $level );
+		$result = $db->Update( $id, $question, $answer, $rank );
 	}
 	
 	echo $result;
