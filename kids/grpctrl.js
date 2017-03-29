@@ -93,10 +93,10 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		var select = Math.floor( Math.random() * $scope.Size );
 		var answer = $scope.groups[ select ].desc + ":";
 		var wrong = "";
-console.log( "LEVEL " + level );
+		
 		if ( level > 0 ) {
 			while ( true ) {
-				var n = Math.floor( Math.random() ) * $scope.Size;
+				var n = Math.floor( Math.random() * $scope.Size );
 				// do not pick the same selection
 				if ( n == select ) continue;
 				
@@ -105,16 +105,15 @@ console.log( "LEVEL " + level );
 					continue;
 				
 				// randomly pick one item from this group's list as the item that does not belong
-				wrong = $scope.groups[ n ].list[ Math.floor( Math.random() ) * 3 ];
+				wrong = $scope.groups[ n ].list[ Math.floor( Math.random() * 3 ) ];
 				break;
 			}
 		}
-console.log( "DONE");
 		
 		var list = "";
 			
 		// pick random position to insert wrong item
-		var insert = Math.floor( Math.random() ) * 4;
+		var insert = Math.floor( Math.random() * 4 );
 		
 		var j = i = 0;
 		for ( /**/; i < 4; i++ ) {
