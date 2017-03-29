@@ -12,57 +12,71 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 						  id: 1
 						}
 					  ];
-	$scope.groups = [ { category: "Animal", major: "Mammal", sub: "Pet", desc: "Household Pets", list: [ "cat", "dog", "bird" ]
+	$scope.groups = [ { category: "Animal", major: "Mammal", sub: "Pet", desc: "Household Pets", list: [ "cat", "dog", "bird" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Pet", desc: "Rodent Pets", list: [ "gerbil", "hamster", "guinea pig" ]
+					  { category: "Animal", major: "Mammal", minor: "Pet", desc: "Rodent Pets", list: [ "gerbil", "hamster", "guinea pig" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Pet", desc: "Reptile Pets", list: [ "snake", "turtle", "lizard" ]
+					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Farm Animals", list: [ "pig", "cow", "chicken" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Farm Animals", list: [ "pig", "cow", "chicken" ]
+					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Packing Animals", list: [ "horse", "mule", "donkey" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Packing Animals", list: [ "horse", "mule", "donkey" ]
+					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Herd Animals", list: [ "cattle", "sheep", "llamas" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Herd Animals", list: [ "cattle", "sheep", "llamas" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Predator Animals", list: [ "lion", "tiger", "leopard" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Predator Animals", list: [ "lion", "tiger", "leopard" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Large Animals", list: [ "elephant", "giraffe", "rhinoceros" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Large Animals", list: [ "elephant", "giraffe", "rhinoceros" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Predator Animals", list: [ "bear", "wolf", "coyote" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Predator Animals", list: [ "bear", "wolf", "coyote" ]
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Grazing Animals", list: [ "moose", "deer", "antelope" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Grazing Animals", list: [ "moose", "deer", "antelope" ]
+					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River Fish", list: [ "pike", "trout", "catfish"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River Fish", list: [ "pike", "trout", "catfish"]
+					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River/Ocean Fish", list: [ "salmon", "bass", "sturgeon"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River/Ocean Fish", list: [ "salmon", "bass", "sturgeon"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Common Ocean Fish", list: [ "tuna", "bluefish", "cod"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Common Ocean Fish", list: [ "tuna", "bluefish", "cod"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Sea Mammals", list: [ "dolphin", "whale", "sea lion"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Sea Mammals", list: [ "dolphin", "whale", "sea lion"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Crustaceans", list: [ "crab", "shrimp", "krill"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Crustaceans", list: [ "crab", "shrimp", "krill"]
+					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Ocean Predators", list: [ "shark", "orca", "sea snake"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Ocean Predators", list: [ "shark", "orca", "sea snake"]
+					  { category: "Animal", major: "Fish", minor: "Pets", desc: "Fish Pets", list: [ "angelfish", "goldfish", "guppy"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "Pets", desc: "Fish Pets", list: [ "angelfish", "goldfish", "guppy"]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Common Birds", list: [ "pigeon", "woodpecker", "owl" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Common Birds", list: [ "pigeon", "woodpecker", "owl" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Flightless Birds", list: [ "ostrich", "emu", "penguin", "dodo" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Flightless Birds", list: [ "ostrich", "emu", "penguin" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Birds of Prey", list: [ "hawk", "eagle", "falcon", "buzzard", "vulture", "condor" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Birds of Prey", list: [ "hawk", "eagle", "falcon" ]
+					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Migrating Birds", list: [ "geese", "harrier", "duck", "swan" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Migrating Birds", list: [ "geese", "harrier", "duck" ]
+					  { category: "Animal", major: "Bird", minor: "Pet", desc: "Bird Pets", list: [ "canary", "parakeet", "parrot", "cockatiel", "cockatoo", "macaw" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Bird", minor: "Pet", desc: "Bird Pets", list: [ "canary", "parakeet", "parrot" ]
+					  { category: "Animal", major: "Reptile", minor: "Pet", desc: "Reptile Pets", list: [ "snake", "turtle", "lizard", "iguana" ], answered: false, id: -1
 					  },
-					  { category: "Transportation", major: "Land", minor: "Public", desc: "Public Transport", list: [ "bus", "train", "street car" ]
+					  { category: "Animal", major: "Reptile", minor: "Wild", desc: "Wild Reptiles", list: [ "crocodile", "alligator", "komodo dragon", "sea turtle", "tortoise" ], answered: false, id: -1
 					  },
-					  { category: "Transportation", major: "Land", minor: "Personal", desc: "Personal Transportation", list: [ "car", "motorcycle", "minivan" ]
+					  { category: "Animal", major: "Reptile", minor: "Wild", desc: "Venomous Snakes", list: [ "cobra", "viper", "rattlesnake", "copperhead", "mamba" ], answered: false, id: -1
 					  },
-					  { category: "Transportation", major: "Water", minor: "Public", desc: "Public Ocean Transport", list: [ "ferry", "ocean liner", "cruise ship" ]
+					  { category: "Transportation", major: "Land", minor: "Public", desc: "Public Transport", list: [ "bus", "train", "street car", "taxi" ], answered: false, id: -1
 					  },
-					  { category: "Transportation", major: "Water", minor: "Personal", desc: "Sailing Ships", list: [ "sail boat", "yacht", "cutter" ]
+					  { category: "Transportation", major: "Land", minor: "Public", desc: "Emergency Vehicles", list: [ "police car", "fire truck", "ambulance" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Land", minor: "Personal", desc: "Personal Transportation", list: [ "car", "motorcycle", "minivan", "scooter" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Land", minor: "Work", desc: "Construction Vehicles", list: [ "dump truck", "bulldozer", "cement truck", "loader", "excavator", "backhoe", "crane" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Water", minor: "Public", desc: "Public Ocean Transport", list: [ "ferry", "ocean liner", "cruise ship" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Water", minor: "Personal", desc: "Sailing Ships", list: [ "sail boat", "yacht", "cutter" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Water", minor: "Military", desc: "War Ships", list: [ "battleship", "destroyer", "minesweeper", "frigate", "cruiser", "patrol boat" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Air", minor: "Commercial", desc: "Commercial Aircraft", list: [ "airplane", "helicopter", "jet" ], answered: false, id: -1
+					  },
+					  { category: "Transportation", major: "Air", minor: "Military", desc: "Military Aircraft", list: [ "fighter plane", "bomber", "attack helicopter" ], answered: false, id: -1
 					  }
 					];
 					
@@ -100,6 +114,8 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			var n = Math.floor( Math.random() * $scope.Size );
 			// do not pick the same selection
 			if ( n == select ) continue;
+			
+			if ( $scope.groups[ n ].answered == true ) continue;
 				
 			// look for a group that is not the same category
 			if ( level == 1 ) {
@@ -140,9 +156,18 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 				list += $scope.groups[ select ].list[ j++ ];
 		}
 		
+		// set the ID for the qroup question
+		$scope.groups[ select ].id = select;
+		
+		var A;
+		if ( wrong.charAt( 0 ) == 'a' )
+			A = "An ";
+		else
+			A = "A ";
+		
 		return [ { question: "Which item does not belong: " + list, 
-				   answer: wrong + " does not belong in " + $scope.groups[ select ].desc,
-				   rank: level, id: -1 }
+				   answer: A + wrong + " does not belong in " + $scope.groups[ select ].desc + ".",
+				   rank: level, id: select }
 				];
 	}
 
@@ -168,6 +193,10 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			Tally( $scope.name, 0, 1 );
 			oncorrect = Timestamp( $scope.name, id, "correct" );
 			ncorrect++;
+			
+			// mark qroup question as answered correctly
+			if ( id != -1 )
+				$scope.groups[ id ].answered = true;
 		}
 
 		counter++;
