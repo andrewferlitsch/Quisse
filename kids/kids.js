@@ -1,4 +1,4 @@
-technical.controller( 'kidsCtrl', function( $scope ) {
+technical.controller( 'kidsCtrl', function( $scope, $rootScope ) {
 	$scope.categories = [ "Addition", "Subtraction", "Multiply", "Divide", "Group" ];
 	$scope.view = [];
 	for ( var cat in $scope.categories ) {
@@ -10,9 +10,20 @@ technical.controller( 'kidsCtrl', function( $scope ) {
 		$scope.view[ cat ] = true;
 		$scope.last = cat;
 		
+		// reset scoring
+		totalQuestions = 0;	
+		totalCorrect   = 0;
+		
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 250);
+		
+		// Pass the category onto the final score controller
+		$rootScope.$broadcast('category', cat );
 	}
+	
+	$scope.$on('reset', function(event, args) {
+		$scope.showCategory( args );
+	})
 })
 .directive( "kids", function() {
 	return {
