@@ -1,3 +1,4 @@
+<!-- Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved -->
 <style>
 h3 { color: steelblue; }
 </style>
@@ -43,6 +44,23 @@ h3 { color: steelblue; }
 		Once the adaptive method determines you have passed, a You Passed will be displayed with a beep, and
 		a button will appear to proceed to the Multiple Choice quiz section.
 		</p>
+		<span style='color: orange; cursor: pointer' ng-click='showflipdetails=!showflipdetails'>&#9205; Algorithm Details</span>
+		<div ng-show='showflipdetails'  style='color: steelblue'>
+			<p>
+			The algorithm evaluates questions in groups of four. If all four questions are answered correct, the algorithm
+			will advance to the next level, unless you are already at level 3, then the algorithm will indicate you have passed.
+			If two or more questions are answered incorrect, the algorithm will decrease a level, unless you are already at level
+			1. Otherwise, the algorithm will stay on the same level. If all the questions at a level have been answered correctly,
+			the algorithm will advance to the next level.
+			</p>
+			<p>
+			The algorithm records the time you spent on the flip card when you select Next. Timings that are less than 2 seconds
+			or more than 20 second are discarded as outliers. For each question an accumulator is kept on the total time and
+			number of times answered across all users. A separate process periodically scans the questions and determines the average timing per question.
+			The level of difficulty is then dynamically reset per category, where the lowest 1/3 average timings are set to level 1,
+			mid 1/3 are set to level 2, and the highest 1/3 are set to level 3.
+			</p>
+		</div>
 		
 		<h4>Multiple Choice Quiz</h4>
 		<p>
@@ -63,6 +81,20 @@ h3 { color: steelblue; }
 		is used to compare a question for similarity to other questions in the category. The answers to
 		questions determined to be similar are then used as the wrong answers to the question.
 		</p>
+		<span style='color: orange; cursor: pointer' ng-click='showquizdetails=!showquizdetails'>&#9205; Algorithm Details</span>
+		<div ng-show='showquizdetails' style='color: steelblue'>
+			<p>
+			The algorithm generates and stores a reduced list of non-duplicated words for each question using a bag of word methods with stemming,
+			where high frequency words (e.g., the, are, if, ...) are filtered out (i.e., stop words). Each question's bag of words, in a category, 
+			is then compared to all the other questions' bags of words, in the same category, for similarity. The algorithm stores,
+			per question, the matched words and frequency, and id of each other question with at list one matching word.
+			</p>
+			<p>
+			The algorithm generates a multiple choice question by selecting the answer for the three most
+			similar matched questions as the wrong choices. The correct choice and the three wrong choices are then
+			displayed in a random sorted order.
+			</p>
+		</div>
 		
 		<h4>Scoring</h4>
 		<p>
