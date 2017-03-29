@@ -1,5 +1,5 @@
 <a name='{{name}}'/>
-<h1 class='w3-container w3-teal' ng-click='show=true; scrollTo()' id='{{subject}}'> {{subject}} <span style='font-size: 16pt;'>({{ncount}})</span></h1>
+<h1 class='w3-container w3-teal' ng-click='show=true; scrollTo()' id='{{subject}}'> {{subject}} <span style='font-size: 16pt;' ng-if='ncount>0'>({{ncount}})</span></h1>
 <hr/>
 <div style='font-size: 20px;' ng-show='show'>
 	<div class="flip" ng-repeat='question in random' class='w3-container'>

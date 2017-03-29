@@ -3,6 +3,8 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 	$scope.subject 	= "Group";
 	$scope.name     = "group";
 	$scope.rank     = 1;
+	$scope.nquestions = 1;
+	$scope.correct    = 0;
 	
 	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
@@ -64,6 +66,29 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 					
 	$scope.Size = $scope.groups.length;
 	
+	// Scroll to Content
+	$scope.scrollTo = function() {
+      $location.hash( $scope.name );
+      $anchorScroll();
+	  
+	  // Load the Q&A from Database when visible
+	  if ( $scope.show ) {
+		$scope.random 	 = $scope.Group( 1 );
+
+		onnext = Timestamp( $scope.name, 0, "init" );
+	  
+		Tally( $scope.name, 1, 0 );
+		
+		counter = 0;
+		$scope.nquestions = 0;
+		$scope.correct    = 0;
+		$scope.rank  = 1;
+		$scope.quiz  = false;
+		$scope.qa    = true;
+		$scope.multi = false;
+	  }
+    }
+	
 	$scope.Group = function( level ) {
 		var select = Math.floor( Math.random() * $scope.Size );
 		var answer = $scope.groups[ select ].desc + ":";
@@ -105,22 +130,7 @@ console.log( "DONE");
 				   rank: level, id: -1 }
 				];
 	}
-	
-	// Scroll to Content
-	$scope.scrollTo = function() {
-      $location.hash( $scope.name );
-      $anchorScroll();
-	  
-	  // Load the Q&A from Database when visible
-	  if ( $scope.show ) {
-		$scope.random 	 = $scope.Group( 1 );
 
-		onnext = Timestamp( $scope.name, 0, "init" );
-	  
-		Tally( $scope.name, 1, 0 );
-	  }
-    }
-	
 	var onnext    = 0;										// timestamp of next question
 	var onanswer  = 0;										// timestamp when answer flipped
 	var oncorrect = 0;										// timestamp when Got it checked
@@ -135,76 +145,48 @@ console.log( "DONE");
 		}
 	}
 	
-	// Select a harder question
-	$scope.Harder = function( id ) {
-		if ( $scope.rank != 3 )
-			$scope.rank++;
-		$scope.random = $scope.Group( $scope.rank );
-		$scope.nquestions++;
-		Tally( $scope.name, 1, 0 );
-		
-		// Analytics
-		onnext    = Timestamp( $scope.name, id, "harder" );
-		onanswer  = oncorrect = ncorrect = 0;
-		counter   = 0;
-	}
-	
-	// Select an easier question
-	$scope.Easier = function ( id ) {
-		if ( $scope.rank != 1 )
-			$scope.rank--;
-		$scope.random = $scope.Group( $scope.rank );
-		$scope.nquestions++;
-		Tally( $scope.name, 1, 0 );
-		
-		// Analytics
-		onnext    = Timestamp( $scope.name, id, "easier" );
-		onanswer  = oncorrect = ncorrect = 0;
-		counter   = 0;
-	}
-	
-	$scope.Same = function ( id ) {
-		counter++;
-		if ( counter >= THRESHOLD ) {
-			if ( oncorrect == 0 && onanswer != 0 ) {
-				
-			}
-
-			if ( ncorrect == THRESHOLD )
-				$scope.Harder( id );
-			else if ( ncorrect == 1 )
-				$scope.Easier( id );
-		}
-console.log($scope.rank);
-		
-		$scope.random = $scope.Group( $scope.rank );
-		$scope.nquestions++;
-		Tally( $scope.name, 1, 0 );
-		
-		// Analytics
-		onnext = Timestamp( $scope.name, id, "next" );
-		onanswer = oncorrect = 0;
-	}
-	
-	$scope.Correct = function( checked, id ) {
-		if ( checked ) {
+	// Select the Next Question
+	$scope.Next = function ( id, correct ) {
+		// User self-evaluated as correctly answered question
+		if ( correct ) {
 			$scope.correct++;
 			Tally( $scope.name, 0, 1 );
 			oncorrect = Timestamp( $scope.name, id, "correct" );
 			ncorrect++;
 		}
-		else {
-			$scope.correct--;
-			Tally( $scope.name, 0, -1 );
-			ncorrect--;
+
+		counter++;
+		if ( counter >= THRESHOLD ) {
+			if ( ncorrect == THRESHOLD ) {
+				if ( $scope.rank == 3 ) {
+					$scope.random[0] = { id: 0, question: "You Passed", answer: "No Questions Remain", rank: "" };
+					Tally( $scope.name, 0, -1 );	// hack
+				}
+				else {
+					if ( $scope.rank != 3 )
+						$scope.rank++;
+				}
+			}
+			else if ( ncorrect < 2 ) {
+				if ( $scope.rank != 1 )
+					$scope.rank--;
+			}
+			counter = ncorrect = 0;
 		}
-	}
-	
-	$scope.Reset = function( id ) {
-		UnTally( $scope.name, $scope.nquestions, $scope.correct );
-		$scope.nquestions = 0;
-		$scope.correct    = 0;
-		$scope.Same( id );
+
+		// Analytics
+		onnext = Timestamp( $scope.name, id, "next" );
+		onanswer = oncorrect = 0;
+		
+		if ( $scope.random[0].question == "You Passed" ) {
+			document.getElementById("beep").play();
+			$scope.quiz = true;
+		}
+		else {
+			$scope.random = $scope.Group( $scope.rank );
+			$scope.nquestions++;
+			Tally( $scope.name, 1, 0 );
+		}
 	}
 })
 .directive( "questionsGrp", function() {

@@ -32,6 +32,9 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.nquestions = 0;
 		$scope.correct    = 0;
 		$scope.rank = 1;
+		$scope.quiz  = false;
+		$scope.qa    = true;
+		$scope.multi = false;
 	  }
     }
 	
@@ -106,6 +109,7 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 		
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
+			$scope.quiz = true;
 		}
 		else {
 			$scope.random = $scope.Add( $scope.rank );
@@ -149,6 +153,14 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		onnext = Timestamp( $scope.name, 0, "init" );
 	  
 		Tally( $scope.name, 0, 0 );
+
+		counter = 0;
+		$scope.nquestions = 0;
+		$scope.correct    = 0;
+		$scope.rank = 1;
+		$scope.quiz  = false;
+		$scope.qa    = true;
+		$scope.multi = false;
 	  }
     }
 	
@@ -232,6 +244,7 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
+			$scope.quiz = true;
 		}
 		else {
 			$scope.random = $scope.Sub( $scope.rank );
@@ -275,6 +288,14 @@ technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScro
 		onnext = Timestamp( $scope.name, 0, "init" );
 	  
 		Tally( $scope.name, 0, 0 );
+
+		counter = 0;
+		$scope.nquestions = 0;
+		$scope.correct    = 0;
+		$scope.rank = 1;
+		$scope.quiz  = false;
+		$scope.qa    = true;
+		$scope.multi = false;
 	  }
     }
 	
@@ -352,6 +373,7 @@ technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScro
 		
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
+			$scope.quiz = true;
 		}
 		else {
 			$scope.random = $scope.Mul( $scope.rank );
@@ -395,6 +417,14 @@ technical.controller( 'divCtrl', function( $scope, $http, $location, $anchorScro
 		onnext = Timestamp( $scope.name, 0, "init" );
 	  
 		Tally( $scope.name, 0, 0 );
+
+		counter = 0;
+		$scope.nquestions = 0;
+		$scope.correct    = 0;
+		$scope.rank  = 1;
+		$scope.quiz  = false;
+		$scope.qa    = true;
+		$scope.multi = false;
 	  }
     }
 	
@@ -471,6 +501,7 @@ technical.controller( 'divCtrl', function( $scope, $http, $location, $anchorScro
 		
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
+			$scope.quiz = true;
 		}
 		else {
 			$scope.random = $scope.Div( $scope.rank );

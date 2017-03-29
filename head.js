@@ -38,7 +38,6 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 		$rootScope.$broadcast('category', cat );
 	}
 	
-	// NEW
 	$scope.$on('reset', function(event, args) {
 		$scope.showCategory( args );
 	})
