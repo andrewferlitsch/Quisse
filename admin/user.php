@@ -45,6 +45,36 @@ class Users {
 		return $hpassword;
 	}
 	
+	// Update (Existing) User
+	function UpdateUser( $userid, $username, $email, $password, $confirm, $active ) {
+		global $db;
+		
+		$username = $this->Strip( $username );
+		$email    = $this->Strip( $email );
+		$q = "UPDATE " . TBL_USERS . " SET username='$username',email='$email',active='$active'";
+		
+		$password = $this->Strip( $password );
+		$confirm  = $this->Strip( $confirm );
+		if ( $password != "" ) {
+			if ( !( $password = $this->ValidPassword( $password, $confirm ) ) ) {
+				return !( $this->error = true );
+			}
+			
+			$hpassword = md5( $password );
+			$q .= ",password='$hpassword'";
+		}
+		
+		$q .= " WHERE id=$userid";
+		
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		return $hpassword;
+	}
+	
 	// Check if name is valid syntax
 	function ValidName( $username ) {
 		// Check if name has been registered already
@@ -208,22 +238,6 @@ class Users {
 		return $data;
 	}
 	
-	function UpdateUser( $userid, $username, $email, $password, $active ) {
-		global $db;
-		
-		$q = "UPDATE " . TBL_USERS . " SET username='$username' AND email='$email'";
-		if ( $password != "" ) {
-			$hpassword = md5( $password );
-			$q .= " AND password='$hpassword'";
-		}
-		$q .= " WHERE id=$userid";
-		$result = mysqli_query( $db->connection, $q );
-		if ( $db->debug == true ) {
-			echo "Q $q". PHP_EOL;
-			echo mysqli_error( $db->connection ) . PHP_EOL;
-		}
-	}
-	
 	// Return the number of users
 	function Count() {
 		global $db;
@@ -254,15 +268,17 @@ class Users {
 
 $users = new Users();
 if ( isset( $_POST['action'] ) ) {
+	$id       = $_POST['id'];
 	$username = $_POST['username'];
 	$email    = $_POST['email'];
     $password = $_POST[ 'password' ];
     $confirm  = $_POST[ 'confirm' ];
+    $active   = $_POST[ 'active' ];
 
 	if ( $_POST['action'] == "add" )
 		$rc = $users->NewUser( $username, $email, $password, $confirm );
 	else
-		$rc = $users->UpdateUser( $username, $email, $password, $confirm, $active );
+		$rc = $users->UpdateUser( $id, $username, $email, $password, $confirm, $active );
 		
 	if ( $users->error ) {
 		echo $users->errmsg;

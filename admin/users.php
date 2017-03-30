@@ -123,6 +123,7 @@ $(function() {
 		
 		$.post("/admin/user.php",
 			{ action       : action,
+			  id		: $("#id").html(),
 			  username  : $("#username").val(),
 			  email     : $("#email").val(),
 			  password  : $("#password").val(),
