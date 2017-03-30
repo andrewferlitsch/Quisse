@@ -321,7 +321,7 @@ $(function() {
 			  password: password
 			},
 			function ( data, status ) {
-				console.log( data );
+				$("#login-ok").html( data );
 			}
 		)
 		.fail (function( response ) {
@@ -342,6 +342,7 @@ $(function() {
 		</label>
 		<button id='login' style='cursor: pointer'>Login</button>
 		<span id='login-err' class='error'></span>
+		<span id='login-ok' class='ok'></span>
 	</form>
 			
 	<header ng-controller="navCtrl" style='text-align:center'>

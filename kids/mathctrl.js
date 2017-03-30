@@ -153,7 +153,7 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 			counter = ncorrect = 0;
 		}
 		
-		$scope.question = $scope.Add( $scope.rank );
+		$scope.question = $scope.Add( $scope.rank )[ 0 ];
 		
 		if ( $scope.question.question == "You Passed" ) {
 			document.getElementById("beep").play();
@@ -170,12 +170,25 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.m[ answer ] = $scope.question.answer;
 		
 		// set the choices for the wrong answers
-		for ( var i = 0, j = 0; i < 4; i++ ) {
+		for ( var i = 0; i < 4; i++ ) {
 			// skip the slot where the answer is
 			if ( i == answer ) continue;
 			
-		
-			$scope.m[ i ] = 1;
+			while ( true ) {
+				var wrong = $scope.Add( $scope.rank )[ 0 ].answer;
+				// remove duplicates
+				var dup = false;
+				for ( var j = 0; j < 4; j++ ) {
+					if ( wrong == $scope.m[ j ] ) {
+						dup = true;
+						break;
+					}
+				}
+				if ( dup == false ) {
+					$scope.m[ i ] = wrong;
+					break;
+				}
+			}
 		}
 
 		$scope.iscorrect = "";
@@ -339,7 +352,71 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
-		//$scope.Multi( id );
+		$scope.Multi( id );
+	}
+	
+	var THRESHOLD_QUIZ = 6;
+	$scope.passed = false;
+	
+	// Select the Next Multiple Choice question
+	$scope.Multi = function( id ) {
+		counter++;
+		if ( counter >= THRESHOLD_QUIZ ) {
+			if ( ncorrect == THRESHOLD_QUIZ ) {
+				if ( $scope.rank == 3 ) {
+					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+				}
+				else	
+					$scope.rank++;
+			}
+			else if ( ncorrect < 2 && $scope.rank > 1 )
+				$scope.rank--;
+			counter = ncorrect = 0;
+		}
+		
+		$scope.question = $scope.Sub( $scope.rank )[ 0 ];
+		
+		if ( $scope.question.question == "You Passed" ) {
+			document.getElementById("beep").play();
+			$scope.passed = true;
+			$scope.iscorrect = "";
+			return;
+		}
+		
+		Timestamp( $scope.name, $scope.question.id, "multi" );
+		
+		// place the correct answer in a random location
+		answer = Math.floor( Math.random() * 4 );
+		$scope.m = [];
+		$scope.m[ answer ] = $scope.question.answer;
+
+		// set the choices for the wrong answers
+		for ( var i = 0; i < 4; i++ ) {
+			// skip the slot where the answer is
+			if ( i == answer ) continue;
+			
+			while ( true ) {
+				var wrong = $scope.Sub( $scope.rank )[ 0 ].answer;
+				// remove duplicates
+				var dup = false;
+				for ( var j = 0; j < 4; j++ ) {
+					if ( wrong == $scope.m[ j ] ) {
+						dup = true;
+						break;
+					}
+				}
+				if ( dup == false ) {
+					$scope.m[ i ] = wrong;
+					break;
+				}
+			}
+		}
+
+		$scope.iscorrect = "";
+		$scope.disable = false;
+		$scope.checked = false;
+		$scope.nquestions++;
+		Tally( $scope.name, 1, 0 );
 	}
 })
 
@@ -491,7 +568,71 @@ technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScro
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
-		//$scope.Multi( id );
+		$scope.Multi( id );
+	}
+	
+	var THRESHOLD_QUIZ = 6;
+	$scope.passed = false;
+	
+	// Select the Next Multiple Choice question
+	$scope.Multi = function( id ) {
+		counter++;
+		if ( counter >= THRESHOLD_QUIZ ) {
+			if ( ncorrect == THRESHOLD_QUIZ ) {
+				if ( $scope.rank == 3 ) {
+					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+				}
+				else	
+					$scope.rank++;
+			}
+			else if ( ncorrect < 2 && $scope.rank > 1 )
+				$scope.rank--;
+			counter = ncorrect = 0;
+		}
+		
+		$scope.question = $scope.Mul( $scope.rank )[ 0 ];
+		
+		if ( $scope.question.question == "You Passed" ) {
+			document.getElementById("beep").play();
+			$scope.passed = true;
+			$scope.iscorrect = "";
+			return;
+		}
+		
+		Timestamp( $scope.name, $scope.question.id, "multi" );
+		
+		// place the correct answer in a random location
+		answer = Math.floor( Math.random() * 4 );
+		$scope.m = [];
+		$scope.m[ answer ] = $scope.question.answer;
+
+		// set the choices for the wrong answers
+		for ( var i = 0; i < 4; i++ ) {
+			// skip the slot where the answer is
+			if ( i == answer ) continue;
+			
+			while ( true ) {
+				var wrong = $scope.Mul( $scope.rank )[ 0 ].answer;
+				// remove duplicates
+				var dup = false;
+				for ( var j = 0; j < 4; j++ ) {
+					if ( wrong == $scope.m[ j ] ) {
+						dup = true;
+						break;
+					}
+				}
+				if ( dup == false ) {
+					$scope.m[ i ] = wrong;
+					break;
+				}
+			}
+		}
+
+		$scope.iscorrect = "";
+		$scope.disable = false;
+		$scope.checked = false;
+		$scope.nquestions++;
+		Tally( $scope.name, 1, 0 );
 	}
 })
 .directive( "questionsMul", function() {
@@ -641,7 +782,71 @@ technical.controller( 'divCtrl', function( $scope, $http, $location, $anchorScro
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
-		//$scope.Multi( id );
+		$scope.Multi( id );
+	}
+	
+	var THRESHOLD_QUIZ = 6;
+	$scope.passed = false;
+	
+	// Select the Next Multiple Choice question
+	$scope.Multi = function( id ) {
+		counter++;
+		if ( counter >= THRESHOLD_QUIZ ) {
+			if ( ncorrect == THRESHOLD_QUIZ ) {
+				if ( $scope.rank == 3 ) {
+					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+				}
+				else	
+					$scope.rank++;
+			}
+			else if ( ncorrect < 2 && $scope.rank > 1 )
+				$scope.rank--;
+			counter = ncorrect = 0;
+		}
+		
+		$scope.question = $scope.Div( $scope.rank )[ 0 ];
+		
+		if ( $scope.question.question == "You Passed" ) {
+			document.getElementById("beep").play();
+			$scope.passed = true;
+			$scope.iscorrect = "";
+			return;
+		}
+		
+		Timestamp( $scope.name, $scope.question.id, "multi" );
+		
+		// place the correct answer in a random location
+		answer = Math.floor( Math.random() * 4 );
+		$scope.m = [];
+		$scope.m[ answer ] = $scope.question.answer;
+
+		// set the choices for the wrong answers
+		for ( var i = 0; i < 4; i++ ) {
+			// skip the slot where the answer is
+			if ( i == answer ) continue;
+			
+			while ( true ) {
+				var wrong = $scope.Div( $scope.rank )[ 0 ].answer;
+				// remove duplicates
+				var dup = false;
+				for ( var j = 0; j < 4; j++ ) {
+					if ( wrong == $scope.m[ j ] ) {
+						dup = true;
+						break;
+					}
+				}
+				if ( dup == false ) {
+					$scope.m[ i ] = wrong;
+					break;
+				}
+			}
+		}
+
+		$scope.iscorrect = "";
+		$scope.disable = false;
+		$scope.checked = false;
+		$scope.nquestions++;
+		Tally( $scope.name, 1, 0 );
 	}
 })
 .directive( "questionsDiv", function() {

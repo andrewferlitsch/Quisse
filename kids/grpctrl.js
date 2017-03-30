@@ -263,7 +263,63 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
-		//$scope.Multi( id );
+		$scope.Multi( id );
+	}
+	
+	var THRESHOLD_QUIZ = 6;
+	$scope.passed = false;
+	
+	// Select the Next Multiple Choice question
+	$scope.Multi = function( id ) {
+		counter++;
+		if ( counter >= THRESHOLD_QUIZ ) {
+			if ( ncorrect == THRESHOLD_QUIZ ) {
+				if ( $scope.rank == 3 ) {
+					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+				}
+				else	
+					$scope.rank++;
+			}
+			else if ( ncorrect < 2 && $scope.rank > 1 )
+				$scope.rank--;
+			counter = ncorrect = 0;
+		}
+		
+		$scope.question = $scope.Group( $scope.rank )[ 0 ];
+		
+		if ( $scope.question.question == "You Passed" ) {
+			document.getElementById("beep").play();
+			$scope.passed = true;
+			$scope.iscorrect = "";
+			return;
+		}
+		
+		Timestamp( $scope.name, $scope.question.id, "multi" );
+		
+		var correct = "";
+		if ( $scope.question.answer.charAt( 1 ) == 'n' ) 
+			correct = $scope.question.answer.substring( 2 );
+		else 
+			correct = $scope.question.answer.substring( 1 );
+		
+		// place the correct answer in a random location
+		answer = Math.floor( Math.random() * 4 );
+		$scope.m = [];
+		$scope.m[ answer ] = correct;
+
+		// set the choices for the wrong answers
+		for ( var i = 0; i < 4; i++ ) {
+			// skip the slot where the answer is
+			if ( i == answer ) continue;
+			
+			$scope.m[ i ] = "foo";
+		}
+
+		$scope.iscorrect = "";
+		$scope.disable = false;
+		$scope.checked = false;
+		$scope.nquestions++;
+		Tally( $scope.name, 1, 0 );
 	}
 })
 .directive( "questionsGrp", function() {

@@ -178,13 +178,17 @@ class Users {
 		// login by username
 		if ( $username != "" ) {
 			if ( !$this->IsRegisteredName( $username ) ) {
-				$this->errmsg = "Username not valid.";
-				return !( $this->error = true );
+				if ( $email == "" ) {
+					$this->errmsg = "Username not valid.";
+					return !( $this->error = true );
+				}
 			}
-			$where = "username='$username'";
+			else
+				$where = "username='$username'";
 		}
+		
 		// login by email
-		else {
+		if ( $email != "" && $where == "" ) {
 			if ( !$this->IsRegisteredEmail( $email ) ) {
 				$this->errmsg = "Email not valid.";
 				return !( $this->error = true );
@@ -214,7 +218,7 @@ class Users {
 		$_SESSION["email"]    = $email;
 		$_SESSION["userid"]   = $this->userid;
 		
-		return $hpassword;
+		return $username . "," . $this->userid;
 	}
 	
 	// Logout
@@ -295,6 +299,8 @@ else if ( isset( $_POST['login']) ) {
 		echo $users->errmsg;
 		header("HTTP/1.1 501 " . $users->errmsg );
 	}
+	else
+		echo $rc;
 }
 else if ( isset( $_POST['logout'] ) ) {
 	$users->Logout();
