@@ -3,12 +3,6 @@
  */
 session_start();
 include_once "../db.php";
-include_once "user.php";
-if ( isset( $_POST[ 'login' ] ) ) {
-	$username = $_POST[ 'username' ];
-	$password = $_POST[ 'password' ];
-	echo "LOGGING IN as $username " . $users->userid + "<br/>";
-}
 ?>
 <html lang="en-US">
 <head>
@@ -315,20 +309,37 @@ $(function() {
 			$("#err-all").html( "Unable to Timing: errCode = " + response.status );
 		});	 
 	})
+
+	$("#login").click( function() {
+		var username = $( "#l-username" ).val();
+		var password = $( "#l-password" ).val();
+		console.log( password );
+		$.post( "/admin/user.php",
+			{ login: 1,
+			  username: username,
+			  password: password
+			},
+			function ( data, status ) {
+				console.log( data );
+			}
+		)
+		.fail (function( response ) {
+			alert( response );
+		});	 
+	})
 })
 </script>
 </head>
 <body ng-app="technical">
 
-	<form method='post' action='admin.php'>
-		<label for='username'>Username:
-			<input type='text' name='username' />
+	<form style='font-size: 8pt;'>	
+		<label for='l-username'>Username (or Email):
+			<input type='text' id='l-username' name='l-username' required/>
 		</label>
-		<label for='password'>Password:
-			<input type='password' name='password' />
+		<label for='l-password'>Password:
+			<input type='password' id='l-password' name='l-password' required/>
 		</label>
-		<input type='submit' value='Login'/>
-		<input type='hidden' name='login' value='1'/>
+		<button id='login' style='cursor: pointer'>Login</button>
 	</form>
 			
 	<header ng-controller="navCtrl" style='text-align:center'>
