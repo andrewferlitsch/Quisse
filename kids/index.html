@@ -35,16 +35,30 @@
 	</section>
 
 	<section>	
-		
-		<div ng-show='view["Addition"]' ng-controller="addCtrl" questions-add></div>
+		<div ng-show='view["Addition"]' ng-controller="addCtrl">
+			<div ng-show='qa' questions-add></div>
+			<div ng-show='multi' multi-add></div>
+		</div>
 				
-		<div ng-show='view["Subtraction"]' ng-controller="subCtrl" questions-sub></div>
+		<div ng-show='view["Subtraction"]' ng-controller="subCtrl">
+			<div ng-show='qa' questions-sub></div>
+			<div ng-show='multi' multi-sub></div>
+		</div>
 				
-		<div ng-show='view["Multiply"]' ng-controller="mulCtrl" questions-mul></div>
+		<div ng-show='view["Multiply"]' ng-controller="mulCtrl">
+			<div ng-show='qa' questions-mul></div>
+			<div ng-show='multi' multi-mul></div>
+		</div>
 				
-		<div ng-show='view["Divide"]' ng-controller="divCtrl" questions-div></div>
+		<div ng-show='view["Divide"]' ng-controller="divCtrl">
+			<div ng-show='qa' questions-div></div>
+			<div ng-show='multi' multi-div></div>
+		</div>
 				
-		<div ng-show='view["Group"]' ng-controller="grpCtrl" questions-grp></div>
+		<div ng-show='view["Group"]' ng-controller="grpCtrl">
+			<div ng-show='qa' questions-grp></div>
+			<div ng-show='multi' multi-grp></div>
+		</div>
 
 		<div ng-controller="finalCtrl" final id='final'></div>
 	

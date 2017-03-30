@@ -117,11 +117,33 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 			Tally( $scope.name, 1, 0 );
 		}
 	}
+	
+	// User selected starting Multiple Choice Quiz
+	$scope.Quiz = function( id ) {
+		// change to multi-choice view
+		$scope.qa = false;
+		$scope.multi = true;
+		
+		// reset scoring
+		totalQuestions = 0;	
+		totalCorrect   = 0;
+
+		// load the first question
+		$scope.rank = 1;
+		counter = ncorrect = 0;
+		//$scope.Multi( id );
+	}
 })
 .directive( "questionsAdd", function() {
 	return {
 		restrict: 'A',
 		templateUrl: '/flip.html'
+	}
+})
+.directive( "multiAdd", function() {
+	return {
+		restrict: 'A',
+		templateUrl: '/multi.html'
 	}
 });
 
@@ -276,6 +298,12 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		restrict: 'A',
 		templateUrl: '/flip.html'
 	}
+})
+.directive( "multiSub", function() {
+	return {
+		restrict: 'A',
+		templateUrl: '/multi.html'
+	}
 });
 
 technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScroll ) {
@@ -399,11 +427,33 @@ technical.controller( 'mulCtrl', function( $scope, $http, $location, $anchorScro
 			Tally( $scope.name, 1, 0 );
 		}
 	}
+	
+	// User selected starting Multiple Choice Quiz
+	$scope.Quiz = function( id ) {
+		// change to multi-choice view
+		$scope.qa = false;
+		$scope.multi = true;
+		
+		// reset scoring
+		totalQuestions = 0;	
+		totalCorrect   = 0;
+
+		// load the first question
+		$scope.rank = 1;
+		counter = ncorrect = 0;
+		//$scope.Multi( id );
+	}
 })
 .directive( "questionsMul", function() {
 	return {
 		restrict: 'A',
 		templateUrl: '/flip.html'
+	}
+})
+.directive( "multiMul", function() {
+	return {
+		restrict: 'A',
+		templateUrl: '/multi.html'
 	}
 });
 
@@ -527,10 +577,32 @@ technical.controller( 'divCtrl', function( $scope, $http, $location, $anchorScro
 			Tally( $scope.name, 1, 0 );
 		}
 	}
+	
+	// User selected starting Multiple Choice Quiz
+	$scope.Quiz = function( id ) {
+		// change to multi-choice view
+		$scope.qa = false;
+		$scope.multi = true;
+		
+		// reset scoring
+		totalQuestions = 0;	
+		totalCorrect   = 0;
+
+		// load the first question
+		$scope.rank = 1;
+		counter = ncorrect = 0;
+		//$scope.Multi( id );
+	}
 })
 .directive( "questionsDiv", function() {
 	return {
 		restrict: 'A',
 		templateUrl: '/flip.html'
+	}
+})
+.directive( "multiDiv", function() {
+	return {
+		restrict: 'A',
+		templateUrl: '/multi.html'
 	}
 });

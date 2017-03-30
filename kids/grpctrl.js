@@ -249,10 +249,32 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			Tally( $scope.name, 1, 0 );
 		}
 	}
+	
+	// User selected starting Multiple Choice Quiz
+	$scope.Quiz = function( id ) {
+		// change to multi-choice view
+		$scope.qa = false;
+		$scope.multi = true;
+		
+		// reset scoring
+		totalQuestions = 0;	
+		totalCorrect   = 0;
+
+		// load the first question
+		$scope.rank = 1;
+		counter = ncorrect = 0;
+		//$scope.Multi( id );
+	}
 })
 .directive( "questionsGrp", function() {
 	return {
 		restrict: 'A',
 		templateUrl: '/flip.html'
+	}
+})
+.directive( "multiGrp", function() {
+	return {
+		restrict: 'A',
+		templateUrl: '/multi.html'
 	}
 });
