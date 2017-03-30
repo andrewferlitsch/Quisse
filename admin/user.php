@@ -194,7 +194,7 @@ class Users {
 		
 		$hpassword = md5( $password );
 		
-		$q = "SELECT password,userid FROM " . TBL_USERS . " WHERE " . $where;
+		$q = "SELECT password,id FROM " . TBL_USERS . " WHERE " . $where;
 		$result = mysqli_query( $db->connection, $q );
 		if ( $db->debug == true ) {
 			echo "Q $q". PHP_EOL;
@@ -203,7 +203,6 @@ class Users {
 		
 		$data = mysqli_fetch_array( $result );
 		$storedpassword = $data[ 'password' ];
-		
 		if ( $storedpassword != $hpassword ) {
 			$this->errmsg = "Password not valid.";
 			return !( $this->error = true );
@@ -292,8 +291,10 @@ else if ( isset( $_POST['login']) ) {
 	
 	$rc = $users->Login( $username, $email, $password );
 	
-	if ( $users->error )
+	if ( $users->error ) {
 		echo $users->errmsg;
+		header("HTTP/1.1 501 " . $users->errmsg );
+	}
 }
 else if ( isset( $_POST['logout'] ) ) {
 	$users->Logout();

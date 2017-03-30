@@ -311,12 +311,13 @@ $(function() {
 	})
 
 	$("#login").click( function() {
+		$("#login-err").html("");
 		var username = $( "#l-username" ).val();
 		var password = $( "#l-password" ).val();
-		console.log( password );
 		$.post( "/admin/user.php",
 			{ login: 1,
 			  username: username,
+			  email	  : username,
 			  password: password
 			},
 			function ( data, status ) {
@@ -324,7 +325,7 @@ $(function() {
 			}
 		)
 		.fail (function( response ) {
-			alert( response );
+			$("#login-err").html( response.responseText );
 		});	 
 	})
 })
@@ -340,6 +341,7 @@ $(function() {
 			<input type='password' id='l-password' name='l-password' required/>
 		</label>
 		<button id='login' style='cursor: pointer'>Login</button>
+		<span id='login-err' class='error'></span>
 	</form>
 			
 	<header ng-controller="navCtrl" style='text-align:center'>
