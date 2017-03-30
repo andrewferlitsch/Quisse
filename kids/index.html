@@ -50,6 +50,25 @@
 	
 	</section>
 	
+	<!-- Advice -->
+	<section ng-show='page["Advice"]' ng-controller="adviceCtrl" >
+		<div advice></div>
+	</section>
+	
+	<!-- About -->
+	<section ng-show='page["About"]' ng-controller="aboutCtrl" >
+		<div about></div>
+	</section>
+	
+	<!-- Contact -->
+	<section ng-show='page["Contact"]' ng-controller="contactCtrl" >
+		<div contact></div>
+	</section>
+	
+	<!-- Contributor -->
+	<section ng-show='page["Contributor"]' ng-controller="contributorCtrl" >
+		<div contributor></div>
+	</section>
 
 	<footer ng-controller="footerCtrl" id='footer'>
 			<div footer></div>
@@ -98,43 +117,6 @@ function UpdateScore() {
 	}, 200);
 }
 
-/* Capture timestamps when user proceeds to next question or marks correct
- */
-var timing = [];
-var send = false;
-var session;
-function Timestamp( category, id, type ) {
-	// on first call, setup timer and variables for sending timing metrics to server
-	if ( send == false ) {
-		send = true;
-		session = Math.round( Math.random() * 10000 );
-		setTimeout( function() { SendServer(); }, 10000 );
-	}
-	
-	// store timing metrics until periodic upload to server
-	var time = Math.floor( Date.now() / 1000 );
-	timing.push( { session: session, category: category, id: id, type: type, time: time } );
-	
-	return time;
-}
-
-/*
- * Send Timing Metrics to the Server
- */
-function SendServer() {
-	if ( timing.length > 0 ) {	
-		$.ajax({
-			url: "/timing.php",
-			type: 'post',
-			data: { timing },
-			success: function( data, status ) { },
-			error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
-		});
-		timing = [];
-	}
-	setTimeout( function() { SendServer(); }, 10000 );
-}
-
 $(function() {
 })
 </script>
@@ -145,5 +127,10 @@ $(function() {
 <script src="grpctrl.js"></script>
 <script src="/final.js"></script>
 <script src="/footer.js"></script>
+<script src="/advice.js"></script>
+<script src="/about.js"></script>
+<script src="/contact.js"></script>
+<script src="/contributor.js"></script>
+<script src="/timing.js"></script>
 </body>
 </html>

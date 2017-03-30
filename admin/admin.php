@@ -3,6 +3,11 @@
  */
 session_start();
 include "../db.php";
+if ( isset( $_POST[ 'login' ] ) ) {
+	$username = $_POST[ 'username' ];
+	$password = $_POST[ 'password' ];
+	echo "LOGGING IN as $username<br/>";
+}
 ?>
 <html lang="en-US">
 <head>
@@ -416,6 +421,7 @@ $(function() {
 					<input type='text' name='password' />
 				</label>
 				<input type='submit' value='Login'/>
+				<input type='hidden' name='login' value='1'/>
 			</form>
 	</footer>
 

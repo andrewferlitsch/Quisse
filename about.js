@@ -7,6 +7,6 @@ technical.controller( 'aboutCtrl', function( $scope ) {
 .directive( "about", function() {
 	return {
 		restrict: 'A',
-		templateUrl: 'about.html'
+		templateUrl: '/about.html'
 	}
 });

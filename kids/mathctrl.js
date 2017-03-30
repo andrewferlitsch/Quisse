@@ -242,6 +242,7 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		onnext = Timestamp( $scope.name, id, "next" );
 		onanswer = oncorrect = 0;
 		
+		$scope.m = [];
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.quiz = true;
@@ -252,7 +253,24 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 			Tally( $scope.name, 1, 0 );
 		}
 	}
+	
+	// User selected starting Multiple Choice Quiz
+	$scope.Quiz = function( id ) {
+		// change to multi-choice view
+		$scope.qa = false;
+		$scope.multi = true;
+		
+		// reset scoring
+		totalQuestions = 0;	
+		totalCorrect   = 0;
+
+		// load the first question
+		$scope.rank = 1;
+		counter = ncorrect = 0;
+		//$scope.Multi( id );
+	}
 })
+
 .directive( "questionsSub", function() {
 	return {
 		restrict: 'A',

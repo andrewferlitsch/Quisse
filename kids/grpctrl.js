@@ -12,7 +12,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 						  id: 1
 						}
 					  ];
-	$scope.groups = [ { category: "Animal", major: "Mammal", sub: "Pet", desc: "Household Pets", list: [ "cat", "dog", "bird" ], answered: false, id: -1
+	$scope.groups = [ { category: "Animal", major: "Mammal", minor: "Pet", desc: "Household Pets", list: [ "cat", "dog", "bird" ], answered: false, id: -1
 					  },
 					  { category: "Animal", major: "Mammal", minor: "Pet", desc: "Rodent Pets", list: [ "gerbil", "hamster", "guinea pig" ], answered: false, id: -1
 					  },
@@ -22,13 +22,13 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 					  },
 					  { category: "Animal", major: "Mammal", minor: "Farm", desc: "Herd Animals", list: [ "cattle", "sheep", "llamas" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Predator Animals", list: [ "lion", "tiger", "leopard" ], answered: false, id: -1
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Predator Animals in Africa", list: [ "lion", "tiger", "leopard" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Africa Large Animals", list: [ "elephant", "giraffe", "rhinoceros" ], answered: false, id: -1
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Large Animals in Africa", list: [ "elephant", "giraffe", "rhinoceros" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Predator Animals", list: [ "bear", "wolf", "coyote" ], answered: false, id: -1
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Predator Animals in North America", list: [ "bear", "wolf", "coyote" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "America Grazing Animals", list: [ "moose", "deer", "antelope" ], answered: false, id: -1
+					  { category: "Animal", major: "Mammal", minor: "Wild", desc: "Grazing Animals in North America", list: [ "moose", "deer", "antelope" ], answered: false, id: -1
 					  },
 					  { category: "Animal", major: "Fish", minor: "River", desc: "Common River Fish", list: [ "pike", "trout", "catfish"], answered: false, id: -1
 					  },
@@ -42,7 +42,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 					  },
 					  { category: "Animal", major: "Fish", minor: "Ocean", desc: "Ocean Predators", list: [ "shark", "orca", "sea snake"], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Fish", minor: "Pets", desc: "Fish Pets", list: [ "angelfish", "goldfish", "guppy"], answered: false, id: -1
+					  { category: "Animal", major: "Fish", minor: "Pets", desc: "Aquarium Fish", list: [ "angelfish", "goldfish", "guppy"], answered: false, id: -1
 					  },
 					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Common Birds", list: [ "pigeon", "woodpecker", "owl" ], answered: false, id: -1
 					  },
@@ -52,7 +52,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 					  },
 					  { category: "Animal", major: "Bird", minor: "Wild", desc: "Migrating Birds", list: [ "geese", "harrier", "duck", "swan" ], answered: false, id: -1
 					  },
-					  { category: "Animal", major: "Bird", minor: "Pet", desc: "Bird Pets", list: [ "canary", "parakeet", "parrot", "cockatiel", "cockatoo", "macaw" ], answered: false, id: -1
+					  { category: "Animal", major: "Bird", minor: "Pet", desc: "Pet Birds", list: [ "canary", "parakeet", "parrot", "cockatiel", "cockatoo", "macaw" ], answered: false, id: -1
 					  },
 					  { category: "Animal", major: "Reptile", minor: "Pet", desc: "Reptile Pets", list: [ "snake", "turtle", "lizard", "iguana" ], answered: false, id: -1
 					  },
@@ -105,18 +105,35 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 	  }
     }
 	
+	//
 	$scope.Group = function( level ) {
-		var select = Math.floor( Math.random() * $scope.Size );
+		// Are there any groups still not answered
+		var i = 0;
+		for ( /**/; i < $scope.Size; i++ ) {
+			if ( $scope.groups[ i ].answered == false ) break;
+		}
+		
+		// no group left unanswered
+		if ( i == $scope.Size ) {
+			return [ { id: 0, question: "You Passed", answer: "No Questions Remain", rank: "", id: -1 } ];
+		}
+		
+		// randomly select an unanswered group
+		var select;
+		while ( true ) {
+			select = Math.floor( Math.random() * $scope.Size );
+			if ( $scope.groups[ select ].answered == false )
+				break;
+		}
+		
 		var answer = $scope.groups[ select ].desc + ":";
 		var wrong = "";
-		
+
 		while ( true ) {
 			var n = Math.floor( Math.random() * $scope.Size );
 			// do not pick the same selection
 			if ( n == select ) continue;
-			
-			if ( $scope.groups[ n ].answered == true ) continue;
-				
+
 			// look for a group that is not the same category
 			if ( level == 1 ) {
 				if ( $scope.groups[ n ].category == $scope.groups[ select ].category )

@@ -1,4 +1,15 @@
 technical.controller( 'kidsCtrl', function( $scope, $rootScope ) {
+	// page view
+	$scope.page = [];
+	$scope.page[ "Kids" ] = true;
+	$scope.lastpage = "Kids";
+	$scope.showPage = function( page ) {
+		if ( $scope.lastpage != "" )
+			$scope.page[ $scope.lastpage ] = false;
+		$scope.page[ page ] = true;
+		$scope.lastpage = page;
+	}
+	
 	$scope.categories = [ "Addition", "Subtraction", "Multiply", "Divide", "Group" ];
 	$scope.view = [];
 	for ( var cat in $scope.categories ) {
