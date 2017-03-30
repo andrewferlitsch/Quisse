@@ -26,16 +26,16 @@ $(function() {
 	var id = 1;
 	var nusers = 0;
 	var user = null;
+
+	// get count of users
+	$.get("/admin/user.php?count", function( data, status ) {
+		nusers = JSON.parse( data );
+	});
 	
 	// get initial entry
 	$.get("/admin/user.php?get&userid=" + id, function( data, status ) {
 		user = JSON.parse( data );
 		Populate();
-	});
-	
-	// get count of users
-	$.get("/admin/user.php?count", function( data, status ) {
-		nusers = JSON.parse( data );
 	});
 	
 	// Get previous user
@@ -68,53 +68,68 @@ $(function() {
 	
 	// Populate the user information form
 	function  Populate() {
-		$("#add").hide();
-		$("#lpassword").hide();
-		$("#lconfirm").hide();
 		$("#lcreated").show();
 		$("#llastlogin").show();
 		
 		$("#id").html( user.id );
 		$("#username").val( user.username );
+		$("#password").val( "" );
+		$("#confirm").val( "" );
 		$("#email").val( user.email );
 		$("#created").val( user.created );
 		$("#lastlogin").val( user.lastlogin );
 		$("#active").val( user.active );
+		$("#password").prop( 'required', false );
+		$("#confirm").prop( 'required',false );
 		
 		$("#error").html("");
 		$("#ok").html("");
+		$("#submit").val( "Update" );
 	}
 	
 	// Create a new user
 	$("#new").click( function() {
-		$("#add").show();
-		$("#lpassword").show();
-		$("#lconfirm").show();
 		$("#lcreated").hide();
 		$("#llastlogin").hide();
 		
 		$("#id").html( "" );
 		$("#username").val( "" );
 		$("#email").val( "" );
+		$("#password").val( "" );
+		$("#confirm").val( "" );
 		$("#created").val( "" );
 		$("#lastlogin").val( "" );
+		$("#password").prop( 'required',true );
+		$("#confirm").prop( 'required',true );
 		
 		$("#error").html("");
 		$("#ok").html("");
+		$("#submit").val( "Add" );
 	})
 	
 	// Add the user
-	$("#add").click( function() {
-		$("error").html("");
+	$("#submit").click( function() {
+		$("#error").html("");
 		$("#ok").html("");
+		var action, result;
+		if ( $("#submit").val() == "Add" ) {
+			action = "add";
+			result = "Added";
+		}
+		else {
+			action = "update";
+			result = "Updated";
+		}
+		
 		$.post("/admin/user.php",
-			{ new       : 1,
+			{ action       : action,
 			  username  : $("#username").val(),
 			  email     : $("#email").val(),
 			  password  : $("#password").val(),
-			  confirm   : $("#confirm").val()
+			  confirm   : $("#confirm").val(),
+			  active    : $("#active").val()
 			},
-			function ( data, status ) { $("#ok").html( "Added" ); }
+			function ( data, status ) { $("#ok").html( result ); }
 		)
 		.fail (function( response ) {
 			$("#error").html( response.statusText );
@@ -144,11 +159,11 @@ $(function() {
 			<input type='text' name='username' id='username' class='w3-input'/>
 			<label for='email' class='w3-label'>Email:</label>
 			<input type='email' name='email' id='email' class='w3-input' required/>
-			<label for='password' class='w3-label' style='display:none' id='lpassword'>Password:
-				<input type='password' name='password' id='password' class='w3-input' required/>
+			<label for='password' class='w3-label' id='lpassword'>Password:
+				<input type='password' name='password' id='password' class='w3-input'/>
 			</label>
-			<label for='confirm' class='w3-label' style='display:none' id='lconfirm'>Confirm:
-				<input type='password' name='confirm' id='confirm' class='w3-input' required/>
+			<label for='confirm' class='w3-label' id='lconfirm'>Confirm:
+				<input type='password' name='confirm' id='confirm' class='w3-input'/>
 			</label>
 			
 			<label for='created' class='w3-label' id='lcreated'>Created:
@@ -165,10 +180,10 @@ $(function() {
 				<option value='0'>0</option>
 				<option value='1'>1</option>
 			</select>
-			<br/>
+			<br/><br/>
 			
 			<input type='hidden' name='new'/>
-			<input type='submit' id='add' value='Add' style='display:none' class='w3-btn w3-blue'/>
+			<input type='submit' id='submit' value='Add' class='w3-btn w3-blue'/>
 			<span id='error' class='error'></span>
 			<span id='ok'    class='ok'></span>
 			

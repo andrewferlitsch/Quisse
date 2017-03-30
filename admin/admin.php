@@ -2,11 +2,12 @@
 /* Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
  */
 session_start();
-include "../db.php";
+include_once "../db.php";
+include_once "user.php";
 if ( isset( $_POST[ 'login' ] ) ) {
 	$username = $_POST[ 'username' ];
 	$password = $_POST[ 'password' ];
-	echo "LOGGING IN as $username<br/>";
+	echo "LOGGING IN as $username " . $users->userid + "<br/>";
 }
 ?>
 <html lang="en-US">
@@ -318,6 +319,18 @@ $(function() {
 </script>
 </head>
 <body ng-app="technical">
+
+	<form method='post' action='admin.php'>
+		<label for='username'>Username:
+			<input type='text' name='username' />
+		</label>
+		<label for='password'>Password:
+			<input type='password' name='password' />
+		</label>
+		<input type='submit' value='Login'/>
+		<input type='hidden' name='login' value='1'/>
+	</form>
+			
 	<header ng-controller="navCtrl" style='text-align:center'>
 		<div nav></div>
 		<h2>Quisse Admin Dashboard</h2>
@@ -413,16 +426,6 @@ $(function() {
 
 	<footer ng-controller="footerCtrl" id='footer'>
 			<div footer></div>
-			<form method='post' action='admin.php'>
-				<label for='username'>Username:
-					<input type='text' name='username' />
-				</label>
-				<label for='password'>Password:
-					<input type='text' name='password' />
-				</label>
-				<input type='submit' value='Login'/>
-				<input type='hidden' name='login' value='1'/>
-			</form>
 	</footer>
 
 <script>

@@ -3,7 +3,6 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 	// page view
 	$scope.page = [];
 	$scope.page[ "Interview" ] = true;
-	$scope.page[ "Advice" ] = false;
 	$scope.lastpage = "Interview";
 	$scope.showPage = function( page ) {
 		if ( $scope.lastpage != "" )

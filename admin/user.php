@@ -1,5 +1,5 @@
 <?php
-include "../db.php";
+include_once "../db.php";
 
 define("TBL_USERS", "users" );
 
@@ -253,14 +253,17 @@ class Users {
 }
 
 $users = new Users();
-if ( isset( $_POST['new'] ) ) {
+if ( isset( $_POST['action'] ) ) {
 	$username = $_POST['username'];
 	$email    = $_POST['email'];
     $password = $_POST[ 'password' ];
     $confirm  = $_POST[ 'confirm' ];
 
-	$rc = $users->NewUser( $username, $email, $password, $confirm );
-	
+	if ( $_POST['action'] == "add" )
+		$rc = $users->NewUser( $username, $email, $password, $confirm );
+	else
+		$rc = $users->UpdateUser( $username, $email, $password, $confirm, $active );
+		
 	if ( $users->error ) {
 		echo $users->errmsg;
 		header("HTTP/1.1 501 " . $users->errmsg );
