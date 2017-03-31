@@ -197,6 +197,31 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.nquestions++;
 		Tally( $scope.name, 1, 0 );
 	}
+
+	// Select a multiple choice answer
+	$scope.Choice = function( n, id ) {
+		if ( n == answer ) {
+			$scope.iscorrect = true;
+			$scope.correct++;
+			Tally( $scope.name, 0, 1 );
+			oncorrect = Timestamp( $scope.name, id, "correct" );
+			ncorrect++;
+			
+			// mark the question as answered correctly
+			var len = $scope.questions.length;
+			for ( var i = 0; i < len; i++ ) {
+				if ( $scope.questions[ i ].id == id ) {
+					$scope.questions[ i ].answered = true;
+					break;
+				}
+			}
+		}
+		else {
+			$scope.iscorrect = false
+			Timestamp( $scope.name, id, "incorrect" );
+		}
+		$scope.disable = true;
+	}
 })
 .directive( "questionsAdd", function() {
 	return {
