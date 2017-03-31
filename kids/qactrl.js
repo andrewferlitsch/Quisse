@@ -104,6 +104,7 @@
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
+		Tally( $scope.name, 0, 0 );
 		$scope.Multi( id );
 	}
 	
@@ -129,7 +130,7 @@
 				$scope.rank--;
 			counter = ncorrect = 0;
 		}
-		
+
 		$scope.question = pickNext( $scope.name, $scope.rank )[ 0 ];
 		
 		if ( $scope.question.question == "You Passed" ) {
@@ -173,11 +174,11 @@
 		$scope.disable = false;
 		$scope.checked = false;
 		$scope.nquestions++;
-		Tally( $scope.name, 1, 0 );
 	}
 
 	// Select a multiple choice answer
 	$scope.Choice = function( n, id ) {
+		Tally( $scope.name, 1, 0 );
 		if ( n == answer ) {
 			$scope.iscorrect = true;
 			$scope.correct++;

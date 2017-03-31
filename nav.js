@@ -38,11 +38,11 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 			 FB.api('/me', function(response) {
 				console.log('Successful login for: ' + response.name);
 				//document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-				$scope.showLogout = true;
+				$scope.$apply(function () { $scope.showLogout = true; $scope.showLogin = false;} );
 			});
 		} else {
 			// The person is not logged into your app or we are unable to tell.
-			document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+			//document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
 		}
 	}
   
@@ -52,15 +52,25 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 		});
 	}
 	
+	$scope.Logout = function() {
+		$scope.showLogout = false;
+		$scope.showLogin  = true;
+		console.log( "logout");
+		FB.logout(function(response) {
+			// Person is now logged out
+		});
+	}	
+	
 	$scope.showLogout = false;
+	$scope.showLogin  = true;
 })
 .directive( "nav", function() {
 	return {
 		restrict: 'A',
 		template: "<div style='text-align: center; margin-top: -25px; margin-bottom: -10px'>" +
 				  "<img src='/quisse.png'/>" + 
-				  "<fb:login-button class='w3-right' style='margin-top: 10px' scope='public_profile,email' ng-click='checkLoginState();'></fb:login-button>" +
-				  "<button ng-show='showLogout' class='w3-right w3-btn w3-blue w3-tiny' style='margin-top: 10px'>Logout</button>" +
+				  "<fb:login-button class='w3-right' style='margin-top: 10px' scope='public_profile,email' ng-click='checkLoginState();' ng-show='showLogin'></fb:login-button>" +
+				  "<button ng-show='showLogout' ng-click='Logout();' class='w3-right w3-btn w3-blue w3-tiny' style='margin-top: 10px'>Logout</button>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/' ng-click='showPage( \"Interview\" );'>Flashcard</a></li>" +

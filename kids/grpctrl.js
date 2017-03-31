@@ -263,6 +263,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
+		Tally( $scope.name, 0, 0 );
 		$scope.Multi( id );
 	}
 	
@@ -276,11 +277,15 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			if ( ncorrect == THRESHOLD_QUIZ ) {
 				if ( $scope.rank == 3 ) {
 					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+					document.getElementById("beep").play();
+					$scope.passed = true;
+					$scope.iscorrect = "";
+					return;
 				}
 				else	
 					$scope.rank++;
 			}
-			else if ( ncorrect < 2 && $scope.rank > 1 )
+			else if ( ncorrect < 3 && $scope.rank > 1 )
 				$scope.rank--;
 			counter = ncorrect = 0;
 		}
