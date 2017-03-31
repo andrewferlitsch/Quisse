@@ -2,7 +2,7 @@
 /* Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
  */
 session_start();
-include "../db.php";
+include_once "../db.php";
 ?>
 <html lang="en-US">
 <head>
@@ -141,12 +141,14 @@ $(function() {
 </script>
 </head>
 <body ng-app="technical">
+	<?php include "adminlogin.php"; ?>
+	
 	<header ng-controller="navCtrl" style='text-align:center'>
 		<div nav></div>
 		<h2>Quisse Admin User Dashboard</h2>
 	</header>
 	
-	<section class='w3-container'>
+	<section class='w3-container' id='authenticated'>
 		<!-- Next, Prev, New -->
 		<button id='prev' class='w3-btn w3-blue'>Prev</button>
 		<button id='next' class='w3-btn w3-blue'>Next</button>

@@ -27,7 +27,7 @@ $(function() {
 	var questions;	// list of questions
 	var index;		// index into list of questions
 	var size;		// size of question index
-	
+
 	// Select a category
 	$("#category").change( function() {
 		ClearStatus();
@@ -309,48 +309,19 @@ $(function() {
 			$("#err-all").html( "Unable to Timing: errCode = " + response.status );
 		});	 
 	})
-
-	$("#login").click( function() {
-		$("#login-err").html("");
-		var username = $( "#l-username" ).val();
-		var password = $( "#l-password" ).val();
-		$.post( "/admin/user.php",
-			{ login: 1,
-			  username: username,
-			  email	  : username,
-			  password: password
-			},
-			function ( data, status ) {
-				$("#login-ok").html( data );
-			}
-		)
-		.fail (function( response ) {
-			$("#login-err").html( response.responseText );
-		});	 
-	})
 })
 </script>
 </head>
 <body ng-app="technical">
 
-	<form style='font-size: 8pt;'>	
-		<label for='l-username'>Username (or Email):
-			<input type='text' id='l-username' name='l-username' required/>
-		</label>
-		<label for='l-password'>Password:
-			<input type='password' id='l-password' name='l-password' required/>
-		</label>
-		<button id='login' style='cursor: pointer'>Login</button>
-		<span id='login-err' class='error'></span>
-		<span id='login-ok' class='ok'></span>
-	</form>
-			
+	<?php include "adminlogin.php"; ?>
+	
 	<header ng-controller="navCtrl" style='text-align:center'>
 		<div nav></div>
 		<h2>Quisse Admin Dashboard</h2>
 	</header>
 	
-	<section class='w3-container'>
+	<section class='w3-container' id='authenticated'>
 		<!-- category -->
 		<label for='category' class='w3-label'>Category</label>
 		<select id='category' name='category' class='w3-input' required>
