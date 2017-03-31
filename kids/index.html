@@ -120,13 +120,71 @@ function UpdateScore() {
 	}, 250);
 }
 
+function pickNext( cat, level ) {
+	if ( cat == "add" ) return Add( level );
+	if ( cat == "sub" ) return Sub( level );
+}
+	
+function Add( level ) {
+	var num1 = Math.random();
+	var num2 = Math.random();
+		
+	var coff1, coff2;
+	switch ( level ) {
+	case 1: coff1 = coff2 = 10; break;
+	case 2: coff1 = 100, coff2 = 10; break;
+	case 3: coff1 = coff2 = 100; break;
+	}
+		
+	num1 = Math.floor( num1 * coff1 );
+	if ( num1 < 10 && coff1 == 100 )
+		num1 += 10;
+	num2 = Math.floor( num2 * coff2 );
+	if ( num2 == 0 && coff2 > 10 )
+		num2 = num1;
+	var result = num1 + num2;
+		
+	return [ { question: num1 + ' + ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
+}
+
+function Sub( level ) {
+	var num1 = Math.random();
+	var num2 = Math.random();
+		
+	var coff1, coff2;
+	switch ( level ) {
+	case 1: coff1 = coff2 = 10;
+			// if negative result, swap numbers
+			if ( num2 > num1 ) {
+				var tmp = num2;
+				num2 = num1;
+				num1 = tmp;
+			}
+			break;
+	case 2: coff1 = 100, coff2 = 10; 
+			break;
+	case 3: coff1 = coff2 = 100; 
+			break;
+	}
+		
+	num1 = Math.floor( num1 * coff1 );
+	if ( num1 < 10 && coff1 == 100 )
+		num1 += 10;
+	num2 = Math.floor( num2 * coff2 );
+	if ( num2 == 0 && coff2 > 10 )
+		num2 = Math.floor( num1 / 2 );
+	var result = num1 - num2;
+		
+	return [ { question: num1 + ' - ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
+}
+
 $(function() {
 })
 </script>
 <script src="/nav.js"></script>
 <script src="/head.js"></script>
 <script src="kids.js"></script>
-<script src="mathctrl.js"></script>
+<script src="mathctrl.php"></script>
 <script src="grpctrl.js"></script>
 <script src="/final.js"></script>
 <script src="/footer.js"></script>
