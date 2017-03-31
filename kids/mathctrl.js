@@ -144,6 +144,10 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 			if ( ncorrect == THRESHOLD_QUIZ ) {
 				if ( $scope.rank == 3 ) {
 					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+					document.getElementById("beep").play();
+					$scope.passed = true;
+					$scope.iscorrect = "";
+					return;
 				}
 				else	
 					$scope.rank++;
@@ -161,6 +165,7 @@ technical.controller( 'addCtrl', function( $scope, $http, $location, $anchorScro
 			$scope.iscorrect = "";
 			return;
 		}
+		else 
 		
 		Timestamp( $scope.name, $scope.question.id, "multi" );
 		
@@ -331,21 +336,20 @@ technical.controller( 'subCtrl', function( $scope, $http, $location, $anchorScro
 		}
 
 		counter++;
-		if ( counter >= THRESHOLD ) {
-			if ( ncorrect == THRESHOLD ) {
+		if ( counter >= THRESHOLD_QUIZ ) {
+			if ( ncorrect == THRESHOLD_QUIZ ) {
 				if ( $scope.rank == 3 ) {
-					$scope.random[0] = { id: 0, question: "You Passed", answer: "No Questions Remain", rank: "" };
-					Tally( $scope.name, 0, -1 );	// hack
+					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+					document.getElementById("beep").play();
+					$scope.passed = true;
+					$scope.iscorrect = "";
+					return;
 				}
-				else {
-					if ( $scope.rank != 3 )
-						$scope.rank++;
-				}
+				else	
+					$scope.rank++;
 			}
-			else if ( ncorrect < 2 ) {
-				if ( $scope.rank != 1 )
-					$scope.rank--;
-			}
+			else if ( ncorrect < 2 && $scope.rank > 1 )
+				$scope.rank--;
 			counter = ncorrect = 0;
 		}
 
