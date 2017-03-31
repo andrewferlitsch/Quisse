@@ -295,12 +295,14 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		}
 		
 		Timestamp( $scope.name, $scope.question.id, "multi" );
-		
+
 		var correct = "";
 		if ( $scope.question.answer.charAt( 1 ) == 'n' ) 
 			correct = $scope.question.answer.substring( 2 );
 		else 
 			correct = $scope.question.answer.substring( 1 );
+		var n = correct.indexOf(" does");
+		correct = correct.substring( 0, n );
 		
 		// place the correct answer in a random location
 		answer = Math.floor( Math.random() * 4 );
@@ -308,11 +310,15 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.m[ answer ] = correct;
 
 		// set the choices for the wrong answers
-		for ( var i = 0; i < 4; i++ ) {
+		var tmp = $scope.question.question.split(": ");
+		var choices = tmp[ 1 ].split(",");
+		
+		for ( var i = 0, j = 0; i < 4; i++ ) {
 			// skip the slot where the answer is
-			if ( i == answer ) continue;
+			if ( i == answer ) { continue };
 			
-			$scope.m[ i ] = "foo";
+			if ( choices[ j ] == correct ) j++;
+			$scope.m[ i ] = choices[ j++ ];
 		}
 
 		$scope.iscorrect = "";
