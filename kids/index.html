@@ -123,6 +123,8 @@ function UpdateScore() {
 function pickNext( cat, level ) {
 	if ( cat == "add" ) return Add( level );
 	if ( cat == "sub" ) return Sub( level );
+	if ( cat == "mul" ) return Mul( level );
+	if ( cat == "div" ) return Div( level );
 }
 	
 function Add( level ) {
@@ -176,6 +178,55 @@ function Sub( level ) {
 	var result = num1 - num2;
 		
 	return [ { question: num1 + ' - ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
+}
+	
+function Mul( level ) {
+	var num1 = Math.random();
+	var num2 = Math.random();
+		
+	var coff1, coff2;
+	switch ( level ) {
+	case 1: coff1 = coff2 = 6;
+			break;
+	case 2: coff1 = coff2 = 12; 
+			break;
+	case 3: coff1 = coff2 = 25; 
+			break;
+	}
+		
+	num1 = Math.floor( num1 * coff1 );
+	if ( num1 < 6 && coff1 > 6 )
+		num1 += 2;
+	num2 = Math.floor( num2 * coff2 );
+	if ( num2 < 6 && coff2 > 6 )
+		num2 += 2;
+	var result = num1 * num2;
+		
+	return [ { question: num1 + ' x ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
+}
+
+function Div( level ) {
+	var num1 = Math.random();
+	var num2 = Math.random();
+		
+	var coff1, coff2;
+	switch ( level ) {
+	case 1: coff1 = 10; coff2 = 10; break;
+			break;
+	case 2: coff1 = 12; coff2 = 15; break; 
+			break;
+	case 3: coff1 = 15; coff2 = 15; break;
+			break;
+	}
+		
+	num2 = Math.floor( num2 * coff2 );
+	if ( num2 == 0 ) num2 = 1;
+	num1 = Math.floor( num1 * coff1 );
+	num1 = num1 * num2;
+		
+	var result = num1 / num2;
+		
+	return [ { question: num1 + ' / ' + num2 + ' = ', answer: result, rank: level, id: -1 } ];
 }
 
 $(function() {

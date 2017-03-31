@@ -1,10 +1,7 @@
-
 	$scope.questions = [{ question: "placeholder 1",
 						  answer: "",
 						  rank: 1,
-						  id: 1,
-						  words: "",
-						  similar: ""
+						  id: 1
 						}
 					  ];
 	$scope.random 	  = $scope.questions;
@@ -12,7 +9,6 @@
 	$scope.rank       = 1;
 	$scope.nquestions = 1;
 	$scope.correct    = 0;
-	$scope.disable    = false;
 	
 	// Scroll to Content
 	$scope.scrollTo = function() {
@@ -21,21 +17,12 @@
 	  
 	  // Load the Q&A from Database when visible
 	  if ( $scope.show ) {
-		$http({
-			method : "GET",
-			url : "load.php",
-			params: { category: $scope.subject }
-		}).then(function mySucces(response) {
-			$scope.questions  = response.data;
-			$scope.ncount     = $scope.questions.length;
-			$scope.random 	  = pickNext( $scope.questions, 1, -1, false );
-			}, function myError(response) { console.log(response);
-		});
-	  
+		$scope.random 	 = pickNext( $scope.name, 1 );
+
 		onnext = Timestamp( $scope.name, 0, "init" );
 	  
 		Tally( $scope.name, 0, 0 );
-		
+
 		counter = 0;
 		$scope.nquestions = 0;
 		$scope.correct    = 0;
@@ -45,15 +32,13 @@
 		$scope.multi = false;
 	  }
     }
-	
+
 	var onnext    = 0;										// timestamp of next question
 	var onanswer  = 0;										// timestamp when answer flipped
 	var oncorrect = 0;										// timestamp when Got it checked
 	var ncorrect  = 0;										// number of correct answers at this level
 	var counter   = 0;										// counter for number of questions at this level
 	var THRESHOLD = 4;										// threshold for adaptive test level selection
-	var answer    = 0;										// index of correct answer in multiple choice
-	var iscorrect = "";
 	
 	// Flip the Flashcard
 	$scope.Flip = function( id, flipped ) {
@@ -71,7 +56,7 @@
 			oncorrect = Timestamp( $scope.name, id, "correct" );
 			ncorrect++;
 		}
-		
+
 		counter++;
 		if ( counter >= THRESHOLD ) {
 			if ( ncorrect == THRESHOLD ) {
@@ -95,13 +80,12 @@
 		onnext = Timestamp( $scope.name, id, "next" );
 		onanswer = oncorrect = 0;
 		
-		$scope.m = [];
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.quiz = true;
 		}
 		else {
-			$scope.random = pickNext( $scope.questions, $scope.rank, id, correct );
+			$scope.random = pickNext( $scope.name, $scope.rank );
 			$scope.nquestions++;
 			Tally( $scope.name, 1, 0 );
 		}
@@ -116,13 +100,7 @@
 		// reset scoring
 		totalQuestions = 0;	
 		totalCorrect   = 0;
-		
-		// reset that the questions have not been answered
-		var len = $scope.questions.length;
-		for ( var i = 0; i < len; i++ ) {
-			$scope.questions[ i ].answered = false;
-		}
-		
+
 		// load the first question
 		$scope.rank = 1;
 		counter = ncorrect = 0;
@@ -139,6 +117,10 @@
 			if ( ncorrect == THRESHOLD_QUIZ ) {
 				if ( $scope.rank == 3 ) {
 					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
+					document.getElementById("beep").play();
+					$scope.passed = true;
+					$scope.iscorrect = "";
+					return;
 				}
 				else	
 					$scope.rank++;
@@ -148,7 +130,7 @@
 			counter = ncorrect = 0;
 		}
 		
-		$scope.question = pickMulti( $scope.questions, $scope.rank, id, false );
+		$scope.question = pickNext( $scope.name, $scope.rank )[ 0 ];
 		
 		if ( $scope.question.question == "You Passed" ) {
 			document.getElementById("beep").play();
@@ -156,27 +138,35 @@
 			$scope.iscorrect = "";
 			return;
 		}
+		else 
 		
 		Timestamp( $scope.name, $scope.question.id, "multi" );
 		
 		// place the correct answer in a random location
 		answer = Math.floor( Math.random() * 4 );
+		$scope.m = [];
 		$scope.m[ answer ] = $scope.question.answer;
-			
+		
 		// set the choices for the wrong answers
-		var choices = $scope.question.similar.split( "," );
-		for ( var i = 0, j = 0; i < 4; i++ ) {
+		for ( var i = 0; i < 4; i++ ) {
 			// skip the slot where the answer is
 			if ( i == answer ) continue;
 			
-			var pair = choices[ j ].split(":");
-			for ( var k = 0; k < $scope.questions.length; k++ ) {
-				if ( $scope.questions[ k ].id == pair[ 1 ] ) {
-					$scope.m[ i ] = $scope.questions[ k ].answer;
+			while ( true ) {
+				var wrong = pickNext( $scope.name, $scope.rank )[ 0 ].answer;
+				// remove duplicates
+				var dup = false;
+				for ( var j = 0; j < 4; j++ ) {
+					if ( wrong == $scope.m[ j ] ) {
+						dup = true;
+						break;
+					}
+				}
+				if ( dup == false ) {
+					$scope.m[ i ] = wrong;
 					break;
 				}
 			}
-			j++;
 		}
 
 		$scope.iscorrect = "";
@@ -210,7 +200,3 @@
 		}
 		$scope.disable = true;
 	}
-
-	$scope.quiz  = false;
-	$scope.qa    = true;
-	$scope.multi = false;
