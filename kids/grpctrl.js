@@ -262,9 +262,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 
 		// load the first question
 		$scope.rank = 1;
-		counter = ncorrect = 0;
 		Tally( $scope.name, 0, 0 );
 		$scope.Multi( id );
+		counter = ncorrect = 0;
 	}
 	
 	var THRESHOLD_QUIZ = 6;
@@ -330,7 +330,32 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.disable = false;
 		$scope.checked = false;
 		$scope.nquestions++;
+	}
+	
+	// Select a multiple choice answer
+	$scope.Choice = function( n, id ) {
 		Tally( $scope.name, 1, 0 );
+		if ( n == answer ) {
+			$scope.iscorrect = true;
+			$scope.correct++;
+			Tally( $scope.name, 0, 1 );
+			oncorrect = Timestamp( $scope.name, id, "correct" );
+			ncorrect++;
+			
+			// mark the question as answered correctly
+			var len = $scope.questions.length;
+			for ( var i = 0; i < len; i++ ) {
+				if ( $scope.questions[ i ].id == id ) {
+					$scope.questions[ i ].answered = true;
+					break;
+				}
+			}
+		}
+		else {
+			$scope.iscorrect = false
+			Timestamp( $scope.name, id, "incorrect" );
+		}
+		$scope.disable = true;
 	}
 })
 .directive( "questionsGrp", function() {
