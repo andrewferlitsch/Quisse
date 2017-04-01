@@ -303,9 +303,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 
 		var correct = "";
 		if ( $scope.question.answer.charAt( 1 ) == 'n' ) 
-			correct = $scope.question.answer.substring( 2 );
+			correct = $scope.question.answer.substring( 3 );
 		else 
-			correct = $scope.question.answer.substring( 1 );
+			correct = $scope.question.answer.substring( 2 );
 		var n = correct.indexOf(" does");
 		correct = correct.substring( 0, n );
 		
@@ -322,7 +322,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			// skip the slot where the answer is
 			if ( i == answer ) { continue };
 			
-			if ( choices[ j ] == correct ) j++;
+			if ( choices[ j ].trim() == correct ) j++;
 			$scope.m[ i ] = choices[ j++ ];
 		}
 
