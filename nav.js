@@ -71,7 +71,7 @@ function LoggedOut() {
 		},
 		function ( data, status ) {
 		}
-	});	 
+	);	 
 }
 	
 technical.controller( 'navCtrl', function( $scope, $rootScope ) {
