@@ -222,6 +222,40 @@ class Users {
 		return $username . "," . $this->userid;
 	}
 	
+	// Facebook User Login
+	function FBLogin( $email, $name ) {
+		global $db;
+		
+		$email  = $this->Strip( $email );
+		$name	= $this->Strip( $name  );
+		
+		// login by email
+		if ( $email != "" ) {
+			if ( !$this->IsRegisteredEmail( $email ) ) {
+				$password = uniqid();
+				$this->NewUser( $name, $email, $password, $password );
+			}
+			$where = "email='$email'";
+		}
+		
+		$q = "SELECT password,username,id FROM " . TBL_USERS . " WHERE " . $where;
+		$result = mysqli_query( $db->connection, $q );
+		if ( $db->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $db->connection ) . PHP_EOL;
+		}
+		
+		$data = mysqli_fetch_array( $result );
+		$this->userid = $data[ 'id' ];
+		$username = $data[ 'username' ];
+		
+		$_SESSION["username"] = $username;
+		$_SESSION["email"]    = $email;
+		$_SESSION["userid"]   = $this->userid;
+		
+		return $username . "," . $this->userid;
+	}
+	
 	// Logout
 	function Logout() {
 		unset( $_SESSION );
@@ -297,6 +331,20 @@ else if ( isset( $_POST['login']) ) {
     $password = $_POST[ 'password' ];
 	
 	$rc = $users->Login( $username, $email, $password );
+	
+	if ( $users->error ) {
+		echo $users->errmsg;
+		header("HTTP/1.1 501 " . $users->errmsg );
+	}
+	else
+		echo $rc;
+}
+// Login via Facebook
+else if ( isset( $_POST['fblogin']) ) {
+	$email    = $_POST['email'];
+	$name     = $_POST['name'];
+	
+	$rc = $users->FBLogin( $email, $name );
 	
 	if ( $users->error ) {
 		echo $users->errmsg;

@@ -33,9 +33,20 @@ function statusChangeCallback(response) {
 	// for FB.getLoginStatus().
 	if (response.status === 'connected') {
 			// Logged into your app and Facebook.
-		FB.api('/me', function(response) {
-			console.log('Successful login for: ' + response.name);
+		FB.api('/me',  { locale: 'en_US', fields: 'name, email' }, function(response) {
+			console.log(response);
 			LoggedIn( response.name );
+			$.post( "/admin/user.php",
+				{ fblogin: 1,
+				  name	: response.name,
+				  email	: response.email
+				},
+				function ( data, status ) {
+				}
+			)
+			.fail (function( response ) {
+				// error occurred
+			});	 
 		});
 	} else {
 		// The person is not logged into your app or we are unable to tell.
