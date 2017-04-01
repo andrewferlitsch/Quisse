@@ -237,6 +237,7 @@ function pickNext( questions, rank, id, correct ) {
 	
 var totalQuestions = 0;
 var totalCorrect   = 0;
+var timeSpent      = "";
 
 /*
  * Tally (Score) results for a category
@@ -259,6 +260,17 @@ function UpdateScore() {
 				scope.percentCorrect = ( ( scope.totalCorrect * 100 ) / scope.totalQuestions ).toFixed(2) + "%";
 			else
 				scope.percentCorrect = "";
+		});
+	}, 250);
+}
+
+/* Show Completion Time
+ */
+function ShowTime( secs ) {
+	setTimeout(function () { 
+		var scope = angular.element($("#final")).scope();
+		scope.$apply(function(){
+			scope.timeSpent = Math.round( secs );
 		});
 	}, 250);
 }

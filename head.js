@@ -29,6 +29,7 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 		// reset scoring
 		totalQuestions = 0;	
 		totalCorrect   = 0;
+		timeSpent      = "";
 		
 		var el = document.getElementById( cat );
 		setTimeout(function () { el.click(); }, 300);
