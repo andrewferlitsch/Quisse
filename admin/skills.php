@@ -47,7 +47,7 @@ class Skills {
 			$this->AddSkill( $id, $skill, $type );
 		}
 		
-		$q = "UPDATE " . TBL_SKILLS . " SET type='$type',percent='$percent',time='$time',date=SYSDATE() WHERE userid=$id AND type='$type'";
+		$q = "UPDATE " . TBL_SKILLS . " SET type='$type',percent='$percent',time='$time',date=SYSDATE() WHERE userid=$id AND type='$type' AND skill='$skill'";
 		$result = mysqli_query( $db->connection, $q ); 
 		if ( $db->debug == true ) {
 			echo "Q $q". PHP_EOL;
@@ -118,11 +118,11 @@ class Skills {
 }
 
 $skills = new Skills();
+$_POST = json_decode(file_get_contents('php://input'), true);
 if ( isset( $_POST['action'] ) ) {
 	$id       = $_POST['id'];
 	$skill    = $_POST['skill'];
 	$type     = $_POST['type'];
-	$multi    = $_POST['multi'];
 	$percent  = $_POST['percent'];
 	$time     = $_POST['time'];
 

@@ -114,7 +114,21 @@
 			
 		// display the time spent on the flipcard to complete (pass)
 		d = new Date();
-		ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
+		var time = ( d.getTime() - $scope.startTime ) / 1000;
+		ShowTime( time );
+		if ( $scope.quiz == true ) {
+			$scope.correct--;
+			var percent = (  $scope.correct / $scope.nquestions ) * 100;
+			$http({
+				method: 'POST',
+				url   : '/admin/skills.php',
+				data  : { 'id': 1, 'action': 'update', 'skill': $scope.name, 'type': 'flip', 'percent': percent, 'time': time },
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function (response) {
+				console.log(response);
+			}, function (response) {
+			});
+		}
 	}
 	
 	// User selected starting Multiple Choice Quiz

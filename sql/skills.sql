@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS skills
   userid	INT			 NOT NULL,
   skill     VARCHAR(16)  NOT NULL,
   type	    VARCHAR(8)	 NOT NULL,
-  percent	TINYINT		 NULL,
+  percent	FLOAT		 NULL,
   time  	INT	 		 NULL,
   date		DATETIME	 NULL,
  
