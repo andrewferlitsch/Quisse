@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "../db.php";
 
 define("TBL_USERS", "users" );
@@ -278,11 +279,13 @@ if ( isset( $_POST['action'] ) ) {
     $confirm  = $_POST[ 'confirm' ];
     $active   = $_POST[ 'active' ];
 
-	if ( $_POST['action'] == "add" )
-		$rc = $users->NewUser( $username, $email, $password, $confirm );
-	else
-		$rc = $users->UpdateUser( $id, $username, $email, $password, $confirm, $active );
-		
+	if ( $_SESSION["userid"] == 1 ) {
+		if ( $_POST['action'] == "add" )
+			$rc = $users->NewUser( $username, $email, $password, $confirm );
+		else
+			$rc = $users->UpdateUser( $id, $username, $email, $password, $confirm, $active );
+	}
+	
 	if ( $users->error ) {
 		echo $users->errmsg;
 		header("HTTP/1.1 501 " . $users->errmsg );

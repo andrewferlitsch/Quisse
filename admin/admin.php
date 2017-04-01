@@ -321,92 +321,96 @@ $(function() {
 		<h2>Quisse Admin Dashboard</h2>
 	</header>
 	
-	<section class='w3-container' id='authenticated'>
-		<!-- category -->
-		<label for='category' class='w3-label'>Category</label>
-		<select id='category' name='category' class='w3-input' required>
-			<option value='' disabled selected>Select a category...</option>
-			<?php $categories = $db->GetCategories();
-			$ncat = count( $categories );
-			for ( $i = 0; $i < $ncat; $i++ ) {
-				$category = $categories[ $i ];
-				echo "<option id='$category'>$category</option>";
-			}
-			?>
-		</select>
-		<span id='err-cat' class='error'></span>
-		
-		<!-- ID -->
-		<label for='id' class='w3-label'>ID:</label>
-		<span id='id' name='id'></span>&nbsp;
-		<!-- No of Questions -->
-		<label for='size' class='w3-label'>No. of Questions:</label>
-		<span id='size' name='size'></span>&nbsp;
-		<!-- total responses -->
-		<label for='tcount' class='w3-label'>Response Count:</label>
-		<span id='tcount' name='tcount'></span>&nbsp;
-		<!-- Ave Timing -->
-		<label for='timing' class='w3-label'>Ave Timing:</label>
-		<span id='timing' name='timing'></span><br/><br/>
-
-		<!-- Next, Prev, New -->
-		<button id='prev' class='w3-btn w3-blue'>Prev</button>
-		<button id='next' class='w3-btn w3-blue'>Next</button>
-		<button id='new'  class='w3-btn w3-blue'>New</button>
-		<br/><br/>
-
-		<!-- Question -->
-		<label for='question' class='w3-label'>Question:</label>
-		<input type='text' id='question' name='question' required=true class='w3-input'/>
-		
-		<!-- Answer -->
-		<label for='answer' class='w3-label'>Answer:</label>
-		<textarea id='answer' name='answer' cols=40 rows=3 required=true class='w3-input'>
-		</textarea>
-		
-		<!-- Rank -->
-		<label for='rank' class='w3-label'>Level (Original)</label>
-		<select id='rank' name='rank' class='w3-input'>
-			<option value='1'>1</option>
-			<option value='2'>2</option>
-			<option value='3'>3</option>
-		</select>
-		
-		<label for='level' class='w3-label'>Level (Learned)</label>
-		<input id='level' name='level' class='w3-input' readonly/>
-		<br/>
-		
-		<!-- Submit -->
-		<input type='submit' id='submit' value='Update'/>
-		<span id='ok-sub' class='ok'></span><br/>
-		<span id='err-sub' class='error'></span><br/>
-		
-		<!-- Bag of Words -->
-		<label for='words' class='w3-label'>Bag of Words</label>
-		<button id='refresh-words' class='w3-btn w3-blue w3-small'>Refresh</button>
-		<span id='ok-red' class='ok'></span>
-		<span id='err-red' class='error'></span>
-		<pre name='words' id='words'></pre>
-		
-		<!-- Similar Matching Questions -->
-		<label for='similar' class='w3-label'>Similar Questions</label>
-		<button id='refresh-similar' class='w3-btn w3-blue w3-small'>Refresh</button>
-		<span id='ok-sim' class='ok'></span>
-		<span id='err-sim' class='error'></span>
-		<textarea name='similar' id='similar' class='w3-input' rows=4></textarea>
-	</section>
-	<hr/>
+	<section id='authenticated'>
 	
-	<section class='w3-container'>
-		<button id='reduce-cat' class='w3-btn w3-blue w3-small'>Reduce Category</button>
-		<button id='reduce-all' class='w3-btn w3-teal w3-small'>Reduce All</button>
-		<button id='similar-cat' class='w3-btn w3-blue w3-small'>Similar Category</button>
-		<button id='similar-all' class='w3-btn w3-teal w3-small'>Similar All</button>
-		<button id='timing-scan' class='w3-btn w3-green w3-small'>Scan Timing Data</button>
-		<button id='timing-level' class='w3-btn w3-blue w3-small'>Adjust Levels</button>
-		<br/>
-		<span id='ok-all' class='ok'></span>
-		<span id='err-all' class='error'></span><br/><br/>
+		<section class='w3-container'>
+			<!-- category -->
+			<label for='category' class='w3-label'>Category</label>
+			<select id='category' name='category' class='w3-input' required>
+				<option value='' disabled selected>Select a category...</option>
+				<?php $categories = $db->GetCategories();
+				$ncat = count( $categories );
+				for ( $i = 0; $i < $ncat; $i++ ) {
+					$category = $categories[ $i ];
+					echo "<option id='$category'>$category</option>";
+				}
+				?>
+			</select>
+			<span id='err-cat' class='error'></span>
+			
+			<!-- ID -->
+			<label for='id' class='w3-label'>ID:</label>
+			<span id='id' name='id'></span>&nbsp;
+			<!-- No of Questions -->
+			<label for='size' class='w3-label'>No. of Questions:</label>
+			<span id='size' name='size'></span>&nbsp;
+			<!-- total responses -->
+			<label for='tcount' class='w3-label'>Response Count:</label>
+			<span id='tcount' name='tcount'></span>&nbsp;
+			<!-- Ave Timing -->
+			<label for='timing' class='w3-label'>Ave Timing:</label>
+			<span id='timing' name='timing'></span><br/><br/>
+
+			<!-- Next, Prev, New -->
+			<button id='prev' class='w3-btn w3-blue'>Prev</button>
+			<button id='next' class='w3-btn w3-blue'>Next</button>
+			<button id='new'  class='w3-btn w3-blue'>New</button>
+			<br/><br/>
+
+			<!-- Question -->
+			<label for='question' class='w3-label'>Question:</label>
+			<input type='text' id='question' name='question' required=true class='w3-input'/>
+			
+			<!-- Answer -->
+			<label for='answer' class='w3-label'>Answer:</label>
+			<textarea id='answer' name='answer' cols=40 rows=3 required=true class='w3-input'>
+			</textarea>
+			
+			<!-- Rank -->
+			<label for='rank' class='w3-label'>Level (Original)</label>
+			<select id='rank' name='rank' class='w3-input'>
+				<option value='1'>1</option>
+				<option value='2'>2</option>
+				<option value='3'>3</option>
+			</select>
+			
+			<label for='level' class='w3-label'>Level (Learned)</label>
+			<input id='level' name='level' class='w3-input' readonly/>
+			<br/>
+			
+			<!-- Submit -->
+			<input type='submit' id='submit' value='Update'/>
+			<span id='ok-sub' class='ok'></span><br/>
+			<span id='err-sub' class='error'></span><br/>
+			
+			<!-- Bag of Words -->
+			<label for='words' class='w3-label'>Bag of Words</label>
+			<button id='refresh-words' class='w3-btn w3-blue w3-small'>Refresh</button>
+			<span id='ok-red' class='ok'></span>
+			<span id='err-red' class='error'></span>
+			<pre name='words' id='words'></pre>
+			
+			<!-- Similar Matching Questions -->
+			<label for='similar' class='w3-label'>Similar Questions</label>
+			<button id='refresh-similar' class='w3-btn w3-blue w3-small'>Refresh</button>
+			<span id='ok-sim' class='ok'></span>
+			<span id='err-sim' class='error'></span>
+			<textarea name='similar' id='similar' class='w3-input' rows=4></textarea>
+		</section>
+		<hr/>
+		
+		<section class='w3-container'>
+			<button id='reduce-cat' class='w3-btn w3-blue w3-small'>Reduce Category</button>
+			<button id='reduce-all' class='w3-btn w3-teal w3-small'>Reduce All</button>
+			<button id='similar-cat' class='w3-btn w3-blue w3-small'>Similar Category</button>
+			<button id='similar-all' class='w3-btn w3-teal w3-small'>Similar All</button>
+			<button id='timing-scan' class='w3-btn w3-green w3-small'>Scan Timing Data</button>
+			<button id='timing-level' class='w3-btn w3-blue w3-small'>Adjust Levels</button>
+			<br/>
+			<span id='ok-all' class='ok'></span>
+			<span id='err-all' class='error'></span><br/><br/>
+		</section>
+	
 	</section>
 
 	<footer ng-controller="footerCtrl" id='footer'>

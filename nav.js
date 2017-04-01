@@ -54,7 +54,7 @@ function LoggedIn( username ) {
 	scope.$apply(function(){
 		scope.showLogout = true; scope.showLogin = false;
 	});
-	$("#username").html( username + "&nbsp;" );
+	$("#user").html( username + "&nbsp;" );
 }
 	
 technical.controller( 'navCtrl', function( $scope, $rootScope ) {
@@ -66,7 +66,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 			// Person is now logged out
 		});
 		
-		$("#username").html( "" );
+		$("#user").html( "" );
 	}	
 	
 	$scope.showLogout = false;
@@ -79,7 +79,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 				  "<img src='/quisse.png'/>" + 
 				  "<fb:login-button class='w3-right' style='margin-top: 10px' scope='public_profile,email' ng-show='showLogin' onlogin='checkLoginState();'></fb:login-button>" +
 				  "<button ng-show='showLogout' ng-click='Logout();' class='w3-right w3-btn w3-blue w3-tiny' style='margin-top: 10px'>Logout</button>" +
-				  "<span ng-show='showLogout' class='w3-right' id='username' style='margin-top: 10px; font-size: 8pt; color: green'></span>" +
+				  "<span ng-show='showLogout' class='w3-right' id='user' style='margin-top: 10px; font-size: 8pt; color: green'></span>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/' ng-click='showPage( \"Interview\" );'>Flashcard</a></li>" +
