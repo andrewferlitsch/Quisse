@@ -1,7 +1,7 @@
 <?php
 $DBNAME      = "interview";
 $DBUSER      = "root";
-$DBPASS      = "Mary1962";
+$DBPASS      = "XXX";
 define("DB_SERVER",    	"localhost");
 define("DB_USER",      	"$DBUSER");
 define("DB_PASS",      	"$DBPASS");
