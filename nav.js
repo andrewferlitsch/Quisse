@@ -90,10 +90,12 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 	return {
 		restrict: 'A',
 		template: "<div style='text-align: center; margin-top: -25px; margin-bottom: -10px'>" +
-				  "<img src='/quisse.png'/>" + 
-				  "<fb:login-button class='w3-right' style='margin-top: 10px' scope='public_profile,email' ng-show='showLogin' onlogin='checkLoginState();'></fb:login-button>" +
-				  "<button ng-show='showLogout' ng-click='Logout();' class='w3-right w3-btn w3-blue w3-tiny' style='margin-top: 10px'>Logout</button>" +
-				  "<span ng-show='showLogout' class='w3-right' id='user' style='margin-top: 10px; font-size: 8pt; color: green'></span>" +
+				  "	<img src='/quisse.png'/>" + 
+				  "	<fb:login-button class='w3-right' style='top: 10px; right: 10px; position: absolute' scope='public_profile,email' ng-show='showLogin' onlogin='checkLoginState();'></fb:login-button>" +
+				  "	<span class='w3-right' style='top: 10px; right: 10px; position:absolute'>" +
+				  "		<span ng-show='showLogout' id='user' style='font-size: 8pt; color: green'></span>" +
+				  "		<button ng-show='showLogout' ng-click='Logout();' class='w3-btn w3-blue w3-tiny'>Logout</button>" +
+				  "	</span>" +
 				  "</div>" +
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/' ng-click='showPage( \"Interview\" );'>Flashcard</a></li>" +
