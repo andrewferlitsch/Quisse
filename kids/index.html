@@ -128,8 +128,17 @@ function ShowTime( secs ) {
 		scope.$apply(function(){
 			if ( secs == 0 || secs == "" )
 				scope.timeSpent = "";
-			else
-				scope.timeSpent = Math.round( secs );
+			else {
+				secs = Math.round( secs );
+				var m = Math.floor( secs / 60 );
+				var s = secs % 60;
+				var out = "";
+				if ( m > 0 )
+					out = m + " mins ";
+				if ( s > 0 )
+					out += s + " secs";
+				scope.timeSpent = out;
+			}
 		});
 	}, 250);
 }

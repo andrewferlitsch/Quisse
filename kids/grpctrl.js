@@ -246,15 +246,16 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.quiz = true;
-			// display the time spent on the flipcard to complete (pass)
-			d = new Date();
-			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 		}
 		else {
 			$scope.random = $scope.Group( $scope.rank );
 			$scope.nquestions++;
 			Tally( $scope.name, 1, 0 );
 		}
+			
+		// display the time spent on the flipcard to complete (pass)
+		d = new Date();
+		ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 	}
 	
 	// User selected starting Multiple Choice Quiz
@@ -346,6 +347,10 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.disable = false;
 		$scope.checked = false;
 		$scope.nquestions++;
+			
+		// display the time spent on the multiple choice to complete (pass)
+		d = new Date();
+		ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 	}
 	
 	// Select a multiple choice answer

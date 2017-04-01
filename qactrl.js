@@ -39,12 +39,12 @@
 		counter = 0;
 		$scope.nquestions = 0;
 		$scope.correct    = 0;
-		$scope.rank = 1;
-		$scope.quiz  = false;
-		$scope.qa    = true;
-		$scope.multi = false;
+		$scope.rank       = 1;
+		$scope.quiz       = false;
+		$scope.qa         = true;
+		$scope.multi      = false;
 		
-		var d        = new Date();
+		var d = new Date();
 		$scope.startTime = d.getTime();
 		ShowTime("");
 	  }
@@ -103,9 +103,6 @@
 		$scope.m = [];
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
-			// display the time spent on the flipcard to complete (pass)
-			d = new Date();
-			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 			// show start quiz button
 			$scope.quiz = true;
 		}
@@ -114,6 +111,10 @@
 			$scope.nquestions++;
 			Tally( $scope.name, 1, 0 );
 		}
+			
+		// display the time spent on the flipcard to complete (pass)
+		d = new Date();
+		ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 	}
 	
 	// User selected starting Multiple Choice Quiz
@@ -156,9 +157,6 @@
 					document.getElementById("beep").play();
 					$scope.passed = true;
 					$scope.iscorrect = "";
-					// display the time spent on the multiple choice to complete (pass)
-					d = new Date();
-					ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 					return;
 				}
 				else	
@@ -175,9 +173,6 @@
 			document.getElementById("beep").play();
 			$scope.passed = true;
 			$scope.iscorrect = "";
-			// display the time spent on the multiple choice to complete (pass)
-			d = new Date();
-			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 			return;
 		}
 		
@@ -207,6 +202,10 @@
 		$scope.disable = false;
 		$scope.checked = false;
 		$scope.nquestions++;
+			
+		// display the time spent on the multiple choice to complete (pass)
+		d = new Date();
+		ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 	}
 
 	// Select a multiple choice answer
