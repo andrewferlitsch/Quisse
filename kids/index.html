@@ -120,6 +120,20 @@ function UpdateScore() {
 	}, 250);
 }
 
+/* Show Completion Time
+ */
+function ShowTime( secs ) {
+	setTimeout(function () { 
+		var scope = angular.element($("#final")).scope();
+		scope.$apply(function(){
+			if ( secs == 0 || secs == "" )
+				scope.timeSpent = "";
+			else
+				scope.timeSpent = Math.round( secs );
+		});
+	}, 250);
+}
+
 function pickNext( cat, level ) {
 	if ( cat == "add" ) return Add( level );
 	if ( cat == "sub" ) return Sub( level );

@@ -271,7 +271,7 @@ function ShowTime( secs ) {
 	setTimeout(function () { 
 		var scope = angular.element($("#final")).scope();
 		scope.$apply(function(){
-			if ( secs == 0 )
+			if ( secs == 0 || secs == "" )
 				scope.timeSpent = "";
 			else
 				scope.timeSpent = Math.round( secs );

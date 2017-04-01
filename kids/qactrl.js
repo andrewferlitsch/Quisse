@@ -30,6 +30,10 @@
 		$scope.quiz  = false;
 		$scope.qa    = true;
 		$scope.multi = false;
+		
+		var d        = new Date();
+		$scope.startTime = d.getTime();
+		ShowTime("");
 	  }
     }
 
@@ -83,6 +87,9 @@
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.quiz = true;
+			// display the time spent on the flipcard to complete (pass)
+			d = new Date();
+			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 		}
 		else {
 			$scope.random = pickNext( $scope.name, $scope.rank );
@@ -105,6 +112,9 @@
 		$scope.rank = 1;
 		counter = ncorrect = 0;
 		Tally( $scope.name, 0, 0 );
+		var d = new Date();
+		$scope.startTime = d.getTime();
+		ShowTime("");
 		$scope.Multi( id );
 	}
 	
@@ -120,7 +130,10 @@
 					$scope.question = { id: 0, question: "You Passed", answer: "No Questions Remain" };
 					document.getElementById("beep").play();
 					$scope.passed = true;
-					$scope.iscorrect = "";
+					$scope.iscorrect = 
+					// display the time spent on the multiple choice to complete (pass)
+					d = new Date();
+					ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 					return;
 				}
 				else	
@@ -137,6 +150,9 @@
 			document.getElementById("beep").play();
 			$scope.passed = true;
 			$scope.iscorrect = "";
+			// display the time spent on the multiple choice to complete (pass)
+			d = new Date();
+			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 			return;
 		}
 		else 

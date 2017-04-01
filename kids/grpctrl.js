@@ -102,6 +102,10 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		$scope.quiz  = false;
 		$scope.qa    = true;
 		$scope.multi = false;
+		
+		var d        = new Date();
+		$scope.startTime = d.getTime();
+		ShowTime("");
 	  }
     }
 	
@@ -242,6 +246,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		if ( $scope.random[0].question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.quiz = true;
+			// display the time spent on the flipcard to complete (pass)
+			d = new Date();
+			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 		}
 		else {
 			$scope.random = $scope.Group( $scope.rank );
@@ -263,6 +270,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 		// load the first question
 		$scope.rank = 1;
 		Tally( $scope.name, 0, 0 );
+		var d = new Date();
+		$scope.startTime = d.getTime();
+		ShowTime("");
 		$scope.Multi( id );
 		counter = ncorrect = 0;
 	}
@@ -280,6 +290,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 					document.getElementById("beep").play();
 					$scope.passed = true;
 					$scope.iscorrect = "";
+					// display the time spent on the multiple choice to complete (pass)
+					d = new Date();
+					ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 					return;
 				}
 				else	
@@ -296,6 +309,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			document.getElementById("beep").play();
 			$scope.passed = true;
 			$scope.iscorrect = "";
+			// display the time spent on the multiple choice to complete (pass)
+			d = new Date();
+			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
 			return;
 		}
 		

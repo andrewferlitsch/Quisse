@@ -174,7 +174,7 @@
 		if ( $scope.question.question == "You Passed" ) {
 			document.getElementById("beep").play();
 			$scope.passed = true;
-			$scope.iscorrect = 
+			$scope.iscorrect = "";
 			// display the time spent on the multiple choice to complete (pass)
 			d = new Date();
 			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
