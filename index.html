@@ -255,7 +255,8 @@ function UpdateScore() {
 		var scope = angular.element($("#final")).scope();
 		scope.$apply(function(){
 			scope.totalQuestions = totalQuestions;
-			scope.totalCorrect   = totalCorrect;var percentCorrect = 0;
+			scope.totalCorrect   = totalCorrect;
+			var percentCorrect = 0;
 			if ( scope.totalQuestions > 0 )
 				scope.percentCorrect = ( ( scope.totalCorrect * 100 ) / scope.totalQuestions ).toFixed(2) + "%";
 			else
@@ -270,7 +271,10 @@ function ShowTime( secs ) {
 	setTimeout(function () { 
 		var scope = angular.element($("#final")).scope();
 		scope.$apply(function(){
-			scope.timeSpent = Math.round( secs );
+			if ( secs == 0 )
+				scope.timeSpent = "";
+			else
+				scope.timeSpent = Math.round( secs );
 		});
 	}, 250);
 }

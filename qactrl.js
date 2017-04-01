@@ -46,6 +46,7 @@
 		
 		var d        = new Date();
 		$scope.startTime = d.getTime();
+		ShowTime("");
 	  }
     }
 	
@@ -124,6 +125,7 @@
 		// reset scoring
 		totalQuestions = 0;	
 		totalCorrect   = 0;
+		timeSpent      = "";
 		
 		// reset that the questions have not been answered
 		var len = $scope.questions.length;
@@ -137,6 +139,7 @@
 		Tally( $scope.name, 0, 0 );
 		var d = new Date();
 		$scope.startTime = d.getTime();
+		ShowTime("");
 		$scope.Multi( id );
 	}
 	
