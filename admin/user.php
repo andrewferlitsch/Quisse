@@ -305,70 +305,73 @@ class Users {
 }
 
 $users = new Users();
-if ( isset( $_POST['action'] ) ) {
-	$id       = $_POST['id'];
-	$username = $_POST['username'];
-	$email    = $_POST['email'];
-    $password = $_POST[ 'password' ];
-    $confirm  = $_POST[ 'confirm' ];
-    $active   = $_POST[ 'active' ];
+if ( $_SERVER['PHP_SELF'] == "/admin/user.php" )
+{
+	if ( isset( $_POST['action'] ) ) {
+		$id       = $_POST['id'];
+		$username = $_POST['username'];
+		$email    = $_POST['email'];
+		$password = $_POST[ 'password' ];
+		$confirm  = $_POST[ 'confirm' ];
+		$active   = $_POST[ 'active' ];
 
-	if ( $_SESSION["userid"] == 1 ) {
-		if ( $_POST['action'] == "add" )
-			$rc = $users->NewUser( $username, $email, $password, $confirm );
+		if ( $_SESSION["userid"] == 1 ) {
+			if ( $_POST['action'] == "add" )
+				$rc = $users->NewUser( $username, $email, $password, $confirm );
+			else
+				$rc = $users->UpdateUser( $id, $username, $email, $password, $confirm, $active );
+		}
+		
+		if ( $users->error ) {
+			echo $users->errmsg;
+			header("HTTP/1.1 501 " . $users->errmsg );
+		}
+	}
+	else if ( isset( $_POST['login']) ) {
+		$username = $_POST['username'];
+		$email    = $_POST['email'];
+		$password = $_POST[ 'password' ];
+		
+		$rc = $users->Login( $username, $email, $password );
+		
+		if ( $users->error ) {
+			echo $users->errmsg;
+			header("HTTP/1.1 501 " . $users->errmsg );
+		}
 		else
-			$rc = $users->UpdateUser( $id, $username, $email, $password, $confirm, $active );
+			echo $rc;
 	}
-	
-	if ( $users->error ) {
-		echo $users->errmsg;
-		header("HTTP/1.1 501 " . $users->errmsg );
+	// Login via Facebook
+	else if ( isset( $_POST['fblogin']) ) {
+		$email    = $_POST['email'];
+		$name     = $_POST['name'];
+		
+		$rc = $users->FBLogin( $email, $name );
+		
+		if ( $users->error ) {
+			echo $users->errmsg;
+			header("HTTP/1.1 501 " . $users->errmsg );
+		}
+		else
+			echo $rc;
 	}
-}
-else if ( isset( $_POST['login']) ) {
-	$username = $_POST['username'];
-	$email    = $_POST['email'];
-    $password = $_POST[ 'password' ];
-	
-	$rc = $users->Login( $username, $email, $password );
-	
-	if ( $users->error ) {
-		echo $users->errmsg;
-		header("HTTP/1.1 501 " . $users->errmsg );
+	else if ( isset( $_POST['logout'] ) ) {
+		$users->Logout();
 	}
-	else
-		echo $rc;
-}
-// Login via Facebook
-else if ( isset( $_POST['fblogin']) ) {
-	$email    = $_POST['email'];
-	$name     = $_POST['name'];
-	
-	$rc = $users->FBLogin( $email, $name );
-	
-	if ( $users->error ) {
-		echo $users->errmsg;
-		header("HTTP/1.1 501 " . $users->errmsg );
+	else if ( isset( $_GET['get'] ) ) {
+		$userid    = $_GET['userid'];
+		$user      = $users->GetUser( $userid );
+		$id        = $user[ 'id' ];
+		$username  = $user[ 'username' ];
+		$email     = $user[ 'email' ];
+		$created   = $user[ 'created' ];
+		$lastlogin = $user[ 'lastlogin' ];
+		$active    = $user[ 'active' ];
+		echo "{ \"id\": $id, \"username\": \"$username\", \"email\": \"$email\", 
+		\"created\": \"$created\", \"lastlogin\": \"$lastlogin\", \"active\": \"$active\" }";
 	}
-	else
-		echo $rc;
-}
-else if ( isset( $_POST['logout'] ) ) {
-	$users->Logout();
-}
-else if ( isset( $_GET['get'] ) ) {
-	$userid    = $_GET['userid'];
-	$user      = $users->GetUser( $userid );
-	$id        = $user[ 'id' ];
-	$username  = $user[ 'username' ];
-	$email     = $user[ 'email' ];
-	$created   = $user[ 'created' ];
-	$lastlogin = $user[ 'lastlogin' ];
-	$active    = $user[ 'active' ];
-	echo "{ \"id\": $id, \"username\": \"$username\", \"email\": \"$email\", 
-	\"created\": \"$created\", \"lastlogin\": \"$lastlogin\", \"active\": \"$active\" }";
-}
-else if ( isset( $_GET['count'] ) ) {
-	echo $users->Count();
+	else if ( isset( $_GET['count'] ) ) {
+		echo $users->Count();
+	}
 }
 ?>

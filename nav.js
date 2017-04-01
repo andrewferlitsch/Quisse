@@ -18,9 +18,9 @@ window.fbAsyncInit = function() {
 	version    : 'v2.8' // use graph api version 2.8
 	});
 		
-	FB.getLoginStatus(function(response) {
-		statusChangeCallback(response);
-	});
+	//FB.getLoginStatus(function(response) {
+		//statusChangeCallback(response);
+	//});
 }	
 	
 // This is called with the results from from FB.getLoginStatus().

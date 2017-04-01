@@ -84,6 +84,13 @@ h3 { color: steelblue; }
 		<span style='color: orange; cursor: pointer' ng-click='showquizdetails=!showquizdetails'>&#9205; Algorithm Details</span>
 		<div ng-show='showquizdetails' style='color: steelblue'>
 			<p>
+			The algorithm evaluates questions in groups of six. If all six questions are answered correct, the algorithm
+			will advance to the next level, unless you are already at level 3, then the algorithm will indicate you have passed.
+			If three or more questions are answered incorrect, the algorithm will decrease a level, unless you are already at level
+			1. Otherwise, the algorithm will stay on the same level. If all the questions at a level have been answered correctly,
+			the algorithm will advance to the next level.
+			</p>
+			<p>
 			The algorithm generates and stores a reduced list of non-duplicated words for each question using a bag of word methods with stemming,
 			where high frequency words (e.g., the, are, if, ...) are filtered out (i.e., stop words). Each question's bag of words, in a category, 
 			is then compared to all the other questions' bags of words, in the same category, for similarity. The algorithm stores,
