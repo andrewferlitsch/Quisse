@@ -117,12 +117,12 @@
 
 		// load the first question
 		$scope.rank = 1;
-		counter = ncorrect = 0;
 		Tally( $scope.name, 0, 0 );
 		var d = new Date();
 		$scope.startTime = d.getTime();
 		ShowTime("");
 		$scope.Multi( id );
+		counter = ncorrect = 0;
 	}
 	
 	var THRESHOLD_QUIZ = 6;
@@ -140,7 +140,9 @@
 					$scope.iscorrect = "";
 					// display the time spent on the multiple choice to complete (pass)
 					d = new Date();
-					ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
+					time = ( d.getTime() - $scope.startTime ) / 1000;
+					ShowTime( time  );
+					$scope.RecordResult( 'multi');
 					return;
 				}
 				else	
@@ -159,7 +161,9 @@
 			$scope.iscorrect = "";
 			// display the time spent on the multiple choice to complete (pass)
 			d = new Date();
-			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
+			time = ( d.getTime() - $scope.startTime ) / 1000;
+			ShowTime( time  );
+			$scope.RecordResult( 'multi');
 			return;
 		}
 		else 

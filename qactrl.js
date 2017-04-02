@@ -144,7 +144,6 @@
 		$scope.rank        = 1;
 		$scope.correct     = 0;
 		$scope.nquestions  = 0;
-		counter = ncorrect = 0;
 		Tally( $scope.name, 0, 0 );
 		var d = new Date();
 		$scope.startTime = d.getTime();
@@ -152,6 +151,7 @@
 		
 		// load the first question
 		$scope.Multi( id );
+		counter = ncorrect = 0;
 	}
 	
 	var THRESHOLD_QUIZ = 6;

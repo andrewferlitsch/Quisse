@@ -299,7 +299,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 					$scope.iscorrect = "";
 					// display the time spent on the multiple choice to complete (pass)
 					d = new Date();
-					ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
+					time = ( d.getTime() - $scope.startTime ) / 1000;
+					ShowTime( time );
+					$scope.RecordResult( 'multi');
 					return;
 				}
 				else	
@@ -318,7 +320,9 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			$scope.iscorrect = "";
 			// display the time spent on the multiple choice to complete (pass)
 			d = new Date();
-			ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
+			time = ( d.getTime() - $scope.startTime ) / 1000;
+			ShowTime( time );
+			$scope.RecordResult( 'multi');
 			return;
 		}
 		
