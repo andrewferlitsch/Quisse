@@ -1,6 +1,6 @@
 /* Copyright(c) 2016-2017, Andrew Ferlitsch, All Rights Reserved */
-// Load the Facebook SDK asynchronously
 
+// Load the Facebook SDK asynchronously
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) return;
@@ -74,8 +74,24 @@ function LoggedOut() {
 	);	 
 }
 
+// Setup an event listener to make an API call once auth is complete
 function onLinkedInLoad() {
-	
+	IN.Event.on(IN, "auth", getProfileData);
+}
+
+// Use the API call wrapper to request the member's basic profile data
+function getProfileData() {
+	IN.API.Raw("/people/~").result(onSuccess).error(onError);
+}
+
+// Handle the successful return from the API call
+function onSuccess(data) {
+	LoggedIn( data.firstName + " " + data.lastName );
+}
+
+// Handle an error response from the API call
+function onError(error) {
+        console.log(error);
 }
 	
 technical.controller( 'navCtrl', function( $scope, $rootScope ) {
@@ -96,7 +112,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 		template: "<div style='text-align: center; margin-top: -25px; margin-bottom: -10px'>" +
 				  "	<img src='/quisse.png'/>" + 
 				  "	<fb:login-button class='w3-right' style='top: 10px; right: 10px; position: absolute' scope='public_profile,email' ng-show='showLogin' onlogin='checkLoginState();'></fb:login-button>" +
-				  "	<span class='w3-right' style='top: 35px; right: 10px; position: absolute' ng-show='showLogin' ><script type='in/Login'></script></span>" +
+				  "	<span class='w3-right' style='top: 10px; right: 80px; position: absolute' ng-show='showLogin' ><script type='in/Login'></script></span>" +
 				  "	<span class='w3-right' style='top: 10px; right: 10px; position:absolute'>" +
 				  "		<span ng-show='showLogout' id='user' style='font-size: 8pt; color: green'></span>" +
 				  "		<button ng-show='showLogout' ng-click='Logout();' class='w3-btn w3-blue w3-tiny'>Logout</button>" +
