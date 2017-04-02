@@ -103,7 +103,6 @@
 		
 		$scope.m = [];
 		if ( $scope.random[0].question == "You Passed" ) {
-			document.getElementById("beep").play();
 			// show start quiz button
 			$scope.quiz = true;
 		}
@@ -111,6 +110,8 @@
 			$scope.random = pickNext( $scope.questions, $scope.rank, id, correct );
 			$scope.nquestions++;
 			Tally( $scope.name, 1, 0 );
+			if ( $scope.random[0].question == "You Passed" )
+				$scope.quiz = true;
 		}
 			
 		// display the time spent on the flipcard to complete (pass)
@@ -118,6 +119,7 @@
 		time = ( d.getTime() - $scope.startTime ) / 1000;
 		ShowTime( time );
 		if ( $scope.quiz == true ) {
+			document.getElementById("beep").play();
 			$scope.correct--;
 			$scope.RecordResult( 'flip');
 		}
