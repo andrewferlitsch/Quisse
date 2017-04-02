@@ -238,7 +238,7 @@
 		$http({
 			method: 'POST',
 			url   : '/admin/skills.php',
-			data  : { 'id': 1, 'action': 'update', 'skill': $scope.name, 'type': type, 'percent': percent, 'time': time },
+			data  : { 'id': userid, 'action': 'update', 'skill': $scope.name, 'type': type, 'percent': percent, 'time': time },
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function (response) {
 		}, function (response) {

@@ -1,5 +1,7 @@
 /* Copyright(c) 2016-2017, Andrew Ferlitsch, All Rights Reserved */
 
+var userid = "";	// ID of logged in user
+
 // Load the Facebook SDK asynchronously
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
@@ -38,6 +40,8 @@ function statusChangeCallback(response) {
 				  email	: response.email
 				},
 				function ( data, status ) {
+					data = data.split(",");
+					userid = data[ 1 ];
 					LoggedIn( response.name );
 				}
 			)
