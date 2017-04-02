@@ -198,6 +198,7 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 	var ncorrect  = 0;										// number of correct answers at this level
 	var counter   = 0;										// counter for number of questions at this level
 	var THRESHOLD = 4;
+	var time      = 0;
 	
 	// Flip the Flashcard
 	$scope.Flip = function( id, flipped ) {
@@ -255,7 +256,12 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			
 		// display the time spent on the flipcard to complete (pass)
 		d = new Date();
-		ShowTime( ( d.getTime() - $scope.startTime ) / 1000 );
+		time = ( d.getTime() - $scope.startTime ) / 1000;
+		ShowTime( time );
+		if ( $scope.quiz == true ) {
+			$scope.correct--;
+			$scope.RecordResult( 'flip');
+		}
 	}
 	
 	// User selected starting Multiple Choice Quiz
@@ -377,6 +383,18 @@ technical.controller( 'grpCtrl', function( $scope, $http, $location, $anchorScro
 			Timestamp( $scope.name, id, "incorrect" );
 		}
 		$scope.disable = true;
+	}
+	
+	$scope.RecordResult = function( type ) {
+		var percent = (  $scope.correct / $scope.nquestions ) * 100;
+		$http({
+			method: 'POST',
+			url   : '/admin/skills.php',
+			data  : { 'id': 1, 'action': 'update', 'skill': $scope.name, 'type': type, 'percent': percent, 'time': time },
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function (response) {
+		}, function (response) {
+		});
 	}
 })
 .directive( "questionsGrp", function() {

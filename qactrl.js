@@ -59,6 +59,7 @@
 	var THRESHOLD = 4;										// threshold for adaptive test level selection
 	var answer    = 0;										// index of correct answer in multiple choice
 	var iscorrect = "";
+	var time      = 0;
 	
 	// Flip the Flashcard
 	$scope.Flip = function( id, flipped ) {
@@ -114,20 +115,11 @@
 			
 		// display the time spent on the flipcard to complete (pass)
 		d = new Date();
-		var time = ( d.getTime() - $scope.startTime ) / 1000;
+		time = ( d.getTime() - $scope.startTime ) / 1000;
 		ShowTime( time );
 		if ( $scope.quiz == true ) {
 			$scope.correct--;
-			var percent = (  $scope.correct / $scope.nquestions ) * 100;
-			$http({
-				method: 'POST',
-				url   : '/admin/skills.php',
-				data  : { 'id': 1, 'action': 'update', 'skill': $scope.name, 'type': 'flip', 'percent': percent, 'time': time },
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}).then(function (response) {
-				console.log(response);
-			}, function (response) {
-			});
+			$scope.RecordResult( 'flip');
 		}
 	}
 	
@@ -148,13 +140,17 @@
 			$scope.questions[ i ].answered = false;
 		}
 		
-		// load the first question
-		$scope.rank = 1;
+		
+		$scope.rank        = 1;
+		$scope.correct     = 0;
+		$scope.nquestions  = 0;
 		counter = ncorrect = 0;
 		Tally( $scope.name, 0, 0 );
 		var d = new Date();
 		$scope.startTime = d.getTime();
 		ShowTime("");
+		
+		// load the first question
 		$scope.Multi( id );
 	}
 	
@@ -171,6 +167,12 @@
 					document.getElementById("beep").play();
 					$scope.passed = true;
 					$scope.iscorrect = "";
+					// display the time spent on the multiple choice to complete (pass)
+					d = new Date();
+					time = ( d.getTime() - $scope.startTime ) / 1000;
+					ShowTime( time );
+					
+					$scope.RecordResult( 'multi');
 					return;
 				}
 				else	
@@ -187,6 +189,11 @@
 			document.getElementById("beep").play();
 			$scope.passed = true;
 			$scope.iscorrect = "";
+			// display the time spent on the multiple choice to complete (pass)
+			d = new Date();
+			time = ( d.getTime() - $scope.startTime ) / 1000;
+			ShowTime( time );
+			$scope.RecordResult( 'multi');
 			return;
 		}
 		
@@ -246,6 +253,18 @@
 			Timestamp( $scope.name, id, "incorrect" );
 		}
 		$scope.disable = true;
+	}
+	
+	$scope.RecordResult = function( type ) {
+		var percent = (  $scope.correct / $scope.nquestions ) * 100;
+		$http({
+			method: 'POST',
+			url   : '/admin/skills.php',
+			data  : { 'id': 1, 'action': 'update', 'skill': $scope.name, 'type': type, 'percent': percent, 'time': time },
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function (response) {
+		}, function (response) {
+		});
 	}
 
 	$scope.quiz  = false;
