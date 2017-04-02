@@ -46,7 +46,7 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 	return {
 		restrict: 'A',
 		template: "<h4 style='margin-top: -20px; text-align: center; color: steelblue'>The Technical Interview</h4>" +
-				  "<p>Use our 1100 question/answer dataset to practice a technical phone screen.</p>" +
+				  "<p>Use our 1200 question/answer dataset to practice a technical phone screen.</p>" +
 				  "<label for='category' class='w3-label'>Select Skill Category:</label>" +
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
 				  "	<option value='' disabled selected>Select a category...</option>" +

@@ -74,6 +74,7 @@ function LoggedOut() {
 		{ logout: 1
 		},
 		function ( data, status ) {
+			userid = "";
 		}
 	);	 
 }
@@ -91,6 +92,12 @@ function getProfileData() {
 // Handle the successful return from the API call
 function onSuccess(data) {
 	LoggedIn( data.firstName + " " + data.lastName );
+	IN.API.Raw("/people/~/email-address").result(onEmail).error(onError);
+}
+
+// Handle an error response from the API call
+function onEmail(data) {
+        console.log(data);
 }
 
 // Handle an error response from the API call
