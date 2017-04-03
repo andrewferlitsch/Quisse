@@ -9,7 +9,9 @@ create table questions
 	toggle		tinyint			not null default 1,
 	timing		int				not null default 0,
 	tcount		int				not null default 0,
-	list		text			null,
+	words		text			null,
+	similar		text			null,
+	wordsan		text			null,
 
 	index	(category),
 	index	(rank)

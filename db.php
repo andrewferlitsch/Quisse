@@ -172,10 +172,34 @@ class DB
 	}
 	
 	/*
-	 * Update the word vector for an entry in the database
+	 * Update the word vector for a question entry in the database
 	 */
 	function UpdateWords( $id, $words ) {
 		$q = "UPDATE " . TBL_QUESTIONS . " SET words = \"";
+		
+		$count = count( $words );
+		for ( $i = 0; $i < $count; $i++ ) {
+			if ( $i > 0 )
+				$q .= ",";
+			$q .= $words[ $i ];
+		}
+		
+		$q .= "\" WHERE id=$id";
+		
+		$result = mysqli_query( $this->connection, $q );
+		if ( $this->debug == true ) {
+			echo "Q $q". PHP_EOL;
+			echo mysqli_error( $this->connection ) . PHP_EOL;
+		}
+		
+		return $result;
+	}	
+	
+	/*
+	 * Update the word vector for an answer entry in the database
+	 */
+	function UpdateWordsAn( $id, $words ) {
+		$q = "UPDATE " . TBL_QUESTIONS . " SET wordsan = \"";
 		
 		$count = count( $words );
 		for ( $i = 0; $i < $count; $i++ ) {
