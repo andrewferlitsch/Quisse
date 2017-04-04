@@ -132,7 +132,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 				  "<ul class='w3-navbar w3-green'>" +
 				  "	<li><a href='/' ng-click='showPage( \"Interview\" );'>Flashcard</a></li>" +
 				  "	<li><a href='coding-examples.html'>Coding</a></li>" +
-				  "	<li><a href='/kids/index.html'>Kids</a></li>" +
+				  "	<li><a href='/kids'>Kids</a></li>" +
 				  "</ul>" +
 				  "<br/>"
 	}
