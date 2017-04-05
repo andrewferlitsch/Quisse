@@ -1,0 +1,26 @@
+FROM phusion/baseimage
+LABEL Description="Use this image for running quisse" Version="1.0" Maintainer="Craig Whittle <ctwhittle@gmail.com>"
+WORKDIR D:\\DockerShare\\quisse
+CMD ["/sbin/my_init"]
+
+# Add options useful for building, debugging, and command line operations
+RUN apt-get -y update && apt-get install -y net-tools iputils-ping vim gcc git make gdb tcpdump
+RUN /bin/echo 'colorscheme blue' > ~/.vimrc
+RUN /bin/echo "LS_COLORS=\$LS_COLORS:'di=0;31:' ; export LS_COLORS" >> /root/.bashrc
+
+RUN apt-get update && apt-get install -y python-software-properties
+RUN apt-get install -y nodejs-legacy npm
+RUN add-apt-repository ppa:nginx/stable
+RUN apt-get update && apt-get install -y nginx
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+RUN ln -sf /dev/stdout /var/log/nginx/access.log
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
+
+# Make sure start.sh is in build directory
+RUN mkdir -p /etc/service/nginx
+COPY start.sh /etc/service/nginx/run
+RUN chmod +x /etc/service/nginx/run
+#COPY vhost.conf /etc/nginx/sites-available
+EXPOSE 80
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
