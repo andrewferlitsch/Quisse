@@ -15,8 +15,9 @@ if ( isset( $_GET[ 'category' ] ) ) {
 		$tcount   = $entry[ 'tcount' ];
 		$timing   = $entry[ 'timing' ];
 		$words    = $entry[ 'words' ];
+		$wordsan  = $entry[ 'wordsan' ];
 		$similar  = $entry[ 'similar' ];
-		$out .= "{ \"id\": $id, \"question\": \"$question\", \"answer\": \"$answer\", \"rank\": $rank,  \"level\": \"$level\", \"tcount\": $tcount, \"timing\": $timing, \"words\": \"$words\", \"similar\": \"$similar\" }";
+		$out .= "{ \"id\": $id, \"question\": \"$question\", \"answer\": \"$answer\", \"rank\": $rank,  \"level\": \"$level\", \"tcount\": $tcount, \"timing\": $timing, \"words\": \"$words\", \"similar\": \"$similar\", \"wordsan\": \"$wordsan\" }";
 		
 		// not the last entry
 		if ( $i < $count - 1 )
@@ -35,8 +36,9 @@ else if ( isset( $_GET[ 'id' ] ) ) {
 	$tcount   = $entry[ 'tcount' ];
 	$timing   = $entry[ 'timing' ];
 	$words    = $entry[ 'words' ];
+	$wordsan  = $entry[ 'wordsan' ];
 	$similar  = $entry[ 'similar' ];
-	$out .= "{ \"id\": $id, \"question\": \"$question\", \"answer\": \"$answer\", \"level\": $level, \"tcount\": $tcount, \"timing\": $timing, \"words\": \"$words\", \"similar\": \"$similar\" }";
+	$out .= "{ \"id\": $id, \"question\": \"$question\", \"answer\": \"$answer\", \"level\": $level, \"tcount\": $tcount, \"timing\": $timing, \"words\": \"$words\", \"similar\": \"$similar\", \"wordsan\": \"$wordsan\" }";
 
 	echo $out;
 }

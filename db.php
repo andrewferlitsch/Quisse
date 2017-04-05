@@ -222,11 +222,51 @@ class DB
 	/*
 	 * Find word vector similar matches for question
 	 */
-	function WordsMatch( $id, $category, $word_vector ) {
+	function WordsMatch( $id, $category, $word_vector, $wordan_vector ) {
+		$wordan = "";
+		for ( $i = 0; $i < count( $wordan_vector ); $i++ ) {
+			if ( $i > 0 )
+				$wordan .= ",";
+			$wordan .= $wordan_vector[ $i ];
+		}
+		
 		$ids = array();
 		for ( $i = 0; $i < count( $word_vector ); $i++ ) {
 			$q = "SELECT id,words FROM " . TBL_QUESTIONS . " WHERE id != $id AND category = '$category'" .
 			     " AND words LIKE '%" . $word_vector[ $i ] . "%'";
+			$result = mysqli_query( $this->connection, $q );
+
+			if ( $this->debug == true ) {
+				echo "Q $q". PHP_EOL;
+				echo mysqli_error( $this->connection ) . PHP_EOL;
+			}
+			
+			// get the IDs of the similar matching questions
+			if ( mysqli_num_rows($result) > 0 ) {
+				while ( ( $data = mysqli_fetch_array( $result ) ) != null ) {
+					// check for duplicates
+					$count = count( $ids );
+					for ( $j = 0; $j < $count; $j++ ) {
+						$pair = explode( ":", $ids[ $j ] ); 
+						if ( $pair[ 1 ] == $data[ 'id' ] ) {
+							$pair[ 0 ]++;
+							$ids[ $j ] = $pair[ 0 ] . ":" . $pair[ 1 ];
+							break;
+						}
+					} 
+
+					// first occurrence
+					if ( $j == $count )
+						$ids[] = "1:" . $data[ 'id' ];
+				}
+			}
+			
+		}
+		
+		for ( $i = 0; $i < count( $wordan_vector ); $i++ ) {		
+			// from answer section
+			$q = "SELECT id,wordsan FROM " . TBL_QUESTIONS . " WHERE id != $id AND category = '$category'" .
+			     " AND wordsan LIKE '%" . $wordan_vector[ $i ] . "%'";
 				 $result = mysqli_query( $this->connection, $q );
 
 			if ( $this->debug == true ) {

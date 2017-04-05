@@ -89,17 +89,18 @@ class NLP {
 			case "first": case "five": case "four": case "from":
 			case "give":
 			case "happen": case "have": case "having":
-			case "into":
+			case "into": case "include": case "includes":
 			case "just":
 			case "keep":
 			case "later":
 			case "make": case "meant": case "most":
 			case "nine":
-			case "occur": case "once": case "only": case "over":
+			case "occur": case "once": case "only": case "other": case "over":
 			case "part": case "prior":
 			case "running":
 			case "same": case "seven": case "should": case "some":
 			case "taking": case "tell": case "than": case "that": case "then": case "their": case "there": case "this": case "three":
+			case "typical": case "typically":
 			case "used": case "using":
 			case "ways": case "what": case "when": case "where": case "which": case "will": case "with": 
 			case "your": break;
@@ -153,6 +154,7 @@ class NLP {
 				case "recycling": $tokens[ $i ] = "recycle"; break;
 				case "calculating": $tokens[ $i ] = "calculate"; break;
 				case "managing": $tokens[ $i ] = "manage"; break;
+				case "deciding": $tokens[ $i ] = "decide"; break;
 				default:
 					// drop duplicate n, m, t or d when adding ing
 					if ( ( $tokens[ $i ][ strlen( $tokens[ $i ] ) - 4 ] == 'n' && $tokens[ $i ][ strlen( $tokens[ $i ] ) - 5 ] == 'n' ) ||
@@ -221,7 +223,7 @@ class NLP {
 					$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 3 );
 				}
 			}
-			
+		
 			$end = substr( $tokens[ $i ], -1 );
 			// single s plural
 			if ( $end == "s" ) {
@@ -241,7 +243,7 @@ class NLP {
 	}
 	
 	/*
-	 * Do a Reduce on a question in the database
+	 * Do a Reduce on a question/answer in the database
 	 */
 	function ReduceQuestion( $id ) {
 		global $db;
@@ -249,12 +251,20 @@ class NLP {
 		// get the question data
 		$entry = $this->Question( $id );
 		
-		// reduce to a bag of words
+		// reduce the question to a bag of words
 		$tokens = $this->Reduce( $entry[ 'question' ] );
 		
 		// store back into the database
 		$db->UpdateWords( $id, $tokens );
-		return $tokens;
+		
+		// reduce the answer to a bag of words
+		$tokensa = $this->Reduce( $entry[ 'answer' ] );
+		
+		// store back into the database
+		$db->UpdateWordsAn( $id, $tokensa );
+		$res = array(); array_push( $res, $tokens ); array_push( $res, $tokensa );
+		return $res;
+
 	}
 	
 	/*
@@ -266,7 +276,7 @@ class NLP {
 		// get total count of questions in db
 		$count = $this->Count( "" );
 		
-		// Process one question at a time
+		// Process one question/answer at a time
 		echo "[";
 		for ( $i = 1; $i <= $count; $i++ ) {
 			$entry = $this->Question( $i );
@@ -275,6 +285,11 @@ class NLP {
 			if ( $i > 1 ) echo ",";
 			echo "$i";
 			$db->UpdateWords( $i, $tokens );
+			
+			$tokens = $this->Reduce( $entry[ 'answer' ] );
+			if ( $i > 1 ) echo ",";
+			echo "$i";
+			$db->UpdateWordsAn( $i, $tokens );
 		}
 		echo "]";
 	}
@@ -298,6 +313,10 @@ class NLP {
 			
 			$tokens = $this->Reduce( $entry[ 'question' ] );
 			$db->UpdateWords( $questions[ $i ][ 'id' ], $tokens );
+			
+			$tokens = $this->Reduce( $entry[ 'answer' ] );
+			$db->UpdateWordsAn( $questions[ $i ][ 'id' ], $tokens );
+			
 			array_push( $ids, $questions[ $i ][ 'id' ] );
 		}
 		return $ids;
@@ -317,13 +336,14 @@ class NLP {
 		$res = array();
 		for ( $i = 0; $i < $count; $i++ ) {
 			$entry = $questions[ $i ];
-			$word_vector = explode( ",", $entry[ 'words' ] );
+			$word_vector   = explode( ",", $entry[ 'words' ] );
+			$wordan_vector = explode( ",", $entry[ 'wordsan' ] );
 			
 			// entry has a non-zero length word vector
 			if ( count( $word_vector ) > 0 ) {
 				$id = $entry[ 'id' ];
 				// get IDs of similar matching questions
-				$ids = $db->WordsMatch( $id, $category, $word_vector );
+				$ids = $db->WordsMatch( $id, $category, $word_vector, $wordan_vector );
 			
 				// entry has non-zero length similar matches
 				if ( count( $ids ) > 0 ) {
@@ -343,13 +363,14 @@ class NLP {
 		
 		// get the word vector and category for this question
 		$entry = $db->GetQuestion( $id );
-		$word_vector = explode( ",", $entry[ 'words' ] );
-		$category    = $entry[ 'category' ];
+		$word_vector   = explode( ",", $entry[ 'words' ] );
+		$wordan_vector = explode( ",", $entry[ 'wordsan' ] );
+		$category      = $entry[ 'category' ];
 		
 		// entry has a non-zero length word vector
 		if ( count( $word_vector ) > 0 ) {
 			// get IDs of similar matching questions
-			$ids = $db->WordsMatch( $id, $category, $word_vector );
+			$ids = $db->WordsMatch( $id, $category, $word_vector, $wordan_vector );
 			
 			// entry has non-zero length similar matches
 			$res = array();
@@ -378,10 +399,16 @@ if ( isset( $_POST[ 'action' ] ) ) {
 	if ( $_POST[ 'action' ] == "reduce" ) {
 		$id = $_POST[ 'id' ];
 		$res = $nlp->ReduceQuestion( $id );
-		$count = count( $res );
+		$count = count( $res[ 0 ] );
 		for ( $i = 0; $i < $count; $i++ ) {
 			if ( $i > 0 ) echo ",";
-			echo $res[ $i ];
+			echo $res[ 0 ][ $i ];
+		}
+		echo "|";
+		$count = count( $res[ 1 ] );
+		for ( $i = 0; $i < $count; $i++ ) {
+			if ( $i > 0 ) echo ",";
+			echo $res[ 1 ][ $i ];
 		}
 	}
 	// Reduce all questions in category

@@ -84,6 +84,7 @@ $(function() {
 		
 		$("#timing").html( timing .toFixed(2));
 		$("#words").html( question.words );
+		$("#wordsan").html( question.wordsan );
 		$("#submit").val( "Update" );
 				
 		$("#err-sim").html( "" );
@@ -115,6 +116,7 @@ $(function() {
 		$("#rank").val( 1 );
 		$("#level").val( "" );
 		$("#words").html( "" );
+		$("#wordsan").html( "" );
 		$("#similar").html( "" );
 		$("#tcount").html( "" );
 		$("#timing").html( "" );
@@ -166,7 +168,7 @@ $(function() {
 		});	 
 	})
 	
-	// Refresh the bag of words
+	// Refresh the bag of words [ REDO]
 	$("#refresh-words").click( function() {
 		$("#ok-red").html( "" );
 		$("#err-red").html( "" );
@@ -175,8 +177,11 @@ $(function() {
 			  id      : $("#id").html()
 			},
 			function ( data, status ) {
-				$("#words").html( data );
-				questions[ index ].words = data;
+				var tokens = data.split("|");
+				$("#words").html( tokens[ 0 ] );
+				questions[ index ].words = tokens[ 0 ];
+				$("#wordsan").html( tokens[ 1 ] );
+				questions[ index ].wordsan = tokens[ 1 ];
 				$("#ok-red").html( "Done" );
 			}
 		)
@@ -389,6 +394,7 @@ $(function() {
 			<span id='ok-red' class='ok'></span>
 			<span id='err-red' class='error'></span>
 			<pre name='words' id='words'></pre>
+			<pre name='wordsan' id='wordsan'></pre>
 			
 			<!-- Similar Matching Questions -->
 			<label for='similar' class='w3-label'>Similar Questions</label>
