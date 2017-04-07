@@ -1,0 +1,24 @@
+FROM php:7.1-fpm
+LABEL Description="Use this image for running PHP for quisse" Version="1.0" Maintainer="Craig Whittle <ctwhittle@gmail.com>"
+WORKDIR D:\\DockerShare\\quisse
+CMD ["php7-fpm"]
+EXPOSE 80
+
+# Add options useful for building, debugging, and command line operations
+RUN apt-get -y update && apt-get install -y net-tools iputils-ping vim gcc git make gdb tcpdump 
+RUN /bin/echo 'colorscheme blue' > ~/.vimrc
+RUN /bin/echo "LS_COLORS=\$LS_COLORS:'di=0;31:' ; export LS_COLORS" >> /root/.bashrc
+
+# Setup debug / logging
+# Redirect worker stdout and stderr into main error log
+# Activate the fpm access log
+# Enable display errors
+# Enable the error log
+RUN sed -i '/^;catch_workers_output/ccatch_workers_output = yes' /etc/php5/fpm/pool.d/www.conf
+RUN sed -i '/^;access.log/caccess.log = /var/log/fpm-access.log' /etc/php5/fpm/pool.d/www.conf
+RUN sed -i '/^;php_flag\[display_errors\]/cphp_flag[display_errors] = off' /etc/php5/fpm/pool.d/www.conf
+RUN sed -i '/^;php_admin_value\[error_log\]/cphp_admin_value[error_log] = /var/log/fpm-php.www.log' /etc/php5/fpm/pool.d/www.conf
+RUN sed -i '/^;php_admin_flag\[log_errors\]/cphp_admin_flag[log_errors] = on' /etc/php5/fpm/pool.d/www.conf
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+

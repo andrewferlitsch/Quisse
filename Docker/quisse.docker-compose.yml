@@ -1,0 +1,27 @@
+web:
+  image: quisse/nginx
+  ports:
+    - "8080:80"
+  volumes:
+    - .\\src:/src
+    - .\\vhost.conf:/etc/nginx/sites-enabled/vhost.conf
+    - .\\src:/var/www
+  links:
+    - php
+php:
+  image: nmcteam/php56
+  volumes:
+    - .\\php-fpm.conf:/etc/php5/fpm/php-fpm.conf
+    - .\\src:/var/www
+  links:
+    - db
+db:
+  image: mysql
+  volumes:
+   - /var/lib/mysql
+   - ./src/sql:/var/sql
+  environment:
+   - MYSQL_ROOT_PASSWORD=pa88=w0rd
+   - DB_NAME=interview
+   - DB_USER=root
+   - DB_PASS=Mary1962
