@@ -223,6 +223,7 @@ class DB
 	 * Find word vector similar matches for question
 	 */
 	function WordsMatch( $id, $category, $word_vector, $wordan_vector ) {
+		// for filtering out answers that exactly match the questions answer
 		$wordan = "";
 		for ( $i = 0; $i < count( $wordan_vector ); $i++ ) {
 			if ( $i > 0 )
@@ -230,10 +231,11 @@ class DB
 			$wordan .= $wordan_vector[ $i ];
 		}
 		
+		// look for similarity between questions
 		$ids = array();
 		for ( $i = 0; $i < count( $word_vector ); $i++ ) {
 			$q = "SELECT id,words FROM " . TBL_QUESTIONS . " WHERE id != $id AND category = '$category'" .
-			     " AND words LIKE '%" . $word_vector[ $i ] . "%'";
+			     " AND words LIKE '%" . $word_vector[ $i ] . "%' AND wordsan != '$wordan'";
 			$result = mysqli_query( $this->connection, $q );
 
 			if ( $this->debug == true ) {
@@ -263,10 +265,11 @@ class DB
 			
 		}
 		
+		// look for similarity between answers
 		for ( $i = 0; $i < count( $wordan_vector ); $i++ ) {		
 			// from answer section
 			$q = "SELECT id,wordsan FROM " . TBL_QUESTIONS . " WHERE id != $id AND category = '$category'" .
-			     " AND wordsan LIKE '%" . $wordan_vector[ $i ] . "%'";
+			     " AND wordsan LIKE '%" . $wordan_vector[ $i ] . "%' AND wordsan != '$wordan'";
 				 $result = mysqli_query( $this->connection, $q );
 
 			if ( $this->debug == true ) {
@@ -294,6 +297,7 @@ class DB
 				}
 			}
 		}
+		
 		return $this->SortSimilar( $ids );
 	}
 	

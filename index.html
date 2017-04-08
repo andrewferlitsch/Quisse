@@ -138,6 +138,11 @@
 				<div ng-show='multi' multi-ml></div>
 			</div>
 			
+			<div ng-show='view["AI"]' ng-controller="aiCtrl">
+				<div ng-show='qa' questions-ai></div>
+				<div ng-show='multi' multi-ai></div>
+			</div>
+			
 			<div ng-show='view["MySQL"]' ng-controller="mysqlCtrl">
 				<div ng-show='qa' questions-mysql></div>
 				<div ng-show='multi' multi-mysql></div>

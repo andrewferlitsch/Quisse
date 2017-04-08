@@ -12,7 +12,7 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 	}
 	
 	// technical view
-	$scope.categories = [ "Agile", "Algorithms", "AngularJS", "C", "C++", "C#", "CSS", "Data Science", "DOS", 
+	$scope.categories = [ "Agile", "AI", "Algorithms", "AngularJS", "C", "C++", "C#", "CSS", "Data Science", "DOS", 
 						  "HTML", "HTML5", "Java", "Javascript", "JQuery", "MySQL", "MySQL DBA", "Machine Learning",
 						  "Network", "OOP Design", "OS", "Python", "QA", "R", "Security", "Web" ];
 	$scope.view = [];
@@ -46,7 +46,7 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 	return {
 		restrict: 'A',
 		template: "<h4 style='margin-top: -20px; text-align: center; color: steelblue'>The Technical Interview</h4>" +
-				  "<p>Use our 1200 question/answer dataset to practice a technical phone screen.</p>" +
+				  "<p>Use our 1300 question/answer dataset to practice a technical phone screen.</p>" +
 				  "<label for='category' class='w3-label'>Select Skill Category:</label>" +
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
 				  "	<option value='' disabled selected>Select a category...</option>" +

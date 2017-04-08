@@ -40,12 +40,12 @@ class NLP {
 		// split on blank space
 		$words = explode( ' ', $question );
 		
-		// eliminate 1, 2 and 3 char words
+		// eliminate 1, 2 and 3 char words (unless a number)
 		$toks = array();
 		$count = count( $words );
 		for ( $i = 0; $i < $count; $i++ ) {
 			$len = strlen( $words[ $i ] );
-			if ( $len > 3 ) {
+			if ( $len > 3 || is_numeric( $words[ $i ] )) {
 				$toks[] = $words[ $i ];
 			}
 			else if ( $len == 3 ) {
@@ -93,7 +93,7 @@ class NLP {
 			case "just":
 			case "keep":
 			case "later":
-			case "make": case "meant": case "most":
+			case "make": case "many": case "meant": case "most":
 			case "nine":
 			case "occur": case "once": case "only": case "other": case "over":
 			case "part": case "prior":
@@ -101,8 +101,8 @@ class NLP {
 			case "same": case "seven": case "should": case "some":
 			case "taking": case "tell": case "than": case "that": case "then": case "their": case "there": case "this": case "three":
 			case "typical": case "typically":
-			case "used": case "using":
-			case "ways": case "what": case "when": case "where": case "which": case "will": case "with": 
+			case "under" : case "used": case "using":
+			case "ways": case "want" : case "wants": case "what": case "when": case "where": case "which": case "will": case "with": 
 			case "your": break;
 			
 			// replace
@@ -178,7 +178,10 @@ class NLP {
 				case 's': case 'x': case 'z':
 					switch ( $tokens[ $i ] ) {
 					case "cases": $tokens[ $i ] = "case"; break;
+					case "chooses": $tokens[ $i ] = "choose"; break;
 					case "prioritizes": $tokens[ $i ] = "prioritize"; break;
+					case "maximizes": $tokens[ $i ] = "maximize"; break;
+					case "causes": $tokens[ $i ] = "cause"; break;
 					default:
 						$tokens[ $i ] = substr( $tokens[ $i ], 0, strlen( $tokens[ $i ] ) - 2 );
 						break;

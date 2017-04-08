@@ -92,6 +92,19 @@ function getProfileData() {
 // Handle the successful return from the API call
 function onSuccess(data) {
 	LoggedIn( data.firstName + " " + data.lastName );
+	$.post( "/admin/user.php",
+		{ fblogin: 1,
+			name	: data.firstName + " " + data.lastName,
+			email	: data.id
+		},
+		function ( data, status ) {
+			data = data.split(",");
+			userid = data[ 1 ];
+		}
+	)
+	.fail (function( response ) {
+		// error occurred
+	});	 
 	IN.API.Raw("/people/~/email-address").result(onEmail).error(onError);
 }
 
@@ -123,7 +136,7 @@ technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 		template: "<div style='text-align: center; margin-top: -25px; margin-bottom: -10px'>" +
 				  "	<img src='/quisse.png'/>" + 
 				  "	<fb:login-button class='w3-right' style='top: 10px; right: 10px; position: absolute' scope='public_profile,email' ng-show='showLogin' onlogin='checkLoginState();'></fb:login-button>" +
-				  "	<span class='w3-right' style='top: 10px; right: 80px; position: absolute' ng-show='showLogin' ><script type='in/Login'></script></span>" +
+				  //"	<span class='w3-right' style='top: 10px; right: 80px; position: absolute' ng-show='showLogin' ><script type='in/Login'></script></span>" +
 				  "	<span class='w3-right' style='top: 10px; right: 10px; position:absolute'>" +
 				  "		<span ng-show='showLogout' id='user' style='font-size: 8pt; color: green'></span>" +
 				  "		<button ng-show='showLogout' ng-click='Logout();' class='w3-btn w3-blue w3-tiny'>Logout</button>" +
