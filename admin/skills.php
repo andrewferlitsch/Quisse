@@ -130,8 +130,12 @@ if ( isset( $_POST['action'] ) ) {
 		$rc = $skills->AddSkill( $id, $skill, $type );
 	else if ( $_POST['action'] == "update" )
 		$rc = $skills->UpdateSkill( $id, $skill, $type, $percent, $time );
-	else if ( $_POST['action'] == "get" )
+	else if ( $_POST['action'] == "get" ) {
 		$rc = $skills->GetSkill( $id, $skill, $type );
+		if ( $rc ) {
+			$rc = $rc[ 'percent' ] . "," . $rc[ 'time' ];
+		}
+	}
 	else if ( $_POST['action'] == "gets" )
 		$rc = $skills->GetSkills( $id );
 	
