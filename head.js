@@ -51,6 +51,6 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
 				  "	<option value='' disabled selected>Select a category...</option>" +
 				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
-				  "</select>"
+				  "</select>" 
 	}
 });

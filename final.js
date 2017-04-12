@@ -16,6 +16,8 @@ technical.controller( 'finalCtrl', function( $scope, $rootScope, $location, $anc
 	$scope.Reset = function() {
 		$rootScope.$broadcast( 'reset', $scope.cat );
 	}
+
+	$scope.showBadges = false;
 })
 .directive( "final", function() {
 	return {
@@ -29,6 +31,7 @@ technical.controller( 'finalCtrl', function( $scope, $rootScope, $location, $anc
 				  "	<p><span class='final'>Total Correct</span>: <span id='totalCorrect' class='w3-badge w3-green'>{{totalCorrect}}</span></p>" +
 				  " <p><span class='final'>Percent Correct</span>: <span id='percentCorrect' class='w3-badge w3-green'>{{percentCorrect}}</span></p>" +
 				  " <p><span class='final'>Time Spent (secs) </span>: <span id='timeSpent'>{{timeSpent}}</span></p>" +
+				  " <p ng-show='showBadges'><span class='final'>Badges</span>:</p>" +
 				  "	<button class='w3-btn w3-red w3-small' ng-click='Reset()'>Reset</button>" +
 				  "</div>"
 	}

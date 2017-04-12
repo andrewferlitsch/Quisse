@@ -66,6 +66,10 @@ function LoggedIn( username ) {
 	scope.$apply(function(){
 		scope.showLogout = true; scope.showLogin = false;
 	});
+	scope = angular.element($("#final")).scope();
+	scope.$apply(function(){
+		scope.showBadges = true;
+	});
 	$("#user").html( username + "&nbsp;" );
 }
 
@@ -75,6 +79,10 @@ function LoggedOut() {
 		},
 		function ( data, status ) {
 			userid = "";
+			scope = angular.element($("#final")).scope();
+			scope.$apply(function(){
+				scope.showBadges = false;
+			});
 		}
 	);	 
 }

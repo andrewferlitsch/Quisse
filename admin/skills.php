@@ -119,7 +119,7 @@ class Skills {
 
 $skills = new Skills();
 $_POST = json_decode(file_get_contents('php://input'), true);
-if ( isset( $_POST['action'] ) ) {
+if ( isset( $_POST['action'] ) ) { 
 	$id       = $_POST['id'];
 	$skill    = $_POST['skill'];
 	$type     = $_POST['type'];

@@ -47,6 +47,8 @@
 		var d = new Date();
 		$scope.startTime = d.getTime();
 		ShowTime("");
+		
+		$scope.GetBadge( 'flip' );
 	  }
     }
 	
@@ -268,7 +270,19 @@
 		}, function (response) {
 		});
 	}
-
+	
+	$scope.GetBadge = function( type ) {
+		$http({
+			method: 'POST',
+			url   : '/admin/skills.php',
+			data  : { 'id': userid, 'action': 'get', 'skill': $scope.name, 'type': type },
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).then(function (response) {
+			console.log( response );
+		}, function (response) {
+		});
+	}
+	
 	$scope.quiz  = false;
 	$scope.qa    = true;
 	$scope.multi = false;
