@@ -26,11 +26,6 @@
   ga('create', 'UA-3662373-7', 'auto');
   ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="//platform.linkedin.com/in.js">
-    api_key: 86gqxbce9uzf0i
-    authorize: false
-    onLoad: onLinkedInLoad
-</script>
 
 </head>
 <body ng-app="technical" ng-init='test=false' style='margin: 20px;' ng-controller="interviewCtrl">
@@ -42,7 +37,8 @@
 	<section ng-show='page["Interview"]'>
 		<div  interview></div>
 
-		<div>	
+		<div class='w3-main' style="margin-left:200px">
+			<button class='w3-button w3-teal w3-xlarge' onclick='w3_open()'>&#9776;</button>
 			<div ng-show='view["Web"]' ng-controller="webCtrl" >
 				<div ng-show='qa' questions-web></div>
 				<div ng-show='multi' multi-web></div>
@@ -361,6 +357,7 @@ function pickMulti( questions, rank, id, correct ) {
 <script src="network.php"></script>
 <script src="security.php"></script>
 <script src="ml.php"></script>
+<script src="ai.php"></script>
 <script src="final.js"></script>
 <script src="footer.js"></script>
 <script src="advice.js"></script>

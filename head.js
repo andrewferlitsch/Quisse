@@ -1,3 +1,11 @@
+
+function w3_open() {
+  document.getElementById("sidebar").style.display = "block";
+}
+function w3_close() {
+  document.getElementById("sidebar").style.display = "none";
+}
+
 // Copyright(c), 2016-2017, Andrew Ferlitsch, All Rights Reserved
 technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 	// page view
@@ -36,6 +44,9 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 		
 		// Pass the category onto the final score controller
 		$rootScope.$broadcast('category', cat );
+		
+		// close the sidebar
+		w3_close();
 	}
 	
 	$scope.$on('reset', function(event, args) {
@@ -45,12 +56,16 @@ technical.controller( 'interviewCtrl', function( $scope, $rootScope ) {
 .directive( "interview", function() {
 	return {
 		restrict: 'A',
-		template: "<h4 style='margin-top: -20px; text-align: center; color: steelblue'>The Technical Interview</h4>" +
-				  "<p>Use our 1300 question/answer dataset to practice a technical phone screen.</p>" +
-				  "<label for='category' class='w3-label'>Select Skill Category:</label>" +
-				  "<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
-				  "	<option value='' disabled selected>Select a category...</option>" +
-				  "	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
-				  "</select>" 
+		template: //"<h4 style='margin-top: -20px; text-align: center; color: steelblue'>The Technical Interview</h4>" +
+				  //"<p>Use our 1300 question/answer dataset to practice a technical phone screen.</p>" +
+				  //"<label for='category' class='w3-label'>Select Skill Category:</label>" +
+				  //"<select name='category' id='category' class='w3-input' ng-model='category' ng-change='showCategory( category)' required>" +
+				  //"	<option value='' disabled selected>Select a category...</option>" +
+				  //"	<option ng-repeat='category in categories' value={{category}}>{{category}}</option>" +
+				  //"</select>" 
+				  "<div class='w3-sidebar w3-bar-block w3-collapse w3-card-2' style='width:200px; margin-top: -15px; height: 70%' id='sidebar'>" +
+				  "	<button class='w3-bar-item w3-button w3-hide-large' onclick'w3_close()'>Close &times;</button>" +
+				  "	<a href='#' class='w3-bar-item w3-button' ng-repeat='category in categories' ng-click='showCategory( category)'>{{category}}</a>" +
+				  "</div>"
 	}
 });

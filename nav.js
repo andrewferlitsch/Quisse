@@ -86,45 +86,6 @@ function LoggedOut() {
 		}
 	);	 
 }
-
-// Setup an event listener to make an API call once auth is complete
-function onLinkedInLoad() {
-	IN.Event.on(IN, "auth", getProfileData);
-}
-
-// Use the API call wrapper to request the member's basic profile data
-function getProfileData() {
-	IN.API.Raw("/people/~").result(onSuccess).error(onError);
-}
-
-// Handle the successful return from the API call
-function onSuccess(data) {
-	LoggedIn( data.firstName + " " + data.lastName );
-	$.post( "/admin/user.php",
-		{ fblogin: 1,
-			name	: data.firstName + " " + data.lastName,
-			email	: data.id
-		},
-		function ( data, status ) {
-			data = data.split(",");
-			userid = data[ 1 ];
-		}
-	)
-	.fail (function( response ) {
-		// error occurred
-	});	 
-	IN.API.Raw("/people/~/email-address").result(onEmail).error(onError);
-}
-
-// Handle an error response from the API call
-function onEmail(data) {
-        console.log(data);
-}
-
-// Handle an error response from the API call
-function onError(error) {
-        console.log(error);
-}
 	
 technical.controller( 'navCtrl', function( $scope, $rootScope ) {
 
