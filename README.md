@@ -1,9 +1,35 @@
 # Quisse 
 
+This web-based product is a interview training application. The application
+is found at the web address http://www.quisse.com
+
+## 3rd Iterative Release - Apr 3, 2017
+
+* 1100 Questions & Answers Database for questions typically asked in phone screens.
+* Added Machine Language category.
+* Added User Login
+* Added User Management.
+
+## 2nd Iterative Release - Mar. 19, 2017
+
+* 1000 Questions & Answers Database for questions typically asked in phone screens.
+* Added Multiple Choice questions using NLP
+* Added Learning Question Difficulty from Timing Data
+* Added Admin Interface
+* Updated UX Design
+
+## 1st Iterative Release - Feb. 27, 2017
+
+Version 1.1 was released on Feb. 27, 2017. 
+
+* 800 Questions & Answers Database for questions typically asked in phone screens.
+* Added Javascript to Coding Solutions.
+* Added timing metrics for flash card section.
+* Updated UX Design
+
 ## Mini Launch - Feb. 6, 2017
 
-Version 1.0 launched on Feb. 6, 2017. This web-based product is a interview training application. The application
-is found at the web address http://www.quisse.com .
+Version 1.0 launched on Feb. 6, 2017. 
 
 * 600 Questions & Answers Database for questions typically asked in phone screens.
 * 24 Technical and Process Categories.

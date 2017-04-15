@@ -29,16 +29,18 @@
 
 </head>
 <body ng-app="technical" ng-init='test=false' style='margin: 20px;' ng-controller="interviewCtrl">
-	<header ng-controller="navCtrl">
-		<div id='nav' nav></div>
-	</header>
+	
 	
 	<!-- Technical Interview -->
 	<section ng-show='page["Interview"]'>
 		<div  interview></div>
 
-		<div class='w3-main' style="margin-left:200px">
-			<button class='w3-button w3-teal w3-xlarge' onclick='w3_open()'>&#9776;</button>
+		<div class='w3-main' style="margin-left:210px">
+			<header ng-controller="navCtrl">
+				<div id='nav' nav></div>
+			</header>
+			
+			<button class='w3-button w3-green w3-large' onclick='w3_open()'>&#9776;</button>
 			<div ng-show='view["Web"]' ng-controller="webCtrl" >
 				<div ng-show='qa' questions-web></div>
 				<div ng-show='multi' multi-web></div>
