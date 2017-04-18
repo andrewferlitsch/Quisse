@@ -301,18 +301,19 @@ $(function() {
 	$("#timing-level").click( function() {
 		$("#ok-all").html( "" );
 		$("#err-all").html( "" );
-		$.post( "/admin/timing.php",
-			{ action  : "level",
-			  category: category,
-			},
-			function ( data, status ) {
-				res = data.split( "," );
-				$("#ok-all").html( "AVE " + res[ 0 ] + " MAX " + res[ 1 ] + " MAX-AVE " + res[ 2 ] );
-			}
-		)
-		.fail (function( response ) {
-			$("#err-all").html( "Unable to Timing: errCode = " + response.status );
-		});	 
+		
+			$.post( "/admin/timing.php",
+				{ action  : "level",
+				  category: category
+				},
+				function ( data, status ) {
+					res = data.split( "," );
+					$("#ok-all").html( "AVE " + res[ 0 ] + " MAX " + res[ 1 ] + " MAX-AVE " + res[ 2 ] );
+				}
+			)
+			.fail (function( response ) {
+				$("#err-all").html( "Unable to Timing: errCode = " + response.status );
+			});	 
 	})
 })
 </script>
@@ -342,7 +343,7 @@ $(function() {
 				?>
 			</select>
 			<span id='err-cat' class='error'></span>
-			
+
 			<!-- ID -->
 			<label for='id' class='w3-label'>ID:</label>
 			<span id='id' name='id'></span>&nbsp;
