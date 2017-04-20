@@ -60,6 +60,15 @@ function Scan() {
 function Level( $category ) {
 	global $db;
 	
+	if ( $category == "" ) {
+		$categories = $db->GetCategories();
+		foreach ( $categories as $category ) {
+			echo $category . ",";
+			$db->AdaptiveTiming( $category );
+		}
+		return;
+	}
+	
 	return $db->AdaptiveTiming( $category );
 }
 

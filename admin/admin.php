@@ -303,8 +303,7 @@ $(function() {
 		$("#err-all").html( "" );
 		
 			$.post( "/admin/timing.php",
-				{ action  : "level",
-				  category: category
+				{ action  : "level"
 				},
 				function ( data, status ) {
 					res = data.split( "," );
