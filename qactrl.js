@@ -259,27 +259,57 @@
 		$scope.disable = true;
 	}
 	
+	var badge_percent = "";
+	var badge_secs    = "";
+	
+	// Record the user's test result
 	$scope.RecordResult = function( type ) {
 		var percent = (  $scope.correct / $scope.nquestions ) * 100;
+		// do not update if result is not as good as before
+		if ( badge_percent != "" ) {
+			if ( percent < badge_percent || time > badge_time )
+				return;
+		}
 		$http({
 			method: 'POST',
 			url   : '/admin/skills.php',
 			data  : { 'id': userid, 'action': 'update', 'skill': $scope.name, 'type': type, 'percent': percent, 'time': time },
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function (response) {
+			$scope.GetBadge( type );
 		}, function (response) {
 		});
 	}
 	
+	// Get the Badge Level of the User for this category
 	$scope.GetBadge = function( type ) {
+		badge_percent = "";
+		badge_secs    = "";
+		
 		$http({
 			method: 'POST',
 			url   : '/admin/skills.php',
 			data  : { 'id': userid, 'action': 'get', 'skill': $scope.name, 'type': type },
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function (response) {
-			console.log( response );
+			var data = response.data.split(",");
+			
+			// The user currently has no badge
+			if ( data == "" )
+				return;
+			badge_percent = data[ 0 ];
+			badge_secs    = data[ 1 ];
+			
+			setTimeout(function () { 
+				var scope = angular.element($("#final")).scope();
+				scope.$apply(function(){
+					scope.badgeType    = type;
+					scope.badgePercent = parseFloat( data[ 0 ] ).toFixed(2) + "%";
+					scope.badgeTime    = data[ 1 ] + " sec";
+				});
+			}, 250);
 		}, function (response) {
+			console.log( "no badge")
 		});
 	}
 	
