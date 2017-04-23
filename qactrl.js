@@ -295,8 +295,18 @@
 			var data = response.data.split(",");
 			
 			// The user currently has no badge
-			if ( data == "" )
+			if ( data == "" ) {
+				setTimeout(function () { 
+					var scope = angular.element($("#final")).scope();
+					scope.$apply(function(){
+						scope.badgeType    = "";
+						scope.badgePercent = "";
+						scope.badgeTime    = "";
+					});
+				}, 250);
 				return;
+			}
+			
 			badge_percent = data[ 0 ];
 			badge_secs    = data[ 1 ];
 			
