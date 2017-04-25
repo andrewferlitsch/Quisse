@@ -3,6 +3,8 @@
 This web-based product is a interview training application. The application
 is found at the web address http://www.quisse.com
 
+Licensed as: CC-BY-SA
+
 ## 3rd Iterative Release - Apr. 3, 2017
 
 * 1100 Questions & Answers Database for questions typically asked in phone screens.

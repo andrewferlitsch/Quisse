@@ -154,6 +154,7 @@
 		ShowTime("");
 		
 		// load the first question
+		$scope.GetBadge( 'multi' );
 		$scope.Multi( id );
 		counter = ncorrect = 0;
 	}
@@ -267,7 +268,7 @@
 		var percent = (  $scope.correct / $scope.nquestions ) * 100;
 		// do not update if result is not as good as before
 		if ( badge_percent != "" ) {
-			if ( percent < badge_percent || time > badge_time )
+			if ( percent < badge_percent || ( percent == badge_percent && time > badge_secs ) )
 				return;
 		}
 		$http({
@@ -278,6 +279,8 @@
 		}).then(function (response) {
 			$scope.GetBadge( type );
 		}, function (response) {
+			console.log("Record Failed: " + userid );
+			console.log( response );
 		});
 	}
 	
@@ -319,7 +322,8 @@
 				});
 			}, 250);
 		}, function (response) {
-			console.log( "no badge")
+			console.log( "no badge: " + userid );
+			console.log( response );
 		});
 	}
 	
