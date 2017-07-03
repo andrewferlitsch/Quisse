@@ -3713,20 +3713,20 @@ def BFS( root ):
 		return
 			
 	# list of nodes to visit in node level order
-	visit = DynamicArray()
-	visit.Add( root );
+	visit = [] # a list acts as a dynamic array in Python
+	visit.append( root );
 		
 	# sequentially visit in node in level order as it is dynamically added to the list
 	i = 0
-	while i < visit.Size():
+	while i < len(visit):
 		# Perform the node action
-		visit.Get( i ).Action()
+		visit[ i ].Action()
 			
 		# Add to the list the child siblings of this node
-		if visit.Get( i ).GetLeft() != None:
-			visit.Add( visit.Get( i ).GetLeft() )
-		if visit.Get( i ).GetRight() != None:
-			visit.Add( visit.Get( i ).GetRight() )
+		if visit[ i ].Left() != None:
+			visit.append( visit[ i ].Left() )
+		if visit[ i ].Right() != None:
+			visit.append( visit[ i ].Right() )
 		i += 1
 		
 tree = BinaryTree( "1" )
@@ -3866,11 +3866,11 @@ class BinaryTree(Node):
 		rmax = max # maximum depth on left and right nodes.
 		
 		# Calculate the maximum depth along the left binary subtree
-		if self.GetLeft() != None:
-			lmax = self.GetLeft().MaxDepth( max )
+		if self.Left() != None:
+			lmax = self.Left().MaxDepth( max )
 		# Calculate the maximum depth along the right binary subtree
-		if self.GetRight() != None:
-			rmax = self.GetRight().MaxDepth( max )
+		if self.Right() != None:
+			rmax = self.Right().MaxDepth( max )
 		
 		if lmax > rmax:
 			return lmax
@@ -3885,11 +3885,11 @@ class BinaryTree(Node):
 		rmin = min  # minimum depth on left and right nodes.
 		
 		# Calculate the maximum depth along the left binary subtree
-		if self.GetLeft() != None:
-			lmin = self.GetLeft().MaxDepth( min )
+		if self.Left() != None:
+			lmin = self.Left().MaxDepth( min )
 		# Calculate the maximum depth along the right binary subtree
-		if self.GetRight() != None:
-			rmin = self.GetRight().MaxDepth( min )
+		if self.Right() != None:
+			rmin = self.Right().MaxDepth( min )
 		
 		if lmin < rmin:
 			return lmin
@@ -3899,8 +3899,8 @@ class BinaryTree(Node):
 tree = BinaryTree( "1" )
 tree.Left ( BinaryTree( "2" ) )
 tree.Right( BinaryTree( "3" ) )
-tree.GetLeft().Left( BinaryTree( "4" ) )
-tree.GetLeft().Right( BinaryTree( "5" ) )
+tree.Left().Left( BinaryTree( "4" ) )
+tree.Left().Right( BinaryTree( "5" ) )
 print("Max Depth(3) is  " + str( tree.MaxDepth( 0 ) ) )
 print("Max Depth(2) is  " + str( tree.MinDepth( 0 ) ) )
 </pre>
@@ -4051,23 +4051,23 @@ class BinaryTree(Node):
 		max = -2147483647 # counter for max value (start at minimum signed int)
 			
 		# list of nodes to visit in node level order
-		visit = DynamicArray()	
-		visit.Add( self )
+		visit = []	# list acts as dynamic array
+		visit.append( self )
 		
 		# sequentially visit each node in level order as it is dynamically added to the list
 		i = 0
-		while i < visit.Size():
+		while i < len( visit ):
 			# Perform the node action
-			if int( visit.Get( i ).GetKey() ) > int( max ):
-				max = visit.Get( i ).GetKey()
-			if int( visit.Get( i ).GetKey() ) < int( min ):
-				min = visit.Get( i ).GetKey()
+			if int( visit[ i ].Key() ) > int( max ):
+				max = visit[ i ].Key()
+			if int( visit[ i ].Key() ) < int( min ):
+				min = visit[ i ].Key()
 			
 			# Add to the list the child siblings of this node
-			if visit.Get( i ).GetLeft() != None:
-				visit.Add( visit.Get( i ).GetLeft() )
-			if visit.Get( i ).GetRight() != None:
-				visit.Add( visit.Get( i ).GetRight() )
+			if visit[ i ].Left() != None:
+				visit.append( visit[ i ].Left() )
+			if visit.Get( i ).Right() != None:
+				visit.append( visit[ i ].Right() )
 			i += 1
 		
 		return min, max
