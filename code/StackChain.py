@@ -8,21 +8,17 @@ class Task:
 	def __init__( self, task ):
 		self.task = task
 	
-	# Get the next task this element is chained to
-	def GetNext( self ):
-		return self.next
-	
-	# Set the next task this element is chained to
-	def Next( self, task ):
-		self.next = task;
+	# Get or Set the next task this element is chained to
+	def Next( self, task = None ):
+		if task == None:
+			return self.next
+		self.next = task
 		
-	# Get the previous task this element is chained to
-	def GetPrev( self ):
-		return self.prev;
-
-	# Set the previous task this element is chained to
-	def Prev( self, task ):
-		self.prev = task;
+	# Get or Set the previous task this element is chained to
+	def Prev( self, task = None ):
+		if task == None:
+			return self.prev
+		self.prev = task
 	
 	# Action to take when task is processed
 	def Action( self ):
@@ -73,7 +69,7 @@ class StackChain:
 			self.chain.Push( self.bottom )
 			
 			# Remove the bottom by setting the bottom to the previous element from the bottom
-			self.bottom = self.bottom.GetPrev()
+			self.bottom = self.bottom.Prev()
 	
 	# Pop the task from the top of the stack
 	def Pop( self ):
@@ -90,7 +86,7 @@ class StackChain:
 			self.top = self.bottom = None
 		else:
 			# Move the top to the current top's next pointer.
-			self.top = self.top.GetNext()
+			self.top = self.top.Next()
 			
 			# There is a another stack chained to this stack
 			if self.chain != None:

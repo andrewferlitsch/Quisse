@@ -7,14 +7,12 @@ class Task:
 	def __init__( self, task ):
 		self.task = task
 	
-	# Get the next task this element is chained to
-	def GetNext(self):
-		return self.next
-	
-	# Set the next task this element is chained to
-	def Next( self, task ):
-		self.next = task;
-	
+	# Get or Set the next task this element is chained to
+	def Next( self, next = None ):
+		if None == next:
+			return self.next
+		self.next = next
+
 	# Action to take when task is processed
 	def Action( self ):
 		print( self.task )
@@ -46,7 +44,7 @@ class Stack:
 		self.top.Action()
 		
 		# Move the top to the current top's next pointer.
-		self.top = self.top.GetNext()
+		self.top = self.top.Next()
 		return True
 
 print("Process tasks in order: A, B and C" )
