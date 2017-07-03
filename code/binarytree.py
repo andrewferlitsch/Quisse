@@ -2,15 +2,13 @@
 class Node:
 	# Constructor: set the node data
 	def __init__(self, key):
-		self.__key   = key	# node data
+		self.key   = key	# node data
 
-	# Set Node Data
-	def Key(key):
-		self.__key = key
-
-	# Get Node Data
-	def Key():
-		return __key
+	# Set or Get Node Data
+	def Key( self, key = None ):
+		if None == key:
+			return self.key
+		self.key = key
 
 	# Action to perform on a node	
 	def Action(node):
@@ -20,66 +18,63 @@ class BinaryTree(Node):
 	# Constructor: set the node data and left/right subtrees to null
 	def __init__(self, key):
 		Node.__init__(self, key)
-		self.__left  = None	# left binary subtree
-		self.__right = None	# right binary subtree
+		self.left  = None	# left binary subtree
+		self.right = None	# right binary subtree
 
-	# Set Left Binary Subtree
-	def Left(left):
-		self.__left = left
-
-	# Get Left Binary Subtree
-	def Left():
-		return __left
+	# Get ot Set Left Binary Subtree
+	def Left( self, left = None ):
+		if None == left:
+			return self.left
+		self.left = left
 
 	# Set Right Binary Subtree
-	def Right(right):
-		self.__right = right
-
-	# Get Right Binary Subtree
-	def Right():
-		return __right
+	def Right( self, right = None ):
+		if None == right:
+			return self.right
+		self.right = right
 	
 	# Example action to perform on a node
-	def Action(node):
+	def Action(self, node):
 		print( node.key)
 
 	#InOrder Traversal
-	def InOrder(root):
+	def InOrder(self, root):
 		if root == None:
 			return
-		InOrder( root.left )
-		Action( root )
-		InOrder( root.right )
+		self.InOrder( root.left )
+		self.Action( root )
+		self.InOrder( root.right )
 		
 	# PreOrder Traversal
-	def PreOrder(root):
+	def PreOrder(self, root):
 		if root == None:
 			return
-		Action( root )
-		PreOrder( root.left )
-		PreOrder( root.right )
+		self.Action( root )
+		self.PreOrder( root.left )
+		self.PreOrder( root.right )
 
 	# PostOrder Traversal
-	def PostOrder(root):
+	def PostOrder(self, root):
 		if root == None:
 			return
-		PreOrder( root.left )
-		PreOrder( root.right )
-		Action( root )
+		self.PreOrder( root.left )
+		self.PreOrder( root.right )
+		self.Action( root )
 
-		# Driver code
-		
+# Test Driver code
 root = BinaryTree(1)
 root.left      = BinaryTree(2)
 root.right     = BinaryTree(3)
 root.left.left  = BinaryTree(4)
 root.left.right  = BinaryTree(5)
 print("Preorder traversal of binary tree is")
-root.PreOrder()
+root.PreOrder( root )
  
-#print "\nInorder traversal of binary tree is"
-#printInorder(root)
+print("Inorder traversal of binary tree is")
+root.InOrder( root )
  
-#print "\nPostorder traversal of binary tree is"
-#printPostorder(root)
+print("Postorder traversal of binary tree is")
+root.PostOrder( root )
+ 
+
 		

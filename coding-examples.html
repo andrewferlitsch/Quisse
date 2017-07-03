@@ -2874,7 +2874,7 @@ class Stack:
 		disc = self.top	# the disc to pop from the stack
 		
 		# Move the top to the current top's next pointer (disc below).
-		self.top = self.top.Next()
+		self.top = self.top.GetNext()
 		return disc
 
 # Definition for Towers of Hanoi
@@ -3195,33 +3195,27 @@ You maybe asked to code a class definition for a binary tree node. The binary tr
 class BinaryTree:
 	# Constructor: set the node data and left/right subtrees to null
 	def __init__(self, key):
-		self.__left  = None	# left binary subtree
-		self.__right = None	# right binary subtree
-		self.__key   = key	# node data
+		self.left  = None	# left binary subtree
+		self.right = None	# right binary subtree
+		self.key   = key	# node data
 
-	# Set Left Binary Subtree
-	def Left(self, left):
-		self.__left = left
+	# Get or Set Left Binary Subtree
+	def Left(self, left = None):
+		if None == left:
+			return self.left
+		self.left = left
 
-	# Get Left Binary Subtree
-	def GetLeft(self ):
-		return __left
+	# Get or Set Right Binary Subtree
+	def Right(self, right = None):
+		if None == right:
+			return self.right
+		self.right = right
 
-	# Set Right Binary Subtree
-	def Right(self, right):
-		self.__right = right
-
-	# Get Right Binary Subtree
-	def GetRight(self):
-		return __right
-
-	# Set Node Data
-	def Key(self, key):
-		self.__key = key
-
-	# Get Node Data
-	def GetKey(self):
-		return __key
+	# Get or Set Node Data
+	def Key(self, key = None):
+		if None == key:
+			return self.key
+		self.key = key
 </pre>
 
 <pre class='w3-container' ng-show='btr1[2]'>
@@ -3359,15 +3353,13 @@ class from the base (super) class with methods specific to a binary tree.
 class Node:
 	# Constructor: set the node data
 	def __init__(self, key):
-		self.__key   = key	# node data
+		self.key   = key	# node data
 
-	# Set Node Data
-	def Key(self, key):
-		self.__key = key
-
-	# Get Node Data
-	def GetKey(self):
-		return __key
+	# Get or Set Node Data
+	def Key(self, key = None):
+		if None == key:
+			return self.key
+		self.key = key
 
 	# Action to perform on a node	
 	def Action(self, node):
@@ -3378,24 +3370,20 @@ class BinaryTree(Node):
 	# Constructor: set the node data and left/right subtrees to null
 	def __init__(self, key):
 		Node.__init__(self, key)
-		self.__left  = None	# left binary subtree
-		self.__right = None	# right binary subtree
+		self.left  = None	# left binary subtree
+		self.right = None	# right binary subtree
 
-	# Set Left Binary Subtree
-	def Left(self, left):
-		self.__left = left
+	# Get or Set Left Binary Subtree
+	def Left(self, left = None):
+		if None == left:
+			return self.left
+		self.left = left
 
-	# Get Left Binary Subtree
-	def GetLeft(self):
-		return __left
-
-	# Set Right Binary Subtree
-	def Right(self, right):
-		self.__right = right
-
-	# Get Right Binary Subtree
-	def GetRight(self):
-		return __right
+	# Get or Set Right Binary Subtree
+	def Right(self, right = None ):
+		if None == right:
+			return self.right
+		self.right = right
 	
 	# Example action to perform on a node	
 	def Action(self,node):
