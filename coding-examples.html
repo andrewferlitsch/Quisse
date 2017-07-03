@@ -4233,24 +4233,22 @@ class KNode:
 	k = 0      # max number of children
 	
 	# Dynamic array for children
-	children = DynamicArray()
+	children = []
 	
 	# constructor: set the node data
 	def __init__ ( self, k, key ):
 		self.key = key
 		self.k   = k
 	
-	# Set the node data
-	def Key( self, key ):
+	# Get or Set the node data
+	def Key( self, key = None ):
+		if None == key:
+			return self.key
 		self.key = key
-	
-	# Get the node data
-	def GetKey( self ):
-		return self.key
 	
 	# Get the number of children
 	def Size( self ):
-		return self.children.Size()
+		return len( self.children )
 	
 	# Add another child (branch)
 	def Add( self, key ):
@@ -4258,7 +4256,7 @@ class KNode:
 		if Size() == self.k:
 			return None
 		e = Tree( self.k, key )
-		self.children.add( e )
+		self.children.append( e )
 		return e
 	
 	# Get all the children of this node
@@ -4473,23 +4471,23 @@ class BST:
 		curr = self.root
 		while True:
 			# node is a duplicate, do not insert
-			if int( node.GetKey() ) ==  int( curr.GetKey() ):
+			if int( node.Key() ) ==  int( curr.Key() ):
 				return
 			
 			# The node is less than the current node, traverse left
-			if int( node.GetKey() )  < int( curr.GetKey() ):
+			if int( node.Key() )  < int( curr.Key() ):
 				# If there is no left node, make this node the left node
-				if curr.GetLeft() == None:
+				if curr.Left() == None:
 					curr.Left( node )
 					return
-				curr = curr.GetLeft()
+				curr = curr.Left()
 			# The node is greater than to the current node, traverse left
 			else:
 				# If there is no right node, make this node the right node
-				if curr.GetRight() == None:
+				if curr.Right() == None:
 					curr.Right( node )
 					return
-				curr = curr.GetRight()
+				curr = curr.Right()
 				
 tree = BST()
 tree.Insert( BinaryTree( 3 ) )
@@ -4662,15 +4660,15 @@ class BST:
 				return None
 				
 			# the value is equal to the current node, return the current node
-			if int( key ) == int( curr.GetKey() ):
+			if int( key ) == int( curr.Key() ):
 				return curr
 			
 			# The value is less than the current node, traverse left
-			if int( key ) <  int( curr.GetKey() ):
-				curr = curr.GetLeft()
+			if int( key ) <  int( curr.Key() ):
+				curr = curr.Left()
 			# The value is greater than to the current node, traverse left
 			else:
-				curr = curr.GetRight()
+				curr = curr.Right()
 				
 # Test Driver Method
 tree = BST()
@@ -4681,7 +4679,7 @@ tree.Insert( BinaryTree( 4 ) )
 tree.Insert( BinaryTree( 1 ) )
 print("BST level order: 3 2 6 1 4")
 BFS( tree.root )
-print( "FIND(4) = " + str( tree.Find( 4 ).GetKey() ) + " FIND(1) = " + str( tree.Find( 1 ).GetKey() ) )
+print( "FIND(4) = " + str( tree.Find( 4 ).Key() ) + " FIND(1) = " + str( tree.Find( 1 ).Key() ) )
 </pre>
 
 <pre class='w3-container' ng-show='bst2[2]'>
@@ -4841,27 +4839,27 @@ class BST:
 				return
 				
 			# the value is equal to the current node, delete the node
-			if int( key ) == int( curr.GetKey() ):
+			if int( key ) == int( curr.Key() ):
 				if isLeft:
-					prev.Left( None )
+					prev.left = None
 				else:
-					prev.Right( None )
+					prev.right = None
 				saveRoot = self.root;
 				self.root = prev;
-				if curr.GetLeft()  != None:
-					self.Insert( curr.GetLeft() )
-				if curr.GetRight() != None:
-					self.Insert( curr.GetRight() )
+				if curr.Left()  != None:
+					self.Insert( curr.Left() )
+				if curr.Right() != None:
+					self.Insert( curr.Right() )
 				self.root = saveRoot
 				return
-			elif int( key ) < int( curr.GetKey() ):
+			elif int( key ) < int( curr.Key() ):
 				isLeft = True
 				prev = curr
-				curr = curr.GetLeft()
+				curr = curr.Left()
 			else:
 				isLeft = False
 				prev = curr
-				curr = curr.GetRight();
+				curr = curr.Right();
 	
 # Driver method
 tree = BST()
