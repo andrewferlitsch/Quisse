@@ -10,22 +10,18 @@ class Task:
 		self.task = task
 		self.priority = priority
 	
-	# Get the task's priority
-	def GetPriority( self ):
-		return self.priority
-	
-	# Set the task's priority
-	def Priority( self, priority ):
+	# Get or Set the task's priority
+	def Priority( self, priority = None ):
+		if None == priority:
+			return self.priority
 		self.priority = priority
 	
-	# Get the next task this element is chained to
-	def GetNext( self ):
-		return self.next
-	
-	# Set the next task this element is chained to
-	def Next( self, task ):
+	# Get or Set the next task this element is chained to
+	def Next( self, task = None ):
+		if None == task:
+			return self.next
 		self.next = task
-	
+
 	# Action to take when task is processed
 	def Action( self ):
 		print( self.task )
@@ -57,7 +53,7 @@ class Queue:
 		prev = self.head
 		while curr != None:
 			# Find a task who's priority is less than the new task
-			if task.GetPriority() > curr.GetPriority():
+			if task.Priority() > curr.Priority():
 				# Insert the task in front of the current task.
 				task.Next( curr )
 				
@@ -71,7 +67,7 @@ class Queue:
 				break
 			
 			prev = curr;
-			curr = curr.GetNext();
+			curr = curr.Next();
 		
 		# Add to the tail (end) of the queue
 		if curr == None:
@@ -87,7 +83,7 @@ class Queue:
 		self.head.Action()
 		
 		# Move the head to the next element.
-		self.head = self.head.GetNext()
+		self.head = self.head.Next()
 		if self.Empty():
 			self.tail = None
 		return True
@@ -99,15 +95,15 @@ class Queue:
 		
 		# If the task is the head of the queue, remove it and update head to the next element
 		if self.head == task:
-			self.head.Next( self.head.GetNext() )
+			self.head.Next( self.head.Next() )
 		# Find the task in the queue
 		else:
-			curr = self.head.GetNext()
+			curr = self.head.Next()
 			prev = self.head;
 			while curr != None:
 				# Remove the task from the queue and update previous element's next to this task's next element
 				if task == curr:
-					prev.Next( curr.GetNext() );
+					prev.Next( curr.Next() );
 					break;
 		
 		# Add the task back to the queue
