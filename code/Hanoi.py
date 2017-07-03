@@ -7,12 +7,10 @@ class Disc:
 	def __init__( self, disc ):
 		self.disc = disc
 	
-	# Get the next disc this element is stacked on top of
-	def GetNext( self ):
-		return self.next
-	
-	# Set the next disc this element is stacked on top of
-	def Next( self, disc ):
+	# Get or Set the next disc this element is stacked on top of
+	def Next( self, disc = None ):
+		if None == disc:
+			return self.next
 		self.next = disc
 	
 	# Action to take when task is processed
@@ -45,7 +43,7 @@ class Stack:
 		disc = self.top	# the disc to pop from the stack
 		
 		# Move the top to the current top's next pointer (disc below).
-		self.top = self.top.GetNext()
+		self.top = self.top.Next()
 		return disc
 
 # Definition for Towers of Hanoi
