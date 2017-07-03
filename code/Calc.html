@@ -1,0 +1,58 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+	
+	class Calc
+	{
+		// Multiple using only + and equal operator
+		static Mul( x, y ) {
+			var result = 0;
+			var repeat = 0;
+			while ( true ) {
+				if ( repeat++ == y )
+					break;
+				result += x;
+			}
+			return result;
+		}
+	
+		// Exponent using only + and equal operator
+		static Exp( x, e ) {
+			if ( e == 0 )
+				return 1;
+			var result = 1;
+			var repeat = 0;
+			while ( true ) {
+				if ( repeat++ == e )
+					break;
+				result = Calc.Mul( x, result );
+			}
+			return result;
+		}
+		
+		// Exponent with half the multiplications
+		static Exp2( x, e ) {
+			if ( e == 0 )
+				return 1;
+			// even
+			if ( ( e % 2 ) == 0 )
+				return Calc.Exp( x * x, ( e / 2 ) );
+			// odd
+			else
+				return x * Calc.Exp( x * x, ( ( e - 1 ) / 2  ) );
+		}
+	}
+	
+	// Test Driver
+	println( "5 * 6 = " + Calc.Mul( 5, 6 ) );
+	println( "3 exp 4 = " + Calc.Exp( 3, 4 ) );
+	println( "3 exp 4 = " + Calc.Exp2( 3, 4 ) );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

@@ -1,0 +1,98 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(function() {
+	var output = $("#output");
+	function println( text ) {
+		output.html( output.html() + "<br/>" + text );
+	}
+
+	// Base Class definition for k-ary tree
+	class Node {
+		// constructor: set the node data
+		constructor( key ) {
+			this.key = key;	// node data
+		}
+		
+		// Set the node data
+		set Key( key ) {
+			this.key = key;
+		}
+		
+		// Get the node data
+		get Key() {
+			return this.key;
+		}
+	}
+
+	// Derived definition for a Binary Tree
+	class BinaryTree extends Node {
+		// Constructor: set the node data and left/right subtrees to null
+		constructor( key ) {
+			super( key );
+			this.right = null;	// right binary subtree
+			this.left = null;	// left binary subtree
+		}
+		
+		// Set the left binary subtree
+		set Left( left ) {
+			this.left = left;
+		}
+		
+		// Get the left binary subtree
+		get Left() {
+			return this.left;
+		}
+		
+		// Set the right binary subtree
+		set Right( right ) {
+			this.right = right;
+		}
+		
+		// Get the right binary subtree
+		get Right() {
+			return this.right;
+		}
+	
+		// Example action to perform on a node
+		Action() {
+			println( this.Key );
+		}
+	}
+
+	class BFS {
+		static BFS( root ) {
+			// Check if tree is empty
+			if ( root == null )
+				return;
+				
+			// list of nodes to visit in node level order
+			var visit = [];	
+			visit.push( root );
+			
+			// sequentially visit each node in level order as it is dynamically added to the list
+			for ( var i = 0; i < visit.length; i++ ) {
+				// Perform the node action
+				visit[ i ].Action();
+				
+				// Add to the list the child siblings of this node
+				if ( visit[ i ].Left != null )
+					visit.push( visit[ i ].Left );
+				if ( visit[ i ].Right != null )
+					visit.push( visit[ i ].Right );
+			}	
+		}
+	}
+	
+	// Test Driver
+	var tree   = new BinaryTree( "1" );
+	tree.Left  = new BinaryTree( "2" );
+	tree.Right = new BinaryTree( "3" );
+	tree.Left.Left  = new BinaryTree( "4" );
+	tree.Left.Right = new BinaryTree( "5" );
+	println( "BFS output 1 2 3 4 5");
+	BFS.BFS( tree );
+});
+</script>
+<body>
+	<div id='output'></div>
+</body>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body ng-app="coding">
+	<section ng-controller="codeCtrl">
+		<code ng-show='hint[ 0 ]'></code>
+		<hint1 ng-show='hint[ 1 ]'></hint1>
+		<answer ng-show='hint[ 2 ]'></answer>
+		<button ng-click='algo=!algo'>Algorithm</button>
+		<button ng-click='hint=[false,true,false]' ng-show='hint[ 0 ]'>Hint 1</button>
+		<button ng-click='hint=[false,false,true]' ng-show='hint[ 1 ]'>Answer</button>
+		<button ng-click='Compile(); run=true'>Compile</button>
+		<button ng-click='Run()' ng-show='run'>Run</button>
+		<div id='compile' style='color:red;'></div>
+		<div id='run' style='color:green;'></div>
+		<algo ng-show='algo'></algo>
+		<expect></expect>
+	</section>
+	
+<script>
+
+/*
+ * Send Program to the Server
+ */
+function ServerCompile( program, Result ) {
+	$("#compile").html( "" );
+	$("#run").html( "" );
+	$.ajax({
+		url: "/code/compile.php",
+		type: 'post',
+		data: { program : program },
+		success: function( data, status ) { data = JSON.parse( data ); console.log( data ); 
+			var msg;
+			if ( data.status == 0 )
+				msg = "Compile Successful";
+			else
+				msg = data.error;
+			$("#compile").html( msg );
+			Result( data.status );
+		},
+		error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
+	});
+}
+
+function ServerRun( program ) {
+	$("#compile").html( "" );
+	$("#run").html( "" );
+	$.ajax({
+		url: "/code/run.php",
+		type: 'post',
+		data: { program : program },
+		success: function( data, status ) { data = JSON.parse( data ); console.log( data ); 
+			var msg;
+			var expect = $("#expect").html().replace( /<br>/g, "<br />" );
+			console.log( expect );
+			console.log( data.output );
+			if ( expect == data.output )
+				msg = "Run Successful";
+			else
+				msg = "Run Failed";
+			msg += "<br/>" + data.output;
+			$("#run").html( msg );
+		},
+		error: function(xhr) { console.log( xhr.status + " " + xhr.statusText ); }
+	});
+}
+
+var coding = angular.module( 'coding', []);
+coding.controller( 'codeCtrl', function( $scope ) {
+	$scope.hint = [ true, false, false ];
+	$scope.compileResult = false;
+	
+	$scope.Compile = function() {
+		if ( $scope.hint[ 0 ] )
+			hint = "hint0";
+		else if ( $scope.hint[ 1 ] )
+			hint = "hint1";
+		else
+			hint = "hint2";
+		var code = document.getElementById( hint ).value.replace( /&lt;/g, "<");
+		ServerCompile( code, function( r ) { if ( r == 0 ) $scope.compileResult = true; } );
+	}
+	
+	$scope.Run = function() {
+		ServerRun( "Prime" );
+	}
+})
+.directive( "code", function() {
+	return {
+		restrict: 'E',
+		template: '<textarea id="hint0" cols=100 rows=25>' +
+'class Prime { \r\n\
+    public static void Prime( int n ) { \r\n\r\n\
+         /* solution here */\r\n\
+    }\r\n\r\n\
+    public static void main( String args[] ) {\r\n\
+        System.out.println( "Prime Numbers between 1 and 100" );\r\n\
+        Prime( 100 );\r\n\
+    }\r\n\
+}' +
+		'</textarea><br/>'
+	}
+})
+.directive( "hint1", function() {
+	return {
+		restrict: 'E',
+		template: '<textarea id="hint1" cols=100 rows=25>' +
+'class Prime { \r\n\
+    public static void Prime( int n ) { \r\n\r\n\
+        // Prime Numbers are numbers only divisible by 1 and itself.\r\n\
+        System.out.println( "1" );\r\n\
+        System.out.println( "2" );\r\n\
+\r\n\
+        // Primes for numbers above 2\r\n\
+        for ( int number = 3; number <=n; number++ ) {\r\n\
+            // Attempt to divide this number by every number between 2 and one less than itself\r\n\
+            int div = 2;\r\n\
+            for ( /**/; div < number; div++ ) {\r\n\
+                /* solution here */\r\n\
+            }\r\n\
+            /* solution here */\r\n\
+        }\r\n\
+    }\r\n\r\n\
+    public static void main( String args[] ) {\r\n\
+        System.out.println( "Prime Numbers between 1 and 100" );\r\n\
+        Prime( 100 );\r\n\
+    }\r\n\
+}' +
+		'</textarea><br/>'
+	}
+})
+.directive( "answer", function() {
+	return {
+		restrict: 'E',
+		template: '<textarea id="hint2" cols=100 rows=25>' +
+'class Prime { \r\n\
+    public static void Prime( int n ) { \r\n\r\n\
+        // Prime Numbers are numbers only divisible by 1 and itself.\r\n\
+        System.out.println( "1" );\r\n\
+        System.out.println( "2" );\r\n\
+\r\n\
+        // Primes for numbers above 2\r\n\
+        for ( int number = 3; number <=n; number++ ) {\r\n\
+            // Attempt to divide this number by every number between 2 and one less than itself\r\n\
+            int div = 2;\r\n\
+            for ( /**/; div < number; div++ ) {\r\n\
+                // use the mod function to see if their is a remainder in the division\r\n\
+                if ( ( number % div ) == 0 )\r\n\
+                    break;\r\n\
+            }\r\n\
+            if ( div == number )\r\n\
+                System.out.println(number);\r\n\
+        }\r\n\
+    }\r\n\r\n\
+    public static void main( String args[] ) {\r\n\
+        System.out.println( "Prime Numbers between 1 and 100" );\r\n\
+        Prime( 100 );\r\n\
+    }\r\n\
+}' +
+		'</textarea><br/>'
+	}
+})
+.directive( "algo", function() {
+	return {
+		restrict: 'E',
+		template: "<h4>Algorithm</h4>\r\n\
+<ol class='w3-ul'>\r\n\
+	<li>For each number, we attempt to divide it by every number less than it, except for one.</li>\r\n\
+	<li>The integer modulo operator is used to test if there is a remainder from the integer division.</li>\r\n\
+	<li>If there is no remainder, it is divisible by the number and therefore not a prime.</li>\r\n\
+	<li>If each of the numbers it is divided by has a remainder, it is a prime.</li>\r\n\
+</ol>"
+	}
+})
+.directive( "expect", function() {
+	return {
+		restrict: 'E',
+		template: "<h4>Expected Output</h4><pre id='expect'>Prime Numbers between 1 and 100<br />\
+1<br />\
+2<br />\
+3<br />\
+5<br />\
+7<br />\
+11<br />\
+13<br />\
+17<br />\
+19<br />\
+23<br />\
+29<br />\
+31<br />\
+37<br />\
+41<br />\
+43<br />\
+47<br />\
+53<br />\
+59<br />\
+61<br />\
+67<br />\
+71<br />\
+73<br />\
+79<br />\
+83<br />\
+89<br />\
+97<br /></pre>"
+	}
+})
+;
+</script>
+</body>
+</html>

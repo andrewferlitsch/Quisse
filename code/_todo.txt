@@ -1,0 +1,8 @@
+Node Path (BFS.java)
+BFS - find goal node (BFS.java)
+Distance between two nodes (BFS.java)
+DFS(R) - find goal node (Graph.java)
+// Not sure if DFSR is doing depth first
+DLS (DFS.java)
+
+Vacuum (Vacuum.java)
